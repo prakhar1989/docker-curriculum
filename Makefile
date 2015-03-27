@@ -7,9 +7,8 @@ SLUG=$(shell cat build/slug.txt)
 default: output.html
 
 git:
-	@if [ -n "$(SHOULD_CREATE_UPSTREAM)" ]; then \
+	@if [ -z "$(SHOULD_CREATE_UPSTREAM)" ]; then \
 	echo "Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below."; \
-	echo "$(SHOULD_CREATE_UPSTREAM)"; \
 	printf 'Paste GitHub URL: '; \
 	read REMOTE; \
 	git remote rename origin upstream > tmp.out 2>&1 || cat tmp.out; rm tmp.out; \
