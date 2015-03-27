@@ -25,7 +25,7 @@ build/title.txt: git
 	echo "Filling in templates..."; \
 	sed -e "s/{{ title }}/$$TITLE/g" -e "s/{{ repo }}/${REPO_ESCAPED}/g" "build/template.md" > "$$TITLE.md"; \
 
-output.html: build/title.txt
+output.html: git build/title.txt
 	@cd build; \
 	cp "../$(TITLE).md" .; \
 	cp template.css "$(TITLE).css"; \
@@ -40,7 +40,7 @@ output.html: build/title.txt
 	git push -u origin master > tmp.out 2>&1 || cat tmp.out; rm tmp.out; \
 
 
-build/slug.txt: output.html
+build/slug.txt: git output.html
 	@printf 'Enter a path slug for your curriculum: \"$(TITLE)\".  It should contain only lowercase letters, numbers, and dashes.\n'
 	@printf '\nExample path slugs: python, javascript, advanced-java\n\n'
 	@printf 'Path: '; \
