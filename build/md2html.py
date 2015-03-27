@@ -204,7 +204,7 @@ class MarkdownCompiler():
             github_oauth_token = None
 
             # use the github API
-            print('converting markdown with github API...')
+            print('Converting markdown with github API...')
             github_mode = "markdown"
             data = {
                 "text": markdown_text,
@@ -251,7 +251,7 @@ class MarkdownCompiler():
                     markdown_html = markdown_html.replace(marker, toc_html)
 
         else:
-            print('converting markdown with Python markdown...')
+            print('Converting markdown with Python markdown...')
             markdown_html = markdown.markdown(markdown_text, extensions=['extra', 'toc'])
 
         markdown_html = self.postprocessor(markdown_html)
