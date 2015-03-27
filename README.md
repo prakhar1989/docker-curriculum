@@ -3,14 +3,14 @@ ADI Curriculum Template
 
 Make a new curriculum to be deployed on [learn.adicu.com](http://learn.adicu.com).  It's easy to get started writing your own curriculum!
 
+### Getting started
+*This assumes that you don't fork this repo.  You can only fork once, after all!*
 
-#### Building
+1. `git clone https://github.com/adicu/learn-template.git`
+2. `cd learn-template`
+3. `make`
+4. Make a new, different repo on GitHub for your curriculum, and _**don't**_ initialize it with a `README.md` or `.gitignore`.  We'll make these ourselves.
 
-Run the following in the root directory:
-
-    ./build.sh
-
-This generates `.html` files to be viewed in a browser.
 
 ### Deploying
 

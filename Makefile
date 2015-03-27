@@ -8,7 +8,7 @@ git:
 	@echo "Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below."
 	@printf 'Paste GitHub URL: '; \
     read REMOTE; \
-	@git remote rename origin upstream
+	@git remote rename origin upstream > tmp.out || cat tmp.out; rm tmp.out \
     git remote add origin $$REMOTE
 
 build/title.txt: git
@@ -26,7 +26,12 @@ output.html: build/title.txt
 	mv "$(TITLE).html" ../output.html; \
 	rm -f "$(TITLE).css" "$(TITLE).md"; \
 	cd ..; \
-	git add build/title.txt; git commit -m "Initialize repo"; git push -u origin master
+	echo "Syncing build/title.txt with $(REPO)"; \
+	git reset HEAD . > tmp.out || cat tmp.out; rm tmp.out; \
+	git add build/title.txt > tmp.out || cat tmp.out; rm tmp.out; \
+	git commit -m "Initialize repo" > tmp.out || cat tmp.out; rm tmp.out; \
+	git push -u origin master > tmp.out || cat tmp.out; rm tmp.out; \
+
 
 build/slug.txt: output.html
 	@printf 'Enter a path slug for your curriculum: \"$(TITLE)\".  It should contain only lowercase letters, numbers, and dashes.\n'
@@ -35,7 +40,11 @@ build/slug.txt: output.html
     read SLUG; \
     echo $$SLUG > build/slug.txt; \
     ssh adi-website "mkdir -p /srv/learn/public_html/$$SLUG"; \
-    git add build/slug.txt; git commit -m "Setup deploy"; git push -u origin master
+    echo "Syncing build/slug.txt with $(REPO)"; \
+	git reset HEAD . > tmp.out || cat tmp.out; rm tmp.out; \
+	git add build/slug.txt > tmp.out || cat tmp.out; rm tmp.out; \
+	git commit -m "Setup Deploy" > tmp.out || cat tmp.out; rm tmp.out; \
+	git push -u origin master > tmp.out || cat tmp.out; rm tmp.out; \
 
 .PHONY:
 deploy: output.html build/slug.txt
