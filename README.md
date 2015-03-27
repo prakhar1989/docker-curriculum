@@ -17,11 +17,11 @@ Make a new curriculum to be deployed on [learn.adicu.com](http://learn.adicu.com
     The whole process should look something like this:
     ```
     Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below.
-    Paste GitHub URL: https://github.com/danrschlosser/learn-testing.git
-    Please enter the name of your curriculum: Javascript for Beginners
+    Paste GitHub URL: https://github.com/danrschlosser/learn-javascript.git
+    Please enter the name of your curriculum: JavaScript for Beginners
     Filling in templates...
     Converting markdown with Python markdown...
-    Syncing build/title.txt with https://github.com/danrschlosser/learn-testing.git
+    Syncing build/title.txt with https://github.com/danrschlosser/learn-javascript.git
     ```
 
 4. Edit your newly created markdown file.  The `make` command should have created a `.md` file in the root directory.  Write your curriculum in the file.
@@ -30,12 +30,11 @@ Make a new curriculum to be deployed on [learn.adicu.com](http://learn.adicu.com
 
 The `make` command also generates `output.html`, which is the HTML version of the markdown file created in the root directory.  You can open this file in your browser to view your project.
 
-
 ### Deploying
 
-Run the following command to deploy to [learn.adicu.com/webdev](http://learn.adicu.com/webdev) (requires SCP and access to adi-website on SSH):
+_Note: In order to deploy these projects, you need to have SSH access to `adi-website`.  Ask Dan, Nate, Eunice, or Raymond for help setting this up._
 
-    ./deploy.sh
+Run `make deploy` to deploy your curriculum.  The first time, it will ask for 
 
 #### Solutions
 
