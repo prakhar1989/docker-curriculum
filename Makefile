@@ -14,9 +14,7 @@ output.html: build/title.txt *.md
 	@build/_make.sh build
 
 build/slug.txt: output.html
-	@if [ ! -f "build/slug.txt" ]; then \
-		build/_make.sh pre-deploy; \
-	fi
+	@build/_make.sh pre-deploy
 
 .PHONY:
 deploy: output.html build/slug.txt
