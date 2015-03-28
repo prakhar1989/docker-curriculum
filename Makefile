@@ -6,9 +6,7 @@ git:
 	@build/_make.sh fix-remotes
 
 build/title.txt: git
-	@if [ ! -f "build/title.txt" ]; then \
-		build/_make.sh init; \
-	fi
+	@build/_make.sh init; \
 
 output.html: build/title.txt *.md
 	@build/_make.sh build

@@ -54,8 +54,8 @@ elif [ "$1" = "fix-remotes" ] ; then
 	echo "Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below."
 	printf "Paste GitHub URL: "
 	read REMOTE
-	quiet git remote rename origin upstream
-	quiet git remote add origin $REMOTE
+	quiet "remote rename origin upstream"
+	quiet "remote add origin $REMOTE"
 	fi
 elif [ "$1" = "build" ] ; then
 	TITLE_TMP="$(title)"
