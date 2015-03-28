@@ -158,7 +158,7 @@ elif [ "$1" = "pre-deploy" ] ; then
                 # The filename is invalid
                 echo "$SLUG is not valid.  Slugs must contain lowercase letters, numbers, and dashes."
             # try to make the directory
-            else if [ -n "$(ssh adi-website "mkdir /srv/learn/public_html/$SLUG" 2>&1)" ]; then
+            elif [ -n "$(ssh adi-website "mkdir /srv/learn/public_html/$SLUG" 2>&1)" ]; then
                 # A directory already exists with that name.  Sorry!
                 echo "Something already exists at learn.adicu.com/$SLUG.  Try another slug."
             else
