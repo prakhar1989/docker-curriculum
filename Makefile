@@ -8,7 +8,7 @@ default: output.html
 
 .PHONY:
 git:
-	@if [ -n "$(SHOULD_CREATE_UPSTREAM)" ]; then \
+	@if [ -z "$(SHOULD_CREATE_UPSTREAM)" ]; then \
 	echo "Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below."; \
 	printf 'Paste GitHub URL: '; \
 	read REMOTE; \
