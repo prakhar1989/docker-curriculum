@@ -34,31 +34,4 @@ The `make` command also generates `output.html`, which is the HTML version of th
 
 _Note: In order to deploy these projects, you need to have SSH access to `adi-website`.  Ask Dan, Nate, Eunice, or Raymond for help setting this up._
 
-Run `make deploy` to deploy your curriculum.  The first time, it will ask for 
-
-#### Solutions
-
-All solutions are available by section in the `solutions/` folder.
-
-#### Using Vagrant
-
-We support running with vagrant!  [Install and setup Vagrant](https://docs.vagrantup.com/v2/installation/index.html), and then:
-
-    $ vagrant up # launches the box
-    $ vagrant ssh # ssh into the box
-    # You are now in the vagrant instance
-    $ cd /vagrant # go to the code
-    $ cd <solutions folder> # Ex: cd webdev-solutions/1.3.2\ Dynamic\ Routes
-    # Run the solution # Ex: python app.py
-
-#### Directory Structure
-
-##### build/
-
-This is where all the extra files needed to convert from markdown to HTML go. `build.sh` uses the files from this folder.
-
-##### img/ 
-
-All images for the project should be put in here.
-
-##### 
+Run `make deploy` to deploy your curriculum.  The first time, it will ask for a path slug.  Give something **unique**!
