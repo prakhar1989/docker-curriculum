@@ -1,7 +1,7 @@
 TITLE=$(shell cat build/title.txt)
 REPO=$(shell python build/tweaks/fork.py)
 REPO_ESCAPED=$(echo $(REPO) | sed -e "s/\//\\\\\//g")
-SHOULD_CREATE_UPSTREAM=$(git remote -v | grep upstream)
+SHOULD_CREATE_UPSTREAM=$(shell git remote -v | grep upstream)
 SLUG=$(shell cat build/slug.txt)
 
 default: output.html
