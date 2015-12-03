@@ -1,5 +1,5 @@
 <a id="top"></a>
-<img src="/images/logo.png" alt="docker logo">
+<img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/logo.png" alt="docker logo">
 
 *Build and deploy your distributed applications easily to the cloud with Docker*
 
@@ -30,7 +30,7 @@ Containers take a different approach: by leveraging the low-level mechanics of t
 
 As developers, we are cognizant of the power we hold in our hands - the ability to build apps to share with the entire world is very empowering. However, one key aspect of that realization involves deploying our application either on the cloud, a datacenter or even a single server. Given that apps today involve so many components - an application server, a database, a caching layer etc. deploying and managing these architectures is extremely complex.
 
-<img src="/images/interest.png" title="interest">
+<img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/interest.png" title="interest">
 
 By standardizing an application and its dependencies into a container, Docker enables us to build, test and release our apps quickly and easily. Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the **Containerization** movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.
 
