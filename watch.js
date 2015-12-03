@@ -10,7 +10,10 @@ var watcher = chokidar.watch('file, dir, glob, or array', {
 // Watch the readme for changes
 watcher.add('README.md');
 
-// Add event listeners.
+// kick off the first generate
+execshell("./generate");
+
+// on change - run the generator
 watcher.on('change', function(path) { 
     console.log("Readme has changed. Re-generating HTML.");
     execshell("./generate");
