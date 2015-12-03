@@ -1,0 +1,18 @@
+#!/bin/bash
+
+### Generates the HTML using ADI's template files
+
+TITLE="README"
+OUTPUTFILE="index.html"
+
+# copy over all needed files into build/
+cd build
+cp "../$TITLE.md" .
+cp template.css "$TITLE.css"
+
+# run md2html
+python md2html.py "$TITLE.md"
+
+# copy output to the root dir, and delete intermediate files
+mv "$TITLE.html" ../$OUTPUTFILE
+rm -f "$TITLE.css" "$TITLE.md"
