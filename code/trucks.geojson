@@ -1,0 +1,5771 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397517086469, 
+          37.791777988406
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bombay Blvd.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Indian Style: BBQ: Variety of Curries: Rice: Wraps: Breads (Naan: Rotis: Parathas): Desserts: Pizza.  Beverages: Condiments: Indian Soups: Salads & Appetizer Varieties.", 
+        "address": "333 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402532491346, 
+          37.7862060821039
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bombay Blvd.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Indian Style: BBQ: Variety of Curries: Rice: Wraps: Breads (Naan: Rotis: Parathas): Desserts: Pizza.  Beverages: Condiments: Indian Soups: Salads & Appetizer Varieties.", 
+        "address": "86 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400427155584, 
+          37.7870415558717
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sausage Slinger", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Chips and Soda", 
+        "address": "100 NEW MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.408040736138, 
+          37.7834700660829
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Halal Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Kebab: Halal Gyros: Grilled Halal Meat: Beverages", 
+        "address": "901 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398489753587, 
+          37.7957009053169
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bacon Bacon", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Bacon burger: bacon grilled cheese: bacon sandwiches: bacon tacos: bacon fries: bacon strips: bacon caramel corn", 
+        "address": "250 CLAY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399011222821, 
+          37.7974551567824
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bacon Bacon", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Bacon burger: bacon grilled cheese: bacon sandwiches: bacon tacos: bacon fries: bacon strips: bacon caramel corn", 
+        "address": "600 FRONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400535326777, 
+          37.7878896999061
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Chai Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Indian Chai (Tea)", 
+        "address": "79 NEW MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402567175578, 
+          37.7931486269835
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Chai Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Indian Chai (Tea) & Prepackaged Indian Snacks.", 
+        "address": "400 MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.404090439434, 
+          37.7875984155546
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "French Creme Brulee", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Creme Brulee: Creme au Chocolat: Creme au Caramel:  Panna Cotta: Mini Cheesecakes: Pumpkin Cake: Salade De Fruits: Crepes with Fruit: Cold Drinks: Ice Cream: Water.", 
+        "address": "720 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391768324832, 
+          37.7327944920286
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Your Community Foods", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Wraps: Sandwiches: Chicken Wings: Fries: Lemonade: Juices", 
+        "address": "5048 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392149114172, 
+          37.7674330173312
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 8722/Lot003", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397031718978, 
+          37.7477720916075
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "2045 EVANS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.412618994655, 
+          37.7488480565663
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "3040 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.406059743494, 
+          37.740303872806
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 5598/Lot031", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.478186325415, 
+          37.7300036831892
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 7295/Lot022", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.384530734223, 
+          37.7550307267667
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "435 23RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388529515257, 
+          37.7571245603861
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4172/Lot010", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388118704077, 
+          37.7611829945051
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4058/Lot010", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.385679248721, 
+          37.7447521916164
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "1580 BURKE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390860289431, 
+          37.7674662871448
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "600 16TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398430650214, 
+          37.7682493867935
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "1140 07TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391174184456, 
+          37.7531551067155
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4227/Lot012", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.408492892439, 
+          37.7685432890242
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "66 POTRERO AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.404418467212, 
+          37.7381177715919
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 5369/Lot003", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.420322231526, 
+          37.7631563932265
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "3335 17TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.385441811568, 
+          37.7620084580302
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4046/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390081224847, 
+          37.7454064294164
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 5216/Lot030", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393514054817, 
+          37.7583033956425
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4103/Lot023A", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.382847355518, 
+          37.7428202346759
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "151 MENDELL ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387124812179, 
+          37.764741322675
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 3941/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395902231236, 
+          37.7593037663834
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "555 MISSOURI ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387000196298, 
+          37.7524049924783
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4296/Lot010", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.384128384237, 
+          37.7533400011811
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4241/Lot002", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403191783229, 
+          37.7783886157866
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "950 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393076880858, 
+          37.7445911950917
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "1801 EVANS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.414568632419, 
+          37.7331423951426
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "400 ALEMANY BLVD", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401540291357, 
+          37.7507607694601
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 4281a/Lot012A", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388990808654, 
+          37.7464705066471
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "50 QUINT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.385081339678, 
+          37.749458329027
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "888 MARIN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.38687903198, 
+          37.7484453388377
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "3201 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403907848212, 
+          37.7653706693171
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "350 KANSAS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387549426547, 
+          37.7679955456856
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 8722/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397987371508, 
+          37.7644472955619
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "146 CONNECTICUT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390790355566, 
+          37.7707029760975
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "Assessors Block 8732/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391474911246, 
+          37.7691244121681
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Natan's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks", 
+        "address": "1650 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402978526686, 
+          37.7302216813049
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tacos Santana", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos : Tortas: Quesadillas & Beverages", 
+        "address": "2101 CARROLL AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391617595098, 
+          37.7424951959228
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tacos Santana", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos : Tortas: Quesadillas & Beverages", 
+        "address": "1700 JERROLD AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398940846628, 
+          37.7445185826649
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tacos Santana", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos : Tortas: Quesadillas & Beverages", 
+        "address": "2142 JERROLD AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.416104892532, 
+          37.7678524427181
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tacos Santana", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos : Tortas: Quesadillas & Beverages", 
+        "address": "1800 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409872355397, 
+          37.7525274778762
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Benny's", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot/cold sandwiches: anticuchos pervanos: natural juices: sodas: coffee: pastry:", 
+        "address": "1217 FLORIDA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.434351868931, 
+          37.7628387070954
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Teresa Hotdogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs & various beverages", 
+        "address": "2367 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.435257895808, 
+          37.7606817687521
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Teresa Hotdogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs & various beverages", 
+        "address": "4111 18TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.435401104403, 
+          37.7617489380071
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Teresa Hotdogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs & various beverages", 
+        "address": "444 CASTRO ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403123093929, 
+          37.7669767564703
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mr. Nice, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "100% Grass fed beef hot dogs: wellshire bacon wrapped hot dogs: beef & heirloom pork spicy link: smoked pork bratwurst: organic chicken apple sausage: Irish breakfast rolls: sandwiches: various sides (fries: potato salad: coleslaw: salad) & ice cream.", 
+        "address": "235 15TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405086420952, 
+          37.7784418992113
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sinthya's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: chips: soda: corn on the cob: french fries", 
+        "address": "301 06TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.419000119489, 
+          37.7543023858576
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sinthya's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: chips: soda: corn on the cob: french fries", 
+        "address": "2664 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.408828372369, 
+          37.7756306307592
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sinthya's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: chips: soda: corn on the cob: french fries", 
+        "address": "1155 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.415562670854, 
+          37.7484893849775
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mario's Colombian and Mexican Food", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Mexican: Tacos: quesadillas: burritos: tortas. Colombian: Chorizo con arepa: potatoes & sausage: empanadas: arepa rellana: potatoes & guacamole.", 
+        "address": "1575 SOUTH VAN NESS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396434007976, 
+          37.792363514411
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Sandwich Stand, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "", 
+        "address": "50 MAIN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409568315547, 
+          37.7831754207336
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Yummy Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: pretzels: chips: juices and cold drinks", 
+        "address": "954 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.408837940446, 
+          37.7828341636984
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Yummy Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: pretzels: chips: juices and cold drinks", 
+        "address": "945 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407711134267, 
+          37.7780755347517
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "150 RUSS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.415102651361, 
+          37.7770972708968
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "55 09TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.411781357745, 
+          37.7756237711242
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "716 TEHAMA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395660566066, 
+          37.7868183030362
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "532 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40196900168, 
+          37.790735810536
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "180 MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399520766943, 
+          37.7862510074437
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "180 NEW MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40094044069, 
+          37.790485146128
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "1 SANSOME ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.413686791248, 
+          37.7750297628802
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "1300 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403546254184, 
+          37.7710219992437
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "699 08TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407429830891, 
+          37.760866951347
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "690 POTRERO AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.413628336663, 
+          37.7645273058937
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "350 TREAT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.415726650735, 
+          37.7726358180055
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "1523 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407115289202, 
+          37.7755336414436
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "175 LANGTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409294222069, 
+          37.775950411261
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "1150 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.411000005343, 
+          37.7777909291434
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "640 NATOMA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40720707415, 
+          37.7756064329553
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "171 LANGTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.410401545178, 
+          37.7776555423955
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "1130 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409199456423, 
+          37.7792067880556
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sun Rise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: sandwiches: drinks: snacks: candy: hot coffee", 
+        "address": "560 NATOMA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.430449785949, 
+          37.782143532929
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bob Johnson", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Watermelon", 
+        "address": "Assessors Block 0733/Lot010", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392063194969, 
+          37.7325595789318
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bob Johnson", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Watermelon", 
+        "address": "1709 REVERE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.41074477293, 
+          37.763292918729
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Del Popolo, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Wood Fired Pizzas", 
+        "address": "2772 MARIPOSA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399011222821, 
+          37.7974551567824
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Del Popolo, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Wood Fired Pizzas", 
+        "address": "600 FRONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40585465611, 
+          37.7325564744198
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "2380 SAN BRUNO AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400864373304, 
+          37.7392165862623
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "75 INDUSTRIAL ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.389765731256, 
+          37.7252957217827
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1485 YOSEMITE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394408901501, 
+          37.7287554795043
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1760 YOSEMITE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400117226063, 
+          37.7275936019207
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1828 EGBERT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390326357762, 
+          37.723728538541
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1455 BANCROFT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396036145058, 
+          37.7383020209625
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1900 OAKDALE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398332406177, 
+          37.7260861706723
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1785 EGBERT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401093930725, 
+          37.7271654734939
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "1843 EGBERT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401001311993, 
+          37.7937828768391
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bach Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Cheeseburgers: Burgers: Chicken Bake: Chili Dogs: Hot Dogs: Corn Dogs: Cup of Noodles: Egg Muffins: Tamales: Hot Sandwiches Quesadillas: Gatorade: Juice: Soda: Mikl: Coffee: Hot Cocoa: Hot Tea: Flan: Fruits: Fruit Salad: Yogurt: Candy: Chips:  Donuts: Cookies: Granola: Muffins & Various Drinks & Pre-Packaged Snacks.", 
+        "address": "350 SANSOME ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.423131922094, 
+          37.7923033830753
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Cheese Gone Wild", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Grilled Cheese Sandwiches", 
+        "address": "1801 VAN NESS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395881039335, 
+          37.7891192076677
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Cheese Gone Wild", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Grilled Cheese Sandwiches", 
+        "address": "400 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401314905451, 
+          37.792609401119
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Cheese Gone Wild", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Grilled Cheese Sandwiches", 
+        "address": "233 SANSOME ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396874967163, 
+          37.78737884181
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Cheese Gone Wild", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Grilled Cheese Sandwiches", 
+        "address": "555 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399171569524, 
+          37.7982529941715
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Cheese Gone Wild", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Grilled Cheese Sandwiches", 
+        "address": "", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399247104724, 
+          37.7298054805741
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "A Taste of Chicago", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Breakfast sandwiches: mixed coffee drinks: fried chicken: hamburgers: hot dogs: hot links: tacos: pizza: rotisserrie chicken: fish sticks: deli sandwiches: burritos: philly cheese steak: rice: baked potato: cold beverages: teas: juices: salads: bbq ribs: french fries: yogurt and bread", 
+        "address": "345 WILLIAMS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407422668277, 
+          37.7851109204478
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The New York Frankfurter Co. of CA, Inc. DBA: Annie's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Soft pretzels: hot dogs: sausages: chips: popcorn: soda: espresso: cappucino: pastry: ica cream: ices: italian sausage: shish-ka-bob: churros: juice: water: various drinks", 
+        "address": "870 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.406891892997, 
+          37.7868561118831
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The New York Frankfurter Co. of CA, Inc. DBA: Annie's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Soft Pretzels: hot dogs: sausage: chips: popcorn: soda: espresso: cappucino: pastries: ice cream: italian sausages: shish-ka-bob: churros: juice: water: various drinks", 
+        "address": "101 STOCKTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40242362612, 
+          37.7941166557094
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Wexler, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Traditional BBQ: Chicken: Ribs: Sandwiches: Sausages", 
+        "address": "565 COMMERCIAL ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400333673679, 
+          37.7905483181832
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Creme Brulee Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Creme Brulee", 
+        "address": "532 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407196034122, 
+          37.7889101495704
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.", 
+        "address": "345 STOCKTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.421788343116, 
+          37.7674566391069
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "La Falafel", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Falafel Sandwiches: Fries: Soda: Iced Tea & Various Drinks.", 
+        "address": "337 VALENCIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.421782736139, 
+          37.767126464778
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "La Falafel", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Falafel Sandwiches: Fries: Soda: Iced Tea & Various Drinks.", 
+        "address": "363 VALENCIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.414007043024, 
+          37.7715867026703
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "GOZA GOZA TACO", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: burritos: soda & juice", 
+        "address": "1501 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.41746613187, 
+          37.775228307834
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "GOZA GOZA TACO", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: burritos: soda & juice", 
+        "address": "1455 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.411419966206, 
+          37.7509316476402
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "GOZA GOZA TACO", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: burritos: soda & juice", 
+        "address": "3065 25TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.413454890022, 
+          37.7631083253767
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "El Tonayense #60", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos: Tortas: Quesadillas: Drinks", 
+        "address": "401 TREAT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.419795019128, 
+          37.7632279025439
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Raspados El Yocateco", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Shaved Ice: Tamarind: Strawberry: Lemon: horchata: hibiscus", 
+        "address": "2100 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.421126289056, 
+          37.7898269187633
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1540 PINE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.421824199358, 
+          37.7609571682785
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "740 VALENCIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.43485778844, 
+          37.7815967457602
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1652 EDDY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393236399398, 
+          37.7824235632947
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "544 02ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446307635558, 
+          37.7765500428191
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "500 MASONIC AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399884160566, 
+          37.7884570288289
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "85 02ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.412000336092, 
+          37.7683069928
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "Assessors Block 3902/Lot002", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400876633726, 
+          37.7951055609814
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "432 CLAY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.471411913129, 
+          37.7100033342894
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1 THOMAS MORE WAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.416170662008, 
+          37.7485497942591
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "3300 CESAR CHAVEZ ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.411615430519, 
+          37.7791572053411
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1118 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.39038813202, 
+          37.7546149514892
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1240 MINNESOTA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390714584821, 
+          37.7456930261204
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1580 DAVIDSON AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.385679248721, 
+          37.7447521916164
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "1570 BURKE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.447789640478, 
+          37.7807231475444
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "599 MASONIC AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405101930379, 
+          37.7556370098323
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "2401 22ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.418405351782, 
+          37.7844207368995
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mang Hang Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.", 
+        "address": "730 ELLIS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.404090439434, 
+          37.7875984155546
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mob Dog", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Chips: Bottled Drinks", 
+        "address": "720 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390061846327, 
+          37.7226292175983
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Corndogs: fried burrito: rice placet: soda: water: sandwiches: soup: noodle plates", 
+        "address": "2600 INGALLS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.39754345993, 
+          37.7901633841957
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Missing Link SF", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "smoked sausages: deer: wild boar: pheasant: buffalo: beef: turkey: coleslaw: vegetarian baked beans", 
+        "address": "97 01ST ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402585204065, 
+          37.7944080353305
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bicycle Coffee", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Brew Coffee", 
+        "address": "564 COMMERCIAL ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399617948655, 
+          37.7992601135023
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Roadside Rotisserie Corporation / Country Grill", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Rotisserie Chicken: Ribs: Kickass Salad: Potatos w/fat dripping: chicken wrap.", 
+        "address": "90 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399352876437, 
+          37.7392448256155
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Loma Linda", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Tortas: Burritos", 
+        "address": "2065 OAKDALE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40043886495, 
+          37.7926023367923
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Bomba", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Sandwiches", 
+        "address": "345 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.41802613269, 
+          37.7550675419403
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Julie's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Soda: chips: energy drinks: hot dogs: bacon-wrapped hot dogs: fruit: corn", 
+        "address": "2601 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.418678308229, 
+          37.7584372443741
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Julie's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs: Bacon wrapped hot dogs: soda: water: sports drinks: energy drinks: chips", 
+        "address": "2401 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391474911246, 
+          37.7691244121681
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "SF Cart Project", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "7 Multiple Trucks on rotation (1 on Mission Bay Blvd South & 6 on 4th St).   Serving everything but hot dogs", 
+        "address": "535 MISSION BAY BLVD SOUTH", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402095994563, 
+          37.7823601210175
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "everything except for hot dogs", 
+        "address": "250 04TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399617948655, 
+          37.7992601135023
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "everything except for hot dogs", 
+        "address": "90 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391796821077, 
+          37.7763271477899
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "everything except for hot dogs", 
+        "address": "185 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391796821077, 
+          37.7763271477899
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "everything except for hot dogs", 
+        "address": "185 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.39797690638, 
+          37.7755890799594
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Everything", 
+        "address": "670 05TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393229041538, 
+          37.7812646860228
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Everything", 
+        "address": "340 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399617948655, 
+          37.7992601135023
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Off the Grid Services, LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "everything except for hot dogs", 
+        "address": "90 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395881039335, 
+          37.7891192076677
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Slider Shack, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Sliders: Tater Tots: Beverages", 
+        "address": "400 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394593199235, 
+          37.7925359884311
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Slider Shack, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Sliders: Tater Tots: Beverages", 
+        "address": "60 SPEAR ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.413323129618, 
+          37.7539277357265
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "El Gallo Jiro", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Burritos: Giros: Tortas: Quesadillas: Tacos & Various Beverages", 
+        "address": "3055 23RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401269695236, 
+          37.7923898619832
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Celtic Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Eritrean & Irish Fusion Burgers: Irish Stew: Eritrean Stew:  Shepard's Pie: Beverages", 
+        "address": "217 SANSOME ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396536309753, 
+          37.7849798870735
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Celtic Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Eritrean & Irish Fusion Burgers: Irish Stew: Eritrean Stew:  Shepard's Pie: Beverages", 
+        "address": "611 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.418806481101, 
+          37.760086931987
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Leo's Hot Dogs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot dogs and related toppings: non alcoholic beverages", 
+        "address": "2301 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40278453801, 
+          37.710933792981
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Golden Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged Sandwiches: Various Beverages: Salads: Snacks", 
+        "address": "2401 BAY SHORE BLVD", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390016333636, 
+          37.7116322811949
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Golden Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged Sandwiches: Various Beverages: Salads: Snacks", 
+        "address": "301 EXECUTIVE PARK BLVD", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392222474624, 
+          37.7171741618036
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Golden Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged Sandwiches: Various Beverages: Salads: Snacks", 
+        "address": "835 JAMESTOWN AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.415417409745, 
+          37.7350052991284
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Golden Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged Sandwiches: Various Beverages: Salads: Snacks", 
+        "address": "601 CRESCENT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388170202066, 
+          37.7531087498713
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "2890 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.38938122888, 
+          37.7542517088937
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "1275 MINNESOTA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400101143043, 
+          37.7698289337018
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "900 07TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392849413024, 
+          37.780561002676
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "355 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398531708276, 
+          37.7748713162388
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "444 TOWNSEND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388359021044, 
+          37.7537174169021
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "2800 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393925277539, 
+          37.7555344716039
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "898 PENNSYLVANIA AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.389188542589, 
+          37.7522416684803
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "1500 TENNESSEE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.376572914573, 
+          37.7377268665958
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "1000 EVANS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.386773267176, 
+          37.7429898747753
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "1550 EVANS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.386367685857, 
+          37.7533808099749
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "F & C Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad", 
+        "address": "700 25TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399930411351, 
+          37.7898898782098
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Taza Halal Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Chicken gyro: lamb gyro: chicken gyro plate:lamb gyro plate: combination gyro plate", 
+        "address": "555 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401342389334, 
+          37.789811597719
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Taza Halal Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Gyro Sandwich: Chicken Sandwich: lamb over rice: chicken over rice: combination over rice", 
+        "address": "572 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394629181662, 
+          37.7806472100484
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tacos El Ojo De Agua", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Burritos: Tortas: Quesadillas: Salads: Soup: Fruits: Juices: Soda: Water", 
+        "address": "551 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387549426547, 
+          37.7679955456856
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "1799 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393279842341, 
+          37.7755661544145
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "201 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397132524462, 
+          37.7917770783642
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "30 BEALE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405145856485, 
+          37.7730940844723
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "945 BRYANT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.404474024011, 
+          37.772561689774
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "840 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405958407112, 
+          37.773610979516
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "950 BRYANT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390900582667, 
+          37.7581699396153
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "975 INDIANA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400482576546, 
+          37.7734452149215
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "516 TOWNSEND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390246816981, 
+          37.7531390379784
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "1150 25TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402540218927, 
+          37.7448024193644
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "175 BARNEVELD AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394613062664, 
+          37.7292233375937
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "71 WILLIAMS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.39408939657, 
+          37.7747030474687
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "235 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405657636251, 
+          37.7718682257671
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "599 08TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.386931257562, 
+          37.7711580369615
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Two G's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Hot & Cold Sandwiches: Bagels: Burritos: Soups: Hot Dogs: Tacos: Pork Buns: BBQ Meat: Fruit: Various Beverages: Pasties: Pre-Packaged Snacks: Candy: Salads: Muffins: Scones: Brownies: Croissants: Energy Bars: Noodle Bowls", 
+        "address": "Assessors Block 8720/Lot008", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.408154764345, 
+          37.7856100863691
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Senor Sisig", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Filipino fusion food: taco: burrito: nachos: rice plates", 
+        "address": "120 ELLIS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399566331429, 
+          37.7875140607381
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Senor Sisig", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Filipino fusion food: taco: burrito: nachos: rice plates", 
+        "address": "120 02ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.417249626643, 
+          37.7758255197583
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Senor Sisig", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Senor Sisig: Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.Chairman Bao: Vegetable and meat sandwiches filled with Asian-flavored meats and vegetables.", 
+        "address": "8 10TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400289778405, 
+          37.7881050616463
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Expresso Subito, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Espresso Drinks", 
+        "address": "84 02ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398463509486, 
+          37.7936733815047
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Expresso Subito, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Espresso Drinks", 
+        "address": "150 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398463509486, 
+          37.7936733815047
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Expresso Subito, LLC.", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Expresso drinks: assorted beverages (canned: bottled: home made): scones: croissants: bagels: soup: chili: parfaits: smoothies: frappes: milk shakes.", 
+        "address": "150 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.407422668277, 
+          37.7851109204478
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Creme Brulee To Go", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Kettle Corn", 
+        "address": "870 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.405676629072, 
+          37.7849902793065
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Creme Brulee To Go", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Kettle Corn", 
+        "address": "801 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399569018577, 
+          37.8002209155922
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Covered Dish Productions, LLC. dba. The Rib Whip", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "St. Louis Style Ribs: Pulled Pork Sandwich: Smoked Brisket: Smoked Chicken Drumsticks: Spinach Salad: Cole Slaw: Baked Beans: Mashed Potatoes: Grilled Asparagus: Mac & Cheese: Potato Salad: Buttermil Pie: Soda: Water", 
+        "address": "900 FRONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391671499786, 
+          37.7915578641549
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Covered Dish Productions, LLC. dba. The Rib Whip", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "St. Louis Style Ribs: Pulled Pork Sandwich: Smoked Brisket: Smoked Chicken Drumsticks: Spinach Salad: Cole Slaw: Baked Beans: Mashed Potatoes: Grilled Asparagus: Mac & Cheese: Potato Salad: Buttermil Pie: Soda: Water", 
+        "address": "75 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396650675264, 
+          37.7969137124835
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Covered Dish Productions, LLC. dba. The Rib Whip", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "St. Louis Style Ribs: Pulled Pork Sandwich: Smoked Brisket: Smoked Chicken Drumsticks: Spinach Salad: Cole Slaw: Baked Beans: Mashed Potatoes: Grilled Asparagus: Mac & Cheese: Potato Salad: Buttermil Pie: Soda: Water", 
+        "address": "370 DRUMM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397273204338, 
+          37.7961233802521
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Covered Dish Productions, LLC. dba. The Rib Whip", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "St. Louis Style Ribs: Pulled Pork Sandwich: Smoked Brisket: Smoked Chicken Drumsticks: Spinach Salad: Cole Slaw: Baked Beans: Mashed Potatoes: Grilled Asparagus: Mac & Cheese: Potato Salad: Buttermil Pie: Soda: Water", 
+        "address": "253 DRUMM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401279616596, 
+          37.7918342630555
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Philz Coffee Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot coffee: iced coffee: hot chocolate: tea: pastries", 
+        "address": "301 PINE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403754558245, 
+          37.7962154965941
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Philz Coffee Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot coffee: iced coffee: hot chocolate: tea: pastries", 
+        "address": "735 MONTGOMERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409591260467, 
+          37.7893854510391
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Philz Coffee Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot coffee: iced coffee: hot chocolate: tea: pastries", 
+        "address": "556 SUTTER ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401353280931, 
+          37.7927957415787
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Philz Coffee Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot coffee: iced coffee: hot chocolate: tea: pastries", 
+        "address": "401 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.433010774343, 
+          37.8045778690901
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Philz Coffee Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot coffee: iced coffee: hot chocolate: tea: pastries", 
+        "address": "15 MARINA BLVD", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.437331607841, 
+          37.7757743684103
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "1265 GROVE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446721633172, 
+          37.7839220701115
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "949 PRESIDIO AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.440731162111, 
+          37.7752901423195
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "1477 GROVE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.425161376358, 
+          37.7644595214424
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "3253 16TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.429511176347, 
+          37.7666247727157
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "2145 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.384530734223, 
+          37.7550307267667
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "401 23RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.427110643955, 
+          37.7683202495106
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BH & MT LLC", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages", 
+        "address": "2001 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.406573673429, 
+          37.7711790005481
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Subs on Hubs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Italian subs: Cuban sandwich: Gyro", 
+        "address": "934 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40183935033, 
+          37.7787103919009
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Subs on Hubs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Italian subs: Cuban sandwich: Gyro", 
+        "address": "400 05TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391771646847, 
+          37.7714019465879
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Subs on Hubs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Italian subs: Cuban sandwich: Gyro", 
+        "address": "Assessors Block 8711/Lot021", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409385823194, 
+          37.7749754998217
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Subs on Hubs", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Italian subs: Cuban sandwich: Gyro", 
+        "address": "333 08TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.454152837668, 
+          37.7255769923986
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "BHUK Burger", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Pakistani Indian food: and salad: cold and hot drinks: Pakistani soft drinks: Sohan halva: Pakistani Indian desserts: and fruit dessert", 
+        "address": "11 PHELAN AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.416025770151, 
+          37.7802154802881
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Hiyaaa", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Korean Fried Chicken", 
+        "address": "200 LARKIN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400148306767, 
+          37.7923667868831
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Hiyaaa", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Korean Fried Chicken", 
+        "address": "111 BATTERY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402385322794, 
+          37.792346385148
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sanguchon", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Peruvian food", 
+        "address": "475 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.393999974059, 
+          37.7921505484817
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Sanguchon", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Peruvian Food", 
+        "address": "100 SPEAR ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394807823179, 
+          37.7777552165686
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "290 TOWNSEND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392901049479, 
+          37.7831711043434
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "501 02ND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.398303881334, 
+          37.7790511115731
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "617 BRYANT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394440688559, 
+          37.7781481274607
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "260 TOWNSEND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.438782388567, 
+          37.778384300969
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "999 DIVISADERO ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.389066205605, 
+          37.7862367744654
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "501 BEALE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.464597619571, 
+          37.7654969876192
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Linda's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Dogs: Hamburgers: Nachos: Steaks: Pastas: Asian Dishes: Tri-Tip Sandwiches: Sodas & Water", 
+        "address": "1219 07TH AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390999306002, 
+          37.7755101380495
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Got Snacks", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "sunflower seeds: crackerjacks: bottled water: peanuts: candy", 
+        "address": "1020 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391392669926, 
+          37.7900747773418
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Curbside Coffee", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Coffee: Espresso Drinks: Pastries: Water: Soda: Tea: Pre-Packaged Foods", 
+        "address": "124 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392176463949, 
+          37.7860625210972
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "401 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399359351363, 
+          37.788864715343
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "560 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403485955391, 
+          37.7922616341775
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "555 CALIFORNIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.40933414879, 
+          37.7637272136329
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "2500 MARIPOSA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399555503787, 
+          37.7766269199223
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "610 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.38967948729, 
+          37.7651064631908
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "1900 03RD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390471540332, 
+          37.7875875047281
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "2010 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.419942864682, 
+          37.7808315769119
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "180 REDWOOD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395881039335, 
+          37.7891192076677
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "400 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.416902205953, 
+          37.7687652509586
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "164 14TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.420026291504, 
+          37.7739150656798
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "1601 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.418652129997, 
+          37.7781283797338
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "50 IVY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.425467726618, 
+          37.7808684365681
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "1003 TURK ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446748796815, 
+          37.7789185898934
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "270 MASONIC AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409573421624, 
+          37.7597962717227
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "2157 BRYANT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395129390521, 
+          37.7895693138966
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "300 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.413953822522, 
+          37.7679845948645
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "1830 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.414209845167, 
+          37.7724967778067
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "John's Catering #5", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Soda:Chips:Candy: Cold/Hot Sandwiches: Donuts.  (Pitco Wholesale)", 
+        "address": "251 11TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.442530024725, 
+          37.7964799968164
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2616 UNION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.4399079176, 
+          37.7953158932065
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2750 SCOTT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.441718244288, 
+          37.7955856498634
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2590 GREEN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446134422674, 
+          37.795051430826
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2854 GREEN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.445889418675, 
+          37.793186123336
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2960 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.456762533982, 
+          37.7899082332987
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "3756 JACKSON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.443991509437, 
+          37.792385444513
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2940 PACIFIC AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.451627836117, 
+          37.7896668269621
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "3550 WASHINGTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.440119274474, 
+          37.7933225090245
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2521 SCOTT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.442002100568, 
+          37.7936813457741
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2710 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.443832982483, 
+          37.7949290950499
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2701 GREEN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.443891213784, 
+          37.7934414335598
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2840 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446061864659, 
+          37.7931766386244
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "2970 BROADWAY", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.456059894366, 
+          37.788583655156
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "3839 WASHINGTON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.424145174983, 
+          37.8037902440403
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "1150 FRANCISCO ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.446576890144, 
+          37.7920290580811
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "D & T Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: Chicken Bake: Canned Soup: Chili Dog: Corn Dog: Cup of Noodles: Egg Muffins: Hamburgers: Cheeseburgers: Hot Dog: Hot sandwiches: quesadillas: Beverages: Flan: Fruits: Yogurt: Candy: Cookies: Chips: Donuts: Snacks", 
+        "address": "3100 PACIFIC AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397043036718, 
+          37.7932137316634
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Chai Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Indian Chai (Tea)", 
+        "address": "298 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.422082620993, 
+          37.7638580813603
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Chai Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Indian Chai", 
+        "address": "560 VALENCIA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399275886086, 
+          37.7904067199405
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "The Chai Cart", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Hot Indian Chai", 
+        "address": "525 MARKET ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397031718978, 
+          37.7477720916075
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "2045 EVANS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400259575202, 
+          37.7768763887765
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "530 05TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400287239868, 
+          37.7760987531573
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "630 BRANNAN ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.475473531781, 
+          37.7526605204123
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "1100 ORTEGA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.475872322222, 
+          37.7521241631187
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "1900 19TH AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.433465780407, 
+          37.7579841905286
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "1650 20TH AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.4900712081, 
+          37.7835091222127
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Eva's Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages", 
+        "address": "1199 ORTEGA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394380639101, 
+          37.7844204919929
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Paradise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Sandwiches: snacks: prepackaged items: beverages:", 
+        "address": "575 HARRISON ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395447605152, 
+          37.787157744174
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Paradise Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Sandwiches: snacks: prepackaged items: beverages:", 
+        "address": "19 CLEMENTINA ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395881039335, 
+          37.7891192076677
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "JapaCurry", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Katsu Curry: KUROBUTA Sausage Curry: Vegetable Curry: Veggie Croquette Curry: Chicken NANBAN Bento: Nori Bento: water: soda: green tea", 
+        "address": "400 HOWARD ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401269695236, 
+          37.7923898619832
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "JapaCurry", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Katsu Curry: KUROBUTA Sausage Curry: Vegetable Curry: Veggie Croquette Curry: Chicken NANBAN Bento: Nori Bento: water: soda: green tea", 
+        "address": "217 SANSOME ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.400185049889, 
+          37.787973283216
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "JapaCurry", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Katsu Curry: KUROBUTA Sausage Curry: Vegetable Curry: Veggie Croquette Curry: Chicken NANBAN Bento: Nori Bento: water: soda: green tea", 
+        "address": "602 MISSION ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401160370299, 
+          37.7908384194517
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Curry Up Now", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Chicken Tiki Masala Burritos: Paneer Tiki Masala Burritos: Samosas: Mango Lassi", 
+        "address": "225 BUSH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396650675264, 
+          37.7969137124835
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Curry Up Now", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Chicken Tiki Masala Burritos: Paneer Tiki Masala Burritos: Samosas: Mango Lassi", 
+        "address": "370 DRUMM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.401493189708, 
+          37.7489503634271
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "Assessors Block 4341/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409610236298, 
+          37.7685570713121
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "Assessors Block 3905/Lot011", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.415983402804, 
+          37.7701375805015
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "1690 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.399083845473, 
+          37.7720086564688
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "420 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.41287229421, 
+          37.771467215901
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "355 11TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392982624228, 
+          37.7870765303843
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "350 FREMONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392223706383, 
+          37.7873224193199
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "355 FREMONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.397040970363, 
+          37.7723639147673
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "355 BERRY ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394594036205, 
+          37.7879000978181
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "245 01ST ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.409658441356, 
+          37.7736941524749
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "350 08TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.386337945153, 
+          37.7393786694373
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "620 MENDELL ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.395471725809, 
+          37.7901855706334
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Mini Mobile Food Catering", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages", 
+        "address": "147 FREMONT ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.394593199235, 
+          37.7925359884311
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tres Agaves Mexican Kitchen & Tequila Lounge LLC. dba Tres Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Tacos: Ceviche: Agua Fresca: Fideos: Tortas: Bacon-wrapped Hot Dogs", 
+        "address": "60 SPEAR ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.402136376179, 
+          37.7654597374682
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tres Agaves Mexican Kitchen & Tequila Lounge LLC. dba Tres Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Multiple Trucks - Everything", 
+        "address": "301 RHODE ISLAND ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.403952784121, 
+          37.76621745068
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Tres Agaves Mexican Kitchen & Tequila Lounge LLC. dba Tres Truck", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Multiple Trucks - Everything", 
+        "address": "1700 16TH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.396595637084, 
+          37.789691367587
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "Assessors Block 3720/Lot001", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.392579515374, 
+          37.7881394788716
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "300 BEALE ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391181920263, 
+          37.7881452832928
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "201 FOLSOM ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391172885969, 
+          37.7232598663241
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1475 CARROLL AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388192688444, 
+          37.7251817007288
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1420 YOSEMITE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387010878785, 
+          37.7238788408325
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1335 YOSEMITE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.381752211406, 
+          37.7265904795194
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1145 REVERE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387979956262, 
+          37.7269507643782
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1370 VAN DYKE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388261288144, 
+          37.7271104333828
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1389 UNDERWOOD AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.382281153253, 
+          37.7259455580465
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1127 SHAFTER AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.383199327239, 
+          37.726125239645
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1180 THOMAS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.381389209427, 
+          37.7253194336755
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1515 GRIFFITH ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391505116383, 
+          37.7243975297434
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1555 BANCROFT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387497359022, 
+          37.7270146636245
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1351 UNDERWOOD AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.384144224606, 
+          37.7266647697066
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1212 THOMAS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.387815368014, 
+          37.7262494817986
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1337 VAN DYKE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.391111940642, 
+          37.7230565093389
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1450 DONNER AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.389735429011, 
+          37.7241728927613
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1440 BANCROFT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.390157239611, 
+          37.7244132432963
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1460 BANCROFT AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.389249858027, 
+          37.7267257938118
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1500 WALLACE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388227740903, 
+          37.7261456924729
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1450 WALLACE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.378972005236, 
+          37.7267339112416
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "931 PALOU AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388658428832, 
+          37.7267279782571
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "2115 JENNINGS ST", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.383232458707, 
+          37.7264851632165
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1153 SHAFTER AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.385294691187, 
+          37.7267096753687
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1265 THOMAS AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.38181551187, 
+          37.7272340074959
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1160 REVERE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.381541219158, 
+          37.726470716246
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1135 REVERE AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.378972719624, 
+          37.7257891398124
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1031 QUESADA AVE", 
+        "marker-size": "medium"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -122.388369150442, 
+          37.7254980479505
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "marker-color": "#CC0033", 
+        "name": "Liang Bai Ping", 
+        "marker-symbol": "restaurant", 
+        "fooditems": "Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages", 
+        "address": "1430 YOSEMITE AVE", 
+        "marker-size": "medium"
+      }
+    }
+  ]
+}
