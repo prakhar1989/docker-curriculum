@@ -348,41 +348,63 @@ pre .chunk {
 <p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/interest.png" title="interest"></p>
 <p>By standardizing an application and its dependencies into a container, Docker enables us to build, test and release our apps quickly and easily. Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the <strong>Containerization</strong> movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.</p>
 <h3 id="what-will-this-tutorial-teach-me">What will this tutorial teach me?</h3>
-<p>This tutorial will give you a hands-on experience with deploying a docker container on the public cloud (AWS). It will demystify the docker landscape, clarify the differences between images and containers and finally, deploy a RESTful API written in node.js on the cloud.</p>
+<p>This tutorial will give you a hands-on experience with deploying a docker container on <a href="http://aws.amazon.com">Amazon Web Services</a> (AWS). It will demystify the docker landscape, clarify the differences between images and containers and finally, deploy a python application on the cloud.</p>
 <h2 id="using-this-document">Using this Document</h2>
-<h3 id="running-the-sample-code">Running the Sample Code</h3>
-<p>You can find sample code on <a href="https://github.com/prakhar1989/docker-curriculum">GitHub</a></p>
+<p>This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the <a href="http://github.com/prakhar1989/docker-curriculum">Github repo</a>.</p>
 <p><a href="#top" class="top" id="table-of-contents">Top</a></p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
-<li><a href="#section">1.0 Section</a><ul>
-<li><a href="#subsection">1.1 Subsection</a></li>
+<li><a href="#preface">Preface</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#setup">Setting up your computer</a></li>
 </ul>
 </li>
-<li><a href="#another-section">2.0 Another Section</a><ul>
-<li><a href="#another-subsection">2.1 Another Subsection</a></li>
-</ul>
-</li>
-<li><a href="#additionalresources">Additional Resources</a></li>
+<li><a href="#references">References</a></li>
 </ul>
 <hr />
-<p><a href="#top" class="top" id="section">Top</a></p>
-<h2 id="10-section">1.0 Section</h2>
-<p><a id="subsection"></a></p>
-<h3 id="11-subsection">1.1 Subsection</h3>
-<hr />
-<p><a href="#top" class="top" id="another-section">Top</a></p>
-<h2 id="20-another-section">2.0 Another Section</h2>
-<p><a id="another-subsection"></a></p>
-<h3 id="21-another-subsection">2.1 Another Subsection</h3>
-<hr />
-<p><a href="#top" class="top" id="additionalresources">Top</a></p>
-<h2 id="additional-resources">Additional Resources</h2>
-<p>Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:</p>
+<p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
+<h2 id="preface">Preface</h2>
+<p><a id="prerequisites"></a></p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few services. If you're interested in following along, please create an account on each of these websites - </p>
 <ul>
-<li><a href="http://adicu.com/learn">ADI Resources</a></li>
-<li><a href="http://www.codecademy.com">Codecademy</a></li>
+<li><a href="http://aws.amazon.com/">Amazon Web Services</a></li>
+<li><a href="https://hub.docker.com/">Docker Hub</a></li>
 </ul>
+<p><a id="setup"></a></p>
+<h3 id="setting-up-your-computer">Setting up your computer</h3>
+<p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.</p>
+<h5 id="docker">Docker</h5>
+<p>Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the onboarding experience for its users on platforms and hence running Docker now is simple. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="http://docs.docker.com/mac/step_one/">Mac</a>, <a href="http://docs.docker.com/linux/step_one/">Linux</a> and <a href="http://docs.docker.com/windows/step_one/">Windows</a>.</p>
+<p>To test your docker installation, run the following</p>
+<pre><code>$ docker run hello-world
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+...
+</code></pre>
+
+<h5 id="python">Python</h5>
+<p>Python comes pre-installed on OSX and (most) Linux distributions. We'll also be using <a href="https://pip.readthedocs.org/en/stable/">pip</a> for installing packages for our application.</p>
+<p>If don't have pip installed, please <a href="http://pip.readthedocs.org/en/stable/installing/">download</a> it for your system.</p>
+<pre><code>$ python --version
+python --version
+Python 2.7.10
+
+$ pip --version
+pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7)
+</code></pre>
+
+<h5 id="java">Java</h5>
+<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you Java installed. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
+<pre><code>$ java -version
+java version &quot;1.8.0_60&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+</code></pre>
+
+<hr />
+<p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html">What containers can do for you</a></li>
