@@ -1,37 +1,61 @@
-ADI Curriculum Template
-=======================
+<a id="top"></a>
+# Docker for Beginners
 
-Make a new curriculum to be deployed on [learn.adicu.com](http://learn.adicu.com).  It's easy to get started writing your own curriculum!
+*A short description of your document*
 
-### Getting started
-*This assumes that you don't fork this repo.  You can only fork once, after all!*
+Written and developed by [your name](http://yourwebsite.com or mailto:your@email.com) and [ADI](adi).
 
-1. `git clone https://github.com/adicu/learn-template.git`
+<a href="#top" class="top" id="getting-started">Top</a>
+## Getting Started
 
-2. `cd learn-template`
+### Subsections
 
-3. `make`.  This will prompt you several times:
-    1. First, make a new, different repo on GitHub for your curriculum, and _**don't**_ initialize it with a `README.md` or `.gitignore`.  We'll make these ourselves.  Copy the HTTPS / SSH url, and paste it into the first prompt.
-    2. Next, enter the name for your curriculum.  It should be capitalized, with spaces.  Something like "Javascript for Beginners" is good.
+### What will this tutorial teach me?
 
-    The whole process should look something like this:
-    ```
-    Make a new repo on GitHub, and find it's SSH / HTTPS url, and paste it below.
-    Paste GitHub URL: https://github.com/danrschlosser/learn-javascript.git
-    Please enter the name of your curriculum: JavaScript for Beginners
-    Filling in templates...
-    Converting markdown with Python markdown...
-    Syncing build/title.txt with https://github.com/danrschlosser/learn-javascript.git
-    ```
+## Using this Document
 
-4. Edit your newly created markdown file.  The `make` command should have created a `.md` file in the root directory.  Write your curriculum in the file.
+### Running the Sample Code
 
-### Viewing in Browser
+You can find sample code on [GitHub][github]
 
-The `make` command also generates `output.html`, which is the HTML version of the markdown file created in the root directory.  You can open this file in your browser to view your project.
+<a href="#top" class="top" id="table-of-contents">Top</a>
+## Table of Contents
 
-### Deploying
+-	[1.0 Section](#section)
+	-	[1.1 Subsection](#subsection)
+-	[2.0 Another Section](#another-section)
+	-	[2.1 Another Subsection](#another-subsection)
+-   [Additional Resources](#additionalresources)
 
-_Note: In order to deploy these projects, you need to have SSH access to `adi-website`.  Ask Dan, Nate, Eunice, or Raymond for help setting this up._
 
-Run `make deploy` to deploy your curriculum.  The first time, it will ask for a path slug.  Give something **unique**!
+------------------------------
+<a href="#top" class="top" id="section">Top</a>
+## 1.0 Section
+
+
+<a id="subsection"></a>
+### 1.1 Subsection
+
+___________
+<a href="#top" class="top" id="another-section">Top</a>
+## 2.0 Another Section
+
+<a id="another-subsection"></a>
+### 2.1 Another Subsection
+
+___________
+<a href="#top" class="top" id="additionalresources">Top</a>
+## Additional Resources
+
+Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
+
+- [ADI Resources][learn]
+- [Codecademy][codecademy]
+
+
+
+[github]: https://github.com/prakhar1989/docker-curriculum
+[learn]: http://adicu.com/learn
+[codecademy]: http://www.codecademy.com
+[adi]: http://adicu.com
+ 
