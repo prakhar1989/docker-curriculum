@@ -1,2 +1,4 @@
 *.pyc
 node_modules
+misc
+venv
