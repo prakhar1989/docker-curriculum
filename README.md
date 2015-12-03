@@ -35,55 +35,74 @@ As developers, we are cognizant of the power we hold in our hands - the ability 
 By standardizing an application and its dependencies into a container, Docker enables us to build, test and release our apps quickly and easily. Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the **Containerization** movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.
 
 ### What will this tutorial teach me?
-This tutorial will give you a hands-on experience with deploying a docker container on the public cloud (AWS). It will demystify the docker landscape, clarify the differences between images and containers and finally, deploy a RESTful API written in node.js on the cloud.
+This tutorial will give you a hands-on experience with deploying a docker container on [Amazon Web Services](http://aws.amazon.com) (AWS). It will demystify the docker landscape, clarify the differences between images and containers and finally, deploy a python application on the cloud.
 
 ## Using this Document
+This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the [Github repo](http://github.com/prakhar1989/docker-curriculum).
 
-### Running the Sample Code
-
-You can find sample code on [GitHub][github]
 
 <a href="#top" class="top" id="table-of-contents">Top</a>
 ## Table of Contents
 
--	[1.0 Section](#section)
-	-	[1.1 Subsection](#subsection)
--	[2.0 Another Section](#another-section)
-	-	[2.1 Another Subsection](#another-subsection)
--   [Additional Resources](#additionalresources)
+-	[Preface](#preface)
+    -	[Prerequisites](#prerequisites)
+    -	[Setting up your computer](#setup)
+-   [References](#references)
 
 
 ------------------------------
-<a href="#top" class="top" id="section">Top</a>
-## 1.0 Section
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+## Preface
 
+<a id="prerequisites"></a>
+### Prerequisites
+There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few services. If you're interested in following along, please create an account on each of these websites - 
 
-<a id="subsection"></a>
-### 1.1 Subsection
+- [Amazon Web Services](http://aws.amazon.com/)
+- [Docker Hub](https://hub.docker.com/)
 
+<a id="setup"></a>
+### Setting up your computer
+Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.
+
+##### Docker 
+Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the onboarding experience for its users on platforms and hence running Docker now is simple. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
+
+To test your docker installation, run the following
+```
+$ docker run hello-world
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+...
+```
+
+##### Python
+Python comes pre-installed on OSX and (most) Linux distributions. We'll also be using [pip](https://pip.readthedocs.org/en/stable/) for installing packages for our application.
+
+If don't have pip installed, please [download](http://pip.readthedocs.org/en/stable/installing/) it for your system.
+
+```
+$ python --version
+python --version
+Python 2.7.10
+
+$ pip --version
+pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7)
+```
+
+##### Java
+The app that we'll be developing will be using [Elasticsearch](https://www.elastic.co/) for storage and search. In order to run elasticsearch locally, make sure you Java installed. If Java is installed, typing `java -version` in your terminal should give you an output similar to the one below.
+
+```
+$ java -version
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+```
 ___________
-<a href="#top" class="top" id="another-section">Top</a>
-## 2.0 Another Section
 
-<a id="another-subsection"></a>
-### 2.1 Another Subsection
-
-___________
-<a href="#top" class="top" id="additionalresources">Top</a>
-## Additional Resources
-
-Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
-
-- [ADI Resources][learn]
-- [Codecademy][codecademy]
-
-
-
-[github]: https://github.com/prakhar1989/docker-curriculum
-[learn]: http://adicu.com/learn
-[codecademy]: http://www.codecademy.com
-[adi]: http://adicu.com
- 
+<a href="#table-of-contents" class="top" id="preface">Top</a>
 ## References
 - [What containers can do for you](http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html)
 - [What is docker](https://www.docker.com/what-docker)
