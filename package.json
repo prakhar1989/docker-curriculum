@@ -1,0 +1,24 @@
+{
+  "name": "docker-curriculum",
+  "version": "0.0.1",
+  "description": "<a id=\"top\"></a> # Docker for Beginners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node watch.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakhar1989/docker-curriculum.git"
+  },
+  "author": "Prakhar Srivastav <prakhar1989@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prakhar1989/docker-curriculum/issues"
+  },
+  "homepage": "https://github.com/prakhar1989/docker-curriculum#readme",
+  "dependencies": {
+    "chokidar": "^1.3.0",
+    "exec-sh": "^0.2.0"
+  }
+}

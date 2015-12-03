@@ -1,12 +1,12 @@
 <a id="top"></a>
 # Docker for Beginners
 
-*A short description of your document*
+*Build and deploy your distributed applications easily to the cloud with Docker*
 
 Written and developed by [Prakhar Srivastav](http://prakhar.me) and [ADI](adi).
 
 <a href="#top" class="top" id="getting-started">Top</a>
-<img src="logo.png" alt="docker logo">
+<img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/logo.png" alt="docker logo">
 ## Getting Started
 
 ### Subsections
