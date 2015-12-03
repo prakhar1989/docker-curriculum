@@ -3,9 +3,10 @@
 
 *A short description of your document*
 
-Written and developed by [your name](http://yourwebsite.com or mailto:your@email.com) and [ADI](adi).
+Written and developed by [Prakhar Srivastav](http://prakhar.me) and [ADI](adi).
 
 <a href="#top" class="top" id="getting-started">Top</a>
+<img src="logo.png" alt="docker logo">
 ## Getting Started
 
 ### Subsections
