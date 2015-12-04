@@ -49,6 +49,7 @@ This document contains a series of several sections, each of which explains a pa
     -	[Setting up your computer](#setup)
 -   [1.0 Playing with Busybox](#busybox)
     -   [1.1 Docker Run](#dockerrun)
+    -   [1.2 Terminology](#terminology)
 -   [Additional Resources](#resources)
 -   [References](#references)
 
@@ -107,7 +108,7 @@ ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="busybox"></a>
-## Playing with Busybox
+## 1.0 Playing with Busybox
 Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) (a lightweight linux distribution) container on our system and get a taste of the `docker run` command.
 
 To get started, let's run the following in our terminal 
@@ -164,7 +165,17 @@ Running the `run` command with the `-it` flags attaches us to an interactive tty
 
 > **Danger Zone**: If you're feeling particularly adventureous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop. Doing this will not make any other commands like `ls`, `echo` work. Once everything stop working you can exit the container and then run it back up again with the `docker run -it busybox sh` command. Since docker creates a new container everytime, everything should start working back again.
 
-The `docker run` command is going to be command you'll be using the most so it makes sense to explore it in more detail.
+So that was a whirlwind tour of the mighty `docker run` command which would most likely be the command you'll most often. Hence it makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
+
+<a id="terminology"></a>
+### 1.2 Terminology
+In the last section, we used a lot of docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the docker ecosystem.
+
+- *Images* - The blueprints of our application. Form the basis of containers.
+- *Containers* - Created from docker images and run the actual application.
+- *Docker Daemon* - The background service running on the host that manages building, running and distributing docker containers
+- *Docker Client* - The command line tool that allows the user to interact with the daemon.
+- *Docker hub* - A [registry](https://hub.docker.com/explore/) of docker images. 
 
 
 ___________
@@ -172,6 +183,7 @@ ___________
 <a id="resources"></a>
 ## Additional Resources
 - [Hello Docker Workshop](http://docker.atbaker.me/)
+- [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
