@@ -71,7 +71,7 @@ pre , code, kbd, samp {
   background-color: #F8F8F8;
   border: 1px solid #CCC; 
 }
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre { padding: 5px 12px; overflow-x: auto; }
 pre code { border: 0px !important; padding: 0;}
 code { padding: 0 3px 0 3px; }
 
@@ -359,6 +359,11 @@ pre .chunk {
 <li><a href="#setup">Setting up your computer</a></li>
 </ul>
 </li>
+<li><a href="#busybox">1.0 Playing with Busybox</a><ul>
+<li><a href="#dockerrun">1.1 Docker Run</a></li>
+</ul>
+</li>
+<li><a href="#resources">Additional Resources</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 <hr />
@@ -375,8 +380,8 @@ pre .chunk {
 <h3 id="setting-up-your-computer">Setting up your computer</h3>
 <p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.</p>
 <h5 id="docker">Docker</h5>
-<p>Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the onboarding experience for its users on platforms and hence running Docker now is simple. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="http://docs.docker.com/mac/step_one/">Mac</a>, <a href="http://docs.docker.com/linux/step_one/">Linux</a> and <a href="http://docs.docker.com/windows/step_one/">Windows</a>.</p>
-<p>To test your docker installation, run the following</p>
+<p>Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the on-boarding experience for its users on these OSes and hence running Docker now is a cakewalk. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="http://docs.docker.com/mac/step_one/">Mac</a>, <a href="http://docs.docker.com/linux/step_one/">Linux</a> and <a href="http://docs.docker.com/windows/step_one/">Windows</a>.</p>
+<p>Once you are done installing docker, test your docker installation by running the following</p>
 <pre><code>$ docker run hello-world
 
 Hello from Docker.
@@ -404,7 +409,70 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 </code></pre>
 
 <hr />
-<p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
+<p><a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="busybox"></a></p>
+<h2 id="playing-with-busybox">Playing with Busybox</h2>
+<p>Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a <a href="https://en.wikipedia.org/wiki/BusyBox">Busybox</a> (a lightweight linux distribution) container on our system and get a taste of the <code>docker run</code> command.</p>
+<p>To get started, let's run the following in our terminal </p>
+<pre><code>$ docker pull busybox
+</code></pre>
+
+<blockquote>
+<p>Note: Depending on how you've installed docker on your system, you might see a <code>permission denied</code> error on running the above command. If you're on a Mac, make sure docker engine is running. If you're on Linux, then prefix your <code>docker</code> commands with <code>sudo</code>. Alternatively you can <a href="http://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group">create a docker group</a> to get rid of this issue.</p>
+</blockquote>
+<p>What the <code>pull</code> command does is it fetches the busybox <strong>image</strong> from the <strong>docker registry</strong> and saves it in our system. You can use the <code>docker images</code> command to see a list of all images on your system.</p>
+<pre><code>$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+busybox                 latest              c51f86c28340        4 weeks ago         1.109 MB
+</code></pre>
+
+<p><a id="dockerrun"></a></p>
+<h3 id="11-docker-run">1.1 Docker Run</h3>
+<p>Great! Lets now lets run a docker <strong>container</strong> based on this image. To do that we are going to use the almighty <code>docker run</code> command. </p>
+<pre><code>$ docker run busybox
+$
+</code></pre>
+
+<p>Wait, nothing happened! Is that a bug? Well, no. Behind the scenes, a lot of stuff happened. When you call <code>run</code>, the docker client finds the image (busybox in this case) loads up the container and then runs a command in that container. When we run <code>docker run busybox</code>, we didn't provide a command so the container booted up, ran an empty command and then exited. 
+Well, yeah - kind of a bummer. Let's try something more exciting.</p>
+<pre><code>$ docker run busybox echo &quot;hello from busybox&quot;
+hello from busybox
+</code></pre>
+
+<p>Nice - finally we see some output. In this case, the docker client dutifully ran the <code>echo</code> command in our busybox container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast! Ok, now it's time to see the <code>docker ps</code> command. The <code>docker ps</code> command tells you what all containers are currently running.</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre>
+
+<p>Since no containers are running, we see a blank line. Let's try a more useful variant of <code>docker ps</code> </p>
+<pre><code>$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+305297d7a235        busybox             &quot;uptime&quot;            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
+ff0a5c3750b9        busybox             &quot;sh&quot;                12 minutes ago      Exited (0) 12 minutes ago                       elated_ramanujan
+</code></pre>
+
+<p>So what we see above is a list of all containers that we ran. Do notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago. You're probably wondering that if there's a way to run more than just one command in a container. Let's try that now</p>
+<pre><code>$ docker run -it busybox sh
+/ # ls
+bin   dev   etc   home  proc  root  sys   tmp   usr   var
+/ # uptime
+ 05:45:21 up  5:58,  0 users,  load average: 0.00, 0.01, 0.04
+</code></pre>
+
+<p>Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands. </p>
+<blockquote>
+<p><strong>Danger Zone</strong>: If you're feeling particularly adventureous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stop working you can exit the container and then run it back up again with the <code>docker run -it busybox sh</code> command. Since docker creates a new container everytime, everything should start working back again.</p>
+</blockquote>
+<p>The <code>docker run</code> command is going to be command you'll be using the most so it makes sense to explore it in more detail.</p>
+<hr />
+<p><a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="resources"></a></p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="http://docker.atbaker.me/">Hello Docker Workshop</a></li>
+</ul>
+<p><a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="references"></a></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html">What containers can do for you</a></li>

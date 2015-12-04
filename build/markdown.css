@@ -71,7 +71,7 @@ pre , code, kbd, samp {
   background-color: #F8F8F8;
   border: 1px solid #CCC; 
 }
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre { padding: 5px 12px; overflow-x: auto; }
 pre code { border: 0px !important; padding: 0;}
 code { padding: 0 3px 0 3px; }
 
