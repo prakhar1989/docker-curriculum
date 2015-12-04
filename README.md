@@ -47,6 +47,9 @@ This document contains a series of several sections, each of which explains a pa
 -	[Preface](#preface)
     -	[Prerequisites](#prerequisites)
     -	[Setting up your computer](#setup)
+-   [1.0 Playing with Busybox](#busybox)
+    -   [1.1 Docker Run](#dockerrun)
+-   [Additional Resources](#resources)
 -   [References](#references)
 
 
@@ -66,9 +69,9 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.
 
 ##### Docker 
-Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the onboarding experience for its users on platforms and hence running Docker now is simple. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
+Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the on-boarding experience for its users on these OSes and hence running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
 
-To test your docker installation, run the following
+Once you are done installing docker, test your docker installation by running the following
 ```
 $ docker run hello-world
 
@@ -103,6 +106,75 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="busybox"></a>
+## Playing with Busybox
+Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) (a lightweight linux distribution) container on our system and get a taste of the `docker run` command.
+
+To get started, let's run the following in our terminal 
+```
+$ docker pull busybox
+```
+
+> Note: Depending on how you've installed docker on your system, you might see a `permission denied` error on running the above command. If you're on a Mac, make sure docker engine is running. If you're on Linux, then prefix your `docker` commands with `sudo`. Alternatively you can [create a docker group](http://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group) to get rid of this issue.
+
+What the `pull` command does is it fetches the busybox **image** from the **docker registry** and saves it in our system. You can use the `docker images` command to see a list of all images on your system.
+```
+$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+busybox                 latest              c51f86c28340        4 weeks ago         1.109 MB
+```
+
+<a id="dockerrun"></a>
+### 1.1 Docker Run
+Great! Lets now lets run a docker **container** based on this image. To do that we are going to use the almighty `docker run` command. 
+
+```
+$ docker run busybox
+$
+```
+Wait, nothing happened! Is that a bug? Well, no. Behind the scenes, a lot of stuff happened. When you call `run`, the docker client finds the image (busybox in this case) loads up the container and then runs a command in that container. When we run `docker run busybox`, we didn't provide a command so the container booted up, ran an empty command and then exited. 
+Well, yeah - kind of a bummer. Let's try something more exciting.
+
+```
+$ docker run busybox echo "hello from busybox"
+hello from busybox
+```
+Nice - finally we see some output. In this case, the docker client dutifully ran the `echo` command in our busybox container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast! Ok, now it's time to see the `docker ps` command. The `docker ps` command tells you what all containers are currently running.
+
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+Since no containers are running, we see a blank line. Let's try a more useful variant of `docker ps` 
+```
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+305297d7a235        busybox             "uptime"            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
+ff0a5c3750b9        busybox             "sh"                12 minutes ago      Exited (0) 12 minutes ago                       elated_ramanujan
+```
+So what we see above is a list of all containers that we ran. Do notice that the `STATUS` column shows that these containers exited a few minutes ago. You're probably wondering that if there's a way to run more than just one command in a container. Let's try that now
+```
+$ docker run -it busybox sh
+/ # ls
+bin   dev   etc   home  proc  root  sys   tmp   usr   var
+/ # uptime
+ 05:45:21 up  5:58,  0 users,  load average: 0.00, 0.01, 0.04
+```
+Running the `run` command with the `-it` flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands. 
+
+> **Danger Zone**: If you're feeling particularly adventureous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop. Doing this will not make any other commands like `ls`, `echo` work. Once everything stop working you can exit the container and then run it back up again with the `docker run -it busybox sh` command. Since docker creates a new container everytime, everything should start working back again.
+
+The `docker run` command is going to be command you'll be using the most so it makes sense to explore it in more detail.
+
+
+___________
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="resources"></a>
+## Additional Resources
+- [Hello Docker Workshop](http://docker.atbaker.me/)
+
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="references"></a>
 ## References
 - [What containers can do for you](http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html)
 - [What is docker](https://www.docker.com/what-docker)
