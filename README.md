@@ -50,8 +50,8 @@ This document contains a series of several sections, each of which explains a pa
 -   [1.0 Playing with Busybox](#busybox)
     -   [1.1 Docker Run](#dockerrun)
     -   [1.2 Terminology](#terminology)
--   [2.0 Website on Docker](#busybox)
-    -   [2.1 Setting up the webserver](#dockerrun)
+-   [2.0 Webapps with Docker](#webapps)
+    -   [2.1 Static Sites](#static-site)
     -   [2.2 Docker build](#terminology)
     -   [2.3 Publishing](#)
 -   [Additional Resources](#resources)
@@ -179,8 +179,39 @@ In the last section, we used a lot of docker-specific jargon which might be conf
 - *Containers* - Created from docker images and run the actual application. We create a container using `docker run` which we did using the busybox image that we downloaded. The list of running containers can be seen using the `docker ps` command.
 - *Docker Daemon* - The background service running on the host that manages building, running and distributing docker containers. The daemon is the process that runs in the operation system to which clients talk to.
 - *Docker Client* - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as [Kitematic](https://kitematic.com/) which provide a GUI to the users.
-- *Docker hub* - A [registry](https://hub.docker.com/explore/) of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registeries and can use them for pulling images.
+- *Docker hub* - A [registry](https://hub.docker.com/explore/) of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registries and can use them for pulling images.
 
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="webapps"></a>
+## 2.0 Webapps with Docker
+Great! So we have now looked at `docker run`, played with a docker container and also got a hang of some terminology. Armed with all this knowledge, we are now ready to get to the real-stuff i.e. deploying web applications with docker!
+
+<a id="static-site"></a>
+### 2.1 Static Sites
+Let's start by taking baby-steps. The first thing we're going to look at is how we can run a dead-simple static website. We're going to pull a docker image from the docker hub, running the container and see how easy it so to run a webserver. 
+
+Let's begin. The image that we are going to use is a single-page [website](http://github.com/prakhar1989/docker-curriculum) that I've already created for the purposes of this demo and hosted it on the [registry](https://hub.docker.com/r/prakhar1989/static-site/) - `prakhar1989/static-site`. We can download and run the image directly in one go using `docker run`.
+
+```
+$ docker run prakhar1989/static-site
+```
+Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a `Nginx is running...` message in your terminal. Okay now that the server is running, how do see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?
+
+The answer to the above questions is **port forwarding**. The first step that we need to do is the find the IP of the hostname. This is the IP through which we'll be able to interact with the container directly from our host machine.
+```
+$ docker-machine ip default
+192.168.99.100
+```
+The next and the last step is to specify a custom port to which the client will forward connections to the container. If your container is still running, kill it with <Ctrl+C> and then run 
+```
+$ docker run -p 8888:80 prakhar1989/static-site
+Nginx is running...
+```
+Head over to [http://192.168.99.100:8888/](http://192.168.99.100:8888/) and your site should be live! What we did above using the `-p` flag was to tell the client to forward all connections incoming on the host (on port 8888) to the container on port 80.
+
+I'm sure you agree that was super simple. To deploy on this on a real server you would just need to install docker, and run the above docker command. 
+
+Now that you've seen how to run a webserver inside a docker image, you must be wondering - how do I create my own docker image? This is the question we'll be exploring in the next section.
 
 ___________
 <a href="#table-of-contents" class="top" id="preface">Top</a>
