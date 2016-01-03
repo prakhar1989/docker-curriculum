@@ -50,6 +50,10 @@ This document contains a series of several sections, each of which explains a pa
 -   [1.0 Playing with Busybox](#busybox)
     -   [1.1 Docker Run](#dockerrun)
     -   [1.2 Terminology](#terminology)
+-   [2.0 Website on Docker](#busybox)
+    -   [2.1 Setting up the webserver](#dockerrun)
+    -   [2.2 Docker build](#terminology)
+    -   [2.3 Publishing](#)
 -   [Additional Resources](#resources)
 -   [References](#references)
 
@@ -70,7 +74,7 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable getting it up and running on your favorite OS has become very easy. At first, we'll install docker.
 
 ##### Docker 
-Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately, however, docker has invested significantly into improving the on-boarding experience for its users on these OSes and hence running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
+Until a few releases ago, running docker on OSX and Windows was quite a hassle. Lately however, docker has invested significantly into improving the on-boarding experience for its users on these OSes and hence running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
 
 Once you are done installing docker, test your docker installation by running the following
 ```
@@ -165,17 +169,17 @@ Running the `run` command with the `-it` flags attaches us to an interactive tty
 
 > **Danger Zone**: If you're feeling particularly adventureous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop. Doing this will not make any other commands like `ls`, `echo` work. Once everything stop working you can exit the container and then run it back up again with the `docker run -it busybox sh` command. Since docker creates a new container everytime, everything should start working back again.
 
-So that was a whirlwind tour of the mighty `docker run` command which would most likely be the command you'll most often. Hence it makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
+That concludes a whirlwind tour of the mighty `docker run` command which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
 
 <a id="terminology"></a>
 ### 1.2 Terminology
 In the last section, we used a lot of docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the docker ecosystem.
 
-- *Images* - The blueprints of our application. Form the basis of containers.
-- *Containers* - Created from docker images and run the actual application.
-- *Docker Daemon* - The background service running on the host that manages building, running and distributing docker containers
-- *Docker Client* - The command line tool that allows the user to interact with the daemon.
-- *Docker hub* - A [registry](https://hub.docker.com/explore/) of docker images. 
+- *Images* - The blueprints of our application which form the basis of containers. In the demo above, we used the `docker pull` command to download the **busybox** image.
+- *Containers* - Created from docker images and run the actual application. We create a container using `docker run` which we did using the busybox image that we downloaded. The list of running containers can be seen using the `docker ps` command.
+- *Docker Daemon* - The background service running on the host that manages building, running and distributing docker containers. The daemon is the process that runs in the operation system to which clients talk to.
+- *Docker Client* - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as [Kitematic]() which provide a GUI to the users.
+- *Docker hub* - A [registry](https://hub.docker.com/explore/) of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registeries and can use them for pulling images.
 
 
 ___________
