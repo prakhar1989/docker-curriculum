@@ -1,3 +1,5 @@
+#!/usr/local/bin/node
+
 var chokidar = require('chokidar');
 var execshell = require('exec-sh');
 
@@ -9,6 +11,8 @@ var watcher = chokidar.watch('file, dir, glob, or array', {
 
 // Watch the readme for changes
 watcher.add('README.md');
+
+console.log("Listening for changes...");
 
 // kick off the first generate
 execshell("./generate");

@@ -364,6 +364,12 @@ pre .chunk {
 <li><a href="#terminology">1.2 Terminology</a></li>
 </ul>
 </li>
+<li><a href="#busybox">2.0 Website on Docker</a><ul>
+<li><a href="#dockerrun">2.1 Setting up the webserver</a></li>
+<li><a href="#terminology">2.2 Docker build</a></li>
+<li><a href="#">2.3 Publishing</a></li>
+</ul>
+</li>
 <li><a href="#resources">Additional Resources</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -372,7 +378,7 @@ pre .chunk {
 <h2 id="preface">Preface</h2>
 <p><a id="prerequisites"></a></p>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few services. If you're interested in following along, please create an account on each of these websites - </p>
+<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few cloud services. If you're interested in following along, please create an account on each of these websites - </p>
 <ul>
 <li><a href="http://aws.amazon.com/">Amazon Web Services</a></li>
 <li><a href="https://hub.docker.com/">Docker Hub</a></li>
@@ -472,7 +478,7 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 <li><em>Images</em> - The blueprints of our application which form the basis of containers. In the demo above, we used the <code>docker pull</code> command to download the <strong>busybox</strong> image.</li>
 <li><em>Containers</em> - Created from docker images and run the actual application. We create a container using <code>docker run</code> which we did using the busybox image that we downloaded. The list of running containers can be seen using the <code>docker ps</code> command.</li>
 <li><em>Docker Daemon</em> - The background service running on the host that manages building, running and distributing docker containers. The daemon is the process that runs in the operation system to which clients talk to.</li>
-<li><em>Docker Client</em> - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as <a href="">Kitematic</a> which provide a GUI to the users.</li>
+<li><em>Docker Client</em> - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as <a href="https://kitematic.com/">Kitematic</a> which provide a GUI to the users.</li>
 <li><em>Docker hub</em> - A <a href="https://hub.docker.com/explore/">registry</a> of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registeries and can use them for pulling images.</li>
 </ul>
 <hr />
