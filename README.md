@@ -209,9 +209,14 @@ Nginx is running...
 ```
 Head over to [http://192.168.99.100:8888/](http://192.168.99.100:8888/) and your site should be live! What we did above using the `-p` flag was to tell the client to forward all connections incoming on the host (on port 8888) to the container on port 80.
 
-I'm sure you agree that was super simple. To deploy on this on a real server you would just need to install docker, and run the above docker command. 
+<img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static">
+
+I'm sure you agree that was super simple. To deploy this on a real server you would just need to install docker, and run the above docker command. 
 
 Now that you've seen how to run a webserver inside a docker image, you must be wondering - how do I create my own docker image? This is the question we'll be exploring in the next section.
+
+<a id="docker-images"></a>
+### 2.2 Docker Images
 
 ___________
 <a href="#table-of-contents" class="top" id="preface">Top</a>
