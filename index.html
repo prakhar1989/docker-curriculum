@@ -364,6 +364,12 @@ pre .chunk {
 <li><a href="#terminology">1.2 Terminology</a></li>
 </ul>
 </li>
+<li><a href="#webapps">2.0 Webapps with Docker</a><ul>
+<li><a href="#static-site">2.1 Static Sites</a></li>
+<li><a href="#terminology">2.2 Docker build</a></li>
+<li><a href="#">2.3 Publishing</a></li>
+</ul>
+</li>
 <li><a href="#resources">Additional Resources</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -372,7 +378,7 @@ pre .chunk {
 <h2 id="preface">Preface</h2>
 <p><a id="prerequisites"></a></p>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few services. If you're interested in following along, please create an account on each of these websites - </p>
+<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications would be helpful but not required. As we proceed further along the tutorial, we'll make use of a few cloud services. If you're interested in following along, please create an account on each of these websites - </p>
 <ul>
 <li><a href="http://aws.amazon.com/">Amazon Web Services</a></li>
 <li><a href="https://hub.docker.com/">Docker Hub</a></li>
@@ -472,9 +478,34 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 <li><em>Images</em> - The blueprints of our application which form the basis of containers. In the demo above, we used the <code>docker pull</code> command to download the <strong>busybox</strong> image.</li>
 <li><em>Containers</em> - Created from docker images and run the actual application. We create a container using <code>docker run</code> which we did using the busybox image that we downloaded. The list of running containers can be seen using the <code>docker ps</code> command.</li>
 <li><em>Docker Daemon</em> - The background service running on the host that manages building, running and distributing docker containers. The daemon is the process that runs in the operation system to which clients talk to.</li>
-<li><em>Docker Client</em> - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as <a href="">Kitematic</a> which provide a GUI to the users.</li>
-<li><em>Docker hub</em> - A <a href="https://hub.docker.com/explore/">registry</a> of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registeries and can use them for pulling images.</li>
+<li><em>Docker Client</em> - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as <a href="https://kitematic.com/">Kitematic</a> which provide a GUI to the users.</li>
+<li><em>Docker hub</em> - A <a href="https://hub.docker.com/explore/">registry</a> of docker images. You can think of the registry as a directory of all available docker images. If required, one can host their own docker registries and can use them for pulling images.</li>
 </ul>
+<p><a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="webapps"></a></p>
+<h2 id="20-webapps-with-docker">2.0 Webapps with Docker</h2>
+<p>Great! So we have now looked at <code>docker run</code>, played with a docker container and also got a hang of some terminology. Armed with all this knowledge, we are now ready to get to the real-stuff i.e. deploying web applications with docker!</p>
+<p><a id="static-site"></a></p>
+<h3 id="21-static-sites">2.1 Static Sites</h3>
+<p>Let's start by taking baby-steps. The first thing we're going to look at is how we can run a dead-simple static website. We're going to pull a docker image from the docker hub, running the container and see how easy it so to run a webserver. </p>
+<p>Let's begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I've already created for the purposes of this demo and hosted it on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>.</p>
+<pre><code>$ docker run prakhar1989/static-site
+</code></pre>
+
+<p>Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how do see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
+<p>The answer to the above questions is <strong>port forwarding</strong>. The first step that we need to do is the find the IP of the hostname. This is the IP through which we'll be able to interact with the container directly from our host machine.</p>
+<pre><code>$ docker-machine ip default
+192.168.99.100
+</code></pre>
+
+<p>The next and the last step is to specify a custom port to which the client will forward connections to the container. If your container is still running, kill it with <Ctrl+C> and then run </p>
+<pre><code>$ docker run -p 8888:80 prakhar1989/static-site
+Nginx is running...
+</code></pre>
+
+<p>Head over to <a href="http://192.168.99.100:8888/">http://192.168.99.100:8888/</a> and your site should be live! What we did above using the <code>-p</code> flag was to tell the client to forward all connections incoming on the host (on port 8888) to the container on port 80.</p>
+<p>I'm sure you agree that was super simple. To deploy on this on a real server you would just need to install docker, and run the above docker command. </p>
+<p>Now that you've seen how to run a webserver inside a docker image, you must be wondering - how do I create my own docker image? This is the question we'll be exploring in the next section.</p>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>
