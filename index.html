@@ -369,6 +369,7 @@ pre .chunk {
 <li><a href="#docker-images">2.2 Docker Images</a></li>
 <li><a href="#our-image">2.3 Our First Image</a></li>
 <li><a href="#dockerfiles">2.4 Dockerfile</a></li>
+<li><a href="#docker-aws">2.5 Docker on AWS</a></li>
 </ul>
 </li>
 <li><a href="#resources">Additional Resources</a></li>
@@ -606,7 +607,7 @@ Successfully built 13e87ed1fbc2
 </code></pre>
 
 <p>While running the command yourself, make sure to replace my username with yours. This username should be the same on you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
-<p>If you don't have the <code>python-3:onbuild</code> image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. If you see carefully, you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image shows. </p>
+<p>If you don't have the <code>python-3:onbuild</code> image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. See carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image shows. </p>
 <p>The last step in this section is to run the image and see if it actually works. </p>
 <pre><code>$ docker run -p 8888:5000 prakhar1989/catnip
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
@@ -615,6 +616,24 @@ Successfully built 13e87ed1fbc2
 <p>Head over to the URL above and your app should be live. </p>
 <p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/catgif.png" title="static"></p>
 <p>Congratulations! You have successfully created your first docker image.</p>
+<p><a id="docker-aws"></a></p>
+<h3 id="25-docker-on-aws">2.5 Docker on AWS</h3>
+<p>What good is an application that can't be shared with friends, right? So in this section we are going to see how we will deploy our awesome application on the cloud so that we can share it with our friends! We're going to use AWS <a href="https://aws.amazon.com/elasticbeanstalk/">Elastic Beanstalk</a> to get our application up and running in a few clicks. We'll also see how easy it is to make our application scalable and manageable with Beanstalk!</p>
+<h5 id="docker-push">Docker push</h5>
+<p>The first thing that we need to do before we go ahead and deploy our app on AWS is to publish our image on a registry which can be accessed by AWS. There are many different <a href="https://aws.amazon.com/ecr/">docker registries</a> you can use (you can even host <a href="https://docs.docker.com/registry/deploying/">your own</a>). For now, let's use <a href="https://hub.docker.com">Docker hub</a> to publish the image. To publish, just type </p>
+<pre><code>$ docker push prakhar1989/catnip
+</code></pre>
+
+<p>Remember to replace the name of the image tag above with yours. It is important to have the format of <code>username/image_name</code> so that the client knows where to publish. If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into docker hub.</p>
+<p>Once that is done, you can view your image on the hub. For example, here's the <a href="https://hub.docker.com/r/prakhar1989/catnip/">web page</a> for my image.</p>
+<blockquote>
+<p>Note: One thing that I'd like to clarify before we go ahead is that it is not <strong>imperative</strong> to host your image on a public registry (or any registry) in order to deploy on AWS. In case you're writing code for the next million-dollar unicorn startup you can totally skip this step. The reason why we're pushing our images publicly is that it makes super simple to do deployment by skipping a few intermediate configuration steps.</p>
+</blockquote>
+<p>Now that your image is online, anyone who has docker installed can play with your app by typing just a single command. </p>
+<pre><code>$ docker run -p 8888:5000 prakhar1989/catnip
+</code></pre>
+
+<p>If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!</p>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>
