@@ -366,8 +366,9 @@ pre .chunk {
 </li>
 <li><a href="#webapps">2.0 Webapps with Docker</a><ul>
 <li><a href="#static-site">2.1 Static Sites</a></li>
-<li><a href="#terminology">2.2 Docker build</a></li>
-<li><a href="#">2.3 Publishing</a></li>
+<li><a href="#docker-images">2.2 Docker Images</a></li>
+<li><a href="#our-image">2.3 Our First Image</a></li>
+<li><a href="#dockerfiles">2.4 Dockerfile</a></li>
 </ul>
 </li>
 <li><a href="#resources">Additional Resources</a></li>
@@ -533,6 +534,87 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 <li><strong>Base images</strong> are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images. </li>
 <li><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>.</li>
 </ul>
+<p><a id="our-image"></a></p>
+<h3 id="23-our-first-image">2.3 Our First Image</h3>
+<p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pooco.org">Flask</a> application. For the purposes of this workshop, I've already created a fun, little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead the clone the repository locally.</p>
+<p>Before we get started on creating the image, let's first test that the application works correctly locally. Step one is to <code>cd</code> into the <code>flask-app</code> directory and install the dependencies</p>
+<pre><code>$ cd flask-app
+$ pip install -r requirements.txt
+$ python app.py
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+</code></pre>
+
+<p>If all goes well, you should see the output as above. Head over to <a href="http://localhost:5000">http://localhost:5000</a> to see the app in action.</p>
+<blockquote>
+<p>Note: If <code>pip install</code> is giving you permission denied errors, you might need to try running the command as <code>sudo</code>.</p>
+</blockquote>
+<p>Looks great doesn't it? The next step now is to create an image with this web app. As mentioned above, all user images are based off a base image. Since our application is written in Python, the base image we're going to use will be <a href="https://hub.docker.com/_/python/">Python 3</a>. More specifically, we are going to use the <code>python:3-onbuild</code> version of the python image. </p>
+<p>What's the <code>onbuild</code> version you might ask?</p>
+<blockquote>
+<p>These images include multiple ONBUILD triggers, which should be all you need to bootstrap most applications. The build will COPY a <code>requirements.txt</code> file, RUN <code>pip install</code> on said file, and then copy the current directory into <code>/usr/src/app</code>.</p>
+</blockquote>
+<p>In other words, the <code>onbuild</code> version of the image includes helpers that automate the boring parts of getting an app running. Rather than doing these tasks manually (or scripting these tasks), these images do that work for you. We now have all the ingredients to create our own image - a functioning web app and a base image. How are we going to do that? The answer is - using a <strong>Dockerfile</strong>.</p>
+<p><a id="dockerfiles"></a></p>
+<h3 id="24-dockerfile">2.4 Dockerfile</h3>
+<p>A <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a> is a simple text-file that contains a list of commands that the docker client calls while creating an image. It is simple way to automate the image creation process. The best part is that the <a href="https://docs.docker.com/engine/reference/builder/#from">commands</a> you write in a Dockerfile are <em>almost</em> identical to their equivalent Linux commands. This means you don't really have to learn new syntax to create your own dockerfiles.</p>
+<p>The application directory does create a Dockerfile but since we're doing this for the first time, we'll create one from scratch. To start, create a new blank file in our favorite text-editor and save it in the <strong>same</strong> folder as the flask app by the name of <code>Dockerfile</code>.</p>
+<p>We start with specifying our base image. Use the <code>FROM</code> keyword to do that - </p>
+<pre><code>FROM python:3-onbuild
+</code></pre>
+
+<p>The next step usually is to write the commands of copying the files and installing the dependencies. Luckily for us, the <code>onbuild</code> version of the image takes care of that. The next thing, we need to the tell is the port number which needs to be exposed. Since our flask app is running on <code>5000</code> that's what we'll indicate.</p>
+<pre><code>EXPOSE 5000
+</code></pre>
+
+<p>The last step is simply to write the command for running the application which is simply - <code>python ./app.py</code>. We use the <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a> command to do that - </p>
+<pre><code>CMD [&quot;python&quot;, &quot;./app.py&quot;]
+</code></pre>
+
+<p>The primary purpose of <code>CMD</code> is to tell the container which command it should run when it is started. With that, our <code>Dockerfile</code> is now ready. This is how it looks like -</p>
+<pre><code># our base image
+FROM python:3-onbuild
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the application
+CMD [&quot;python&quot;, &quot;./app.py&quot;]
+</code></pre>
+
+<p>Now that we finally have our <code>Dockerfile</code>, we can now build our image. The <code>docker build</code> command does the heavy-lifting of creating a docker image from a <code>Dockerfile</code>.</p>
+<p>Let's run the following -</p>
+<pre><code>$ docker build -t prakhar1989/flask-app .
+Sending build context to Docker daemon 8.704 kB
+Step 1 : FROM python:3-onbuild
+# Executing 3 build triggers...
+Step 1 : COPY requirements.txt /usr/src/app/
+ ---&gt; Using cache
+Step 1 : RUN pip install --no-cache-dir -r requirements.txt
+ ---&gt; Using cache
+Step 1 : COPY . /usr/src/app
+ ---&gt; 1d61f639ef9e
+Removing intermediate container 4de6ddf5528c
+Step 2 : EXPOSE 5000
+ ---&gt; Running in 12cfcf6d67ee
+ ---&gt; f423c2f179d1
+Removing intermediate container 12cfcf6d67ee
+Step 3 : CMD python ./app.py
+ ---&gt; Running in f01401a5ace9
+ ---&gt; 13e87ed1fbc2
+Removing intermediate container f01401a5ace9
+Successfully built 13e87ed1fbc2
+</code></pre>
+
+<p>While running the command yourself, make sure to replace my username with yours. This username should be the same on you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
+<p>If you don't have the <code>python-3:onbuild</code> image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. If you see carefully, you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image shows. </p>
+<p>The last step in this section is to run the image and see if it actually works. </p>
+<pre><code>$ docker run -p 8888:5000 prakhar1989/catnip
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+</code></pre>
+
+<p>Head over to the URL above and your app should be live. </p>
+<p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/catgif.png" title="static"></p>
+<p>Congratulations! You have successfully created your first docker image.</p>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>

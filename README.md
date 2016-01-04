@@ -52,8 +52,9 @@ This document contains a series of several sections, each of which explains a pa
     -   [1.2 Terminology](#terminology)
 -   [2.0 Webapps with Docker](#webapps)
     -   [2.1 Static Sites](#static-site)
-    -   [2.2 Docker build](#terminology)
-    -   [2.3 Publishing](#)
+    -   [2.2 Docker Images](#docker-images)
+    -   [2.3 Our First Image](#our-image)
+    -   [2.4 Dockerfile](#dockerfiles)
 -   [Additional Resources](#resources)
 -   [References](#references)
 
@@ -248,8 +249,103 @@ An important distinction to be aware of when it comes to images is between base 
 - **Base images** are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the `python`, `ubuntu`, `busybox` and `hello-world` images are base images. 
 - **User images** are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as `user/image-name`.
 
+<a id="our-image"></a>
+### 2.3 Our First Image
+
+Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple [Flask](http://flask.pooco.org) application. For the purposes of this workshop, I've already created a fun, little [Flask app](https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app) that displays a random cat `.gif` every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead the clone the repository locally.
+
+Before we get started on creating the image, let's first test that the application works correctly locally. Step one is to `cd` into the `flask-app` directory and install the dependencies
+```
+$ cd flask-app
+$ pip install -r requirements.txt
+$ python app.py
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+If all goes well, you should see the output as above. Head over to [http://localhost:5000](http://localhost:5000) to see the app in action.
+
+> Note: If `pip install` is giving you permission denied errors, you might need to try running the command as `sudo`.
+
+Looks great doesn't it? The next step now is to create an image with this web app. As mentioned above, all user images are based off a base image. Since our application is written in Python, the base image we're going to use will be [Python 3](https://hub.docker.com/_/python/). More specifically, we are going to use the `python:3-onbuild` version of the python image. 
+
+What's the `onbuild` version you might ask?
+
+> These images include multiple ONBUILD triggers, which should be all you need to bootstrap most applications. The build will COPY a `requirements.txt` file, RUN `pip install` on said file, and then copy the current directory into `/usr/src/app`.
+
+In other words, the `onbuild` version of the image includes helpers that automate the boring parts of getting an app running. Rather than doing these tasks manually (or scripting these tasks), these images do that work for you. We now have all the ingredients to create our own image - a functioning web app and a base image. How are we going to do that? The answer is - using a **Dockerfile**.
+
+<a id="dockerfiles"></a>
+### 2.4 Dockerfile
+
+A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is a simple text-file that contains a list of commands that the docker client calls while creating an image. It is simple way to automate the image creation process. The best part is that the [commands](https://docs.docker.com/engine/reference/builder/#from) you write in a Dockerfile are *almost* identical to their equivalent Linux commands. This means you don't really have to learn new syntax to create your own dockerfiles.
+
+The application directory does create a Dockerfile but since we're doing this for the first time, we'll create one from scratch. To start, create a new blank file in our favorite text-editor and save it in the **same** folder as the flask app by the name of `Dockerfile`.
+
+We start with specifying our base image. Use the `FROM` keyword to do that - 
+```
+FROM python:3-onbuild
+```
+The next step usually is to write the commands of copying the files and installing the dependencies. Luckily for us, the `onbuild` version of the image takes care of that. The next thing, we need to the tell is the port number which needs to be exposed. Since our flask app is running on `5000` that's what we'll indicate.
+```
+EXPOSE 5000
+```
+The last step is simply to write the command for running the application which is simply - `python ./app.py`. We use the [CMD](https://docs.docker.com/engine/reference/builder/#cmd) command to do that - 
+```
+CMD ["python", "./app.py"]
+```
+
+The primary purpose of `CMD` is to tell the container which command it should run when it is started. With that, our `Dockerfile` is now ready. This is how it looks like -
+```
+# our base image
+FROM python:3-onbuild
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the application
+CMD ["python", "./app.py"]
+```
+
+Now that we finally have our `Dockerfile`, we can now build our image. The `docker build` command does the heavy-lifting of creating a docker image from a `Dockerfile`.
+
+Let's run the following -
+```
+$ docker build -t prakhar1989/flask-app .
+Sending build context to Docker daemon 8.704 kB
+Step 1 : FROM python:3-onbuild
+# Executing 3 build triggers...
+Step 1 : COPY requirements.txt /usr/src/app/
+ ---> Using cache
+Step 1 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Using cache
+Step 1 : COPY . /usr/src/app
+ ---> 1d61f639ef9e
+Removing intermediate container 4de6ddf5528c
+Step 2 : EXPOSE 5000
+ ---> Running in 12cfcf6d67ee
+ ---> f423c2f179d1
+Removing intermediate container 12cfcf6d67ee
+Step 3 : CMD python ./app.py
+ ---> Running in f01401a5ace9
+ ---> 13e87ed1fbc2
+Removing intermediate container f01401a5ace9
+Successfully built 13e87ed1fbc2
+```
+While running the command yourself, make sure to replace my username with yours. This username should be the same on you created when you registered on [Docker hub](https://hub.docker.com). If you haven't done that yet, please go ahead and create an account. The `docker build` command is quite simple - it takes an optional tag name with `-t` and a location of the directory containing the `Dockerfile`.
 
 
+If you don't have the `python-3:onbuild` image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. If you see carefully, you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run `docker images` and see if your image shows. 
+
+The last step in this section is to run the image and see if it actually works. 
+```
+$ docker run -p 8888:5000 prakhar1989/catnip
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+Head over to the URL above and your app should be live. 
+
+<img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/catgif.png" title="static">
+
+
+Congratulations! You have successfully created your first docker image.
 
 ___________
 <a href="#table-of-contents" class="top" id="preface">Top</a>
