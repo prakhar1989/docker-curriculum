@@ -258,7 +258,7 @@ class MarkdownCompiler():
         return markdown_html
 
     def get_title(self):
-        title = self.mdfile.name
+        title = "Docker for Beginners" # self.mdfile.name
         if not title:
             fn = self.mdfile.name
             title = 'untitled' if not fn else os.path.splitext(os.path.basename(fn))[0]
