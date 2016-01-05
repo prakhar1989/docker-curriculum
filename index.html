@@ -495,17 +495,27 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 </code></pre>
 
 <p>Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how do see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
-<p>The answer to the above questions is <strong>port forwarding</strong>. The first step that we need to do is the find the IP of the hostname. This is the IP through which we'll be able to interact with the container directly from our host machine.</p>
+<p>Well in this case, the client is not exposing any ports so we need to re-run the <code>docker run</code> command to publish ports. While were at it, we should also find a way so that our terminal is not attached to the running container. So that you can happily close your terminal and keep the container running. This is called the <strong>detached</strong> mode.</p>
+<pre><code>$ docker run -d -P --name static-site prakhar1989/static-site
+e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
+</code></pre>
+
+<p>In the above command, <code>-d</code> will detach our terminal, <code>-P</code> will publish all exposed ports to random ports and finally <code>--name</code> corresponds to a name we want to give. Now we can see the ports by running the <code>docker port</code> command</p>
+<pre><code>$ docker port static-site
+443/tcp -&gt; 0.0.0.0:32772
+80/tcp -&gt; 0.0.0.0:32773
+</code></pre>
+
+<p>If you're on Linux, you can open <a href="http://localhost:32772">http://localhost:32772</a> in your browser. If you're on Windows or a Mac, you need to find the IP of the hostname.</p>
 <pre><code>$ docker-machine ip default
 192.168.99.100
 </code></pre>
 
-<p>The next and the last step is to specify a custom port to which the client will forward connections to the container. If your container is still running, kill it with <Ctrl+C> and then run </p>
+<p>You can now open <a href="http://192.168.99.100:32772">http://192.168.99.100:32772</a> to see your site live! You can also specify a custom port to which the client will forward connections to the container. </p>
 <pre><code>$ docker run -p 8888:80 prakhar1989/static-site
 Nginx is running...
 </code></pre>
 
-<p>Head over to <a href="http://192.168.99.100:8888/">http://192.168.99.100:8888/</a> and your site should be live! What we did above using the <code>-p</code> flag was to tell the client to forward all connections incoming on the host (on port 8888) to the container on port 80.</p>
 <p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static"></p>
 <p>I'm sure you agree that was super simple. To deploy this on a real server you would just need to install docker, and run the above docker command. </p>
 <p>Now that you've seen how to run a webserver inside a docker image, you must be wondering - how do I create my own docker image? This is the question we'll be exploring in the next section.</p>
@@ -687,6 +697,8 @@ Successfully built 13e87ed1fbc2
 <ul>
 <li><a href="http://docker.atbaker.me/">Hello Docker Workshop</a></li>
 <li><a href="https://www.youtube.com/watch?v=PJ95WY2DqXo">Building a microservice with Node.js and Docker</a></li>
+<li><a href="https://blog.codeship.com/why-docker/">Why Docker</a></li>
+<li><a href="https://www.docker.com/newsletter-subscription">Docker Weekly</a> and <a href="https://blog.docker.com/docker-weekly-archives/">archives</a></li>
 </ul>
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a></p>
@@ -694,6 +706,8 @@ Successfully built 13e87ed1fbc2
 <ul>
 <li><a href="http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html">What containers can do for you</a></li>
 <li><a href="https://www.docker.com/what-docker">What is docker</a></li>
+<li><a href="https://medium.com/@j_mcnally/a-beginner-s-guide-to-deploying-production-web-apps-to-docker-9458409c6180?_tmc=WrhaI1ejJlMmTpUmHOhTFZsYaUSPUP1yvyq19dsRQ5A#.bl50ga0uz">A beginner's guide to deploying production web apps</a></li>
+<li><a href="https://aggarwalarpit.wordpress.com/2015/12/06/running-web-application-in-linked-docker-containers-environment/">Running Web Application in Linked Docker Containers Environment</a></li>
 </ul>
 <!-- Asynchronous Google Analytics snippet -->
 <script>

@@ -199,18 +199,33 @@ $ docker run prakhar1989/static-site
 ```
 Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a `Nginx is running...` message in your terminal. Okay now that the server is running, how do see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?
 
-The answer to the above questions is **port forwarding**. The first step that we need to do is the find the IP of the hostname. This is the IP through which we'll be able to interact with the container directly from our host machine.
+Well in this case, the client is not exposing any ports so we need to re-run the `docker run` command to publish ports. While were at it, we should also find a way so that our terminal is not attached to the running container. So that you can happily close your terminal and keep the container running. This is called the **detached** mode.
+
+```
+$ docker run -d -P --name static-site prakhar1989/static-site
+e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
+```
+
+In the above command, `-d` will detach our terminal, `-P` will publish all exposed ports to random ports and finally `--name` corresponds to a name we want to give. Now we can see the ports by running the `docker port` command
+
+```
+$ docker port static-site
+443/tcp -> 0.0.0.0:32772
+80/tcp -> 0.0.0.0:32773
+```
+
+If you're on Linux, you can open [http://localhost:32772](http://localhost:32772) in your browser. If you're on Windows or a Mac, you need to find the IP of the hostname.
+
 ```
 $ docker-machine ip default
 192.168.99.100
 ```
-The next and the last step is to specify a custom port to which the client will forward connections to the container. If your container is still running, kill it with <Ctrl+C> and then run 
+You can now open [http://192.168.99.100:32772](http://192.168.99.100:32772) to see your site live! You can also specify a custom port to which the client will forward connections to the container. 
+
 ```
 $ docker run -p 8888:80 prakhar1989/static-site
 Nginx is running...
 ```
-Head over to [http://192.168.99.100:8888/](http://192.168.99.100:8888/) and your site should be live! What we did above using the `-p` flag was to tell the client to forward all connections incoming on the host (on port 8888) to the container on port 80.
-
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static">
 
 I'm sure you agree that was super simple. To deploy this on a real server you would just need to install docker, and run the above docker command. 
@@ -433,9 +448,13 @@ ___________
 ## Additional Resources
 - [Hello Docker Workshop](http://docker.atbaker.me/)
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
+- [Why Docker](https://blog.codeship.com/why-docker/)
+- [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
 ## References
 - [What containers can do for you](http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html)
 - [What is docker](https://www.docker.com/what-docker)
+- [A beginner's guide to deploying production web apps](https://medium.com/@j_mcnally/a-beginner-s-guide-to-deploying-production-web-apps-to-docker-9458409c6180?_tmc=WrhaI1ejJlMmTpUmHOhTFZsYaUSPUP1yvyq19dsRQ5A#.bl50ga0uz)
+- [Running Web Application in Linked Docker Containers Environment](https://aggarwalarpit.wordpress.com/2015/12/06/running-web-application-in-linked-docker-containers-environment/)
