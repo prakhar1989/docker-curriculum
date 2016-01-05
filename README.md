@@ -421,7 +421,11 @@ Hopefully by now, our instance should be ready. Head over to EB page and you sho
 
 Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs too.
 
-Congratulations! You have deployed your first Docker application!
+Congratulations! You have deployed your first Docker application! That might seem a series of steps but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes a lot of pains of building and deploying applications in the cloud. I would encourage you to read the AWS [documentation](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html) on single-container docker environments to get an idea of what all features exist.
+
+In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage layer! Let's get straight to it.
+
+
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
