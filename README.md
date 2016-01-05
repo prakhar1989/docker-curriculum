@@ -347,7 +347,6 @@ Head over to the URL above and your app should be live.
 
 Congratulations! You have successfully created your first docker image.
 
-
 <a id="docker-aws"></a>
 ### 2.5 Docker on AWS
 
@@ -370,6 +369,59 @@ $ docker run -p 8888:5000 prakhar1989/catnip
 ```
 If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!
 
+
+##### Beanstalk
+AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. We'll use EB because it supports both single-container and multi-container Docker deployments. Although EB has a very intuitive [CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html), it does require some setup and to keep things simple and use the web UI to launch our application.
+
+To follow along, you need a functioning [AWS](http://aws.amazon.com) account. If you haven't already, please go ahead and do that now - you will need to enter your credit card information. Don't worry, it's free and anything we do in this tutorial will also be free! Let's get started.
+
+Here are the steps -
+
+- Login to your AWS [console](http://console.aws.amazon.com).
+- Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, just click [here](https://console.aws.amazon.com/elasticbeanstalk) to access the EB console.
+
+<img src="images/eb-start.png" title="static">
+
+- Click on "Create new application"
+- Give your app a memorable (but unique) name and provide an (optional) description
+- In the **New Environment** screen, choose the **Web Server Environment**.
+- The following screen is shown below. Choose *Docker* from the predefined configuration. You can leave the *Environment type* as it is. Click Next.
+
+<img src="images/eb-docker.png" title="static">
+
+- This is where we need to tell EB about our image. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "upload your own" and upload this file.
+- Next up, choose an environment name and a URL. This URL is what you'll share with your friends so make sure it's easy to remember.
+- For now, we won't be making changes in the *Additional Resources* section. Click Next and move to *Configuration Details*.
+- In this section, all you need to do is to check that the instance type is `t1.micro`. This is very important as this is the **free** instance by AWS. You can optionally choose a key-pair to login. If you don't know what that means, feel free to ignore this for now. We'll leave everything else to the default and forge ahead.
+- We also don't need to provide any *Environment Tags* and *Permissions* so without batting an eyelid, you can click Next twice in succession. At the end, the screen shows us *Review* page. If everything looks good, go ahead and press the **Launch** button.
+- The final screen that you see will have a few spinners indicating that your environment is setting up. It typically takes around 5mins for first-time setup.
+
+While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.
+
+```
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "prakhar1989/catnip",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "5000"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}
+```
+The file should be pretty self-explanatory and the [reference](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html#create_deploy_docker_image_dockerrun) can be found in the official documentation. We provide the name of the image that EB should use a port that the container should expose.
+
+Hopefully by now, our instance should be ready. Head over to EB page and you should a green tick indicating that your app is alive and kicking. 
+
+<img src="images/eb-deploy.png" title="static">
+
+Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs too.
+
+Congratulations! You have deployed your first Docker application!
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
