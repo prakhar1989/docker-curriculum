@@ -161,8 +161,8 @@ class MarkdownCompiler():
                     abs_path = u'file://%s/%s' % (os.path.dirname(filename), src)
                     tag = tag.replace(src, abs_path)
             return tag
-        RE_SOURCES = re.compile("""(?P<tag><(?:img|script|a)[^>]+(?:src|href)=["'](?P<src>[^"']+)[^>]*>)""")
-        html = RE_SOURCES.sub(tag_fix, html)
+        #RE_SOURCES = re.compile("""(?P<tag><(?:img|script|a)[^>]+(?:src|href)=["'](?P<src>[^"']+)[^>]*>)""")
+        #html = RE_SOURCES.sub(tag_fix, html)
         return html
 
     def curl_convert(self, data):
