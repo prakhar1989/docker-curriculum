@@ -152,7 +152,7 @@ Nice - finally we see some output. In this case, the docker client dutifully ran
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
-Since no containers are running, we see a blank line. Let's try a more useful variant of `docker ps` 
+Since no containers are running, we see a blank line. Let's try a more useful variant of `docker ps -a` 
 ```
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
