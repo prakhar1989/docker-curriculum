@@ -798,6 +798,94 @@ Out of retries. Bailing out...
 <p>Oops! Our flask app was unable to run since it was unable to connect to Elasticsearch. How do we tell one container about the other container and get them to talk to each other? The answer lies in the next section.</p>
 <p><a id="docker-network"></a></p>
 <h3 id="32-docker-network">3.2 Docker Network</h3>
+<p>Before we talk about the features Docker provides especially to deal with such scenarios, let's see if we can figure out a way to get around the problem. Hopefully this should give you an appreciation for the specific feature that we are going to study.</p>
+<p>Okay, so let's run <code>docker ps</code> and see what we have.</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
+e931ab24dedc        elasticsearch       &quot;/docker-entrypoint.s&quot;   2 seconds ago       Up 2 seconds        0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   cocky_spence
+</code></pre>
+
+<p>So we have one ES container running on <code>0.0.0.0:9200</code> port which we can directly access. If we can tell our Flask app this connection URL, it should be able to connect and talk to ES, right? Let's dig into our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/app.py#L7">Python code</a> and see how the connection details are defined. </p>
+<pre><code>es = Elasticsearch(host='es')
+</code></pre>
+
+<p>To make this work, we need to tell the Flask container that the ES container is running on <code>0.0.0.0</code> host (the port by default is <code>9200</code>) and that should make it work, right? Unfortunately that is not correct since the IP <code>0.0.0.0</code> is the IP to access ES container from the <strong>host machine</strong> i.e. from my Mac. Another container will not be able to access this on the same IP address. Okay if not that IP, then which IP address should the ES container be accessible by? I'm glad you asked this question.</p>
+<p>Now is a good time to start our exploration of networking in Docker. When docker is installed, it creates three networks automatically.</p>
+<pre><code>$ docker network ls
+NETWORK ID          NAME                DRIVER
+075b9f628ccc        none                null
+be0f7178486c        host                host
+8022115322ec        bridge              bridge
+</code></pre>
+
+<p>The <strong>bridge</strong> network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network</p>
+<pre><code>$ docker network inspect bridge
+[
+    {
+        &quot;Name&quot;: &quot;bridge&quot;,
+        &quot;Id&quot;: &quot;8022115322ec80613421b0282e7ee158ec41e16f565a3e86fa53496105deb2d7&quot;,
+        &quot;Scope&quot;: &quot;local&quot;,
+        &quot;Driver&quot;: &quot;bridge&quot;,
+        &quot;IPAM&quot;: {
+            &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Config&quot;: [
+                {
+                    &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;
+                }
+            ]
+        },
+        &quot;Containers&quot;: {
+            &quot;e931ab24dedc1640cddf6286d08f115a83897c88223058305460d7bd793c1947&quot;: {
+                &quot;EndpointID&quot;: &quot;66965e83bf7171daeb8652b39590b1f8c23d066ded16522daeb0128c9c25c189&quot;,
+                &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+                &quot;IPv4Address&quot;: &quot;172.17.0.2/16&quot;,
+                &quot;IPv6Address&quot;: &quot;&quot;
+            }
+        },
+        &quot;Options&quot;: {
+            &quot;com.docker.network.bridge.default_bridge&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.enable_icc&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.enable_ip_masquerade&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.host_binding_ipv4&quot;: &quot;0.0.0.0&quot;,
+            &quot;com.docker.network.bridge.name&quot;: &quot;docker0&quot;,
+            &quot;com.docker.network.driver.mtu&quot;: &quot;1500&quot;
+        }
+    }
+]
+</code></pre>
+
+<p>You can see that our container <code>e931ab24dedc</code> is listed under the <code>Containers</code> section in the output. What we also see is the IP address this container has been allotted - <code>172.17.0.2</code>. Is this the IP address that we're looking for? Let's find out by running our flask container and trying to access this IP.</p>
+<pre><code class="javascript">$ docker run -it --rm prakhar1989/foodtrucks-web bash
+root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
+bash: curl: command not found
+root@35180ccc206a:/opt/flask-app# apt-get -yqq install curl
+root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
+{
+  &quot;name&quot; : &quot;Jane Foster&quot;,
+  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;2.1.1&quot;,
+    &quot;build_hash&quot; : &quot;40e2c53a6b6c2972b3d13846e450e66f4375bd71&quot;,
+    &quot;build_timestamp&quot; : &quot;2015-12-15T13:05:55Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;5.3.1&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+root@35180ccc206a:/opt/flask-app# exit
+</code></pre>
+
+<p>This should be fairly straightforward to you by now. We start the container in the interactive mode with the <code>bash</code> process. The <code>--rm</code> is a convenient flag for running one off commands as the container gets cleaned up when it's work is done. We try a <code>curl</code> but we need to install it first. Once we do that, we see that we can indeed talk to ES on <code>172.17.0.2:9200</code>. Awesome!</p>
+<p>Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach - </p>
+<ol>
+<li>
+<p>We would need to a add an entry into the <code>/etc/hosts</code> file of the Flask container so that it knows that <code>es</code> hostname stands for <code>172.17.0.2</code>. This is surely tedious.</p>
+</li>
+<li>
+<p>Since the bridge network is shared by every container by default this method is <strong>not secure</strong>.</p>
+</li>
+</ol>
+<p>It would be great if </p>
 <p><a id="docker-compose"></a></p>
 <h3 id="33-docker-compose">3.3 Docker Compose</h3>
 <p><a id="aws-ecs"></a></p>

@@ -558,6 +558,99 @@ Oops! Our flask app was unable to run since it was unable to connect to Elastics
 
 <a id="docker-network"></a>
 ### 3.2 Docker Network
+Before we talk about the features Docker provides especially to deal with such scenarios, let's see if we can figure out a way to get around the problem. Hopefully this should give you an appreciation for the specific feature that we are going to study.
+
+Okay, so let's run `docker ps` and see what we have.
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
+e931ab24dedc        elasticsearch       "/docker-entrypoint.s"   2 seconds ago       Up 2 seconds        0.0.0.0:9200->9200/tcp, 9300/tcp   cocky_spence
+```
+So we have one ES container running on `0.0.0.0:9200` port which we can directly access. If we can tell our Flask app this connection URL, it should be able to connect and talk to ES, right? Let's dig into our [Python code](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/app.py#L7) and see how the connection details are defined. 
+```
+es = Elasticsearch(host='es')
+```
+To make this work, we need to tell the Flask container that the ES container is running on `0.0.0.0` host (the port by default is `9200`) and that should make it work, right? Unfortunately that is not correct since the IP `0.0.0.0` is the IP to access ES container from the **host machine** i.e. from my Mac. Another container will not be able to access this on the same IP address. Okay if not that IP, then which IP address should the ES container be accessible by? I'm glad you asked this question.
+
+Now is a good time to start our exploration of networking in Docker. When docker is installed, it creates three networks automatically.
+
+```
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+075b9f628ccc        none                null
+be0f7178486c        host                host
+8022115322ec        bridge              bridge
+```
+The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network
+
+```
+$ docker network inspect bridge
+[
+    {
+        "Name": "bridge",
+        "Id": "8022115322ec80613421b0282e7ee158ec41e16f565a3e86fa53496105deb2d7",
+        "Scope": "local",
+        "Driver": "bridge",
+        "IPAM": {
+            "Driver": "default",
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16"
+                }
+            ]
+        },
+        "Containers": {
+            "e931ab24dedc1640cddf6286d08f115a83897c88223058305460d7bd793c1947": {
+                "EndpointID": "66965e83bf7171daeb8652b39590b1f8c23d066ded16522daeb0128c9c25c189",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        }
+    }
+]
+```
+
+You can see that our container `e931ab24dedc` is listed under the `Containers` section in the output. What we also see is the IP address this container has been allotted - `172.17.0.2`. Is this the IP address that we're looking for? Let's find out by running our flask container and trying to access this IP.
+
+```javascript
+$ docker run -it --rm prakhar1989/foodtrucks-web bash
+root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
+bash: curl: command not found
+root@35180ccc206a:/opt/flask-app# apt-get -yqq install curl
+root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
+{
+  "name" : "Jane Foster",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "2.1.1",
+    "build_hash" : "40e2c53a6b6c2972b3d13846e450e66f4375bd71",
+    "build_timestamp" : "2015-12-15T13:05:55Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.3.1"
+  },
+  "tagline" : "You Know, for Search"
+}
+root@35180ccc206a:/opt/flask-app# exit
+```
+This should be fairly straightforward to you by now. We start the container in the interactive mode with the `bash` process. The `--rm` is a convenient flag for running one off commands as the container gets cleaned up when it's work is done. We try a `curl` but we need to install it first. Once we do that, we see that we can indeed talk to ES on `172.17.0.2:9200`. Awesome!
+
+Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach - 
+
+1. We would need to a add an entry into the `/etc/hosts` file of the Flask container so that it knows that `es` hostname stands for `172.17.0.2`. This is surely tedious.
+
+2. Since the bridge network is shared by every container by default this method is **not secure**.
+
+It would be great if 
+
 
 <a id="docker-compose"></a>
 ### 3.3 Docker Compose
