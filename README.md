@@ -57,8 +57,8 @@ This document contains a series of several sections, each of which explains a pa
     -   [2.4 Dockerfile](#dockerfiles)
     -   [2.5 Docker on AWS](#docker-aws)
 -   [3.0 Multi-container Environments](#multi-container)
-    -   [3.1 SF Food Trucks](foodtrucks)
-    -   [3.2 Docker Network]()
+    -   [3.1 SF Food Trucks](#foodtrucks)
+    -   [3.2 Docker Network](#docker-network)
     -   [3.3 Docker Compose]()
     -   [3.4 AWS Elastic Container Service]()
 -   [4.0 Wrap Up]()
@@ -70,6 +70,8 @@ This document contains a series of several sections, each of which explains a pa
 ------------------------------
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 ## Preface
+
+> Note: This tutorial uses version **1.9.x** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 
 <a id="prerequisites"></a>
 ### Prerequisites
@@ -445,28 +447,33 @@ Go ahead and open the URL in your browser and you should see the application in 
 
 Congratulations! You have deployed your first Docker application! That might seem a series of steps but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of pains of building and deploying applications in the cloud. I would encourage you to read the AWS [documentation](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html) on single-container docker environments to get an idea of what all features exist.
 
-In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage layer! Let's get straight to it.
+In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage tier! Let's get straight to it.
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="multi-container"></a>
 ## Multi-container Environments
 In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common where that they were running in a **single container**. 
 
-Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Tools such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become the *de riguer* of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize these applications.
+Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become the *de riguer* of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize applications which rely on different services to run.
 
-In particular we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation or in other words - sandboxing. The idea of bundling a process with its dependancies in a sandbox (called containers) is what makes this so powerful. Imagine running one container running your server, your database and even your caching layer. Clearly, this would not be easy to manage and scale. The idea, thus, is to launch **services** into a different containers which can be managed independently from each other. This plays in very well with the whole [microservices](http://martinfowler.com/articles/microservices.html) movement which is one of the main reasons why Docker (or any other container technology) is at the forefront of modern microservices architectures.
+In particular we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation. The idea of bundling a process with its dependencies in a sandbox (called containers) is what makes this so powerful.
+
+Just like it's a good strategy to decouple your application tiers, it is wise to keep containers for each of the **services** separate. Each tier is likely to have different resource needs and those needs might grow at different rates. By separating the tiers into different containers, we can compose each tier using the most appropriate instance type based on different resource needs. This also plays in very well with the whole [microservices](http://martinfowler.com/articles/microservices.html) movement which is one of the main reasons why Docker (or any other container technology) is at the [forefront](https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.xl3wryr5z) of modern microservices architectures.
 
 <a id="foodtrucks"></a>
 ### 3.1 SF Food Trucks
 
-The app that we're going to Dockerize is called [SF Food Trucks](http://sf-foodtrucks.xyz). I built this app over a weekend and my goal was to make something slightly more useful than the cat gif app we used in the previous section.  The idea of the app is help users locate great street food in San Francisco. 
+The app that we're going to Dockerize is called [SF Food Trucks](http://sf-foodtrucks.xyz). My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service but is not too complex for the purpose of this tutorial. This is what I came up with -
 
 <img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks">
 
-The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](http://elastic.co). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
+The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](https://www.elastic.co/products/elasticsearch). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
+
+Now that you're excited (hopefully) about the app, let's get started on the next steps!
 
 <a id="docker-network"></a>
 ### 3.2 Docker Network
+
 
 <a id="docker-compose"></a>
 ### 3.3 Docker Compose
@@ -482,7 +489,6 @@ ___________
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
-- [Using Containers to Build a Microservices Architecture](https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.2lv3c0yed)
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
