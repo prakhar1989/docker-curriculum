@@ -282,6 +282,7 @@ class MarkdownCompiler():
 
         html = u'<!DOCTYPE html>'
         html += '<html><head><meta charset="utf-8">'
+        html += "<link rel='shortcut icon' href='favicon.ico'/>"
         html += self.get_stylesheet(parser)
         html += self.get_javascript()
         html += self.get_highlight()
