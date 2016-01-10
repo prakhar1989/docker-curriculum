@@ -716,7 +716,86 @@ Successfully built 13e87ed1fbc2
 <p>The app that we're going to Dockerize is called <a href="http://sf-foodtrucks.xyz">SF Food Trucks</a>. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service but is not too complex for the purpose of this tutorial. This is what I came up with -</p>
 <p><img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks"></p>
 <p>The app's backend is written in Python (Flask) and for search it uses <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>. Like everything else in this tutorial, the entire source is available on <a href="http://github.com/prakhar1989/FoodTrucks">Github</a>. We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.</p>
-<p>Now that you're excited (hopefully) about the app, let's get started on the next steps!</p>
+<p>Now that you're excited (hopefully), let's think how of we can Dockerize the app. We can see that the application consists of a Flask backend server and an Elasticsearch service. A natural way to split this app would be to have two containers - one running the Flask process and another running the Elasticsearch (ES) process. That way if our app becomes popular, we can scale it by adding more containers depending on where the bottleneck lies.</p>
+<p>Great so we need two containers. That shouldn't be hard right? We've already built our own Flask container in the previous section. And for Elasticsearch, let's see if we can find something on the hub.</p>
+<pre><code>$ docker search elasticsearch
+NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+elasticsearch                     Elasticsearch is a powerful open source se...   697       [OK]
+itzg/elasticsearch                Provides an easily configurable Elasticsea...   17                   [OK]
+tutum/elasticsearch               Elasticsearch image - listens in port 9200.     15                   [OK]
+barnybug/elasticsearch            Latest Elasticsearch 1.7.2 and previous re...   15                   [OK]
+digitalwonderland/elasticsearch   Latest Elasticsearch with Marvel &amp; Kibana       12                   [OK]
+monsantoco/elasticsearch          ElasticSearch Docker image                      9                    [OK]
+</code></pre>
+
+<p>Quite unsurprisingly, there exists an officially supported <a href="https://hub.docker.com/_/elasticsearch/">image</a> for Elasticsearch. To get ES running, we can simply use <code>docker run</code> and have a single-node ES container running locally within no time.</p>
+<pre><code>$ docker run -dp 9200:9200 elasticsearch
+d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
+
+$ docker-machine ip default
+192.168.99.100
+
+$ curl 192.168.99.100:9200
+{
+  &quot;name&quot; : &quot;Ultra-Marine&quot;,
+  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;2.1.1&quot;,
+    &quot;build_hash&quot; : &quot;40e2c53a6b6c2972b3d13846e450e66f4375bd71&quot;,
+    &quot;build_timestamp&quot; : &quot;2015-12-15T13:05:55Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;5.3.1&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+</code></pre>
+
+<p>While we are at it, let's get our Flask container running too. But before we get to that, we need a <code>Dockerfile</code>. In the last section, we used <code>python:3-onbuild</code> image as our base image. This time, however, apart from installing Python dependencies via <code>pip</code> we want our application to also generate our <a href="http://sf-foodtrucks.xyz/static/build/main.js">minified Javascript file</a> for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the <code>ubuntu</code> base image build our <code>Dockerfile</code> from scratch. </p>
+<blockquote>
+<p>Note: if you find that an existing image doesn't cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding <code>Dockerfile</code> on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.</p>
+</blockquote>
+<p>Our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile">Dockerfile</a> for the flask app looks like below - </p>
+<pre><code># start from base
+FROM ubuntu:14.04
+MAINTAINER Prakhar Srivastav &lt;prakhar@prakhar.me&gt;
+
+# install system-wide deps for python and node
+RUN apt-get -yqq update
+RUN apt-get -yqq install python-pip python-dev
+RUN apt-get -yqq install nodejs npm
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+# copy our application code
+ADD flask-app /opt/flask-app
+WORKDIR /opt/flask-app
+
+# fetch app specific deps
+RUN npm install
+RUN npm run build
+RUN pip install -r requirements.txt
+
+# expose port
+EXPOSE 5000
+
+# start app
+CMD [ &quot;python&quot;, &quot;./app.py&quot; ]
+</code></pre>
+
+<p>Quite a few new things here so let's quickly go over this file. We start off with the <a href="https://wiki.ubuntu.com/LTS">Ubuntu LTS</a> base image and use the package manager <code>apt-get</code> to install the dependencies namely - Python and Node. The <code>yqq</code> flag is used to suppress output and assumes "Yes" to all prompt. We also create a symbolic link for the node binary to deal with backward compatibility issues.</p>
+<p>We then use the <code>ADD</code> command to copy our application into a new volume in the container - <code>/opt/flask-app</code>. This is where our code will reside. We also set this as our working directory so that the following commands running in the context of this location. Now that our system-wide dependencies are installed, we get around to install app-specific ones. First off, we tackle node, install the packages from npm and run the build command as defined in our <code>package.json</code> <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/package.json#L7-L9">file</a>. We finish the file off by installing the Python packages, exposing the port and defining the <code>CMD</code> to run as we did in the last section.</p>
+<p>Finally, we can now go ahead, build the image and the run the container (replace <code>prakhar1989</code> with your username below). </p>
+<pre><code>$ docker build -t prakhar1989/foodtrucks-web .
+</code></pre>
+
+<p>In the first run, this will take time as the Docker client will download the ubuntu image, run all the commands and prepare your image. Re-running <code>docker build</code> after any subsequent changes that you make to the application code will almost be instantaneous. Now let's try running our app.</p>
+<pre><code>$ docker run -P prakhar1989/foodtrucks-web
+Unable to connect to ES. Retying in 5 secs...
+Unable to connect to ES. Retying in 5 secs...
+Unable to connect to ES. Retying in 5 secs...
+Out of retries. Bailing out...
+</code></pre>
+
+<p>Oops! Our flask app was unable to run since it was unable to connect to Elasticsearch. How do we tell one container about the other container and get them to talk to each other? The answer lies in the next section.</p>
 <p><a id="docker-network"></a></p>
 <h3 id="32-docker-network">3.2 Docker Network</h3>
 <p><a id="docker-compose"></a></p>
