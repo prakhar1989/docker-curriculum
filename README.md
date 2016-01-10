@@ -56,6 +56,13 @@ This document contains a series of several sections, each of which explains a pa
     -   [2.3 Our First Image](#our-image)
     -   [2.4 Dockerfile](#dockerfiles)
     -   [2.5 Docker on AWS](#docker-aws)
+-   [3.0 Multi-container Environments](#multi-container)
+    -   [3.1 SF Food Trucks](foodtrucks)
+    -   [3.2 Docker Network]()
+    -   [3.3 Docker Compose]()
+    -   [3.4 AWS Elastic Container Service]()
+-   [4.0 Wrap Up]()
+    -   [4.1 What Next?]()
 -   [Additional Resources](#resources)
 -   [References](#references)
 
@@ -152,7 +159,7 @@ Nice - finally we see some output. In this case, the docker client dutifully ran
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
-Since no containers are running, we see a blank line. Let's try a more useful variant of `docker ps` 
+Since no containers are running, we see a blank line. Let's try a more useful variant of `docker ps -a` 
 ```
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
@@ -386,7 +393,7 @@ If you've pulled your hair in setting up local dev environments / sharing applic
 
 
 ##### Beanstalk
-AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. We'll use EB because it supports both single-container and multi-container Docker deployments. Although EB has a very intuitive [CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html), it does require some setup and to keep things simple and use the web UI to launch our application.
+AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. In April 2014, EB added in support for running single-container Docker deployments which is what we'll use to deploy our app. Although EB has a very intuitive [CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html), it does require some setup and to keep things simple and use the web UI to launch our application.
 
 To follow along, you need a functioning [AWS](http://aws.amazon.com) account. If you haven't already, please go ahead and do that now - you will need to enter your credit card information. Don't worry, it's free and anything we do in this tutorial will also be free! Let's get started.
 
@@ -436,11 +443,36 @@ Hopefully by now, our instance should be ready. Head over to EB page and you sho
 
 Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs too.
 
-Congratulations! You have deployed your first Docker application! That might seem a series of steps but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes a lot of pains of building and deploying applications in the cloud. I would encourage you to read the AWS [documentation](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html) on single-container docker environments to get an idea of what all features exist.
+Congratulations! You have deployed your first Docker application! That might seem a series of steps but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of pains of building and deploying applications in the cloud. I would encourage you to read the AWS [documentation](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html) on single-container docker environments to get an idea of what all features exist.
 
 In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage layer! Let's get straight to it.
 
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="multi-container"></a>
+## Multi-container Environments
+In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common where that they were running in a **single container**. 
 
+Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Tools such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become the *de riguer* of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize these applications.
+
+In particular we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation or in other words - sandboxing. The idea of bundling a process with its dependancies in a sandbox (called containers) is what makes this so powerful. Imagine running one container running your server, your database and even your caching layer. Clearly, this would not be easy to manage and scale. The idea, thus, is to launch **services** into a different containers which can be managed independently from each other. This plays in very well with the whole [microservices](http://martinfowler.com/articles/microservices.html) movement which is one of the main reasons why Docker (or any other container technology) is at the forefront of modern microservices architectures.
+
+<a id="foodtrucks"></a>
+### 3.1 SF Food Trucks
+
+The app that we're going to Dockerize is called [SF Food Trucks](http://sf-foodtrucks.xyz). I built this app over a weekend and my goal was to make something slightly more useful than the cat gif app we used in the previous section.  The idea of the app is help users locate great street food in San Francisco. 
+
+<img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks">
+
+The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](http://elastic.co). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
+
+<a id="docker-network"></a>
+### 3.2 Docker Network
+
+<a id="docker-compose"></a>
+### 3.3 Docker Compose
+
+<a id="aws-ecs"></a>
+### 3.4 AWS Elastic Container Service
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
@@ -450,6 +482,7 @@ ___________
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
+- [Using Containers to Build a Microservices Architecture](https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.2lv3c0yed)
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
