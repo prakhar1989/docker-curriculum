@@ -372,6 +372,17 @@ pre .chunk {
 <li><a href="#docker-aws">2.5 Docker on AWS</a></li>
 </ul>
 </li>
+<li><a href="#multi-container">3.0 Multi-container Environments</a><ul>
+<li><a href="foodtrucks">3.1 SF Food Trucks</a></li>
+<li><a href="">3.2 Docker Network</a></li>
+<li><a href="">3.3 Docker Compose</a></li>
+<li><a href="">3.4 AWS Elastic Container Service</a></li>
+</ul>
+</li>
+<li><a href="">4.0 Wrap Up</a><ul>
+<li><a href="">4.1 What Next?</a></li>
+</ul>
+</li>
 <li><a href="#resources">Additional Resources</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -453,7 +464,7 @@ hello from busybox
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </code></pre>
 
-<p>Since no containers are running, we see a blank line. Let's try a more useful variant of <code>docker ps</code> </p>
+<p>Since no containers are running, we see a blank line. Let's try a more useful variant of <code>docker ps -a</code> </p>
 <pre><code>$ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 305297d7a235        busybox             &quot;uptime&quot;            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
@@ -645,7 +656,7 @@ Successfully built 13e87ed1fbc2
 
 <p>If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!</p>
 <h5 id="beanstalk">Beanstalk</h5>
-<p>AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. We'll use EB because it supports both single-container and multi-container Docker deployments. Although EB has a very intuitive <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">CLI</a>, it does require some setup and to keep things simple and use the web UI to launch our application.</p>
+<p>AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. In April 2014, EB added in support for running single-container Docker deployments which is what we'll use to deploy our app. Although EB has a very intuitive <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">CLI</a>, it does require some setup and to keep things simple and use the web UI to launch our application.</p>
 <p>To follow along, you need a functioning <a href="http://aws.amazon.com">AWS</a> account. If you haven't already, please go ahead and do that now - you will need to enter your credit card information. Don't worry, it's free and anything we do in this tutorial will also be free! Let's get started.</p>
 <p>Here are the steps -</p>
 <ul>
@@ -690,6 +701,23 @@ Successfully built 13e87ed1fbc2
 <p>Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs too.</p>
 <p>Congratulations! You have deployed your first Docker application! That might seem a series of steps but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of pains of building and deploying applications in the cloud. I would encourage you to read the AWS <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html">documentation</a> on single-container docker environments to get an idea of what all features exist.</p>
 <p>In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage layer! Let's get straight to it.</p>
+<p><a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="multi-container"></a></p>
+<h2 id="multi-container-environments">Multi-container Environments</h2>
+<p>In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common where that they were running in a <strong>single container</strong>. </p>
+<p>Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Tools such as <a href="http://redis.io/">Redis</a> and <a href="http://memcached.org/">Memcached</a> have become the <em>de riguer</em> of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize these applications.</p>
+<p>In particular we are going to see how we can run and manage <strong>multi-container</strong> docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation or in other words - sandboxing. The idea of bundling a process with its dependancies in a sandbox (called containers) is what makes this so powerful. Imagine running one container running your server, your database and even your caching layer. Clearly, this would not be easy to manage and scale. The idea, thus, is to launch <strong>services</strong> into a different containers which can be managed independently from each other. This plays in very well with the whole <a href="http://martinfowler.com/articles/microservices.html">microservices</a> movement which is one of the main reasons why Docker (or any other container technology) is at the forefront of modern microservices architectures.</p>
+<p><a id="foodtrucks"></a></p>
+<h3 id="31-sf-food-trucks">3.1 SF Food Trucks</h3>
+<p>The app that we're going to Dockerize is called <a href="http://sf-foodtrucks.xyz">SF Food Trucks</a>. I built this app over a weekend and my goal was to make something slightly more useful than the cat gif app we used in the previous section.  The idea of the app is help users locate great street food in San Francisco. </p>
+<p><img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks"></p>
+<p>The app's backend is written in Python (Flask) and for search it uses <a href="http://elastic.co">Elasticsearch</a>. Like everything else in this tutorial, the entire source is available on <a href="http://github.com/prakhar1989/FoodTrucks">Github</a>. We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.</p>
+<p><a id="docker-network"></a></p>
+<h3 id="32-docker-network">3.2 Docker Network</h3>
+<p><a id="docker-compose"></a></p>
+<h3 id="33-docker-compose">3.3 Docker Compose</h3>
+<p><a id="aws-ecs"></a></p>
+<h3 id="34-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>
@@ -699,6 +727,7 @@ Successfully built 13e87ed1fbc2
 <li><a href="https://www.youtube.com/watch?v=PJ95WY2DqXo">Building a microservice with Node.js and Docker</a></li>
 <li><a href="https://blog.codeship.com/why-docker/">Why Docker</a></li>
 <li><a href="https://www.docker.com/newsletter-subscription">Docker Weekly</a> and <a href="https://blog.docker.com/docker-weekly-archives/">archives</a></li>
+<li><a href="https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.2lv3c0yed">Using Containers to Build a Microservices Architecture</a></li>
 </ul>
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a></p>

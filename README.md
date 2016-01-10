@@ -56,6 +56,13 @@ This document contains a series of several sections, each of which explains a pa
     -   [2.3 Our First Image](#our-image)
     -   [2.4 Dockerfile](#dockerfiles)
     -   [2.5 Docker on AWS](#docker-aws)
+-   [3.0 Multi-container Environments](#multi-container)
+    -   [3.1 SF Food Trucks](foodtrucks)
+    -   [3.2 Docker Network]()
+    -   [3.3 Docker Compose]()
+    -   [3.4 AWS Elastic Container Service]()
+-   [4.0 Wrap Up]()
+    -   [4.1 What Next?]()
 -   [Additional Resources](#resources)
 -   [References](#references)
 
@@ -440,7 +447,32 @@ Congratulations! You have deployed your first Docker application! That might see
 
 In the next (and final) part of the tutorial we'll up the ante a bit and deploy an application that mimics the real-world more closely - a app with a persistent back-end storage layer! Let's get straight to it.
 
+<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="multi-container"></a>
+## Multi-container Environments
+In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app both of which we could run locally and on the cloud with just a few commands. One thing both these apps had in common where that they were running in a **single container**. 
 
+Those of you who have experience running services in production, know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Tools such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become the *de riguer* of most web applications architectures. Hence, in this section we going to spend some time learning how to Dockerize these applications.
+
+In particular we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key plus points of Docker is the way it provides isolation or in other words - sandboxing. The idea of bundling a process with its dependancies in a sandbox (called containers) is what makes this so powerful. Imagine running one container running your server, your database and even your caching layer. Clearly, this would not be easy to manage and scale. The idea, thus, is to launch **services** into a different containers which can be managed independently from each other. This plays in very well with the whole [microservices](http://martinfowler.com/articles/microservices.html) movement which is one of the main reasons why Docker (or any other container technology) is at the forefront of modern microservices architectures.
+
+<a id="foodtrucks"></a>
+### 3.1 SF Food Trucks
+
+The app that we're going to Dockerize is called [SF Food Trucks](http://sf-foodtrucks.xyz). I built this app over a weekend and my goal was to make something slightly more useful than the cat gif app we used in the previous section.  The idea of the app is help users locate great street food in San Francisco. 
+
+<img src="https://raw.githubusercontent.com/prakhar1989/FoodTrucks/master/shot.png" alt="sf food trucks">
+
+The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](http://elastic.co). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
+
+<a id="docker-network"></a>
+### 3.2 Docker Network
+
+<a id="docker-compose"></a>
+### 3.3 Docker Compose
+
+<a id="aws-ecs"></a>
+### 3.4 AWS Elastic Container Service
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
@@ -450,6 +482,7 @@ ___________
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
+- [Using Containers to Build a Microservices Architecture](https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.2lv3c0yed)
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
