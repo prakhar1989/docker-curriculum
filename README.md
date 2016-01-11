@@ -645,12 +645,151 @@ This should be fairly straightforward to you by now. We start the container in t
 
 Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach - 
 
-1. We would need to a add an entry into the `/etc/hosts` file of the Flask container so that it knows that `es` hostname stands for `172.17.0.2`. This is surely tedious.
+1. We would need to a add an entry into the `/etc/hosts` file of the Flask container so that it knows that `es` hostname stands for `172.17.0.2`. If the IP keeps changing, manually editing this entry is quite tedious.
 
-2. Since the bridge network is shared by every container by default this method is **not secure**.
+2. Since the *bridge* network is shared by every container by default this method is **not secure**.
 
-It would be great if 
+The good news that docker has a great solution to this problem. It allows us to define our own networks and keeps it isolated. It also tackles the `/etc/hosts` problem and we'll quickly see how.
 
+Let's first go ahead and create our own network.
+```raw
+$ docker network create foodtrucks
+1a3386375797001999732cb4c4e97b88172d983b08cd0addfcb161eed0c18d89
+
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+1a3386375797        foodtrucks          bridge
+8022115322ec        bridge              bridge
+075b9f628ccc        none                null
+be0f7178486c        host                host
+```
+The `network create` command creates a new *bridge* network - which is what we need at the moment. There are other [kinds](https://docs.docker.com/engine/userguide/networking/dockernetworks/) of networks that you can create and you are encouraged to read about them in the official docs. 
+
+Now that we have a network, we can launch our containers inside this network using the `--net` flag. Let's do that - but first, we will stop our ES container that is running in the bridge (default) network.
+
+```
+$ docker ps 
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
+e931ab24dedc        elasticsearch       "/docker-entrypoint.s"   4 hours ago         Up 4 hours          0.0.0.0:9200->9200/tcp, 9300/tcp   cocky_spence
+
+$ docker stop e931ab24dedc
+e931ab24dedc
+
+$ docker run -dp 9200:9200 --net foodtrucks --name es elasticsearch
+2c0b96f9b8030f038e40abea44c2d17b0a8edda1354a08166c33e6d351d0c651
+
+$ docker network inspect foodtrucks
+[
+    {
+        "Name": "foodtrucks",
+        "Id": "1a3386375797001999732cb4c4e97b88172d983b08cd0addfcb161eed0c18d89",
+        "Scope": "local",
+        "Driver": "bridge",
+        "IPAM": {
+            "Driver": "default",
+            "Config": [
+                {}
+            ]
+        },
+        "Containers": {
+            "2c0b96f9b8030f038e40abea44c2d17b0a8edda1354a08166c33e6d351d0c651": {
+                "EndpointID": "15eabc7989ef78952fb577d0013243dae5199e8f5c55f1661606077d5b78e72a",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {}
+    }
+]
+```
+We've done the same thing as did earlier but this time we gave our ES container a name `es`. Now before we and try to run our flask container, let's try to inspect what happens when we launch in a network.
+
+```javascript
+$ docker run -it --rm --net foodtrucks prakhar1989/foodtrucks-web bash
+root@53af252b771a:/opt/flask-app# cat /etc/hosts
+172.18.0.3	53af252b771a
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.18.0.2	es
+172.18.0.2	es.foodtrucks
+
+root@53af252b771a:/opt/flask-app# curl es:9200
+bash: curl: command not found
+root@53af252b771a:/opt/flask-app# apt-get -yqq install curl
+root@53af252b771a:/opt/flask-app# curl es:9200
+{
+  "name" : "Doctor Leery",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "2.1.1",
+    "build_hash" : "40e2c53a6b6c2972b3d13846e450e66f4375bd71",
+    "build_timestamp" : "2015-12-15T13:05:55Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.3.1"
+  },
+  "tagline" : "You Know, for Search"
+}
+root@53af252b771a:/opt/flask-app# ls
+app.py  node_modules  package.json  requirements.txt  static  templates  webpack.config.js
+root@53af252b771a:/opt/flask-app# python app.py
+Index not found...
+Loading data in elasticsearch ...
+Total trucks loaded:  733
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+root@53af252b771a:/opt/flask-app# exit
+```
+
+Wohoo! That works! Magically docker made the correct host file entry in `/etc/hosts` which means that `es:9200` correctly resolves to the IP address of the ES container. Great! Let's launch our Flask container for real now - 
+```javascript
+$ docker run -d --net foodtrucks -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+2a1b77e066e646686f669bab4759ec1611db359362a031667cacbe45c3ddb413
+
+$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                              NAMES
+2a1b77e066e6        prakhar1989/foodtrucks-web   "python ./app.py"        2 seconds ago       Up 1 seconds        0.0.0.0:5000->5000/tcp             foodtrucks-web
+2c0b96f9b803        elasticsearch                "/docker-entrypoint.s"   21 minutes ago      Up 21 minutes       0.0.0.0:9200->9200/tcp, 9300/tcp   es
+
+$ docker-machine ip default
+192.168.99.100
+
+$ curl -I 192.168.99.100:5000
+HTTP/1.0 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 3697
+Server: Werkzeug/0.11.2 Python/2.7.6
+Date: Sun, 10 Jan 2016 23:58:53 GMT
+```
+
+Head over to [http://192.168.99.100:5000](http://192.168.99.100:5000) and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a [bash script](https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh).
+```
+#!/bin/bash
+
+# build the flask container
+docker build -t prakhar1989/foodtrucks-web .
+
+# create the network
+docker network create foodtrucks
+
+# start the ES container
+docker run -d --net foodtrucks -p 9200:9200 -p 9300:9300 --name es elasticsearch
+
+# start the flask app container
+docker run -d --net foodtrucks -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+```
+
+Now imagine you are distributing your app to a friend or running on a server that has docker installed, you can get a whole app running with just command!
+
+```javascript
+$ git clone https://github.com/prakhar1989/FoodTrucks
+$ cd FoodTrucks
+$ ./setup-docker.sh
+```
+And that's it! If you ask me, I find this to be an extremely awesome and powerful of sharing and running your applications!
 
 <a id="docker-compose"></a>
 ### 3.3 Docker Compose
