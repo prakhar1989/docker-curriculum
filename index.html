@@ -1127,8 +1127,73 @@ foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;500
 ecs-cli version 0.1.0 (*cbdc2d5)
 </code></pre>
 
-<p>The first step is to get a keypair so that we'll be using to login to the instances. Head over to your <a href="https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName">EC2 Console</a> and create a new keypair. Download the keypair and move to the foodtrucks folder. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - <code>ecs.pem</code>, my region is <code>us-east-1</code> and that is what I'll assume for the rest of this walkthrough.</p>
+<p>The first step is to get a keypair so that we'll be using to login to the instances. Head over to your <a href="https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName">EC2 Console</a> and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - <code>ecs</code>, my region is <code>us-east-1</code> and that is what I'll assume for the rest of this walkthrough.</p>
 <p><img src="images/keypair.png" alt="keypair.png" /></p>
+<p>The next step is to configure the CLI.</p>
+<pre><code>$ ecs-cli configure --region us-east-1 --cluster foodtrucks
+INFO[0000] Saved ECS CLI configuration for cluster (foodtrucks)
+</code></pre>
+
+<p>We provide the <code>configure</code> command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the <strong>same region name</strong> that you used when creating the keypair. If you've not configured the <a href="https://aws.amazon.com/cli/">AWS CLI</a> on your computer before, you would also need to provide an access key and a secret key.</p>
+<p>The next step enables the CLI to create a <a href="https://aws.amazon.com/cloudformation/">CloudFormation</a> template.</p>
+<pre><code>$ ecs-cli up --keypair ecs --capability-iam --size 2 --instance-type t2.micro
+INFO[0000] Created cluster                               cluster=foodtrucks
+INFO[0001] Waiting for your cluster resources to be created
+INFO[0001] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
+INFO[0061] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
+INFO[0122] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
+INFO[0182] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
+INFO[0242] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
+</code></pre>
+
+<p>Here we provide the name of the keypair we downloaded initially (<code>ecs</code> in my case), the number of instances that we want to use (<code>--size</code>) and the type of instances that we want the containers to run on. The <code>--capability-iam</code> flag tells the CLI that we acknowledge that this command may create IAM resources.</p>
+<p>The last and final step is where we'll use our <code>docker-compose.yml</code> file. We will need to make a minute change so instead of modifying the original, let's make a copy of it and call it <code>aws-compose.yml</code>. The contents of <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/aws-compose.yml">this file</a> (after making the changes) look like below - </p>
+<pre><code>es:
+  image: elasticsearch
+  cpu_shares: 100
+  mem_limit: 262144000
+web:
+  image: prakhar1989/foodtrucks-web
+  cpu_shares: 100
+  mem_limit: 262144000
+  ports:
+    - &quot;80:5000&quot;
+  links:
+    - es
+</code></pre>
+
+<p>The only changes we make in the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. One another thing we need to do before we move onto the next step is to publish our image on Docker hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
+<pre><code>$ docker push prakhar1989/foodtrucks-web
+</code></pre>
+
+<p>Great! Now let's run the final command that will deploy our app on ECS!</p>
+<pre><code>$ ecs-cli compose --file aws-compose.yml up
+INFO[0000] Using ECS task definition                     TaskDefinition=ecscompose-foodtrucks:2
+INFO[0000] Starting container...                         container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es
+INFO[0000] Starting container...                         container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web
+INFO[0000] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
+INFO[0000] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
+INFO[0036] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
+INFO[0048] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
+INFO[0048] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
+INFO[0060] Started container...                          container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=RUNNING taskDefinition=ecscompose-foodtrucks:2
+INFO[0060] Started container...                          container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=RUNNING taskDefinition=ecscompose-foodtrucks:2
+</code></pre>
+
+<p>It's not a coincidence that the invocation above looks similar to the one we used with <strong>Docker Compose</strong>. The <code>--file</code> argument is used the override the default file (<code>docker-compose.yml</code>) that the CLI will read. If everything went well, you should see a <code>desiredStatus=RUNNING lastStatus=RUNNING</code> as the last line.</p>
+<p>Awesome! Our app is live but how can we access it?</p>
+<pre><code>ecs-cli ps
+Name                                      State    Ports                     TaskDefinition
+845e2368-170d-44a7-bf9f-84c7fcd9ae29/web  RUNNING  54.86.14.14:80-&gt;5000/tcp  ecscompose-foodtrucks:2
+845e2368-170d-44a7-bf9f-84c7fcd9ae29/es   RUNNING                            ecscompose-foodtrucks:2
+</code></pre>
+
+<p>Go ahead and open <a href="http://54.86.14.14">http://54.86.14.14</a> in your browser and you should see the Food Trucks in all its black-yellow glory!
+Since we're on the topic, let's see how our <a href="https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters">AWS ECS</a> console looks.</p>
+<p><img src="images/cluster.png" alt="ECS cluster" />
+<img src="images/tasks.png" alt="ECS cluster" /></p>
+<p>We can see above that our ECS cluster called - foodtrucks was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of what all options are there.</p>
+<p>So there you have it. With just a few commands we were able to deploy our awesome app on the AWS cloud!</p>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>
