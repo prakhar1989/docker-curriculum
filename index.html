@@ -375,7 +375,7 @@ pre .chunk {
 <li><a href="#multi-container">3.0 Multi-container Environments</a><ul>
 <li><a href="#foodtrucks">3.1 SF Food Trucks</a></li>
 <li><a href="#docker-network">3.2 Docker Network</a></li>
-<li><a href="">3.3 Docker Compose</a></li>
+<li><a href="#docker-compose">3.3 Docker Compose</a></li>
 <li><a href="">3.4 AWS Elastic Container Service</a></li>
 </ul>
 </li>
@@ -1020,6 +1020,102 @@ $ ./setup-docker.sh
 <p>And that's it! If you ask me, I find this to be an extremely awesome and powerful of sharing and running your applications!</p>
 <p><a id="docker-compose"></a></p>
 <h3 id="33-docker-compose">3.3 Docker Compose</h3>
+<p>Till now we've spent all our time in exploring the docker client. In the docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. Few of them are -</p>
+<ol>
+<li><a href="https://docs.docker.com/machine/">Docker Machine</a> - Create Docker hosts on your computer, on cloud providers, and inside your own data center</li>
+<li><a href="https://docs.docker.com/compose/">Docker Compose</a> - A tool for defining and running multi-container Docker applications. </li>
+<li><a href="https://docs.docker.com/swarm/">Docker Swarm</a> - A native clustering solution for Docker</li>
+</ol>
+<p>In this section, we are going to look at one of these tools - Docker Compose and see how it can make dealing with multi-container apps easier.</p>
+<p>The background story of Docker compose is quite interesting. Roughly two years ago, a company called OrchardUp launched a tool called Fig the idea behind which was to make the isolated development environments with Docker.The project was very well received on <a href="https://news.ycombinator.com/item?id=7132044">Hacker News</a> - I oddly remember reading about it but didn't quite get the hang of it.</p>
+<p>The <a href="https://news.ycombinator.com/item?id=7133449">first comment</a> on the forum actually does a good job of explaining what Fig is all about.</p>
+<blockquote>
+<p>So really at this point, that's what Docker is about: running processes. Now Docker offers a quite rich API to run the processes: shared volumes (directories) between containers (i.e. running images), forward port from the host to the container, display logs, and so on.  But that's it: Docker as of now, remains at the process level. </p>
+<p>While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the managemement of such group of containers as a single entity.
+And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".</p>
+</blockquote>
+<p>It turns out, a lot of people using docker with this sentiment. Slow and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.</p>
+<p>So what is <em>Compose</em> used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called <code>docker-compose.yml</code> that can be used to bring up an application and the suite of service it depends on with just one command.</p>
+<p>Let's see if we can create a <code>docker-compose.yml</code> file for our SF-Foodtrucks app and evaluate whether Docker Compose lives up to its promise.</p>
+<p>The first step, however, is to install docker compose. If you're running Windows or a Mac and docker compose is already installed as it comes in the docker toolbox. Linux users can easily get their hands on Docker Compose by following the <a href="https://docs.docker.com/compose/install/">instructions</a> on the docs. Since compose is written in Python, you can also simply do <code>pip install docker-compose</code>. Test your installation with -</p>
+<pre><code>$ docker-compose version
+docker-compose version 1.5.2, build 7240ff3
+docker-py version: 1.5.0
+CPython version: 2.7.9
+OpenSSL version: OpenSSL 1.0.1j 15 Oct 2014
+</code></pre>
+
+<p>Now that we have it installed, we can jump on the next step i.e. the docker compose file <code>docker-compose.yml</code>. The syntax for the <code>yml</code> is quite simple and the repo already contains the docker-compose <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml">file</a> that we'll be using.</p>
+<pre><code>es:
+  image: elasticsearch
+web:
+  image: prakhar1989/foodtrucks-web
+  command: python app.py
+  ports:
+    - &quot;5000:5000&quot;
+  volumes:
+    - .:/code
+  links:
+    - es
+</code></pre>
+
+<p>Let me breakdown what the file above means. At the parent level, we define the names of our services - <code>es</code> and <code>web</code>. For each service, that docker needs to run, we can additional parameters out of which <code>image</code> is required. For <code>es</code>, we just refer to the <code>elasticsearch</code> image available on the Docker hub. For our flask app, we refer to the image that we built at the beginning of this section. </p>
+<p>Via other parameters such as <code>command</code> and <code>ports</code> we provide more information about the container. The <code>volumes</code> parameter specifies a mount point in our <code>web</code> container where the code will reside. This is purely optional and is useful if you need access to logs etc. The <code>links</code> is the most important part where we specify that this container needs to be linked to the <code>es</code> container. This ensures that an appropriate entry is created in the <code>/etc/hosts</code> file within the containers. Refer to the <a href="https://docs.docker.com/compose/compose-file">online reference</a> to know more about the parameters this file supports.</p>
+<blockquote>
+<p>Note: You must be inside the directory with the <code>docker-compose.yml</code> file in order to execute most Compose commands.</p>
+</blockquote>
+<p>Great! Now the file is ready, let's see <code>docker-compose</code> in action. But before we start, we need to make sure the ports are free. So if you have the Flask and ES containers running, lets turn them off.</p>
+<pre><code>$ docker stop $(docker ps -q)
+39a2f5df14ef
+2a1b77e066e6
+</code></pre>
+
+<p>Now we can run <code>docker-compose</code>. Navigate to the food trucks directory and run <code>docker-compose up</code>.</p>
+<pre><code>$ docker-compose up
+Creating foodtrucks_es_1
+Creating foodtrucks_web_1
+Attaching to foodtrucks_es_1, foodtrucks_web_1
+es_1  | [2016-01-11 03:43:50,300][INFO ][node                     ] [Comet] version[2.1.1], pid[1], build[40e2c53/2015-12-15T13:05:55Z]
+es_1  | [2016-01-11 03:43:50,307][INFO ][node                     ] [Comet] initializing ...
+es_1  | [2016-01-11 03:43:50,366][INFO ][plugins                  ] [Comet] loaded [], sites []
+es_1  | [2016-01-11 03:43:50,421][INFO ][env                      ] [Comet] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda1)]], net usable_space [16gb], net total_space [18.1gb], spins? [possibly], types [ext4]
+es_1  | [2016-01-11 03:43:52,626][INFO ][node                     ] [Comet] initialized
+es_1  | [2016-01-11 03:43:52,632][INFO ][node                     ] [Comet] starting ...
+es_1  | [2016-01-11 03:43:52,703][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}
+es_1  | [2016-01-11 03:43:52,704][INFO ][transport                ] [Comet] publish_address {172.17.0.2:9300}, bound_addresses {[::]:9300}
+es_1  | [2016-01-11 03:43:52,721][INFO ][discovery                ] [Comet] elasticsearch/cEk4s7pdQ-evRc9MqS2wqw
+es_1  | [2016-01-11 03:43:55,785][INFO ][cluster.service          ] [Comet] new_master {Comet}{cEk4s7pdQ-evRc9MqS2wqw}{172.17.0.2}{172.17.0.2:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+es_1  | [2016-01-11 03:43:55,818][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}
+es_1  | [2016-01-11 03:43:55,819][INFO ][http                     ] [Comet] publish_address {172.17.0.2:9200}, bound_addresses {[::]:9200}
+es_1  | [2016-01-11 03:43:55,819][INFO ][node                     ] [Comet] started
+es_1  | [2016-01-11 03:43:55,826][INFO ][gateway                  ] [Comet] recovered [0] indices into cluster_state
+es_1  | [2016-01-11 03:44:01,825][INFO ][cluster.metadata         ] [Comet] [sfdata] creating index, cause [auto(index api)], templates [], shards [5]/[1], mappings [truck]
+es_1  | [2016-01-11 03:44:02,373][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
+es_1  | [2016-01-11 03:44:02,510][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
+es_1  | [2016-01-11 03:44:02,593][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
+es_1  | [2016-01-11 03:44:02,708][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
+es_1  | [2016-01-11 03:44:03,047][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
+web_1 |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+</code></pre>
+
+<p>Head over to the IP to see your app live. That was amazing wasn't it? Just few lines of configuration and we have two docker containers running successfully in unison. Let's stop the services and re-run in detached mode.</p>
+<pre><code>web_1 |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Killing foodtrucks_web_1 ... done
+Killing foodtrucks_es_1 ... done
+
+$ docker-compose up -d
+Starting foodtrucks_es_1
+Starting foodtrucks_web_1
+
+$ docker-compose ps
+      Name                    Command               State           Ports
+----------------------------------------------------------------------------------
+foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
+</code></pre>
+
+<p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. </p>
+<p>With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="34-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
 <hr />
