@@ -376,7 +376,7 @@ pre .chunk {
 <li><a href="#foodtrucks">3.1 SF Food Trucks</a></li>
 <li><a href="#docker-network">3.2 Docker Network</a></li>
 <li><a href="#docker-compose">3.3 Docker Compose</a></li>
-<li><a href="">3.4 AWS Elastic Container Service</a></li>
+<li><a href="#aws-ecs">3.4 AWS Elastic Container Service</a></li>
 </ul>
 </li>
 <li><a href="">4.0 Wrap Up</a><ul>
@@ -1118,6 +1118,17 @@ foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;500
 <p>With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="34-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
+<p>In the last section we used <code>docker compose</code> to run our app locally with a single command - <code>docker-compose up</code>. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Learning the last three are beyond the scope of tutorial so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.</p>
+<p>If you've read this far you are much pretty convinced that Docker is a pretty cool technology. And you are not alone. Seeing the meteoric rise of Docker, almost all Cloud vendors started working on adding support for deploying Docker apps on their platform. As of today, you can deploy Docker apps on AWS, <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-docker-vm-extension/">Azure</a>, <a href="http://blog.rackspace.com/docker-with-the-rackspace-open-cloud/">Rackspace</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-docker-application">DigitalOcean</a> and many others. We already got a primer on deploying single container apps with Elastic Beanstalk and in this section we are going to look at <a href="https://aws.amazon.com/ecs/">Elastic Container Service (or ECS)</a> by AWS.</p>
+<p>AWS ECS is a scalable and super flexible container management service that supports Docker containers. It allows you to operate a Docker cluster on top of EC2 instances via an easy-to-use API. Where Beanstalk came with reasonable defaults, ECS allows you to completely tune your environment as per your needs. This makes ECS, in my opinion, quite complex to get started with. </p>
+<p>Luckily for us, ECS has a friendly <a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html">CLI</a> tool that understands docker compose files and automatically provisions the cluster on ECS! Since we already have a functioning <code>docker-compose.yml</code> it should not take a lot of effort in getting up and running on AWS. So let's get started!</p>
+<p>The first step is to install the CLI. As of this writing, the CLI is not supported on Windows. Instructions to install the CLI on both Mac and Linux are explained very clearly in the <a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html">official docs</a>. Go ahead, install the CLI and when you are done, verify the install by running</p>
+<pre><code>$ ecs-cli --version
+ecs-cli version 0.1.0 (*cbdc2d5)
+</code></pre>
+
+<p>The first step is to get a keypair so that we'll be using to login to the instances. Head over to your <a href="https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName">EC2 Console</a> and create a new keypair. Download the keypair and move to the foodtrucks folder. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - <code>ecs.pem</code>, my region is <code>us-east-1</code> and that is what I'll assume for the rest of this walkthrough.</p>
+<p><img src="images/keypair.png" alt="keypair.png" /></p>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="resources"></a></p>
