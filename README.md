@@ -60,7 +60,7 @@ This document contains a series of several sections, each of which explains a pa
     -   [3.1 SF Food Trucks](#foodtrucks)
     -   [3.2 Docker Network](#docker-network)
     -   [3.3 Docker Compose](#docker-compose)
-    -   [3.4 AWS Elastic Container Service]()
+    -   [3.4 AWS Elastic Container Service](#aws-ecs)
 -   [4.0 Wrap Up]()
     -   [4.1 What Next?]()
 -   [Additional Resources](#resources)
@@ -907,7 +907,24 @@ With docker compose, you can also pause your services, run a one-off command on 
 
 <a id="aws-ecs"></a>
 ### 3.4 AWS Elastic Container Service
+In the last section we used `docker compose` to run our app locally with a single command - `docker-compose up`. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Learning the last three are beyond the scope of tutorial so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.
 
+
+If you've read this far you are much pretty convinced that Docker is a pretty cool technology. And you are not alone. Seeing the meteoric rise of Docker, almost all Cloud vendors started working on adding support for deploying Docker apps on their platform. As of today, you can deploy Docker apps on AWS, [Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-docker-vm-extension/), [Rackspace](http://blog.rackspace.com/docker-with-the-rackspace-open-cloud/), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-docker-application) and many others. We already got a primer on deploying single container apps with Elastic Beanstalk and in this section we are going to look at [Elastic Container Service (or ECS)](https://aws.amazon.com/ecs/) by AWS.
+
+AWS ECS is a scalable and super flexible container management service that supports Docker containers. It allows you to operate a Docker cluster on top of EC2 instances via an easy-to-use API. Where Beanstalk came with reasonable defaults, ECS allows you to completely tune your environment as per your needs. This makes ECS, in my opinion, quite complex to get started with. 
+
+Luckily for us, ECS has a friendly [CLI](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html) tool that understands docker compose files and automatically provisions the cluster on ECS! Since we already have a functioning `docker-compose.yml` it should not take a lot of effort in getting up and running on AWS. So let's get started!
+
+The first step is to install the CLI. As of this writing, the CLI is not supported on Windows. Instructions to install the CLI on both Mac and Linux are explained very clearly in the [official docs](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html). Go ahead, install the CLI and when you are done, verify the install by running
+
+```
+$ ecs-cli --version
+ecs-cli version 0.1.0 (*cbdc2d5)
+```
+The first step is to get a keypair so that we'll be using to login to the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and move to the foodtrucks folder. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs.pem`, my region is `us-east-1` and that is what I'll assume for the rest of this walkthrough.
+
+<img src="images/keypair.png" alt="keypair.png" />
 
 ___________
 
