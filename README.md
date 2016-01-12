@@ -1,7 +1,7 @@
 <a id="top"></a>
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/logo.png" alt="docker logo">
 
-*Build and deploy your distributed applications easily to the cloud with Docker*
+*Learn to build and deploy your distributed applications easily to the cloud with Docker*
 
 Written and developed by [Prakhar Srivastav](http://prakhar.me) and [ADI](https://adicu.com/).
 
@@ -25,17 +25,17 @@ VMs are great at providing full process isolation for applications: there are ve
 
 Containers take a different approach: by leveraging the low-level mechanics of the host operating system, containers provide most of the isolation of virtual machines at a fraction of the computing power.
 
-
 ### Why should I use it?
 
-As developers, we are cognizant of the power we hold in our hands - the ability to build apps to share with the entire world is very empowering. However, one key aspect of that realization involves deploying our application either on the cloud, a datacenter or even a single server. Given that apps today involve so many components - an application server, a database, a caching layer etc. deploying and managing these architectures is extremely complex.
+Docker's rise has been nothing short of meteoric. Although containers by themselves are not a new technology, it was not until docker arrived that they started to get mainstream attention. By providing standard APIs that made containers easy to use and creating a way for the community to collaborate around libraries of containers, Docker has radically changed the face of technology landscape. In an article published by [The Register](http://www.theregister.co.uk/2014/05/23/google_containerization_two_billion/) around 6 months ago, it is claimed that Google runs over **two billion containers per week**.
 
+**Google Trends for 'Docker'**
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/interest.png" title="interest">
 
-By standardizing an application and its dependencies into a container, Docker enables us to build, test and release our apps quickly and easily. Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the **Containerization** movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.
+Apart from that interest in Docker has been continuously growing and the company - Docker Inc itself valued at over a billion dollars! Due to its benefits of efficiency and portability, Docker has been gaining mindshare rapidly is now leading the **Containerization** movement. As a developer going out into the world, it is important that we understand this trend and see how we can benefit from it.
 
 ### What will this tutorial teach me?
-This tutorial will give you a hands-on experience with deploying a docker container on [Amazon Web Services](http://aws.amazon.com) (AWS). It will demystify the docker landscape, clarify the differences between images and containers and finally, deploy a python application on the cloud.
+This tutorial aims to be the one-stop shop for getting your hands dirty with Docker. Apart from demystifying the docker landscape, it'll give you hands-on experience with building and deploying your webapps on the Cloud. We'll be using [Amazon Web Services](http://aws.amazon.com) to deploy a static website and two dynamic webapps on [EC2](https://aws.amazon.com/ec2/) using [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) and [Elastic Container Service](https://aws.amazon.com/ecs/). Even if you have no prior experience with deployments, this tutorial should be all you need to get started.
 
 ## Using this Document
 This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the [Github repo](http://github.com/prakhar1989/docker-curriculum).
@@ -1021,6 +1021,7 @@ Below are a few additional resources that will be beneficial. For your next proj
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
+- [Codeship Blog](https://blog.codeship.com/)
 
 Off you go, young padawan!
 
