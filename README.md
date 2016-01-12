@@ -1021,6 +1021,7 @@ Below are a few additional resources that will be beneficial. For your next proj
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
+- [Codeship Blog](https://blog.codeship.com/)
 
 Off you go, young padawan!
 
