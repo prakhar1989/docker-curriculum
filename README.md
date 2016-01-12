@@ -1024,8 +1024,8 @@ Below are a few additional resources that will be beneficial. For your next proj
 
 Off you go, young padawan!
 
-<a id="next-steps"></a>
-### 4.2 Feedback
+<a id="feedback"></a>
+### 4.2 Give Feedback
 Now that the tutorial is over, it's my turn to ask questions. How did you like the tutorial? Did you find the tutorial to be a complete mess or did you have fun and learnt something?
 
 Send in your thoughts directly to [me](mailto:prakhar@prakhar.me) or just [create an issue](https://github.com/prakhar1989/docker-curriculum/issues/new). I'm on [Twitter](https://twitter.com/prakharsriv9) too so if that's your deal, feel free to holler there!
