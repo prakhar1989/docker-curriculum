@@ -40,7 +40,6 @@ This tutorial will give you a hands-on experience with deploying a docker contai
 ## Using this Document
 This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the [Github repo](http://github.com/prakhar1989/docker-curriculum).
 
-
 <a href="#top" class="top" id="table-of-contents">Top</a>
 ## Table of Contents
 
@@ -61,9 +60,9 @@ This document contains a series of several sections, each of which explains a pa
     -   [3.2 Docker Network](#docker-network)
     -   [3.3 Docker Compose](#docker-compose)
     -   [3.4 AWS Elastic Container Service](#aws-ecs)
--   [4.0 Wrap Up]()
-    -   [4.1 What Next?]()
--   [Additional Resources](#resources)
+-   [4.0 Wrap Up](#wrap-up)
+    -   [4.1 What Next?](#next-steps)
+    -   [4.2 Give Feedback](#feedback)
 -   [References](#references)
 
 
@@ -71,7 +70,7 @@ This document contains a series of several sections, each of which explains a pa
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 ## Preface
 
-> Note: This tutorial uses version **1.9.x** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
+> Note: This tutorial uses version **1.9.1** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 
 <a id="prerequisites"></a>
 ### Prerequisites
@@ -1000,16 +999,40 @@ Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon
 We can see above that our ECS cluster called - foodtrucks was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of what all options are there.
 
 So there you have it. With just a few commands we were able to deploy our awesome app on the AWS cloud!
-
 ___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
-<a id="resources"></a>
-## Additional Resources
+<a id="wrap-up"></a>
+## 4.0 Wrap Up
+And that's a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learnt how to setup docker, run your own containers, play with static and dynamic websites and most importantly got hands on experience with deploying your applications to the cloud!
+
+I hope that finishing this tutorial makes you more confident in your abilities to deal with servers. When you have an idea of building your next app, you can be sure that you will be able to get in front of people with minimal effort.
+
+<a id="next-steps"></a>
+### 4.1 Next Steps
+Your journey into the container world has just started! My goal with this tutorial was to whet your appetite and show you the power of Docker. In the sea of new technology, it can be hard to navigate the waters alone and tutorials such as this one can provide a helping hand. This is the Docker tutorial I wish I had when I was starting out. Hopefully it served its purpose of getting you excited about containers so that you no longer have to watch the action from the sides.
+
+Below are a few additional resources that will be beneficial. For your next project, I strongly encourage you to use Docker. Keep in mind - practice makes perfect!
+
+**Additional Resources**
+
+- [Awesome Docker](https://github.com/veggiemonk/awesome-docker)
 - [Hello Docker Workshop](http://docker.atbaker.me/)
 - [Building a microservice with Node.js and Docker](https://www.youtube.com/watch?v=PJ95WY2DqXo)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
+
+Off you go, young padawan!
+
+<a id="next-steps"></a>
+### 4.2 Feedback
+Now that the tutorial is over, it's my turn to ask questions. How did you like the tutorial? Did you find the tutorial to be a complete mess or did you have fun and learnt something?
+
+Send in your thoughts directly to [me](mailto:prakhar@prakhar.me) or just [create an issue](https://github.com/prakhar1989/docker-curriculum/issues/new). I'm on [Twitter](https://twitter.com/prakharsriv9) too so if that's your deal, feel free to holler there!
+
+I would totally love to hear about your experience with this tutorial. Give suggestions on how to make this better or let me know my mistakes. I want this tutorial to be one of the best introductory tutorials on the web and I cant do it without your help.
+
+___________
 
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="references"></a>
