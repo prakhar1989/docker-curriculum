@@ -1035,7 +1035,7 @@ $ ./setup-docker.sh
 <p>While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the managemement of such group of containers as a single entity.
 And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".</p>
 </blockquote>
-<p>It turns out, a lot of people using docker with this sentiment. Slow and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.</p>
+<p>It turns out, a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.</p>
 <p>So what is <em>Compose</em> used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called <code>docker-compose.yml</code> that can be used to bring up an application and the suite of service it depends on with just one command.</p>
 <p>Let's see if we can create a <code>docker-compose.yml</code> file for our SF-Foodtrucks app and evaluate whether Docker Compose lives up to its promise.</p>
 <p>The first step, however, is to install docker compose. If you're running Windows or a Mac and docker compose is already installed as it comes in the docker toolbox. Linux users can easily get their hands on Docker Compose by following the <a href="https://docs.docker.com/compose/install/">instructions</a> on the docs. Since compose is written in Python, you can also simply do <code>pip install docker-compose</code>. Test your installation with -</p>
