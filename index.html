@@ -649,7 +649,14 @@ Successfully built 13e87ed1fbc2
 <pre><code>$ docker push prakhar1989/catnip
 </code></pre>
 
-<p>Remember to replace the name of the image tag above with yours. It is important to have the format of <code>username/image_name</code> so that the client knows where to publish. If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into docker hub.</p>
+<p>If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into docker hub.</p>
+<pre><code>$ docker login
+Username: prakhar1989
+WARNING: login credentials saved in /Users/prakhar/.docker/config.json
+Login Succeeded
+</code></pre>
+
+<p>Remember to replace the name of the image tag above with yours. It is important to have the format of <code>username/image_name</code> so that the client knows where to publish. </p>
 <p>Once that is done, you can view your image on the hub. For example, here's the <a href="https://hub.docker.com/r/prakhar1989/catnip/">web page</a> for my image.</p>
 <blockquote>
 <p>Note: One thing that I'd like to clarify before we go ahead is that it is not <strong>imperative</strong> to host your image on a public registry (or any registry) in order to deploy on AWS. In case you're writing code for the next million-dollar unicorn startup you can totally skip this step. The reason why we're pushing our images publicly is that it makes super simple to do deployment by skipping a few intermediate configuration steps.</p>
