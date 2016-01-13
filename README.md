@@ -380,7 +380,16 @@ The first thing that we need to do before we go ahead and deploy our app on AWS 
 ```
 $ docker push prakhar1989/catnip
 ```
-Remember to replace the name of the image tag above with yours. It is important to have the format of `username/image_name` so that the client knows where to publish. If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into docker hub.
+If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into docker hub.
+
+```
+$ docker login
+Username: prakhar1989
+WARNING: login credentials saved in /Users/prakhar/.docker/config.json
+Login Succeeded
+```
+
+Remember to replace the name of the image tag above with yours. It is important to have the format of `username/image_name` so that the client knows where to publish. 
 
 Once that is done, you can view your image on the hub. For example, here's the [web page](https://hub.docker.com/r/prakhar1989/catnip/) for my image.
 
