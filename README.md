@@ -110,7 +110,7 @@ pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7
 ```
 
 ##### Java
-The app that we'll be developing will be using [Elasticsearch](https://www.elastic.co/) for storage and search. In order to run elasticsearch locally, make sure you Java installed. If Java is installed, typing `java -version` in your terminal should give you an output similar to the one below.
+The app that we'll be developing will be using [Elasticsearch](https://www.elastic.co/) for storage and search. In order to run elasticsearch locally, make sure you have Java installed. If Java is installed, typing `java -version` in your terminal should give you an output similar to the one below.
 
 ```
 $ java -version
@@ -810,7 +810,7 @@ The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum a
 > While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the managemement of such group of containers as a single entity.
 And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".
 
-It turns out, a lot of people using docker with this sentiment. Slow and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
+It turns out, a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
 
 So what is *Compose* used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called `docker-compose.yml` that can be used to bring up an application and the suite of service it depends on with just one command.
 
