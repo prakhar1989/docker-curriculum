@@ -425,7 +425,7 @@ pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7
 </code></pre>
 
 <h5 id="java">Java</h5>
-<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you Java installed. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
+<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you have Java installed. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
 <pre><code>$ java -version
 java version &quot;1.8.0_60&quot;
 Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
@@ -562,7 +562,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </ul>
 <p><a id="our-image"></a></p>
 <h3 id="23-our-first-image">2.3 Our First Image</h3>
-<p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pooco.org">Flask</a> application. For the purposes of this workshop, I've already created a fun, little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead the clone the repository locally.</p>
+<p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pocoo.org">Flask</a> application. For the purposes of this workshop, I've already created a fun, little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead the clone the repository locally.</p>
 <p>Before we get started on creating the image, let's first test that the application works correctly locally. Step one is to <code>cd</code> into the <code>flask-app</code> directory and install the dependencies</p>
 <pre><code>$ cd flask-app
 $ pip install -r requirements.txt
