@@ -1034,11 +1034,41 @@ web_1 | Unable to connect to ES. Retying in 5 secs...
 web_1 | Unable to connect to ES. Retying in 5 secs...
 web_1 | Out of retries. Bailing out...
 ```
-It seems that the Flask app was unable to reach ES. But how did that happen? *Compose* did create the network and attached the containers to it too. The answer is that our services join the network with different aliases - i.e. `foodtrucks_web_1` and `foodtrucks_es_1`. Since our Flask app expects the ES services to be called `es` and not `foodtrucks_es_1` it bails out. In the future releases, this will be configurable - as outlined in the [docs](https://docs.docker.com/compose/networking/).
+It seems that the Flask app was unable to reach ES. But how did that happen? *Compose* did create the network and attached the containers to it too. The answer is that our services join the network with different aliases - i.e. `foodtrucks_web_1` and `foodtrucks_es_1`. Since our Flask app expects the ES services to be called `es` and not `foodtrucks_es_1` it bails out. 
+
+To fix this, we need to make a small change in our `docker-compose.yml` file. While we are at it, let's also remove `links` so that we can get rid of the pesky warning.
+
+```
+es:
+  image: elasticsearch
+  container_name: "es"
+web:
+  image: prakhar1989/foodtrucks-web
+  command: python app.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/code
+```
+
+Using `container_name` we can provide a custom name for our service.  In the future releases, this will be more avenues for configuration as per the [docs](https://docs.docker.com/compose/networking/).
 
 > Note: in the next release there will be additional aliases for the container, including a short name without the project name and container index. The full container name will remain as one of the alias for backwards compatibility.
 
-As of now, you can use `links` in your `docker-compose` files until networking support stabilizes in *Compose*. Do keep an eye out on future releases of Compose!
+Let's try it now and see if that fixes our issue.
+```
+$ docker-compose --x-networking up -d
+Starting foodtrucks_web_1
+Starting es
+
+$ docker-compose ps
+      Name                    Command               State           Ports
+----------------------------------------------------------------------------------
+es                 /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000->5000/tcp
+```
+
+And voila! Our app is back in business! As of now, you can use `links` in your `docker-compose` files until networking support stabilizes in *Compose*. Do keep an eye out on future releases of Compose!
 
 That concludes our tour of docker compose.  With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!
 
