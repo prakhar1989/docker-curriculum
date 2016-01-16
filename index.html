@@ -1026,6 +1026,9 @@ $ ./setup-docker.sh
 </code></pre>
 
 <p>And that's it! If you ask me, I find this to be an extremely awesome and powerful of sharing and running your applications!</p>
+<p><a id="docker-links"></a></p>
+<h5 id="docker-links">Docker Links</h5>
+<p>Before we leave this section though, I should mention that <code>docker network</code> is a relatively new feature - it was a part of Docker 1.9 <a href="https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/">release</a>. Before <code>network</code> came along, links were the accepted way of getting containers to talk to each other. According to the official <a href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/">docs</a>, linking is expected to be deprecated in future releases. In case you stumble across tutorials or blog posts that use <code>link</code> to bridge containers, remember to use <code>network</code> instead.</p>
 <p><a id="docker-compose"></a></p>
 <h3 id="33-docker-compose">3.3 Docker Compose</h3>
 <p>Till now we've spent all our time in exploring the docker client. In the docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. Few of them are -</p>
@@ -1122,8 +1125,143 @@ foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
 foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
 </code></pre>
 
-<p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. </p>
-<p>With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
+<p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does <em>Compose</em> also create the network automatically? Good question! Let's find out.</p>
+<p>First off, let us stop the services from running. We can always bring them back up in just one command.</p>
+<pre><code>$ docker-compose stop
+Stopping foodtrucks_web_1 ... done
+Stopping foodtrucks_es_1 ... done
+</code></pre>
+
+<p>While we're are at it, we'll also remove the <code>foodtrucks</code> network that we created last time. This should not be required since <em>Compose</em> would automatically manage this for us.</p>
+<pre><code>$ docker network rm foodtrucks
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Great! Now that we have a clean slate, let's re-run our services and see if <em>Compose</em> does it's magic.</p>
+<pre><code>$ docker-compose up -d
+Recreating foodtrucks_es_1
+Recreating foodtrucks_web_1
+$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
+f50bb33a3242        prakhar1989/foodtrucks-web   &quot;python app.py&quot;          14 seconds ago      Up 13 seconds       0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1
+e299ceeb4caa        elasticsearch                &quot;/docker-entrypoint.s&quot;   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
+</code></pre>
+
+<p>So far, so good. Time to see if any networks were created.</p>
+<pre><code>$ docker network ls
+NETWORK ID          NAME                DRIVER
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Wait? Nothing changed! But then how are these two containers talking to each other. The answer is <strong>links</strong>! I ended the last section with a <a href="#docker-links">small caveat</a> saying that links are now a deprecated feature. Given how recent <code>network</code> is, <em>Compose</em> still hasn't caught up to the feature yet. However, the support is experimental and hidden behind a flag <code>--x-networking</code>.</p>
+<pre><code>$ docker-compose
+Define and run multi-container applications with Docker.
+
+Usage:
+  docker-compose [-f=&lt;arg&gt;...] [options] [COMMAND] [ARGS...]
+  docker-compose -h|--help
+
+Options:
+  -f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
+  -p, --project-name NAME   Specify an alternate project name (default: directory name)
+  --x-networking            (EXPERIMENTAL) Use new Docker networking functionality.
+                            Requires Docker 1.9 or later.
+  --x-network-driver DRIVER (EXPERIMENTAL) Specify a network driver (default: &quot;bridge&quot;).
+                            Requires Docker 1.9 or later.
+  --verbose                 Show more output
+  -v, --version             Print version and exit
+</code></pre>
+
+<p>To test this out, let's quickly do the following - </p>
+<pre><code>$ docker-compose stop
+Stopping foodtrucks_web_1 ... done
+Stopping foodtrucks_es_1 ... done
+
+$ docker-compose --x-networking up -d
+WARNING:
+&quot;web&quot; defines links, which are not compatible with Docker networking and will be ignored.
+Future versions of Docker will not support links - you should remove them for forwards-compatibility.
+
+Creating network &quot;foodtrucks&quot; with driver &quot;None&quot;
+Recreating foodtrucks_es_1
+Recreating foodtrucks_web_1
+
+$ docker network ls
+NETWORK ID          NAME                DRIVER
+0a49e854f6a2        foodtrucks          bridge
+4eec273c054e        bridge              bridge
+9347ae8783bd        none                null
+54df57d7f493        host                host
+</code></pre>
+
+<p>Finally! Now there's our beloved <code>foodtrucks</code> network. As indicated on screen, <em>Compose</em> created the network and also gave us a warning for using a deprecated feature. Let's see our services now. Hopefully, all should be rosy.</p>
+<pre><code>      Name                    Command               State          Ports
+-------------------------------------------------------------------------------
+foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up       9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Exit 1
+</code></pre>
+
+<p>Oh no! Our web-app crashed! What happened?</p>
+<pre><code>docker-compose logs
+Attaching to foodtrucks_web_1, foodtrucks_es_1
+es_1  | [2016-01-14 19:30:39,124][INFO ][node                     ] [Hogun] version[2.1.1], pid[1], build[40e2c53/2015-12-15T13:05:55Z]
+es_1  | [2016-01-14 19:30:39,130][INFO ][node                     ] [Hogun] initializing ...
+es_1  | [2016-01-14 19:30:39,189][INFO ][plugins                  ] [Hogun] loaded [], sites []
+es_1  | [2016-01-14 19:30:39,238][INFO ][env                      ] [Hogun] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda1)]], net usable_space [16gb], net total_space [18.1gb], spins? [possibly], types [ext4]
+es_1  | [2016-01-14 19:30:41,688][INFO ][node                     ] [Hogun] initialized
+es_1  | [2016-01-14 19:30:41,701][INFO ][node                     ] [Hogun] starting ...
+es_1  | [2016-01-14 19:30:41,764][WARN ][common.network           ] [Hogun] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.18.0.2}
+es_1  | [2016-01-14 19:30:41,764][INFO ][transport                ] [Hogun] publish_address {172.18.0.2:9300}, bound_addresses {[::]:9300}
+es_1  | [2016-01-14 19:30:41,771][INFO ][discovery                ] [Hogun] elasticsearch/AsSuepIDTvqeZ_0zwnXNiw
+es_1  | [2016-01-14 19:30:44,837][INFO ][cluster.service          ] [Hogun] new_master {Hogun}{AsSuepIDTvqeZ_0zwnXNiw}{172.18.0.2}{172.18.0.2:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+es_1  | [2016-01-14 19:30:44,874][WARN ][common.network           ] [Hogun] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.18.0.2}
+es_1  | [2016-01-14 19:30:44,874][INFO ][http                     ] [Hogun] publish_address {172.18.0.2:9200}, bound_addresses {[::]:9200}
+es_1  | [2016-01-14 19:30:44,874][INFO ][node                     ] [Hogun] started
+es_1  | [2016-01-14 19:30:44,887][INFO ][gateway                  ] [Hogun] recovered [0] indices into cluster_state
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Unable to connect to ES. Retying in 5 secs...
+web_1 | Out of retries. Bailing out...
+</code></pre>
+
+<p>It seems that the Flask app was unable to reach ES. But how did that happen? <em>Compose</em> did create the network and attached the containers to it too. The answer is that our services join the network with different aliases - i.e. <code>foodtrucks_web_1</code> and <code>foodtrucks_es_1</code>. Since our Flask app expects the ES services to be called <code>es</code> and not <code>foodtrucks_es_1</code> it bails out. </p>
+<p>To fix this, we need to make a small change in our <code>docker-compose.yml</code> file. While we are at it, let's also remove <code>links</code> so that we can get rid of the pesky warning.</p>
+<pre><code>es:
+  image: elasticsearch
+  container_name: &quot;es&quot;
+web:
+  image: prakhar1989/foodtrucks-web
+  command: python app.py
+  ports:
+    - &quot;5000:5000&quot;
+  volumes:
+    - .:/code
+</code></pre>
+
+<p>Using <code>container_name</code> we can provide a custom name for our service.  In the future releases, this will be more avenues for configuration as per the <a href="https://docs.docker.com/compose/networking/">docs</a>.</p>
+<blockquote>
+<p>Note: in the next release there will be additional aliases for the container, including a short name without the project name and container index. The full container name will remain as one of the alias for backwards compatibility.</p>
+</blockquote>
+<p>Let's try it now and see if that fixes our issue.</p>
+<pre><code>$ docker-compose --x-networking up -d
+Starting foodtrucks_web_1
+Starting es
+
+$ docker-compose ps
+      Name                    Command               State           Ports
+----------------------------------------------------------------------------------
+es                 /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
+</code></pre>
+
+<p>And voila! Our app is back in business! As of now, you can use <code>links</code> in your <code>docker-compose</code> files until networking support stabilizes in <em>Compose</em>. Do keep an eye out on future releases of Compose!</p>
+<p>That concludes our tour of docker compose.  With docker compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="34-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
 <p>In the last section we used <code>docker compose</code> to run our app locally with a single command - <code>docker-compose up</code>. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Learning the last three are beyond the scope of tutorial so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.</p>
@@ -1170,7 +1308,7 @@ web:
     - es
 </code></pre>
 
-<p>The only changes we make in the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. One another thing we need to do before we move onto the next step is to publish our image on Docker hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
+<p>The only changes we make in the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. Another thing we need to do before we move onto the next step is to publish our image on Docker hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
 <pre><code>$ docker push prakhar1989/foodtrucks-web
 </code></pre>
 
