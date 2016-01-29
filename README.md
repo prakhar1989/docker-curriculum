@@ -3,7 +3,7 @@
 
 *Learn to build and deploy your distributed applications easily to the cloud with Docker*
 
-Written and developed by [Prakhar Srivastav](http://prakhar.me) and [ADI](https://adicu.com/).
+Written and developed by [Prakhar Srivastav](http://prakhar.me).
 
 <a href="#top" class="top" id="getting-started">Top</a>
 
