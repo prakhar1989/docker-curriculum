@@ -268,9 +268,16 @@ $ docker pull ubuntu:12.04
 
 To get a new Docker image you can either get it from a registry (such as the docker hub) or create your own. There are tens of thousands of images available on [Docker hub](https://hub.docker.com). You can also search for images directly from the command line using `docker search`. 
 
-An important distinction to be aware of when it comes to images is between base and user images. 
+An important distinction to be aware of when it comes to images is between base and child images.
 
-- **Base images** are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the `python`, `ubuntu`, `busybox` and `hello-world` images are base images. 
+- **Base images** are images that has no parent image, usually images with an OS like ubuntu, busybox or debian.
+
+- **Child images** are images that build on base images and add additional functionality.
+
+Then there are two more types of images that can be both base and child images, they are official and user images.
+
+- **Official images** are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the `python`, `ubuntu`, `busybox` and `hello-world` images are base images. 
+
 - **User images** are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as `user/image-name`.
 
 <a id="our-image"></a>
