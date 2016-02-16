@@ -555,10 +555,23 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </code></pre>
 
 <p>To get a new Docker image you can either get it from a registry (such as the docker hub) or create your own. There are tens of thousands of images available on <a href="https://hub.docker.com">Docker hub</a>. You can also search for images directly from the command line using <code>docker search</code>. </p>
-<p>An important distinction to be aware of when it comes to images is between base and user images. </p>
+<p>An important distinction to be aware of when it comes to images is between base and child images.</p>
 <ul>
-<li><strong>Base images</strong> are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images. </li>
-<li><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>.</li>
+<li>
+<p><strong>Base images</strong> are images that has no parent image, usually images with an OS like ubuntu, busybox or debian.</p>
+</li>
+<li>
+<p><strong>Child images</strong> are images that build on base images and add additional functionality.</p>
+</li>
+</ul>
+<p>Then there are two more types of images that can be both base and child images, they are official and user images.</p>
+<ul>
+<li>
+<p><strong>Official images</strong> are images that officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images. </p>
+</li>
+<li>
+<p><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>.</p>
+</li>
 </ul>
 <p><a id="our-image"></a></p>
 <h3 id="23-our-first-image">2.3 Our First Image</h3>
