@@ -550,7 +550,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </code></pre>
 
 <p>The above gives a list of images that I've pulled from the registry and the ones that I've created myself (we'll shortly see how). The <code>TAG</code> refers to a particular snapshot of the image and the <code>ID</code> is the corresponding unique identifier for that image. </p>
-<p>For simplicity, you can think of an image akin to a git repository - images can be <a href="https://docs.docker.com/engine/reference/commandline/commit/">committed</a> with changes and have multiple versions. When you provide a specific version number, the client defaults to <code>latest</code>. For example, you can pull a specific version of <code>ubuntu</code> image</p>
+<p>For simplicity, you can think of an image akin to a git repository - images can be <a href="https://docs.docker.com/engine/reference/commandline/commit/">committed</a> with changes and have multiple versions. When you omit a specific version number for an image, the client defaults to <code>latest</code>. For example, you can pull a specific version of the <code>ubuntu</code> image</p>
 <pre><code>$ docker pull ubuntu:12.04
 </code></pre>
 
@@ -558,7 +558,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 <p>An important distinction to be aware of when it comes to images is between base and child images.</p>
 <ul>
 <li>
-<p><strong>Base images</strong> are images that has no parent image, usually images with an OS like ubuntu, busybox or debian.</p>
+<p><strong>Base images</strong> are images that have no parent image, usually images with an OS like ubuntu, busybox or debian.</p>
 </li>
 <li>
 <p><strong>Child images</strong> are images that build on base images and add additional functionality.</p>
@@ -644,7 +644,7 @@ Removing intermediate container f01401a5ace9
 Successfully built 13e87ed1fbc2
 </code></pre>
 
-<p>While running the command yourself, make sure to replace my username with yours. This username should be the same on you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
+<p>While running the command yourself, make sure to replace my username with yours. This username should be the same one you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
 <p>If you don't have the <code>python-3:onbuild</code> image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. See carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image shows. </p>
 <p>The last step in this section is to run the image and see if it actually works. </p>
 <pre><code>$ docker run -p 8888:5000 prakhar1989/catnip
