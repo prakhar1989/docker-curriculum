@@ -550,7 +550,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </code></pre>
 
 <p>The above gives a list of images that I've pulled from the registry and the ones that I've created myself (we'll shortly see how). The <code>TAG</code> refers to a particular snapshot of the image and the <code>ID</code> is the corresponding unique identifier for that image. </p>
-<p>For simplicity, you can think of an image akin to a git repository - images can be <a href="https://docs.docker.com/engine/reference/commandline/commit/">committed</a> with changes and have multiple versions. When you provide a specific version number, the client defaults to <code>latest</code>. For example, you can pull a specific version of <code>ubuntu</code> image</p>
+<p>For simplicity, you can think of an image akin to a git repository - images can be <a href="https://docs.docker.com/engine/reference/commandline/commit/">committed</a> with changes and have multiple versions. If you don't provide a specific version number, the client defaults to <code>latest</code>. For example, you can pull a specific version of <code>ubuntu</code> image</p>
 <pre><code>$ docker pull ubuntu:12.04
 </code></pre>
 
