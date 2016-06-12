@@ -4,10 +4,9 @@ body{
   color:#444;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
-  font-size:12px;
-  line-height:1.5em;
+  font-size:1.2em;
+  line-height:1.4;
   background:#fefefe;
-  width: 45em;
   margin: 10px auto;
   padding: 1em;
   outline: 1300px solid #FAFAFA;
@@ -44,12 +43,12 @@ max-width:100%;
 h1,h2,h3,h4,h5,h6{
 font-weight:normal;
 color:#111;
-line-height:1em;
 }
+
 h4,h5,h6{ font-weight: bold; }
 h1{ font-size:2.5em; }
-h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
-h3{ font-size:1.5em; }
+h2{ font-size:1.6em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.4em; }
 h4{ font-size:1.2em; }
 h5{ font-size:1em; }
 h6{ font-size:0.9em; }
@@ -66,7 +65,7 @@ hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-b
 pre , code, kbd, samp { 
   color: #000; 
   font-family: monospace; 
-  font-size: 0.88em; 
+  font-size: 1.1em; 
   border-radius:3px;
   background-color: #F8F8F8;
   border: 1px solid #CCC; 
@@ -95,14 +94,6 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
-
-@media only screen and (min-width: 480px) {
-body{font-size:14px;}
-}
-
-@media only screen and (min-width: 768px) {
-body{font-size:16px;}
-}
 
 @media print {
   * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
