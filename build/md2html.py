@@ -272,17 +272,17 @@ class MarkdownCompiler():
         body = fork.pre_body + body + analytics.script
         return body
 
-    def run(self, mdfile, parser, wholefile=False):
+    def get_header(self):
+        '''returns header for the generated file'''
+        with open("header.html") as f:
+            return f.read()
+
+    def run(self, mdfile, parser, wholefile=False): 
         ''' return full html and body html for view. '''
         self.mdfile = mdfile
-
         contents = self.get_contents(wholefile)
-
         body = self.convert_markdown(contents, parser)
-
-        html = u'<!DOCTYPE html>'
-        html += '<html><head><meta charset="utf-8">'
-        html += "<link rel='shortcut icon' href='favicon.ico'/>"
+        html = self.get_header()
         html += self.get_stylesheet(parser)
         html += self.get_javascript()
         html += self.get_highlight()
