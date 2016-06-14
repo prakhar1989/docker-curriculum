@@ -638,7 +638,7 @@ CMD [&quot;python&quot;, &quot;./app.py&quot;]
 </code></pre>
 
 <p>Now that we have our <code>Dockerfile</code>, we can build our image. The <code>docker build</code> command does the heavy-lifting of creating a Docker image from a <code>Dockerfile</code>.</p>
-<p>Let's run the following (don't forget the period!) -</p>
+<p>The section below shows you the output of running the same. Before you run the command yourself (don't forget the period), make sure to replace my username with yours. This username should be the same on you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
 <pre><code>$ docker build -t prakhar1989/catnip .
 Sending build context to Docker daemon 8.704 kB
 Step 1 : FROM python:3-onbuild
@@ -661,7 +661,6 @@ Removing intermediate container f01401a5ace9
 Successfully built 13e87ed1fbc2
 </code></pre>
 
-<p>While running the command yourself, make sure to replace my username with yours. This username should be the same on you created when you registered on <a href="https://hub.docker.com">Docker hub</a>. If you haven't done that yet, please go ahead and create an account. The <code>docker build</code> command is quite simple - it takes an optional tag name with <code>-t</code> and a location of the directory containing the <code>Dockerfile</code>.</p>
 <p>If you don't have the <code>python-3:onbuild</code> image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. Look carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image shows. </p>
 <p>The last step in this section is to run the image and see if it actually works (replacing my username with yours). </p>
 <pre><code>$ docker run -p 8888:5000 prakhar1989/catnip
