@@ -505,10 +505,7 @@ Quite unsurprisingly, there exists an officially supported [image](https://hub.d
 $ docker run -dp 9200:9200 elasticsearch
 d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl 192.168.99.100:9200
+$ curl 0.0.0.0:9200
 {
   "name" : "Ultra-Marine",
   "cluster_name" : "elasticsearch",
@@ -770,10 +767,7 @@ CONTAINER ID        IMAGE                        COMMAND                  CREATE
 2a1b77e066e6        prakhar1989/foodtrucks-web   "python ./app.py"        2 seconds ago       Up 1 seconds        0.0.0.0:5000->5000/tcp             foodtrucks-web
 2c0b96f9b803        elasticsearch                "/docker-entrypoint.s"   21 minutes ago      Up 21 minutes       0.0.0.0:9200->9200/tcp, 9300/tcp   es
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl -I 192.168.99.100:5000
+$ curl -I 0.0.0.0:5000
 HTTP/1.0 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 3697
@@ -781,7 +775,7 @@ Server: Werkzeug/0.11.2 Python/2.7.6
 Date: Sun, 10 Jan 2016 23:58:53 GMT
 ```
 
-Head over to [http://192.168.99.100:5000](http://192.168.99.100:5000) and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a [bash script](https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh).
+Head over to [http://0.0.0.0:5000](http://0.0.0.0:5000) and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a [bash script](https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh).
 ```
 #!/bin/bash
 

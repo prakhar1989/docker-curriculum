@@ -743,10 +743,7 @@ monsantoco/elasticsearch          ElasticSearch Docker image                    
 <pre><code>$ docker run -dp 9200:9200 elasticsearch
 d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl 192.168.99.100:9200
+$ curl 0.0.0.0:9200
 {
   &quot;name&quot; : &quot;Ultra-Marine&quot;,
   &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
@@ -995,10 +992,7 @@ CONTAINER ID        IMAGE                        COMMAND                  CREATE
 2a1b77e066e6        prakhar1989/foodtrucks-web   &quot;python ./app.py&quot;        2 seconds ago       Up 1 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks-web
 2c0b96f9b803        elasticsearch                &quot;/docker-entrypoint.s&quot;   21 minutes ago      Up 21 minutes       0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl -I 192.168.99.100:5000
+$ curl -I 0.0.0.0:5000
 HTTP/1.0 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 3697
@@ -1006,7 +1000,7 @@ Server: Werkzeug/0.11.2 Python/2.7.6
 Date: Sun, 10 Jan 2016 23:58:53 GMT
 </code></pre>
 
-<p>Head over to <a href="http://192.168.99.100:5000">http://192.168.99.100:5000</a> and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh">bash script</a>.</p>
+<p>Head over to <a href="http://0.0.0.0:5000">http://0.0.0.0:5000</a> and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh">bash script</a>.</p>
 <pre><code>#!/bin/bash
 
 # build the flask container
