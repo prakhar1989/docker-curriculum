@@ -70,7 +70,7 @@ This document contains a series of several sections, each of which explains a pa
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 ## Preface
 
-> Note: This tutorial uses version **1.9.1** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
+> Note: This tutorial uses version **1.12.0-rc2** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 
 <a id="prerequisites"></a>
 ### Prerequisites
@@ -84,7 +84,7 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. First, we'll install Docker.
 
 ##### Docker 
-Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
+Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](https://www.docker.com/products/docker#/mac), [Linux](https://www.docker.com/products/docker#/linux) and [Windows](https://www.docker.com/products/docker#/windows).
 
 Once you are done installing Docker, test your Docker installation by running the following:
 ```
@@ -126,7 +126,7 @@ ___________
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="busybox"></a>
 ## 1.0 Playing with Busybox
-Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) container (a lightweight linux distribution) on our system and get a taste of the `docker run` command.
+Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) container on our system and get a taste of the `docker run` command.
 
 To get started, let's run the following in our terminal:
 ```
@@ -222,17 +222,15 @@ In the above command, `-d` will detach our terminal, `-P` will publish all expos
 
 ```
 $ docker port static-site
-443/tcp -> 0.0.0.0:32772
-80/tcp -> 0.0.0.0:32773
+80/tcp -> 0.0.0.0:32769
+443/tcp -> 0.0.0.0:32768
 ```
 
-If you're on Linux, you can open [http://localhost:32772](http://localhost:32772) in your browser. If you're on Windows or a Mac, you need to find the IP of the hostname.
+You can open [http://localhost:32769](http://localhost:32769) in your browser. 
 
-```
-$ docker-machine ip default
-192.168.99.100
-```
-You can now open [http://192.168.99.100:32772](http://192.168.99.100:32772) to see your site live! You can also specify a custom port to which the client will forward connections to the container. 
+> Note: If you're using docker-toolbox, then you might need to use `docker-machine ip default` to get the IP. 
+
+You can also specify a custom port to which the client will forward connections to the container. 
 
 ```
 $ docker run -p 8888:80 prakhar1989/static-site
