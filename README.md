@@ -70,7 +70,7 @@ This document contains a series of several sections, each of which explains a pa
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 ## Preface
 
-> Note: This tutorial uses version **1.9.1** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
+> Note: This tutorial uses version **1.12.0-rc2** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 
 <a id="prerequisites"></a>
 ### Prerequisites
@@ -83,8 +83,8 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 ### Setting up your computer
 Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. First, we'll install Docker.
 
-##### Docker
-Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](http://docs.docker.com/mac/step_one/), [Linux](http://docs.docker.com/linux/step_one/) and [Windows](http://docs.docker.com/windows/step_one/).
+##### Docker 
+Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](https://www.docker.com/products/docker#/mac), [Linux](https://www.docker.com/products/docker#/linux) and [Windows](https://www.docker.com/products/docker#/windows).
 
 Once you are done installing Docker, test your Docker installation by running the following:
 ```
@@ -126,7 +126,7 @@ ___________
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="busybox"></a>
 ## 1.0 Playing with Busybox
-Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) container (a lightweight linux distribution) on our system and get a taste of the `docker run` command.
+Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) container on our system and get a taste of the `docker run` command.
 
 To get started, let's run the following in our terminal:
 ```
@@ -185,6 +185,23 @@ Running the `run` command with the `-it` flags attaches us to an interactive tty
 
 That concludes a whirlwind tour of the mighty `docker run` command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
 
+Before we move ahead though, let's quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we've exited by running `docker ps -a`. Throughout this tutorial, you'll run `docker run` multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I'm done with them. To do that, you can run the `docker rm` command. Just copy the container IDs from above and paste them alongside the command.
+
+```
+$ docker rm 305297d7a235 ff0a5c3750b9
+305297d7a235
+ff0a5c3750b9
+```
+
+On deletion, you should see the IDs echoed back to you. If you have a bunch of containers to delete in one go, copy-pasting IDs can be tedious. In that case, you can simply run -
+
+```
+$ docker rm $(docker ps -a -q -f status=exited)
+```
+This command deletes all containers that have a status of `exited`. In case you're wondering, the `-q` flag, only returns the numeric IDs and `-f` filters output based on conditions provided. One last thing that'll be useful is the `-rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited from. For one off docker runs, `-rm` flag is very useful.
+
+Lastly, you can also delete images that you no longer need by running `docker rmi`.
+
 <a id="terminology"></a>
 ### 1.2 Terminology
 In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.
@@ -222,17 +239,15 @@ In the above command, `-d` will detach our terminal, `-P` will publish all expos
 
 ```
 $ docker port static-site
-443/tcp -> 0.0.0.0:32772
-80/tcp -> 0.0.0.0:32773
+80/tcp -> 0.0.0.0:32769
+443/tcp -> 0.0.0.0:32768
 ```
 
-If you're on Linux, you can open [http://localhost:32772](http://localhost:32772) in your browser. If you're on Windows or a Mac, you need to find the IP of the hostname.
+You can open [http://localhost:32769](http://localhost:32769) in your browser. 
 
-```
-$ docker-machine ip default
-192.168.99.100
-```
-You can now open [http://192.168.99.100:32772](http://192.168.99.100:32772) to see your site live! You can also specify a custom port to which the client will forward connections to the container.
+> Note: If you're using docker-toolbox, then you might need to use `docker-machine ip default` to get the IP. 
+
+You can also specify a custom port to which the client will forward connections to the container. 
 
 ```
 $ docker run -p 8888:80 prakhar1989/static-site
@@ -240,9 +255,10 @@ Nginx is running...
 ```
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static">
 
-I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command.
+To stop a detached container, run `docker stop` by giving the container ID. 
 
-Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.
+I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.
+
 
 <a id="docker-images"></a>
 ### 2.2 Docker Images
@@ -507,10 +523,7 @@ Quite unsurprisingly, there exists an officially supported [image](https://hub.d
 $ docker run -dp 9200:9200 elasticsearch
 d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl 192.168.99.100:9200
+$ curl 0.0.0.0:9200
 {
   "name" : "Ultra-Marine",
   "cluster_name" : "elasticsearch",
@@ -772,10 +785,7 @@ CONTAINER ID        IMAGE                        COMMAND                  CREATE
 2a1b77e066e6        prakhar1989/foodtrucks-web   "python ./app.py"        2 seconds ago       Up 1 seconds        0.0.0.0:5000->5000/tcp             foodtrucks-web
 2c0b96f9b803        elasticsearch                "/docker-entrypoint.s"   21 minutes ago      Up 21 minutes       0.0.0.0:9200->9200/tcp, 9300/tcp   es
 
-$ docker-machine ip default
-192.168.99.100
-
-$ curl -I 192.168.99.100:5000
+$ curl -I 0.0.0.0:5000
 HTTP/1.0 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 3697
@@ -783,7 +793,7 @@ Server: Werkzeug/0.11.2 Python/2.7.6
 Date: Sun, 10 Jan 2016 23:58:53 GMT
 ```
 
-Head over to [http://192.168.99.100:5000](http://192.168.99.100:5000) and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a [bash script](https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh).
+Head over to [http://0.0.0.0:5000](http://0.0.0.0:5000) and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I've collated the commands in a [bash script](https://github.com/prakhar1989/FoodTrucks/blob/master/setup-docker.sh).
 ```
 #!/bin/bash
 
