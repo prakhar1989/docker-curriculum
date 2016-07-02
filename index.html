@@ -480,6 +480,18 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 <p><strong>Danger Zone</strong>: If you're feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
 </blockquote>
 <p>That concludes a whirlwind tour of the mighty <code>docker run</code> command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As we proceed further, we'll see a few more variants of <code>docker run</code>.</p>
+<p>Before we move ahead though, let's quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we've exited by running <code>docker ps -a</code>. Throughout this tutorial, you'll run <code>docker run</code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I'm done with them. To do that, you can run the <code>docker rm</code> command. Just copy the container IDs from above and paste them alongside the command.</p>
+<pre><code>$ docker rm 305297d7a235 ff0a5c3750b9
+305297d7a235
+ff0a5c3750b9
+</code></pre>
+
+<p>On deletion, you should see the IDs echoed back to you. If you have a bunch of containers to delete in one go, copy-pasting IDs can be tedious. In that case, you can simply run -</p>
+<pre><code>$ docker rm $(docker ps -a -q -f status=exited)
+</code></pre>
+
+<p>This command deletes all containers that have a status of <code>exited</code>. In case you're wondering, the <code>-q</code> flag, only returns the numeric IDs and <code>-f</code> filters output based on conditions provided. One last thing that'll be useful is the <code>-rm</code> flag that can be passed to <code>docker run</code> which automatically deletes the container once it's exited from. For one off docker runs, <code>-rm</code> flag is very useful.</p>
+<p>Lastly, you can also delete images that you no longer need by running <code>docker rmi</code>.</p>
 <p><a id="terminology"></a></p>
 <h3 id="12-terminology">1.2 Terminology</h3>
 <p>In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.</p>
@@ -523,8 +535,8 @@ Nginx is running...
 </code></pre>
 
 <p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static"></p>
-<p>I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command.</p>
-<p>Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.</p>
+<p>To stop a detached container, run <code>docker stop</code> by giving the container ID. </p>
+<p>I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.</p>
 <p><a id="docker-images"></a></p>
 <h3 id="22-docker-images">2.2 Docker Images</h3>
 <p>We've looked at images before but in this section we'll dive deeper into what Docker images are and build our own image! Lastly, we'll also use that image to run our application locally and finally deploy on <a href="http://aws.amazon.com">AWS</a> to share it with our friends! Excited? Great! Let's get started.</p>

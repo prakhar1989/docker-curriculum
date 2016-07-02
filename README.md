@@ -185,6 +185,23 @@ Running the `run` command with the `-it` flags attaches us to an interactive tty
 
 That concludes a whirlwind tour of the mighty `docker run` command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
 
+Before we move ahead though, let's quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we've exited by running `docker ps -a`. Throughout this tutorial, you'll run `docker run` multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I'm done with them. To do that, you can run the `docker rm` command. Just copy the container IDs from above and paste them alongside the command.
+
+```
+$ docker rm 305297d7a235 ff0a5c3750b9
+305297d7a235
+ff0a5c3750b9
+```
+
+On deletion, you should see the IDs echoed back to you. If you have a bunch of containers to delete in one go, copy-pasting IDs can be tedious. In that case, you can simply run -
+
+```
+$ docker rm $(docker ps -a -q -f status=exited)
+```
+This command deletes all containers that have a status of `exited`. In case you're wondering, the `-q` flag, only returns the numeric IDs and `-f` filters output based on conditions provided. One last thing that'll be useful is the `-rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited from. For one off docker runs, `-rm` flag is very useful.
+
+Lastly, you can also delete images that you no longer need by running `docker rmi`.
+
 <a id="terminology"></a>
 ### 1.2 Terminology
 In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.
@@ -238,9 +255,10 @@ Nginx is running...
 ```
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/static.png" title="static">
 
-I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command.
+To stop a detached container, run `docker stop` by giving the container ID. 
 
-Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.
+I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.
+
 
 <a id="docker-images"></a>
 ### 2.2 Docker Images
