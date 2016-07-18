@@ -1040,7 +1040,7 @@ The next step is to configure the CLI.
 $ ecs-cli configure --region us-east-1 --cluster foodtrucks
 INFO[0000] Saved ECS CLI configuration for cluster (foodtrucks)
 ```
-We provide the `configure` command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the **same region name** that you used when creating the keypair. If you've not configured the [AWS CLI](https://aws.amazon.com/cli/) on your computer before, you will also need to provide an access key and a secret key.
+We provide the `configure` command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the **same region name** that you used when creating the keypair. If you've not configured the [AWS CLI](https://aws.amazon.com/cli/) on your computer before, you can use the official [guide](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html), which explains everything in great detail on how to get everything going.
 
 The next step enables the CLI to create a [CloudFormation](https://aws.amazon.com/cloudformation/) template.
 ```

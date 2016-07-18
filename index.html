@@ -1218,7 +1218,7 @@ ecs-cli version 0.1.0 (*cbdc2d5)
 INFO[0000] Saved ECS CLI configuration for cluster (foodtrucks)
 </code></pre>
 
-<p>We provide the <code>configure</code> command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the <strong>same region name</strong> that you used when creating the keypair. If you've not configured the <a href="https://aws.amazon.com/cli/">AWS CLI</a> on your computer before, you will also need to provide an access key and a secret key.</p>
+<p>We provide the <code>configure</code> command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the <strong>same region name</strong> that you used when creating the keypair. If you've not configured the <a href="https://aws.amazon.com/cli/">AWS CLI</a> on your computer before, you can use the official <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html">guide</a>, which explains everything in great detail on how to get everything going.</p>
 <p>The next step enables the CLI to create a <a href="https://aws.amazon.com/cloudformation/">CloudFormation</a> template.</p>
 <pre><code>$ ecs-cli up --keypair ecs --capability-iam --size 2 --instance-type t2.micro
 INFO[0000] Created cluster                               cluster=foodtrucks
