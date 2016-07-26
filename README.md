@@ -383,7 +383,7 @@ Removing intermediate container f01401a5ace9
 Successfully built 13e87ed1fbc2
 ```
 
-If you don't have the `python-3:onbuild` image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. Look carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
+If you don't have the `python:3-onbuild` image, the client will first pull the image and then create your image. Hence, your output on running the command will look different from mine. Look carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
 
 The last step in this section is to run the image and see if it actually works (replacing my username with yours).
 ```
