@@ -490,7 +490,7 @@ ff0a5c3750b9
 <pre><code>$ docker rm $(docker ps -a -q -f status=exited)
 </code></pre>
 
-<p>This command deletes all containers that have a status of <code>exited</code>. In case you're wondering, the <code>-q</code> flag, only returns the numeric IDs and <code>-f</code> filters output based on conditions provided. One last thing that'll be useful is the <code>-rm</code> flag that can be passed to <code>docker run</code> which automatically deletes the container once it's exited from. For one off docker runs, <code>-rm</code> flag is very useful.</p>
+<p>This command deletes all containers that have a status of <code>exited</code>. In case you're wondering, the <code>-q</code> flag, only returns the numeric IDs and <code>-f</code> filters output based on conditions provided. One last thing that'll be useful is the <code>--rm</code> flag that can be passed to <code>docker run</code> which automatically deletes the container once it's exited from. For one off docker runs, <code>--rm</code> flag is very useful.</p>
 <p>Lastly, you can also delete images that you no longer need by running <code>docker rmi</code>.</p>
 <p><a id="terminology"></a></p>
 <h3 id="12-terminology">1.2 Terminology</h3>
@@ -1246,7 +1246,7 @@ web:
     - es
 </code></pre>
 
-<p>The only changes we made from the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. We also got rid of the <code>version</code> and the <code>services</code> key, since AWS doesn't yet support <a href="https://docs.docker.com/compose/compose-file/#version-2">version 2</a> of Compose file format. Since we our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
+<p>The only changes we made from the original <code>docker-compose.yml</code> are of providing the <code>mem_limit</code> and <code>cpu_shares</code> values for each container. We also got rid of the <code>version</code> and the <code>services</code> key, since AWS doesn't yet support <a href="https://docs.docker.com/compose/compose-file/#version-2">version 2</a> of Compose file format. Since our apps will run on <code>t2.micro</code> instances, we allocate 250mb of memory. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub. As of this writing, ecs-cli <strong>does not</strong> support the <code>build</code> command - which is <a href="https://docs.docker.com/compose/compose-file/#build">supported</a> perfectly by Docker Compose.</p>
 <pre><code>$ docker push prakhar1989/foodtrucks-web
 </code></pre>
 
