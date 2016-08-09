@@ -198,7 +198,7 @@ On deletion, you should see the IDs echoed back to you. If you have a bunch of c
 ```
 $ docker rm $(docker ps -a -q -f status=exited)
 ```
-This command deletes all containers that have a status of `exited`. In case you're wondering, the `-q` flag, only returns the numeric IDs and `-f` filters output based on conditions provided. One last thing that'll be useful is the `-rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited from. For one off docker runs, `-rm` flag is very useful.
+This command deletes all containers that have a status of `exited`. In case you're wondering, the `-q` flag, only returns the numeric IDs and `-f` filters output based on conditions provided. One last thing that'll be useful is the `--rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited from. For one off docker runs, `--rm` flag is very useful.
 
 Lastly, you can also delete images that you no longer need by running `docker rmi`.
 
