@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import random
+import os, random
 
 app = Flask(__name__)
 
@@ -25,4 +25,5 @@ def index():
     return render_template('index.html', url=url)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    port = int(os.environ.get("PORT", 5000)) # for Heroku
+    app.run(host="0.0.0.0", port=port)
