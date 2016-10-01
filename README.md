@@ -402,13 +402,13 @@ Congratulations! You have successfully created your first docker image.
 
 _Heroku's Docker support is in [beta](https://devcenter.heroku.com/articles/container-registry-and-runtime)._
 
-You can easily deploy our catnip app to Heroku via the Dockerfile in the `flask-app` directory:
+You can easily deploy our catnip app to Heroku via the `flask-app` Dockerfile:
 
-1. Sign in to Heroku via the Getting Started section of their [Dev Center Article](https://devcenter.heroku.com/articles/container-registry-and-runtime)
-1. `heroku create` # create a new, free Heroku app
-1. `heroku container:push web -a {your-app-name}` # e.g. "-a salty-fortress-4191"
-1. `heroku open -a {your-app-name}` # to view the running app in your web browser
-1. optional: `heroku logs -t -a {your-app-name}` # view the logs in case something isn't working
+1. Sign into Heroku via the Getting Started section of their [Dev Center Article](https://devcenter.heroku.com/articles/container-registry-and-runtime).
+1. `heroku create # create a new, free Heroku app`
+1. `heroku container:push web -a {your-app-name} # e.g. "-a salty-fortress-4191"`
+1. `heroku open -a {your-app-name} # to view the running app in your web browser`
+1. optional: `heroku logs -t -a {your-app-name} # view the logs in case something isn't working`
 
 <a id="docker-aws"></a>
 ### 2.6 Docker on AWS
