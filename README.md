@@ -54,7 +54,8 @@ This document contains a series of several sections, each of which explains a pa
     -   [2.2 Docker Images](#docker-images)
     -   [2.3 Our First Image](#our-image)
     -   [2.4 Dockerfile](#dockerfiles)
-    -   [2.5 Docker on AWS](#docker-aws)
+    -   [2.5 Docker on Heroku](#docker-heroku)
+    -   [2.6 Docker on AWS](#docker-aws)
 -   [3.0 Multi-container Environments](#multi-container)
     -   [3.1 SF Food Trucks](#foodtrucks)
     -   [3.2 Docker Network](#docker-network)
@@ -396,8 +397,21 @@ Head over to the URL specified, where your app should be live.
 
 Congratulations! You have successfully created your first docker image.
 
+<a id="docker-heroku"></a>
+### 2.5 Docker on Heroku
+
+_Heroku's Docker support is in [beta](https://devcenter.heroku.com/articles/container-registry-and-runtime)._
+
+You can easily deploy our catnip app to Heroku via the Dockerfile in the `flask-app` directory:
+
+1. Sign in to Heroku via the Getting Started section of their [Dev Center Article](https://devcenter.heroku.com/articles/container-registry-and-runtime)
+1. `heroku create` # create a new, free Heroku app
+1. `heroku container:push web -a {your-app-name}` # e.g. "-a salty-fortress-4191"
+1. `heroku open -a {your-app-name}` # to view the running app in your web browser
+1. optional: `heroku logs -t -a {your-app-name}` # view the logs in case something isn't working
+
 <a id="docker-aws"></a>
-### 2.5 Docker on AWS
+### 2.6 Docker on AWS
 
 What good is an application that can't be shared with friends, right? So in this section we are going to see how we can deploy our awesome application to the cloud so that we can share it with our friends! We're going to use AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) to get our application up and running in a few clicks. We'll also see how easy it is to make our application scalable and manageable with Beanstalk!
 
