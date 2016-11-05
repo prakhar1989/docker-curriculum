@@ -390,7 +390,7 @@ The last step in this section is to run the image and see if it actually works (
 $ docker run -p 8888:5000 prakhar1989/catnip
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
-Head over to the URL specified, where your app should be live.
+The command we just ran used port 5000 for the server inside the container, and exposed this externally on port 8888. Head over to the URL with port 8888, where your app should be live.
 
 <img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/catgif.png" title="static">
 
