@@ -45,25 +45,25 @@ This document contains a series of several sections, each of which explains a pa
 
 -	[Preface](#preface)
     -	[Prerequisites](#prerequisites)
-    -	[Setting up your computer](#setup)
--   [1.0 Playing with Busybox](#busybox)
-    -   [1.1 Docker Run](#dockerrun)
-    -   [1.2 Terminology](#terminology)
--   [2.0 Webapps with Docker](#webapps)
-    -   [2.1 Static Sites](#static-site)
-    -   [2.2 Docker Images](#docker-images)
-    -   [2.3 Our First Image](#our-image)
-    -   [2.4 Dockerfile](#dockerfiles)
-    -   [2.5 Docker on AWS](#docker-aws)
--   [3.0 Multi-container Environments](#multi-container)
-    -   [3.1 SF Food Trucks](#foodtrucks)
-    -   [3.2 Docker Network](#docker-network)
-    -   [3.3 Docker Compose](#docker-compose)
-    -   [3.4 AWS Elastic Container Service](#aws-ecs)
--   [4.0 Wrap Up](#wrap-up)
-    -   [4.1 What Next?](#next-steps)
-    -   [4.2 Give Feedback](#feedback)
--   [References](#references)
+       -[Setting up your computer](#setup)
+       -[1.0 Playing with Busybox](#busybox)
+    -	[1.1 Docker Run](#dockerrun)
+    -	[1.2 Terminology](#terminology)
+       -[2.0 Webapps with Docker](#webapps)
+    -	[2.1 Static Sites](#static-site)
+    -	[2.2 Docker Images](#docker-images)
+    -	[2.3 Our First Image](#our-image)
+    -	[2.4 Dockerfile](#dockerfiles)
+    -	[2.5 Docker on AWS](#docker-aws)
+       -[3.0 Multi-container Environments](#multi-container)
+    -	[3.1 SF Food Trucks](#foodtrucks)
+    -	[3.2 Docker Network](#docker-network)
+    -	[3.3 Docker Compose](#docker-compose)
+    -	[3.4 AWS Elastic Container Service](#aws-ecs)
+       -[4.0 Wrap Up](#wrap-up)
+    -	[4.1 What Next?](#next-steps)
+    -	[4.2 Give Feedback](#feedback)
+       -[References](#references)
 
 
 ------------------------------
@@ -81,9 +81,8 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 
 <a id="setup"></a>
 ### Setting up your computer
-Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. First, we'll install Docker.
+Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. 
 
-##### Docker 
 Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](https://www.docker.com/products/docker#/mac), [Linux](https://www.docker.com/products/docker#/linux) and [Windows](https://www.docker.com/products/docker#/windows).
 
 Once you are done installing Docker, test your Docker installation by running the following:
@@ -93,33 +92,6 @@ $ docker run hello-world
 Hello from Docker.
 This message shows that your installation appears to be working correctly.
 ...
-```
-
-##### Python
-Python comes pre-installed on OSX and (most) Linux distributions. If you need to install Python, you can download the installer [here](https://www.python.org/downloads/).
-
-To check if you have Python (and which version), run this command in the terminal:
-```
-$ python --version
-Python 2.7.11
-```
-
-We'll also be using [pip](https://pip.readthedocs.org/en/stable/) to install packages for our application. If don't have pip installed, please [download](http://pip.readthedocs.org/en/stable/installing/) it for your system.
-
-To check if you have pip installed, run this command in the terminal:
-```
-$ pip --version
-pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7)
-```
-
-##### Java (optional)
-The app that we'll be developing will be using [Elasticsearch](https://www.elastic.co/) for storage and search. In order to run elasticsearch locally, make sure you have Java installed. The tutorial will run everything inside a container so having Java locally is not strictly required. If Java is installed, typing `java -version` in your terminal should give you an output similar to the one below.
-
-```
-$ java -version
-java version "1.8.0_60"
-Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
-Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ```
 ___________
 
@@ -305,18 +277,7 @@ Then there are official and user images, which can be both base and child images
 
 Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple [Flask](http://flask.pocoo.org) application. For the purposes of this workshop, I've already created a fun little [Flask app](https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app) that displays a random cat `.gif` every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally.
 
-Before we get started creating the image, let's first test that the application works correctly locally. Step one is to `cd` into the `flask-app` directory and install the dependencies
-```
-$ cd flask-app
-$ pip install -r requirements.txt
-$ python app.py
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-```
-If all goes well, you should see the output as above. Head over to [http://localhost:5000](http://localhost:5000) to see the app in action.
-
-> Note: If `pip install` is giving you permission denied errors, you might need to try running the command as `sudo`. If you prefer not installing packages system-wide, you can instead try `pip install --user -r requirements.txt`.
-
-Looks great doesn't it? The next step now is to create an image with this web app. As mentioned above, all user images are based off of a base image. Since our application is written in Python, the base image we're going to use will be [Python 3](https://hub.docker.com/_/python/). More specifically, we are going to use the `python:3-onbuild` version of the python image.
+The next step now is to create an image with this web app. As mentioned above, all user images are based off of a base image. Since our application is written in Python, the base image we're going to use will be [Python 3](https://hub.docker.com/_/python/). More specifically, we are going to use the `python:3-onbuild` version of the python image.
 
 What's the `onbuild` version you might ask?
 
@@ -849,7 +810,7 @@ The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum a
 > So really at this point, that's what Docker is about: running processes. Now Docker offers a quite rich API to run the processes: shared volumes (directories) between containers (i.e. running images), forward port from the host to the container, display logs, and so on.  But that's it: Docker as of now, remains at the process level.
 
 > While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the managemement of such group of containers as a single entity.
-And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".
+> And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".
 
 It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
 

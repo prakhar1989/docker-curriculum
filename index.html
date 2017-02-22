@@ -346,36 +346,28 @@ pre .chunk {
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#preface">Preface</a><ul>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#setup">Setting up your computer</a></li>
-</ul>
-</li>
-<li><a href="#busybox">1.0 Playing with Busybox</a><ul>
+<li><a href="#prerequisites">Prerequisites</a>
+   -<a href="#setup">Setting up your computer</a>
+   -<a href="#busybox">1.0 Playing with Busybox</a></li>
 <li><a href="#dockerrun">1.1 Docker Run</a></li>
-<li><a href="#terminology">1.2 Terminology</a></li>
-</ul>
-</li>
-<li><a href="#webapps">2.0 Webapps with Docker</a><ul>
+<li><a href="#terminology">1.2 Terminology</a>
+   -<a href="#webapps">2.0 Webapps with Docker</a></li>
 <li><a href="#static-site">2.1 Static Sites</a></li>
 <li><a href="#docker-images">2.2 Docker Images</a></li>
 <li><a href="#our-image">2.3 Our First Image</a></li>
 <li><a href="#dockerfiles">2.4 Dockerfile</a></li>
-<li><a href="#docker-aws">2.5 Docker on AWS</a></li>
-</ul>
-</li>
-<li><a href="#multi-container">3.0 Multi-container Environments</a><ul>
+<li><a href="#docker-aws">2.5 Docker on AWS</a>
+   -<a href="#multi-container">3.0 Multi-container Environments</a></li>
 <li><a href="#foodtrucks">3.1 SF Food Trucks</a></li>
 <li><a href="#docker-network">3.2 Docker Network</a></li>
 <li><a href="#docker-compose">3.3 Docker Compose</a></li>
-<li><a href="#aws-ecs">3.4 AWS Elastic Container Service</a></li>
-</ul>
-</li>
-<li><a href="#wrap-up">4.0 Wrap Up</a><ul>
+<li><a href="#aws-ecs">3.4 AWS Elastic Container Service</a>
+   -<a href="#wrap-up">4.0 Wrap Up</a></li>
 <li><a href="#next-steps">4.1 What Next?</a></li>
-<li><a href="#feedback">4.2 Give Feedback</a></li>
+<li><a href="#feedback">4.2 Give Feedback</a>
+   -<a href="#references">References</a></li>
 </ul>
 </li>
-<li><a href="#references">References</a></li>
 </ul>
 <hr />
 <p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
@@ -392,8 +384,7 @@ pre .chunk {
 </ul>
 <p><a id="setup"></a></p>
 <h3 id="setting-up-your-computer">Setting up your computer</h3>
-<p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. First, we'll install Docker.</p>
-<h5 id="docker">Docker</h5>
+<p>Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy. </p>
 <p>Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="https://www.docker.com/products/docker#/mac">Mac</a>, <a href="https://www.docker.com/products/docker#/linux">Linux</a> and <a href="https://www.docker.com/products/docker#/windows">Windows</a>.</p>
 <p>Once you are done installing Docker, test your Docker installation by running the following:</p>
 <pre><code>$ docker run hello-world
@@ -401,27 +392,6 @@ pre .chunk {
 Hello from Docker.
 This message shows that your installation appears to be working correctly.
 ...
-</code></pre>
-
-<h5 id="python">Python</h5>
-<p>Python comes pre-installed on OSX and (most) Linux distributions. If you need to install Python, you can download the installer <a href="https://www.python.org/downloads/">here</a>.</p>
-<p>To check if you have Python (and which version), run this command in the terminal:</p>
-<pre><code>$ python --version
-Python 2.7.11
-</code></pre>
-
-<p>We'll also be using <a href="https://pip.readthedocs.org/en/stable/">pip</a> to install packages for our application. If don't have pip installed, please <a href="http://pip.readthedocs.org/en/stable/installing/">download</a> it for your system.</p>
-<p>To check if you have pip installed, run this command in the terminal:</p>
-<pre><code>$ pip --version
-pip 7.1.2 from /Library/Python/2.7/site-packages/pip-7.1.2-py2.7.egg (python 2.7)
-</code></pre>
-
-<h5 id="java-optional">Java (optional)</h5>
-<p>The app that we'll be developing will be using <a href="https://www.elastic.co/">Elasticsearch</a> for storage and search. In order to run elasticsearch locally, make sure you have Java installed. The tutorial will run everything inside a container so having Java locally is not strictly required. If Java is installed, typing <code>java -version</code> in your terminal should give you an output similar to the one below.</p>
-<pre><code>$ java -version
-java version &quot;1.8.0_60&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
-Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 </code></pre>
 
 <hr />
@@ -477,7 +447,7 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 
 <p>Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands.</p>
 <blockquote>
-<p><strong>Danger Zone</strong>: If you're feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
+<p><strong>Danger Zone</strong>: If you're feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container (type <code>exit</code> and press Enter) and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
 </blockquote>
 <p>That concludes a whirlwind tour of the mighty <code>docker run</code> command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As we proceed further, we'll see a few more variants of <code>docker run</code>.</p>
 <p>Before we move ahead though, let's quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we've exited by running <code>docker ps -a</code>. Throughout this tutorial, you'll run <code>docker run</code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I'm done with them. To do that, you can run the <code>docker rm</code> command. Just copy the container IDs from above and paste them alongside the command.</p>
@@ -579,18 +549,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 <p><a id="our-image"></a></p>
 <h3 id="23-our-first-image">2.3 Our First Image</h3>
 <p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pocoo.org">Flask</a> application. For the purposes of this workshop, I've already created a fun little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally.</p>
-<p>Before we get started creating the image, let's first test that the application works correctly locally. Step one is to <code>cd</code> into the <code>flask-app</code> directory and install the dependencies</p>
-<pre><code>$ cd flask-app
-$ pip install -r requirements.txt
-$ python app.py
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-</code></pre>
-
-<p>If all goes well, you should see the output as above. Head over to <a href="http://localhost:5000">http://localhost:5000</a> to see the app in action.</p>
-<blockquote>
-<p>Note: If <code>pip install</code> is giving you permission denied errors, you might need to try running the command as <code>sudo</code>. If you prefer not installing packages system-wide, you can instead try <code>pip install --user -r requirements.txt</code>.</p>
-</blockquote>
-<p>Looks great doesn't it? The next step now is to create an image with this web app. As mentioned above, all user images are based off of a base image. Since our application is written in Python, the base image we're going to use will be <a href="https://hub.docker.com/_/python/">Python 3</a>. More specifically, we are going to use the <code>python:3-onbuild</code> version of the python image.</p>
+<p>The next step now is to create an image with this web app. As mentioned above, all user images are based off of a base image. Since our application is written in Python, the base image we're going to use will be <a href="https://hub.docker.com/_/python/">Python 3</a>. More specifically, we are going to use the <code>python:3-onbuild</code> version of the python image.</p>
 <p>What's the <code>onbuild</code> version you might ask?</p>
 <blockquote>
 <p>These images include multiple ONBUILD triggers, which should be all you need to bootstrap most applications. The build will COPY a <code>requirements.txt</code> file, RUN <code>pip install</code> on said file, and then copy the current directory into <code>/usr/src/app</code>.</p>
@@ -653,7 +612,7 @@ Successfully built 13e87ed1fbc2
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 </code></pre>
 
-<p>Head over to the URL specified, where your app should be live.</p>
+<p>The command we just ran used port 5000 for the server inside the container, and exposed this externally on port 8888. Head over to the URL with port 8888, where your app should be live.</p>
 <p><img src="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/catgif.png" title="static"></p>
 <p>Congratulations! You have successfully created your first docker image.</p>
 <p><a id="docker-aws"></a></p>
@@ -770,6 +729,11 @@ $ curl 0.0.0.0:9200
 }
 </code></pre>
 
+<p>Note that if you are using Elasticsearch version 5 or higher you need to do the following to make it work.</p>
+<ol>
+<li>Increase the memory size of your docker-machine instance to at least 2gb.</li>
+<li>Do an SSH in your docker-machine instance by <code>docker-machine ssh</code> and run this command <code>sysctl -w vm.max_map_count=262144</code>. This will fix the max virtual memory areas error.</li>
+</ol>
 <p>While we are at it, let's get our Flask container running too. But before we get to that, we need a <code>Dockerfile</code>. In the last section, we used <code>python:3-onbuild</code> image as our base image. This time, however, apart from installing Python dependencies via <code>pip</code>, we want our application to also generate our <a href="http://sf-foodtrucks.xyz/static/build/main.js">minified Javascript file</a> for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the <code>ubuntu</code> base image to build our <code>Dockerfile</code> from scratch.</p>
 <blockquote>
 <p>Note: if you find that an existing image doesn't cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding <code>Dockerfile</code> on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.</p>
