@@ -21,4 +21,5 @@ execshell("./generate");
 watcher.on('change', function(path) { 
     console.log("Readme has changed. Re-generating HTML.");
     execshell("./generate");
+    execshell("/bin/cp index.html public/index.html");
 })

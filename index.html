@@ -14,15 +14,15 @@
 	<meta property="og:title" content="Docker for Beginners"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:locale" content="en_US"/>
-	<meta property="og:url" content="http://prakhar.me/docker-curriculum"/>
+	<meta property="og:url" content="http://prakhar.me/docker-curriculu://docker-curriculum.com/"/>
 	<meta property="og:description" content="Learn to build and deploy your distributed applications easily to the cloud with Docker"/>
-	<meta property="og:image" content="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/logo.png"/>
+	<meta property="og:image" content="https://docker-curriculum.com/images/logo.png"/>
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@prakharsriv9">
 	<meta name="twitter:creator" content="@prakharsriv9">
 	<meta name="twitter:title" content="Docker for Beginners"/>
 	<meta name="twitter:description" content="Learn to build and deploy your distributed applications easily to the cloud with Docker"/>
-	<meta name="twitter:image" content="https://raw.githubusercontent.com/prakhar1989/docker-curriculum/master/images/logo.png"/>
+	<meta name="twitter:image" content="https://docker-curriculum.com/images/logo.png"/>
 <style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body{
@@ -549,7 +549,14 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </ul>
 <p><a id="our-image"></a></p>
 <h3 id="23-our-first-image">2.3 Our First Image</h3>
-<p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pocoo.org">Flask</a> application. For the purposes of this workshop, I've already created a fun little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally.</p>
+<p>Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple <a href="http://flask.pocoo.org">Flask</a> application. For the purposes of this workshop, I've already created a fun little <a href="https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app">Flask app</a> that displays a random cat <code>.gif</code> every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally like so - </p>
+<pre><code>$ git clone https://github.com/prakhar1989/docker-curriculum
+$ cd docker-curriculum/flask-app
+</code></pre>
+
+<blockquote>
+<p>This should be cloned on the machine where you are running the docker commands and <em>not</em> inside a docker container.</p>
+</blockquote>
 <p>The next step now is to create an image with this web app. As mentioned above, all user images are based off of a base image. Since our application is written in Python, the base image we're going to use will be <a href="https://hub.docker.com/_/python/">Python 3</a>. More specifically, we are going to use the <code>python:3-onbuild</code> version of the python image.</p>
 <p>What's the <code>onbuild</code> version you might ask?</p>
 <blockquote>
