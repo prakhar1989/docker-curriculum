@@ -16,3 +16,4 @@ python md2html.py "$TITLE.md"
 # copy output to the root dir, and delete intermediate files
 mv "$TITLE.html" ../$OUTPUTFILE
 rm -f "$TITLE.css" "$TITLE.md"
+
