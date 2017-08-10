@@ -4,7 +4,8 @@
   "description": "<a id=\"top\"></a> # Docker for Beginners",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node tutorial/index.js",
+    "deploy": "npm run generate && firebase deploy --project docker-curriculum",
     "watch": "node watch.js"
   },
   "repository": {
@@ -19,6 +20,11 @@
   "homepage": "https://github.com/prakhar1989/docker-curriculum#readme",
   "dependencies": {
     "chokidar": "^1.3.0",
+	  "handlebars": "^4.0.5",
+    "metalsmith": "^2.1.0",
+    "metalsmith-layouts": "^1.4.1",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-permalinks": "^0.5.0",
     "exec-sh": "^0.2.0"
   }
 }
