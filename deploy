@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # move stuff to public for firebase deployment
-cp -f index.html public/index.html
-/bin/cp images/* public/images/
+/bin/cp -f index.html public/index.html
+/bin/cp -f images/* public/images/
 
 firebase deploy --project docker-curriculum
