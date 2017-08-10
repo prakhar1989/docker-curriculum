@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate": "node tutorial/index.js",
+    "serve": "firebase serve",
     "deploy": "npm run generate && firebase deploy --project docker-curriculum",
     "watch": "node watch.js"
   },
