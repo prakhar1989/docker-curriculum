@@ -1,6 +1,8 @@
 {
    "hosting":{
       "public":"public",
+      "cleanUrls": true,
+      "trailingSlash": false,
       "headers":[
          {
             "source":"**/*.@(eot|otf|ttf|ttc|woff|font.css)",
@@ -16,7 +18,7 @@
             "headers":[
                {
                   "key":"Cache-Control",
-                  "value":"max-age=72000"
+                  "value":"max-age=86400"
                }
             ]
          }
