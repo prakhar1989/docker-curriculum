@@ -1,6 +1,6 @@
 {
    "hosting":{
-      "public":"public",
+      "public":"tutorial/public",
       "cleanUrls": true,
       "trailingSlash": false,
       "headers":[
