@@ -5,11 +5,20 @@
     <link rel='shortcut icon' href='favicon.ico'/>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn to build and deploy your distributed applications easily to the cloud with Docker">
     <meta name="author" content="Prakhar Srivastav">
     <meta name="keywords" content="docker, docker tutorial, docker guide, containers, getting started, beginners">
     <title>A Docker Tutorial for Beginners</title>
+    <link rel='manifest' href='manifest.json'>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='theme-color' content="#1AC3EF">
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='application-name' content='Air Horner'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+    <meta name='apple-mobile-web-app-title' content='Docker Curriculum'>
+    <meta name='msapplication-TileColor' content='#1AC3EF'>
+    
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="A Docker Tutorial for Beginners">
     <meta property="og:title" content="A Docker Tutorial for Beginners"/>
@@ -20,7 +29,7 @@
     <meta property="og:image" content="https://docker-curriculum.com/images/logo-small.png"/>
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@prakharsriv9">
+    <meta name='twitter:url' content="https://docker-curriculum.com/">
     <meta name="twitter:creator" content="@prakharsriv9">
     <meta name="twitter:title" content="A Docker Tutorial for Beginners"/>
     <meta name="twitter:description" content="Learn to build and deploy your distributed applications easily to the cloud with Docker"/>
@@ -1175,5 +1184,18 @@ Since we&#39;re on the topic, let&#39;s see how our <a href="https://console.aws
 
   ga('create', 'UA-40692332-3', 'auto');
   ga('send', 'pageview');
-</script></body>
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
+</body>
 </html>
