@@ -20,6 +20,7 @@ Metalsmith(__dirname)
     engine: 'handlebars',
     partials: {
       analytics: 'partials/analytics',
+      sw: 'partials/sw',
       meta: 'partials/meta',
       styles: 'partials/styles'
     }
