@@ -975,7 +975,7 @@ ff02::2	ip6-allrouters
 172.18.0.2	bb72dcebd379
 ```
 
-Whoops! It turns out that this file has no idea what the `es` network. So how is our app working? Let's see if can ping this hostname -
+Whoops! It turns out that this file has no idea what the `es` network is. So how is our app working? Let's see if can ping this hostname -
 
 ```
 root@bb72dcebd379:/opt/flask-app# ping es
