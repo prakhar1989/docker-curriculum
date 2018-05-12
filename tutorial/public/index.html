@@ -1064,7 +1064,7 @@ ff00::0    ip6-mcastprefix
 ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
 172.18.0.2    bb72dcebd379
-</code></pre><p>Whoops! It turns out that this file has no idea what the <code>es</code> network. So how is our app working? Let&#39;s see if can ping this hostname -</p>
+</code></pre><p>Whoops! It turns out that this file has no idea what the <code>es</code> network is. So how is our app working? Let&#39;s see if can ping this hostname -</p>
 <pre><code>root@bb72dcebd379:/opt/flask-app# ping es
 PING es (172.18.0.3) 56(84) bytes of data.
 64 bytes from foodtrucks_es_1.foodtrucks_default (172.18.0.3): icmp_seq=1 ttl=64 time=0.049 ms
