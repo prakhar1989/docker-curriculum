@@ -71,7 +71,8 @@ This document contains a series of several sections, each of which explains a pa
     -	[4.2 Give Feedback](#feedback)
     - [References](#references)
 
-------------------------------
+___________
+
 <a href="#table-of-contents" class="top" id="preface">Top</a>
 ## Preface
 
