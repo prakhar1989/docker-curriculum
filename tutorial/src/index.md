@@ -3,7 +3,8 @@ layout: layout.html
 ---
 
 <a id="top"></a>
-<img src="/images/logo.png" alt="docker logo">
+
+![Docker Logo](images/logo.png "Docker Logo")
 
 *Learn to build and deploy your distributed applications easily to the cloud with Docker*
 
@@ -34,7 +35,8 @@ Containers take a different approach: by leveraging the low-level mechanics of t
 Docker's rise has been nothing short of meteoric. Although containers by themselves are not a new technology, it was not until Docker arrived that they started to get mainstream attention. By providing standard APIs that made containers easy to use and creating a way for the community to collaborate around libraries of containers, Docker has radically changed the face of the technology landscape. In an article published by [The Register](http://www.theregister.co.uk/2014/05/23/google_containerization_two_billion/) in mid-2014, it was claimed that Google runs over **two billion containers per week**.
 
 **Google Trends for 'Docker'**
-<img src="/images/interest.png" title="interest">
+
+![Docker interest over time](images/interest.png "Docker interest over time")
 
 In addition to Docker's continual growth, Docker, Inc., the developer behind Docker has been valued at over a billion dollars! Due to its benefits of efficiency and portability, Docker has been gaining mind share rapidly, and is now leading the **Containerization** movement. As developers going out into the world, it is important that we understand this trend and see how we can benefit from it.
 
@@ -252,7 +254,7 @@ $ docker run -p 8888:80 prakhar1989/static-site
 Nginx is running...
 ```
 
-<img src="/images/static.png" title="static">
+![static-site](images/static.png "static-site")
 
 To stop a detached container, run `docker stop` by giving the container ID.
 
@@ -395,7 +397,7 @@ $ docker run -p 8888:5000 prakhar1989/catnip
 
 The command we just ran used port 5000 for the server inside the container, and exposed this externally on port 8888. Head over to the URL with port 8888, where your app should be live.
 
-<img src="/images/catgif.png" title="static">
+![cat gif](images/catgif.png "cat gif")
 
 Congratulations! You have successfully created your first docker image.
 
@@ -446,14 +448,14 @@ Here are the steps:
 - Login to your AWS [console](http://console.aws.amazon.com).
 - Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, just click [here](https://console.aws.amazon.com/elasticbeanstalk) to access the EB console.
 
-<img src="images/eb-start.png" title="static">
+![EB start](images/eb-start.png "EB start")
 
 - Click on "Create New Application" in the top right
 - Give your app a memorable (but unique) name and provide an (optional) description
 - In the **New Environment** screen, choose the **Web Server Environment**.
 - The following screen is shown below. Choose *Docker* from the predefined configuration. You can leave the *Environment type* as it is. Click Next.
 
-<img src="images/eb-docker.png" title="static">
+![EB Environment Type](images/eb-docker.png "EB Environment Type")
 
 - This is where we need to tell EB about our image. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "upload your own" and choose this file.
 - Next up, choose an environment name and a URL. This URL is what you'll share with your friends so make sure it's easy to remember.
@@ -484,7 +486,7 @@ The file should be pretty self-explanatory, but you can always [reference](http:
 
 Hopefully by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.
 
-<img src="images/eb-deploy.png" title="static">
+![EB deploy](images/eb-deploy.png "EB deploy")
 
 Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs, too.
 
@@ -509,7 +511,7 @@ Just like it's a good strategy to decouple your application tiers, it is wise to
 
 The app that we're going to Dockerize is called SF Food Trucks. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service, but is not too complex for the purpose of this tutorial. This is what I came up with.
 
-<img src="/images/foodtrucks.png" alt="sf food trucks">
+![SF Food Trucks](images/foodtrucks.png "SF Food Trucks")
 
 The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](https://www.elastic.co/products/elasticsearch). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
 
@@ -1074,7 +1076,7 @@ ecs-cli version 0.1.0 (*cbdc2d5)
 
 The first step is to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
 
-<img src="images/keypair.png" alt="keypair.png" />
+![EC2 Keypair](images/keypair.png "EC2 Keypair")
 
 The next step is to configure the CLI.
 
@@ -1153,8 +1155,9 @@ Name                                      State    Ports                     Tas
 Go ahead and open [http://54.86.14.14](http://54.86.14.14) in your browser and you should see the Food Trucks in all its black-yellow glory!
 Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters) console looks.
 
-<img src="images/cluster.png" alt="ECS cluster" />
-<img src="images/tasks.png" alt="ECS cluster" />
+![cluster](images/cluster.png "cluster")
+
+![tasks](images/tasks.png "tasks")
 
 We can see above that our ECS cluster called 'foodtrucks' was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of all the options that are here.
 
