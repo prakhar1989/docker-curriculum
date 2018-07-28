@@ -359,26 +359,26 @@
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#preface">Preface</a><ul>
-<li><a href="#prerequisites">Prerequisites</a>
--<a href="#setup">Setting up your computer</a>
--<a href="#busybox">1.0 Playing with Busybox</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#setup">Setting up your computer</a></li>
+<li><a href="#busybox">1.0 Playing with Busybox</a></li>
 <li><a href="#dockerrun">1.1 Docker Run</a></li>
-<li><a href="#terminology">1.2 Terminology</a>
--<a href="#webapps">2.0 Webapps with Docker</a></li>
+<li><a href="#terminology">1.2 Terminology</a></li>
+<li><a href="#webapps">2.0 Webapps with Docker</a></li>
 <li><a href="#static-site">2.1 Static Sites</a></li>
 <li><a href="#docker-images">2.2 Docker Images</a></li>
 <li><a href="#our-image">2.3 Our First Image</a></li>
 <li><a href="#dockerfiles">2.4 Dockerfile</a></li>
-<li><a href="#docker-aws">2.5 Docker on AWS</a>
--<a href="#multi-container">3.0 Multi-container Environments</a></li>
+<li><a href="#docker-aws">2.5 Docker on AWS</a></li>
+<li><a href="#multi-container">3.0 Multi-container Environments</a></li>
 <li><a href="#foodtrucks">3.1 SF Food Trucks</a></li>
 <li><a href="#docker-network">3.2 Docker Network</a></li>
 <li><a href="#docker-compose">3.3 Docker Compose</a></li>
-<li><a href="#aws-ecs">3.4 AWS Elastic Container Service</a>
--<a href="#wrap-up">4.0 Wrap Up</a></li>
+<li><a href="#aws-ecs">3.4 AWS Elastic Container Service</a></li>
+<li><a href="#wrap-up">4.0 Wrap Up</a></li>
 <li><a href="#next-steps">4.1 What Next?</a></li>
-<li><a href="#feedback">4.2 Give Feedback</a>
--<a href="#references">References</a></li>
+<li><a href="#feedback">4.2 Give Feedback</a></li>
+<li><a href="#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -474,7 +474,7 @@ ff0a5c3750b9
 <p>Let&#39;s start by taking baby-steps. The first thing we&#39;re going to look at is how we can run a dead-simple static website. We&#39;re going to pull a Docker image from Docker Hub, run the container and see how easy it is to run a webserver.</p>
 <p>Let&#39;s begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I&#39;ve already created for the purpose of this demo and hosted on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>.</p>
 <pre><code>$ docker run prakhar1989/static-site
-</code></pre><p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how do see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
+</code></pre><p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
 <p>Well in this case, the client is not exposing any ports so we need to re-run the <code>docker run</code> command to publish ports. While we&#39;re at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called <strong>detached</strong> mode.</p>
 <pre><code>$ docker run -d -P --name static-site prakhar1989/static-site
 e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
@@ -518,7 +518,7 @@ hello-world                     latest              0a6ba66e537a        11 weeks
 </ul>
 <p>Then there are official and user images, which can be both base and child images.</p>
 <ul>
-<li><p><strong>Official images</strong> are images that are officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are base images.</p>
+<li><p><strong>Official images</strong> are images that are officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the <code>python</code>, <code>ubuntu</code>, <code>busybox</code> and <code>hello-world</code> images are official images.</p>
 </li>
 <li><p><strong>User images</strong> are images created and shared by users like you and me. They build on base images and add additional functionality. Typically, these are formatted as <code>user/image-name</code>.</p>
 </li>
@@ -624,7 +624,7 @@ Login Succeeded
 <li>This is where we need to tell EB about our image. Open the <code>Dockerrun.aws.json</code> <a href="https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json">file</a> located in the <code>flask-app</code> folder and edit the <code>Name</code> of the image to your image&#39;s name. Don&#39;t worry, I&#39;ll explain the contents of the file shortly. When you are done, click on the radio button for &quot;upload your own&quot; and choose this file.</li>
 <li>Next up, choose an environment name and a URL. This URL is what you&#39;ll share with your friends so make sure it&#39;s easy to remember.</li>
 <li>For now, we won&#39;t be making changes in the <em>Additional Resources</em> section. Click Next and move to <em>Configuration Details</em>.</li>
-<li>In this section, all you need to do is to check that the instance type is <code>t1.micro</code>. This is very important as this is the <strong>free</strong> instance by AWS. You can optionally choose a key-pair to login. If you don&#39;t know what that means, feel free to ignore this for now. We&#39;ll leave everything else to the default and forge ahead.</li>
+<li>In this section, all you need to do is to check that the instance type is <code>t2.micro</code>. This is very important as this is the <strong>free</strong> instance by AWS. You can optionally choose a key-pair to login. If you don&#39;t know what that means, feel free to ignore this for now. We&#39;ll leave everything else to the default and forge ahead.</li>
 <li>We also don&#39;t need to provide any <em>Environment Tags</em> and <em>Permissions</em>, so without batting an eyelid, you can click Next twice in succession. At the end, the screen shows us the <em>Review</em> page. If everything looks good, go ahead and press the <strong>Launch</strong> button.</li>
 <li>The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.</li>
 </ul>
