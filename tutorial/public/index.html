@@ -388,7 +388,7 @@
 <p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
 <h2 id="preface">Preface</h2>
 <blockquote>
-<p>Note: This tutorial uses version <strong>1.12.0-rc2</strong> of Docker. If you find any part of the tutorial incompatible with a future version, please raise an <a href="https://github.com/prakhar1989/docker-curriculum/issues">issue</a>. Thanks!</p>
+<p>Note: This tutorial uses version <strong>18.05.0-ce</strong> of Docker. If you find any part of the tutorial incompatible with a future version, please raise an <a href="https://github.com/prakhar1989/docker-curriculum/issues">issue</a>. Thanks!</p>
 </blockquote>
 <p><a id="prerequisites"></a></p>
 <h3 id="prerequisites">Prerequisites</h3>
@@ -443,6 +443,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 305297d7a235        busybox             &quot;uptime&quot;            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
 ff0a5c3750b9        busybox             &quot;sh&quot;                12 minutes ago      Exited (0) 12 minutes ago                       elated_ramanujan
+14e5bd11d164        hello-world         &quot;/hello&quot;            2 minutes ago       Exited (0) 2 minutes ago                        thirsty_euclid
 </code></pre>
 <p>So what we see above is a list of all containers that we ran. Do notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago.</p>
 <p>You&#39;re probably wondering if there is a way to run more than just one command in a container. Let&#39;s try that now:</p>
@@ -454,7 +455,7 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 </code></pre>
 <p>Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands.</p>
 <blockquote>
-<p><strong>Danger Zone</strong>: If you&#39;re feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container (type <code>exit</code> and press Enter) and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
+<p><strong>Danger Zone</strong>: If you&#39;re feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop/desktop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container (type <code>exit</code> and press Enter) and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
 </blockquote>
 <p>That concludes a whirlwind tour of the mighty <code>docker run</code> command, which would most likely be the command you&#39;ll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As we proceed further, we&#39;ll see a few more variants of <code>docker run</code>.</p>
 <p>Before we move ahead though, let&#39;s quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we&#39;ve exited by running <code>docker ps -a</code>. Throughout this tutorial, you&#39;ll run <code>docker run</code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I&#39;m done with them. To do that, you can run the <code>docker rm</code> command. Just copy the container IDs from above and paste them alongside the command.</p>
@@ -484,10 +485,10 @@ ff0a5c3750b9
 <p><a id="static-site"></a></p>
 <h3 id="2-1-static-sites">2.1 Static Sites</h3>
 <p>Let&#39;s start by taking baby-steps. The first thing we&#39;re going to look at is how we can run a dead-simple static website. We&#39;re going to pull a Docker image from Docker Hub, run the container and see how easy it is to run a webserver.</p>
-<p>Let&#39;s begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I&#39;ve already created for the purpose of this demo and hosted on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>.</p>
-<pre><code class="lang-bash">$ docker run prakhar1989/static-site
+<p>Let&#39;s begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I&#39;ve already created for the purpose of this demo and hosted on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>. As noted above, the <code>--rm</code> flag automatically removes the container when it exits.</p>
+<pre><code class="lang-bash">$ docker run --rm prakhar1989/static-site
 </code></pre>
-<p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
+<p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.</p>
 <p>Well in this case, the client is not exposing any ports so we need to re-run the <code>docker run</code> command to publish ports. While we&#39;re at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called <strong>detached</strong> mode.</p>
 <pre><code class="lang-bash">$ docker run -d -P --name static-site prakhar1989/static-site
 e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
@@ -506,7 +507,10 @@ e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
 Nginx is running...
 </code></pre>
 <p><img src="images/static.png" alt="static-site" title="static-site"></p>
-<p>To stop a detached container, run <code>docker stop</code> by giving the container ID.</p>
+<p>To stop a detached container, run <code>docker stop</code> by giving the container ID. In this case, we can use the name <code>static-site</code> we used to start the container.</p>
+<pre><code class="lang-bash">$ docker stop static-site
+static-site
+</code></pre>
 <p>I&#39;m sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you&#39;ve seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we&#39;ll be exploring in the next section.</p>
 <p><a id="docker-images"></a></p>
 <h3 id="2-2-docker-images">2.2 Docker Images</h3>
@@ -644,16 +648,13 @@ Login Succeeded
 <ul>
 <li>Click on &quot;Create New Application&quot; in the top right</li>
 <li>Give your app a memorable (but unique) name and provide an (optional) description</li>
-<li>In the <strong>New Environment</strong> screen, choose the <strong>Web Server Environment</strong>.</li>
-<li>The following screen is shown below. Choose <em>Docker</em> from the predefined configuration. You can leave the <em>Environment type</em> as it is. Click Next.</li>
+<li>In the <strong>New Environment</strong> screen, create a new environment and choose the <strong>Web Server Environment</strong>.</li>
+<li>Fill in the environment information by choosing a domain. This URL is what you&#39;ll share with your friends so make sure it&#39;s easy to remember.</li>
+<li>Under base configuration section. Choose <em>Docker</em> from the <em>predefined platform</em>.</li>
 </ul>
-<p><img src="images/eb-docker.png" alt="EB Environment Type" title="EB Environment Type"></p>
+<p><img src="images/eb-docker.jpeg" alt="EB Environment Type" title="EB Environment Type"></p>
 <ul>
-<li>This is where we need to tell EB about our image. Open the <code>Dockerrun.aws.json</code> <a href="https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json">file</a> located in the <code>flask-app</code> folder and edit the <code>Name</code> of the image to your image&#39;s name. Don&#39;t worry, I&#39;ll explain the contents of the file shortly. When you are done, click on the radio button for &quot;upload your own&quot; and choose this file.</li>
-<li>Next up, choose an environment name and a URL. This URL is what you&#39;ll share with your friends so make sure it&#39;s easy to remember.</li>
-<li>For now, we won&#39;t be making changes in the <em>Additional Resources</em> section. Click Next and move to <em>Configuration Details</em>.</li>
-<li>In this section, all you need to do is to check that the instance type is <code>t2.micro</code>. This is very important as this is the <strong>free</strong> instance by AWS. You can optionally choose a key-pair to login. If you don&#39;t know what that means, feel free to ignore this for now. We&#39;ll leave everything else to the default and forge ahead.</li>
-<li>We also don&#39;t need to provide any <em>Environment Tags</em> and <em>Permissions</em>, so without batting an eyelid, you can click Next twice in succession. At the end, the screen shows us the <em>Review</em> page. If everything looks good, go ahead and press the <strong>Launch</strong> button.</li>
+<li>Now we need upload our application code. But since our application is packaged in a Docker container, we just to tell EB about our contianer. Open the <code>Dockerrun.aws.json</code> <a href="https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json">file</a> located in the <code>flask-app</code> folder and edit the <code>Name</code> of the image to your image&#39;s name. Don&#39;t worry, I&#39;ll explain the contents of the file shortly. When you are done, click on the radio button for &quot;upload your own&quot; and choose this file.</li>
 <li>The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.</li>
 </ul>
 <p>While we wait, let&#39;s quickly see what the <code>Dockerrun.aws.json</code> file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.</p>
@@ -675,7 +676,7 @@ Login Succeeded
 <p>Hopefully by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.</p>
 <p><img src="images/eb-deploy.png" alt="EB deploy" title="EB deploy"></p>
 <p>Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs, too.</p>
-<p>Congratulations! You have deployed your first Docker application! That might seem like a lot of steps, but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of the pains of building and deploying applications in the cloud. I would encourage you to read the AWS <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html">documentation</a> on single-container Docker environments to get an idea of what features exist.</p>
+<p>Congratulations! You have deployed your first Docker application! That might seem like a lot of steps, but with the <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">command-line tool for EB</a> you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of the pains of building and deploying applications in the cloud. I would encourage you to read the AWS <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html">documentation</a> on single-container Docker environments to get an idea of what features exist.</p>
 <p>In the next (and final) part of the tutorial, we&#39;ll up the ante a bit and deploy an application that mimics the real-world more closely; an app with a persistent back-end storage tier. Let&#39;s get straight to it!</p>
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="multi-container"></a></p>
@@ -988,6 +989,8 @@ $ ./setup-docker.sh
 <p>The <a href="https://news.ycombinator.com/item?id=7133449">first comment</a> on the forum actually does a good job of explaining what Fig is all about.</p>
 <blockquote>
 <p>So really at this point, that&#39;s what Docker is about: running processes. Now Docker offers a quite rich API to run the processes: shared volumes (directories) between containers (i.e. running images), forward port from the host to the container, display logs, and so on.  But that&#39;s it: Docker as of now, remains at the process level.</p>
+</blockquote>
+<blockquote>
 <p>While it provides options to orchestrate multiple containers to create a single &quot;app&quot;, it doesn&#39;t address the managemement of such group of containers as a single entity.
 And that&#39;s where tools such as Fig come in: talking about a group of containers as a single entity. Think &quot;run an app&quot; (i.e. &quot;run an orchestrated cluster of containers&quot;) instead of &quot;run a container&quot;.</p>
 </blockquote>

@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/prakhar1989/docker-curriculum#readme",
   "dependencies": {
-    "handlebars": "^4.0.5",
+    "handlebars": "^4.0.11",
     "metalsmith": "^2.1.0",
     "metalsmith-layouts": "^1.4.1",
-    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-markdown": "^0.2.2",
     "metalsmith-permalinks": "^0.5.0"
   }
 }
