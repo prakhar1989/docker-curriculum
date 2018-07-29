@@ -603,9 +603,9 @@ MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
-RUN apt-get -yqq install python-pip python-dev
-RUN apt-get -yqq install nodejs npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get -yqq install python-pip python-dev curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN apt-get install -yq nodejs
 
 # copy our application code
 ADD flask-app /opt/flask-app
@@ -623,13 +623,14 @@ EXPOSE 5000
 CMD [ "python", "./app.py" ]
 ```
 
-Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompt. We also create a symbolic link for the node binary to deal with backward compatibility issues.
+Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompt.
 
 We then use the `ADD` command to copy our application into a new volume in the container - `/opt/flask-app`. This is where our code will reside. We also set this as our working directory, so that the following commands will be run in the context of this location. Now that our system-wide dependencies are installed, we get around to install app-specific ones. First off we tackle Node by installing the packages from npm and running the build command as defined in our `package.json` [file](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/package.json#L7-L9). We finish the file off by installing the Python packages, exposing the port and defining the `CMD` to run as we did in the last section.
 
 Finally, we can go ahead, build the image and run the container (replace `prakhar1989` with your username below).
 
 ```bash
+$ git clone https://github.com/prakhar1989/FoodTrucks && cd FoodTrucks
 $ docker build -t prakhar1989/foodtrucks-web .
 ```
 
