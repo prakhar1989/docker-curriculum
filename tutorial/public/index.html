@@ -701,29 +701,54 @@ barnybug/elasticsearch            Latest Elasticsearch 1.7.2 and previous re... 
 digitalwonderland/elasticsearch   Latest Elasticsearch with Marvel &amp; Kibana       12                   [OK]
 monsantoco/elasticsearch          ElasticSearch Docker image                      9                    [OK]
 </code></pre>
-<p>Quite unsurprisingly, there exists an officially supported <a href="https://hub.docker.com/_/elasticsearch/">image</a> for Elasticsearch. To get ES running, we can simply use <code>docker run</code> and have a single-node ES container running locally within no time.</p>
-<pre><code class="lang-bash">$ docker run -dp 9200:9200 elasticsearch
-d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
+<p>Quite unsurprisingly, there exists an officially supported <a href="https://store.docker.com/images/elasticsearch">image</a> for Elasticsearch. To get ES running, we can simply use <code>docker run</code> and have a single-node ES container running locally within no time.</p>
+<blockquote>
+<p>Note: Elastic, the company behind Elasticsearch, maintains its <a href="https://www.docker.elastic.co/">own registry</a> for Elastic products. It&#39;s recommended to use the images from that registry if you plan to use Elasticsearch.</p>
+</blockquote>
+<p>Let&#39;s first pull the image</p>
+<pre><code class="lang-bash">$ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+</code></pre>
+<p>and then run it in development mode by specifying ports and setting an environment variable that configures Elasticsearch cluster to run as a single-node</p>
+<pre><code class="lang-bash">$ docker run -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; docker.elastic.co/elasticsearch/elasticsearch:6.3.2
 
-$ curl 0.0.0.0:9200
+[2018-07-29T05:49:09,304][INFO ][o.e.n.Node               ] [] initializing ...
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] using [1] data paths, mounts [[/ (overlay)]], net usable_space [54.1gb], net total_space [62.7gb], types [overlay]
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] heap size [990.7mb], compressed ordinary object pointers [true]
+[2018-07-29T05:49:11,979][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-security]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-sql]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-upgrade]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-watcher]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-geoip]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-user-agent]
+[2018-07-29T05:49:17,659][INFO ][o.e.d.DiscoveryModule    ] [L1VMyzt] using discovery type [single-node]
+[2018-07-29T05:49:18,962][INFO ][o.e.n.Node               ] [L1VMyzt] initialized
+[2018-07-29T05:49:18,963][INFO ][o.e.n.Node               ] [L1VMyzt] starting ...
+[2018-07-29T05:49:19,218][INFO ][o.e.t.TransportService   ] [L1VMyzt] publish_address {172.17.0.2:9300}, bound_addresses {0.0.0.0:9300}
+[2018-07-29T05:49:19,302][INFO ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [L1VMyzt] publish_address {172.17.0.2:9200}, bound_addresses {0.0.0.0:9200}
+[2018-07-29T05:49:19,303][INFO ][o.e.n.Node               ] [L1VMyzt] started
+[2018-07-29T05:49:19,439][WARN ][o.e.x.s.a.s.m.NativeRoleMappingStore] [L1VMyzt] Failed to clear cache for realms [[]]
+[2018-07-29T05:49:19,542][INFO ][o.e.g.GatewayService     ] [L1VMyzt] recovered [0] indices into cluster_state
+</code></pre>
+<p>Once the service is running, in another terminal lets try making a request to the container to make sure everything&#39;s working as expected.</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:9200
 {
-  &quot;name&quot; : &quot;Ultra-Marine&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;name&quot; : &quot;ijJDAOm&quot;,
+  &quot;cluster_name&quot; : &quot;docker-cluster&quot;,
+  &quot;cluster_uuid&quot; : &quot;a_nSV3XmTCqpzYYzb-LhNw&quot;,
   &quot;version&quot; : {
-    &quot;number&quot; : &quot;2.1.1&quot;,
-    &quot;build_hash&quot; : &quot;40e2c53a6b6c2972b3d13846e450e66f4375bd71&quot;,
-    &quot;build_timestamp&quot; : &quot;2015-12-15T13:05:55Z&quot;,
+    &quot;number&quot; : &quot;6.3.2&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;053779d&quot;,
+    &quot;build_date&quot; : &quot;2018-07-20T05:20:23.451332Z&quot;,
     &quot;build_snapshot&quot; : false,
-    &quot;lucene_version&quot; : &quot;5.3.1&quot;
+    &quot;lucene_version&quot; : &quot;7.3.1&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;
   },
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
 </code></pre>
-<p>Note that if you are using Elasticsearch version 5 or higher you need to do the following to make it work.</p>
-<ol>
-<li>Increase the memory size of your docker-machine instance to at least 2gb.</li>
-<li>Do an SSH in your docker-machine instance by <code>docker-machine ssh</code> and run this command <code>sysctl -w vm.max_map_count=262144</code>. This will fix the max virtual memory areas error.</li>
-</ol>
 <p>While we are at it, let&#39;s get our Flask container running too. But before we get to that, we need a <code>Dockerfile</code>. In the last section, we used <code>python:3-onbuild</code> image as our base image. This time, however, apart from installing Python dependencies via <code>pip</code>, we want our application to also generate our minified Javascript file for production. For this, we&#39;ll require Nodejs. Since we need a custom build step, we&#39;ll start from the <code>ubuntu</code> base image to build our <code>Dockerfile</code> from scratch.</p>
 <blockquote>
 <p>Note: if you find that an existing image doesn&#39;t cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding <code>Dockerfile</code> on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.</p>

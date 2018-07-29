@@ -533,31 +533,62 @@ digitalwonderland/elasticsearch   Latest Elasticsearch with Marvel & Kibana     
 monsantoco/elasticsearch          ElasticSearch Docker image                      9                    [OK]
 ```
 
-Quite unsurprisingly, there exists an officially supported [image](https://hub.docker.com/_/elasticsearch/) for Elasticsearch. To get ES running, we can simply use `docker run` and have a single-node ES container running locally within no time.
+Quite unsurprisingly, there exists an officially supported [image](https://store.docker.com/images/elasticsearch) for Elasticsearch. To get ES running, we can simply use `docker run` and have a single-node ES container running locally within no time.
+
+> Note: Elastic, the company behind Elasticsearch, maintains its [own registry](https://www.docker.elastic.co/) for Elastic products. It's recommended to use the images from that registry if you plan to use Elasticsearch.
+
+Let's first pull the image
 
 ```bash
-$ docker run -dp 9200:9200 elasticsearch
-d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
+$ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+```
 
+and then run it in development mode by specifying ports and setting an environment variable that configures Elasticsearch cluster to run as a single-node
+
+```bash
+$ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+
+[2018-07-29T05:49:09,304][INFO ][o.e.n.Node               ] [] initializing ...
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] using [1] data paths, mounts [[/ (overlay)]], net usable_space [54.1gb], net total_space [62.7gb], types [overlay]
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] heap size [990.7mb], compressed ordinary object pointers [true]
+[2018-07-29T05:49:11,979][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-security]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-sql]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-upgrade]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-watcher]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-geoip]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-user-agent]
+[2018-07-29T05:49:17,659][INFO ][o.e.d.DiscoveryModule    ] [L1VMyzt] using discovery type [single-node]
+[2018-07-29T05:49:18,962][INFO ][o.e.n.Node               ] [L1VMyzt] initialized
+[2018-07-29T05:49:18,963][INFO ][o.e.n.Node               ] [L1VMyzt] starting ...
+[2018-07-29T05:49:19,218][INFO ][o.e.t.TransportService   ] [L1VMyzt] publish_address {172.17.0.2:9300}, bound_addresses {0.0.0.0:9300}
+[2018-07-29T05:49:19,302][INFO ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [L1VMyzt] publish_address {172.17.0.2:9200}, bound_addresses {0.0.0.0:9200}
+[2018-07-29T05:49:19,303][INFO ][o.e.n.Node               ] [L1VMyzt] started
+[2018-07-29T05:49:19,439][WARN ][o.e.x.s.a.s.m.NativeRoleMappingStore] [L1VMyzt] Failed to clear cache for realms [[]]
+[2018-07-29T05:49:19,542][INFO ][o.e.g.GatewayService     ] [L1VMyzt] recovered [0] indices into cluster_state
+```
+
+Once the service is running, in another terminal lets try making a request to the container to make sure everything's working as expected.
+
+```bash
 $ curl 0.0.0.0:9200
 {
-  "name" : "Ultra-Marine",
-  "cluster_name" : "elasticsearch",
+  "name" : "ijJDAOm",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "a_nSV3XmTCqpzYYzb-LhNw",
   "version" : {
-    "number" : "2.1.1",
-    "build_hash" : "40e2c53a6b6c2972b3d13846e450e66f4375bd71",
-    "build_timestamp" : "2015-12-15T13:05:55Z",
+    "number" : "6.3.2",
+    "build_flavor" : "default",
+    "build_type" : "tar",
+    "build_hash" : "053779d",
+    "build_date" : "2018-07-20T05:20:23.451332Z",
     "build_snapshot" : false,
-    "lucene_version" : "5.3.1"
+    "lucene_version" : "7.3.1",
+    "minimum_wire_compatibility_version" : "5.6.0",
+    "minimum_index_compatibility_version" : "5.0.0"
   },
   "tagline" : "You Know, for Search"
 }
 ```
-
-Note that if you are using Elasticsearch version 5 or higher you need to do the following to make it work.
-
-1. Increase the memory size of your docker-machine instance to at least 2gb.
-2. Do an SSH in your docker-machine instance by `docker-machine ssh` and run this command `sysctl -w vm.max_map_count=262144`. This will fix the max virtual memory areas error.
 
 While we are at it, let's get our Flask container running too. But before we get to that, we need a `Dockerfile`. In the last section, we used `python:3-onbuild` image as our base image. This time, however, apart from installing Python dependencies via `pip`, we want our application to also generate our minified Javascript file for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the `ubuntu` base image to build our `Dockerfile` from scratch.
 
