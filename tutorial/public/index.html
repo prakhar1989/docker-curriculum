@@ -1009,7 +1009,7 @@ Total trucks loaded:  733
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 root@53af252b771a:/opt/flask-app# exit
 </code></pre>
-<p>Wohoo! That works! Magically Docker made the correct host file entry in <code>/etc/hosts</code> which means that <code>es:9200</code> correctly resolves to the IP address of the ES container. Great! Let&#39;s launch our Flask container for real now -</p>
+<p>Wohoo! That works! On user-defined networks like foodtrucks-net, containers can not only communicate by IP address, but can also resolve a container name to an IP address. This capability is called <em>automatic service discovery</em>. Great! Let&#39;s launch our Flask container for real now -</p>
 <pre><code class="lang-bash">$ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
 852fc74de2954bb72471b858dce64d764181dca0cf7693fed201d76da33df794
 
