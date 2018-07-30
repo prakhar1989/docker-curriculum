@@ -952,6 +952,7 @@ Till now we've spent all our time exploring the Docker client. In the Docker eco
 1. [Docker Machine](https://docs.docker.com/machine/) - Create Docker hosts on your computer, on cloud providers, and inside your own data center
 2. [Docker Compose](https://docs.docker.com/compose/) - A tool for defining and running multi-container Docker applications.
 3. [Docker Swarm](https://docs.docker.com/swarm/) - A native clustering solution for Docker
+4. [Kubernetes](https://kubernetes.io) - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
 
 In this section, we are going to look at one of these tools, Docker Compose, and see how it can make dealing with multi-container apps easier.
 
@@ -966,27 +967,31 @@ The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum a
 
 It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
 
-So what is *Compose* used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called `docker-compose.yml` that can be used to bring up an application and the suite of services it depends on with just one command.
+So what is *Compose* used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called `docker-compose.yml` that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.
 
 Let's see if we can create a `docker-compose.yml` file for our SF-Foodtrucks app and evaluate whether Docker Compose lives up to its promise.
 
 The first step, however, is to install Docker Compose. If you're running Windows or Mac, Docker Compose is already installed as it comes in the Docker Toolbox. Linux users can easily get their hands on Docker Compose by following the [instructions](https://docs.docker.com/compose/install/) on the docs. Since Compose is written in Python, you can also simply do `pip install docker-compose`. Test your installation with -
 
 ```bash
-$ docker-compose version
-docker-compose version 1.7.1, build 0a9ab35
-docker-py version: 1.8.1
-CPython version: 2.7.9
-OpenSSL version: OpenSSL 1.0.1j 15 Oct 2014
+$ docker-compose --version
+docker-compose version 1.21.2, build a133471
 ```
 
-Now that we have it installed, we can jump on the next step i.e. the Docker Compose file `docker-compose.yml`. The syntax for the `yml` is quite simple and the repo already contains the docker-compose [file](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml) that we'll be using.
+Now that we have it installed, we can jump on the next step i.e. the Docker Compose file `docker-compose.yml`. The syntax for YAML is quite simple and the repo already contains the docker-compose [file](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml) that we'll be using.
 
 ```yaml
-version: "2"
+version: "3"
 services:
   es:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: es
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
   web:
     image: prakhar1989/foodtrucks-web
     command: python app.py
@@ -994,12 +999,14 @@ services:
       - "5000:5000"
     volumes:
       - .:/code
+volumes:
+  esdata1:
+    driver: local
 ```
 
-Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service, that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on the Docker Hub. For our Flask app, we refer to the image that we built at the beginning of this section.
+Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service, that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
 
-Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports.
-
+Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for `es` container so that the data we load persists between restarts. 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
 Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports are free. So if you have the Flask and ES containers running, lets turn them off.
@@ -1049,35 +1056,39 @@ Killing foodtrucks_web_1 ... done
 Killing foodtrucks_es_1 ... done
 
 $ docker-compose up -d
-Starting foodtrucks_es_1
-Starting foodtrucks_web_1
+Creating es               ... done
+Creating foodtrucks_web_1 ... done
 
 $ docker-compose ps
-      Name                    Command               State           Ports
-----------------------------------------------------------------------------------
-foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+      Name                    Command               State                Ports
+--------------------------------------------------------------------------------------------
+es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
 foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000->5000/tcp
 ```
 
 Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does *Compose* also create the network automatically? Good question! Let's find out.
 
-First off, let us stop the services from running. We can always bring them back up in just one command.
+First off, let us stop the services from running. We can always bring them back up in just one command. Data volumes will persist, so it’s possible to start the cluster again with the same data using docker-compose up. To destroy the cluster and the data volumes, just type `docker-compose down -v`.
 
 ```bash
-$ docker-compose stop
+$ docker-compose down -v
 Stopping foodtrucks_web_1 ... done
-Stopping foodtrucks_es_1 ... done
+Stopping es               ... done
+Removing foodtrucks_web_1 ... done
+Removing es               ... done
+Removing network foodtrucks_default
+Removing volume foodtrucks_esdata1
 ```
 
-While we're are at it, we'll also remove the `foodtrucks` network that we created last time. This should not be required since *Compose* would automatically manage this for us.
+While we're are at it, we'll also remove the `foodtrucks` network that we created last time.
 
 ```bash
-$ docker network rm foodtrucks
+$ docker network rm foodtrucks-net
 $ docker network ls
-NETWORK ID          NAME                DRIVER
-4eec273c054e        bridge              bridge
-9347ae8783bd        none                null
-54df57d7f493        host                host
+NETWORK ID          NAME                 DRIVER              SCOPE
+c2c695315b3a        bridge               bridge              local
+a875bec5d6fd        host                 host                local
+ead0e804a67b        none                 null                local
 ```
 
 Great! Now that we have a clean slate, let's re-run our services and see if *Compose* does it's magic.
@@ -1086,7 +1097,8 @@ Great! Now that we have a clean slate, let's re-run our services and see if *Com
 $ docker-compose up -d
 Recreating foodtrucks_es_1
 Recreating foodtrucks_web_1
-$ docker ps
+
+$ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
 f50bb33a3242        prakhar1989/foodtrucks-web   "python app.py"          14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
 e299ceeb4caa        elasticsearch                "/docker-entrypoint.s"   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
@@ -1097,45 +1109,73 @@ So far, so good. Time to see if any networks were created.
 ```bash
 $ docker network ls
 NETWORK ID          NAME                 DRIVER
-0c8b474a9241        bridge               bridge
-293a141faac3        foodtrucks_default   bridge
-b44db703cd69        host                 host
-0474c9517805        none                 null
+c2c695315b3a        bridge               bridge              local
+f3b80f381ed3        foodtrucks_default   bridge              local
+a875bec5d6fd        host                 host                local
+ead0e804a67b        none                 null                local
 ```
 
-You can see that compose went ahead and created a new network called `foodtrucks_default` and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name. Let's see if that information resides in `/etc/hosts`.
+You can see that compose went ahead and created a new network called `foodtrucks_default` and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name. 
 
 ```bash
 $ docker ps
-CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-bb72dcebd379        prakhar1989/foodtrucks-web   "python app.py"          20 hours ago        Up 19 hours         0.0.0.0:5000->5000/tcp   foodtrucks_web_1
-3338fc79be4b        elasticsearch                "/docker-entrypoint.s"   20 hours ago        Up 19 hours         9200/tcp, 9300/tcp       foodtrucks_es_1
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
+8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, 9300/tcp   es
+7640cec7feb7        prakhar1989/foodtrucks-web                            "python app.py"          About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 
-$ docker exec -it bb72dcebd379 bash
-root@bb72dcebd379:/opt/flask-app# cat /etc/hosts
-127.0.0.1	localhost
-::1	localhost ip6-localhost ip6-loopback
-fe00::0	ip6-localnet
-ff00::0	ip6-mcastprefix
-ff02::1	ip6-allnodes
-ff02::2	ip6-allrouters
-172.18.0.2	bb72dcebd379
+$ docker network inspect foodtrucks_default
+[
+    {
+        "Name": "foodtrucks_default",
+        "Id": "f3b80f381ed3e03b3d5e605e42c4a576e32d38ba24399e963d7dad848b3b4fe7",
+        "Created": "2018-07-30T03:36:06.0384826Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.19.0.0/16",
+                    "Gateway": "172.19.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": true,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "7640cec7feb7f5615eaac376271a93fb8bab2ce54c7257256bf16716e05c65a5": {
+                "Name": "foodtrucks_web_1",
+                "EndpointID": "b1aa3e735402abafea3edfbba605eb4617f81d94f1b5f8fcc566a874660a0266",
+                "MacAddress": "02:42:ac:13:00:02",
+                "IPv4Address": "172.19.0.2/16",
+                "IPv6Address": ""
+            },
+            "8c6bb7e818ec1f88c37f375c18f00beb030b31f4b10aee5a0952aad753314b57": {
+                "Name": "es",
+                "EndpointID": "649b3567d38e5e6f03fa6c004a4302508c14a5f2ac086ee6dcf13ddef936de7b",
+                "MacAddress": "02:42:ac:13:00:03",
+                "IPv4Address": "172.19.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {
+            "com.docker.compose.network": "default",
+            "com.docker.compose.project": "foodtrucks",
+            "com.docker.compose.version": "1.21.2"
+        }
+    }
+]
 ```
 
-Whoops! It turns out that this file has no idea what the `es` network is. So how is our app working? Let's see if can ping this hostname -
-
-```bash
-root@bb72dcebd379:/opt/flask-app# ping es
-PING es (172.18.0.3) 56(84) bytes of data.
-64 bytes from foodtrucks_es_1.foodtrucks_default (172.18.0.3): icmp_seq=1 ttl=64 time=0.049 ms
-64 bytes from foodtrucks_es_1.foodtrucks_default (172.18.0.3): icmp_seq=2 ttl=64 time=0.064 ms
-^C
---- es ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 999ms
-rtt min/avg/max/mdev = 0.049/0.056/0.064/0.010 ms
-```
-
-Voila! That works. So somehow, this container is magically able to ping `es` hostname.  It turns out that in Docker 1.10 a new networking system was added that does service discovery using a DNS server. If you're interested, you can read more about the [proposal](https://github.com/docker/libnetwork/issues/767) and [release notes](https://blog.docker.com/2016/02/docker-1-10/).
+So now we know why how our two containers are able to talk to each other.
 
 That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other [use-cases](https://docs.docker.com/compose/overview/#common-use-cases) of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!
 
