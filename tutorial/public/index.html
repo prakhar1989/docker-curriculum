@@ -1087,16 +1087,18 @@ services:
   web:
     image: prakhar1989/foodtrucks-web
     command: python app.py
+    depends_on:
+      - es
     ports:
       - &quot;5000:5000&quot;
     volumes:
-      - .:/code
+      - ./flask-app:/opt/flask-app
 volumes:
-  esdata1:
-    driver: local
+    esdata1:
+      driver: local
 </code></pre>
 <p>Let me breakdown what the file above means. At the parent level, we define the names of our services - <code>es</code> and <code>web</code>. For each service, that Docker needs to run, we can add additional parameters out of which <code>image</code> is required. For <code>es</code>, we just refer to the <code>elasticsearch</code> image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.</p>
-<p>Via other parameters such as <code>command</code> and <code>ports</code> we provide more information about the container. The <code>volumes</code> parameter specifies a mount point in our <code>web</code> container where the code will reside. This is purely optional and is useful if you need access to logs etc. Refer to the <a href="https://docs.docker.com/compose/compose-file">online reference</a> to learn more about the parameters this file supports. We also add volumes for <code>es</code> container so that the data we load persists between restarts. </p>
+<p>Via other parameters such as <code>command</code> and <code>ports</code> we provide more information about the container. The <code>volumes</code> parameter specifies a mount point in our <code>web</code> container where the code will reside. This is purely optional and is useful if you need access to logs etc. We&#39;ll later see how this can be useful during development. Refer to the <a href="https://docs.docker.com/compose/compose-file">online reference</a> to learn more about the parameters this file supports. We also add volumes for <code>es</code> container so that the data we load persists between restarts. We also specify <code>depends_on</code>, which tells docker to start the <code>es</code> container before <code>web</code>. You can read more about it <a href="https://docs.docker.com/compose/compose-file/#depends_on">here</a>.</p>
 <blockquote>
 <p>Note: You must be inside the directory with the <code>docker-compose.yml</code> file in order to execute most Compose commands.</p>
 </blockquote>
@@ -1241,7 +1243,104 @@ $ docker network inspect foodtrucks_default
     }
 ]
 </code></pre>
-<p>So now we know why how our two containers are able to talk to each other.</p>
+<h4 id="local-development-with-docker-compose">Local Development with Docker Compose</h4>
+<p>Before we jump to the next section, there&#39;s one last thing I wanted to cover about docker-compose. As I said before, docker-compose is really great for development and testing. So let&#39;s see how we can configure compose to make our lives easier during developement.</p>
+<p>Throughout this tutorial, we&#39;ve worked with readymade docker images. While we&#39;ve build images from scratch, we haven&#39;t touched any application code and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be thinking about is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected. I&#39;m sure that sounds super tedious. There has to be a better way. In this section, that&#39;s what we&#39;re going to explore.</p>
+<p>Lets see how we can make a change in Foodtrucks app we just ran. Make sure you have the app running,</p>
+<pre><code class="lang-bash">$ docker container ls
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
+5450ebedd03c        prakhar1989/foodtrucks-web                            &quot;python app.py&quot;          9 seconds ago       Up 6 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1
+05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   10 hours ago        Up 10 hours         0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
+</code></pre>
+<p>Now let&#39;s see if we can change this app to display a <code>Hello world!</code> message when a request is made to <code>/hello</code> route. Currently, the app responds with a 404.</p>
+<pre><code class="lang-bash">$ curl -I 0.0.0.0:5000/hello
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.2 Python/2.7.15rc1
+Date: Mon, 30 Jul 2018 15:34:38 GMT
+</code></pre>
+<p>Why does this happen? Since ours is a Flask app, we can see <a href=""><code>app.py</code></a> for answers. In Flask, routes are defined with @app.route syntax. In the file, you&#39;ll see that we only have three routes defined - <code>/</code>, <code>/debug</code> and <code>/search</code>. The <code>/</code> route renders the main app, the <code>debug</code> route is used to return some debug information and finally <code>search</code> is used by the app to query elasticsearch.</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:5000/debug
+{
+  &quot;msg&quot;: &quot;yellow open sfdata Ibkx7WYjSt-g8NZXOEtTMg 5 1 618 0 1.3mb 1.3mb\n&quot;,
+  &quot;status&quot;: &quot;success&quot;
+}
+</code></pre>
+<p>Given that context, how would we add a new route for <code>hello</code>? You guessed it! Let&#39;s open <code>flask-app/app.py</code> in our favorite editor and make the following change</p>
+<pre><code class="lang-python">@app.route(&#39;/&#39;)
+def index():
+  return render_template(&quot;index.html&quot;)
+
+# add a new hello route
+@app.route(&#39;/hello&#39;)
+def hello():
+  return &quot;hello world!&quot;
+</code></pre>
+<p>Now let&#39;s try making a request again</p>
+<pre><code class="lang-bash">$ curl -I 0.0.0.0:5000/hello
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.2 Python/2.7.15rc1
+Date: Mon, 30 Jul 2018 15:34:38 GMT
+</code></pre>
+<p>Oh no! That didn&#39;t work! What did we do wrong? While we did make the change in <code>app.py</code>, the file resides in our machine (or the host machine), but since Docker is running our containers based off the <code>prakhar1989/foodtrucks-web</code> image, it doesn&#39;t know about this change. To validate this, lets try the following - </p>
+<pre><code>$ docker-compose run web bash
+Starting es ... done
+root@581e351c82b0:/opt/flask-app# ls
+app.py        package-lock.json  requirements.txt  templates
+node_modules  package.json       static            webpack.config.js
+root@581e351c82b0:/opt/flask-app# grep hello app.py
+root@581e351c82b0:/opt/flask-app# exit
+</code></pre><p>What we&#39;re trying to do here is to validate that our changes are not in the <code>app.py</code> that&#39;s running in the container. We do this by running the command <code>docker compose run</code>, which is similar to its cousin <code>docker run</code> but takes additional arguments for the service (which is <code>web</code> in our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12">case</a>). As soon as we run <code>bash</code>, the shell opens in <code>/opt/flask-app</code> as specified in our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13">Dockerfile</a>. From the grep command we can see that our changes are not in the file.</p>
+<p>Lets see how we can fix it. First off, we need to tell docker compose to not use the image and instead use the files locally. We&#39;ll also set debug mode to <code>true</code> so that Flask knows to reload the server when <code>app.py</code> changes. Replace the <code>web</code> portion of the <code>docker-compose.yml</code> file like so:</p>
+<pre><code class="lang-yaml">version: &quot;3&quot;
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: es
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+  web:
+    build: . # replaced image with build
+    command: python app.py
+    environment:
+      - DEBUG=True  # set an env var for flask
+    depends_on:
+      - es
+    ports:
+      - &quot;5000:5000&quot;
+    volumes:
+      - ./flask-app:/opt/flask-app
+volumes:
+    esdata1:
+      driver: local
+</code></pre>
+<p>With that change (<a href="https://github.com/prakhar1989/FoodTrucks/commit/31368936de5959efaf4457a94c678d21e3eefbce">diff</a>), let&#39;s stop and start the containers.</p>
+<pre><code class="lang-bash">$ docker-compose down -v
+Stopping foodtrucks_web_1 ... done
+Stopping es               ... done
+Removing foodtrucks_web_1 ... done
+Removing es               ... done
+Removing network foodtrucks_default
+Removing volume foodtrucks_esdata1
+
+$ docker-compose up -d
+Creating network &quot;foodtrucks_default&quot; with the default driver
+Creating volume &quot;foodtrucks_esdata1&quot; with local driver
+Creating es ... done
+Creating foodtrucks_web_1 ... done
+</code></pre>
+<p>As a final step, lets make the change in <code>app.py</code> by adding a new route. Now we try to curl</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:5000/hello
+hello world
+</code></pre>
+<p>Wohoo! We get a valid response! Try playing around by making more changes in the app.</p>
 <p>That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other <a href="https://docs.docker.com/compose/overview/#common-use-cases">use-cases</a> of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="3-4-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
