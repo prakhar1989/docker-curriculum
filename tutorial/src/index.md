@@ -1180,11 +1180,11 @@ $ docker network inspect foodtrucks_default
 
 #### Local Development with Docker Compose
 
-Before we jump to the next section, there's one last thing I wanted to cover about docker-compose. As I said before, docker-compose is really great for development and testing. So let's see how we can configure compose to make our lives easier during developement.
+Before we jump to the next section, there's one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let's see how we can configure compose to make our lives easier during development.
 
-Throughout this tutorial, we've worked with readymade docker images. While we've build images from scratch, we haven't touched any application code and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be thinking about is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected. I'm sure that sounds super tedious. There has to be a better way. In this section, that's what we're going to explore.
+Throughout this tutorial, we've worked with readymade docker images. While we've built images from scratch, we haven't touched any application code yet and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be wondering is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected? I'm sure that sounds super tedious. There has to be a better way. In this section, that's what we're going to explore.
 
-Lets see how we can make a change in Foodtrucks app we just ran. Make sure you have the app running,
+Let's see how we can make a change in the Foodtrucks app we just ran. Make sure you have the app running,
 
 ```bash
 $ docker container ls
@@ -1307,7 +1307,7 @@ $ curl 0.0.0.0:5000/hello
 hello world
 ```
 
-Wohoo! We get a valid response! Try playing around by making more changes in the app.
+Wohoo! We get a valid response! Try playing around by making more changes in the app. 
 
 That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other [use-cases](https://docs.docker.com/compose/overview/#common-use-cases) of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!
 

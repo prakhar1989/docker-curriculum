@@ -1244,9 +1244,9 @@ $ docker network inspect foodtrucks_default
 ]
 </code></pre>
 <h4 id="local-development-with-docker-compose">Local Development with Docker Compose</h4>
-<p>Before we jump to the next section, there&#39;s one last thing I wanted to cover about docker-compose. As I said before, docker-compose is really great for development and testing. So let&#39;s see how we can configure compose to make our lives easier during developement.</p>
-<p>Throughout this tutorial, we&#39;ve worked with readymade docker images. While we&#39;ve build images from scratch, we haven&#39;t touched any application code and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be thinking about is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected. I&#39;m sure that sounds super tedious. There has to be a better way. In this section, that&#39;s what we&#39;re going to explore.</p>
-<p>Lets see how we can make a change in Foodtrucks app we just ran. Make sure you have the app running,</p>
+<p>Before we jump to the next section, there&#39;s one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let&#39;s see how we can configure compose to make our lives easier during development.</p>
+<p>Throughout this tutorial, we&#39;ve worked with readymade docker images. While we&#39;ve built images from scratch, we haven&#39;t touched any application code yet and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be wondering is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected? I&#39;m sure that sounds super tedious. There has to be a better way. In this section, that&#39;s what we&#39;re going to explore.</p>
+<p>Let&#39;s see how we can make a change in the Foodtrucks app we just ran. Make sure you have the app running,</p>
 <pre><code class="lang-bash">$ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
 5450ebedd03c        prakhar1989/foodtrucks-web                            &quot;python app.py&quot;          9 seconds ago       Up 6 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1
@@ -1340,7 +1340,7 @@ Creating foodtrucks_web_1 ... done
 <pre><code class="lang-bash">$ curl 0.0.0.0:5000/hello
 hello world
 </code></pre>
-<p>Wohoo! We get a valid response! Try playing around by making more changes in the app.</p>
+<p>Wohoo! We get a valid response! Try playing around by making more changes in the app. </p>
 <p>That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other <a href="https://docs.docker.com/compose/overview/#common-use-cases">use-cases</a> of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="3-4-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
