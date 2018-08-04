@@ -388,7 +388,7 @@
 <p><a href="#table-of-contents" class="top" id="preface">Top</a></p>
 <h2 id="preface">Preface</h2>
 <blockquote>
-<p>Note: This tutorial uses version <strong>1.12.0-rc2</strong> of Docker. If you find any part of the tutorial incompatible with a future version, please raise an <a href="https://github.com/prakhar1989/docker-curriculum/issues">issue</a>. Thanks!</p>
+<p>Note: This tutorial uses version <strong>18.05.0-ce</strong> of Docker. If you find any part of the tutorial incompatible with a future version, please raise an <a href="https://github.com/prakhar1989/docker-curriculum/issues">issue</a>. Thanks!</p>
 </blockquote>
 <p><a id="prerequisites"></a></p>
 <h3 id="prerequisites">Prerequisites</h3>
@@ -443,6 +443,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 305297d7a235        busybox             &quot;uptime&quot;            11 minutes ago      Exited (0) 11 minutes ago                       distracted_goldstine
 ff0a5c3750b9        busybox             &quot;sh&quot;                12 minutes ago      Exited (0) 12 minutes ago                       elated_ramanujan
+14e5bd11d164        hello-world         &quot;/hello&quot;            2 minutes ago       Exited (0) 2 minutes ago                        thirsty_euclid
 </code></pre>
 <p>So what we see above is a list of all containers that we ran. Do notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago.</p>
 <p>You&#39;re probably wondering if there is a way to run more than just one command in a container. Let&#39;s try that now:</p>
@@ -454,7 +455,7 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 </code></pre>
 <p>Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands.</p>
 <blockquote>
-<p><strong>Danger Zone</strong>: If you&#39;re feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container (type <code>exit</code> and press Enter) and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
+<p><strong>Danger Zone</strong>: If you&#39;re feeling particularly adventurous you can try <code>rm -rf bin</code> in the container. Make sure you run this command in the container and <strong>not</strong> in your laptop/desktop. Doing this will not make any other commands like <code>ls</code>, <code>echo</code> work. Once everything stops working, you can exit the container (type <code>exit</code> and press Enter) and then start it up again with the <code>docker run -it busybox sh</code> command. Since Docker creates a new container every time, everything should start working again.</p>
 </blockquote>
 <p>That concludes a whirlwind tour of the mighty <code>docker run</code> command, which would most likely be the command you&#39;ll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As we proceed further, we&#39;ll see a few more variants of <code>docker run</code>.</p>
 <p>Before we move ahead though, let&#39;s quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we&#39;ve exited by running <code>docker ps -a</code>. Throughout this tutorial, you&#39;ll run <code>docker run</code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I&#39;m done with them. To do that, you can run the <code>docker rm</code> command. Just copy the container IDs from above and paste them alongside the command.</p>
@@ -484,10 +485,10 @@ ff0a5c3750b9
 <p><a id="static-site"></a></p>
 <h3 id="2-1-static-sites">2.1 Static Sites</h3>
 <p>Let&#39;s start by taking baby-steps. The first thing we&#39;re going to look at is how we can run a dead-simple static website. We&#39;re going to pull a Docker image from Docker Hub, run the container and see how easy it is to run a webserver.</p>
-<p>Let&#39;s begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I&#39;ve already created for the purpose of this demo and hosted on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>.</p>
-<pre><code class="lang-bash">$ docker run prakhar1989/static-site
+<p>Let&#39;s begin. The image that we are going to use is a single-page <a href="http://github.com/prakhar1989/docker-curriculum">website</a> that I&#39;ve already created for the purpose of this demo and hosted on the <a href="https://hub.docker.com/r/prakhar1989/static-site/">registry</a> - <code>prakhar1989/static-site</code>. We can download and run the image directly in one go using <code>docker run</code>. As noted above, the <code>--rm</code> flag automatically removes the container when it exits.</p>
+<pre><code class="lang-bash">$ docker run --rm prakhar1989/static-site
 </code></pre>
-<p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine?</p>
+<p>Since the image doesn&#39;t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a <code>Nginx is running...</code> message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.</p>
 <p>Well in this case, the client is not exposing any ports so we need to re-run the <code>docker run</code> command to publish ports. While we&#39;re at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called <strong>detached</strong> mode.</p>
 <pre><code class="lang-bash">$ docker run -d -P --name static-site prakhar1989/static-site
 e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
@@ -506,7 +507,10 @@ e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
 Nginx is running...
 </code></pre>
 <p><img src="images/static.png" alt="static-site" title="static-site"></p>
-<p>To stop a detached container, run <code>docker stop</code> by giving the container ID.</p>
+<p>To stop a detached container, run <code>docker stop</code> by giving the container ID. In this case, we can use the name <code>static-site</code> we used to start the container.</p>
+<pre><code class="lang-bash">$ docker stop static-site
+static-site
+</code></pre>
 <p>I&#39;m sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you&#39;ve seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we&#39;ll be exploring in the next section.</p>
 <p><a id="docker-images"></a></p>
 <h3 id="2-2-docker-images">2.2 Docker Images</h3>
@@ -644,16 +648,13 @@ Login Succeeded
 <ul>
 <li>Click on &quot;Create New Application&quot; in the top right</li>
 <li>Give your app a memorable (but unique) name and provide an (optional) description</li>
-<li>In the <strong>New Environment</strong> screen, choose the <strong>Web Server Environment</strong>.</li>
-<li>The following screen is shown below. Choose <em>Docker</em> from the predefined configuration. You can leave the <em>Environment type</em> as it is. Click Next.</li>
+<li>In the <strong>New Environment</strong> screen, create a new environment and choose the <strong>Web Server Environment</strong>.</li>
+<li>Fill in the environment information by choosing a domain. This URL is what you&#39;ll share with your friends so make sure it&#39;s easy to remember.</li>
+<li>Under base configuration section. Choose <em>Docker</em> from the <em>predefined platform</em>.</li>
 </ul>
-<p><img src="images/eb-docker.png" alt="EB Environment Type" title="EB Environment Type"></p>
+<p><img src="images/eb-docker.jpeg" alt="EB Environment Type" title="EB Environment Type"></p>
 <ul>
-<li>This is where we need to tell EB about our image. Open the <code>Dockerrun.aws.json</code> <a href="https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json">file</a> located in the <code>flask-app</code> folder and edit the <code>Name</code> of the image to your image&#39;s name. Don&#39;t worry, I&#39;ll explain the contents of the file shortly. When you are done, click on the radio button for &quot;upload your own&quot; and choose this file.</li>
-<li>Next up, choose an environment name and a URL. This URL is what you&#39;ll share with your friends so make sure it&#39;s easy to remember.</li>
-<li>For now, we won&#39;t be making changes in the <em>Additional Resources</em> section. Click Next and move to <em>Configuration Details</em>.</li>
-<li>In this section, all you need to do is to check that the instance type is <code>t2.micro</code>. This is very important as this is the <strong>free</strong> instance by AWS. You can optionally choose a key-pair to login. If you don&#39;t know what that means, feel free to ignore this for now. We&#39;ll leave everything else to the default and forge ahead.</li>
-<li>We also don&#39;t need to provide any <em>Environment Tags</em> and <em>Permissions</em>, so without batting an eyelid, you can click Next twice in succession. At the end, the screen shows us the <em>Review</em> page. If everything looks good, go ahead and press the <strong>Launch</strong> button.</li>
+<li>Now we need upload our application code. But since our application is packaged in a Docker container, we just to tell EB about our contianer. Open the <code>Dockerrun.aws.json</code> <a href="https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json">file</a> located in the <code>flask-app</code> folder and edit the <code>Name</code> of the image to your image&#39;s name. Don&#39;t worry, I&#39;ll explain the contents of the file shortly. When you are done, click on the radio button for &quot;upload your own&quot; and choose this file.</li>
 <li>The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.</li>
 </ul>
 <p>While we wait, let&#39;s quickly see what the <code>Dockerrun.aws.json</code> file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.</p>
@@ -675,7 +676,7 @@ Login Succeeded
 <p>Hopefully by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.</p>
 <p><img src="images/eb-deploy.png" alt="EB deploy" title="EB deploy"></p>
 <p>Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs, too.</p>
-<p>Congratulations! You have deployed your first Docker application! That might seem like a lot of steps, but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of the pains of building and deploying applications in the cloud. I would encourage you to read the AWS <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html">documentation</a> on single-container Docker environments to get an idea of what features exist.</p>
+<p>Congratulations! You have deployed your first Docker application! That might seem like a lot of steps, but with the <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">command-line tool for EB</a> you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully you agree that Docker takes away a lot of the pains of building and deploying applications in the cloud. I would encourage you to read the AWS <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-singlecontainer-deploy.html">documentation</a> on single-container Docker environments to get an idea of what features exist.</p>
 <p>In the next (and final) part of the tutorial, we&#39;ll up the ante a bit and deploy an application that mimics the real-world more closely; an app with a persistent back-end storage tier. Let&#39;s get straight to it!</p>
 <p><a href="#table-of-contents" class="top" id="preface">Top</a>
 <a id="multi-container"></a></p>
@@ -689,6 +690,31 @@ Login Succeeded
 <p>The app that we&#39;re going to Dockerize is called SF Food Trucks. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service, but is not too complex for the purpose of this tutorial. This is what I came up with.</p>
 <p><img src="images/foodtrucks.png" alt="SF Food Trucks" title="SF Food Trucks"></p>
 <p>The app&#39;s backend is written in Python (Flask) and for search it uses <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>. Like everything else in this tutorial, the entire source is available on <a href="http://github.com/prakhar1989/FoodTrucks">Github</a>. We&#39;ll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.</p>
+<p>First up, lets clone the repository locally.</p>
+<pre><code class="lang-bash">$ git clone https://github.com/prakhar1989/FoodTrucks
+$ cd FoodTrucks
+$ tree -L 2
+.
+├── Dockerfile
+├── README.md
+├── aws-compose.yml
+├── docker-compose.yml
+├── flask-app
+│   ├── app.py
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── requirements.txt
+│   ├── static
+│   ├── templates
+│   └── webpack.config.js
+├── setup-aws-ecs.sh
+├── setup-docker.sh
+├── shot.png
+└── utils
+    ├── generate_geojson.py
+    └── trucks.geojson
+</code></pre>
+<p>The <code>flask-app</code> folder contains the Python application, while the <code>utils</code> folder has some utilities to load the data into Elasticsearch. The directory also contains some YAML files and a Dockerfile, all of which we&#39;ll see in greater detail as we progress through this tutorial. If you are curious, feel free to take a look at the files.</p>
 <p>Now that you&#39;re excited (hopefully), let&#39;s think of how we can Dockerize the app. We can see that the application consists of a Flask backend server and an Elasticsearch service. A natural way to split this app would be to have two containers - one running the Flask process and another running the Elasticsearch (ES) process. That way if our app becomes popular, we can scale it by adding more containers depending on where the bottleneck lies.</p>
 <p>Great, so we need two containers. That shouldn&#39;t be hard right? We&#39;ve already built our own Flask container in the previous section. And for Elasticsearch, let&#39;s see if we can find something on the hub.</p>
 <pre><code class="lang-bash">$ docker search elasticsearch
@@ -700,30 +726,65 @@ barnybug/elasticsearch            Latest Elasticsearch 1.7.2 and previous re... 
 digitalwonderland/elasticsearch   Latest Elasticsearch with Marvel &amp; Kibana       12                   [OK]
 monsantoco/elasticsearch          ElasticSearch Docker image                      9                    [OK]
 </code></pre>
-<p>Quite unsurprisingly, there exists an officially supported <a href="https://hub.docker.com/_/elasticsearch/">image</a> for Elasticsearch. To get ES running, we can simply use <code>docker run</code> and have a single-node ES container running locally within no time.</p>
-<pre><code class="lang-bash">$ docker run -dp 9200:9200 elasticsearch
-d582e031a005f41eea704cdc6b21e62e7a8a42021297ce7ce123b945ae3d3763
+<p>Quite unsurprisingly, there exists an officially supported <a href="https://store.docker.com/images/elasticsearch">image</a> for Elasticsearch. To get ES running, we can simply use <code>docker run</code> and have a single-node ES container running locally within no time.</p>
+<blockquote>
+<p>Note: Elastic, the company behind Elasticsearch, maintains its <a href="https://www.docker.elastic.co/">own registry</a> for Elastic products. It&#39;s recommended to use the images from that registry if you plan to use Elasticsearch.</p>
+</blockquote>
+<p>Let&#39;s first pull the image</p>
+<pre><code class="lang-bash">$ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+</code></pre>
+<p>and then run it in development mode by specifying ports and setting an environment variable that configures Elasticsearch cluster to run as a single-node.</p>
+<pre><code class="lang-bash">$ docker run -d --name es -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
+</code></pre>
+<p>As seen above, we use <code>--name es</code> to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running <code>docker container logs</code> with the container name (or ID) to inspect the logs. You should logs similar to below if Elasticsearch started successfully.</p>
+<blockquote>
+<p>Note: Elasticsearch takes a few seconds to start so you might need to wait before you see <code>initialized</code> in the logs.</p>
+</blockquote>
+<pre><code class="lang-bash">$ docker container ls
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+277451c15ec1        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   2 minutes ago       Up 2 minutes        0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es
 
-$ curl 0.0.0.0:9200
+$ docker container logs es
+[2018-07-29T05:49:09,304][INFO ][o.e.n.Node               ] [] initializing ...
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] using [1] data paths, mounts [[/ (overlay)]], net usable_space [54.1gb], net total_space [62.7gb], types [overlay]
+[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] heap size [990.7mb], compressed ordinary object pointers [true]
+[2018-07-29T05:49:11,979][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-security]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-sql]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-upgrade]
+[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-watcher]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-geoip]
+[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-user-agent]
+[2018-07-29T05:49:17,659][INFO ][o.e.d.DiscoveryModule    ] [L1VMyzt] using discovery type [single-node]
+[2018-07-29T05:49:18,962][INFO ][o.e.n.Node               ] [L1VMyzt] initialized
+[2018-07-29T05:49:18,963][INFO ][o.e.n.Node               ] [L1VMyzt] starting ...
+[2018-07-29T05:49:19,218][INFO ][o.e.t.TransportService   ] [L1VMyzt] publish_address {172.17.0.2:9300}, bound_addresses {0.0.0.0:9300}
+[2018-07-29T05:49:19,302][INFO ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [L1VMyzt] publish_address {172.17.0.2:9200}, bound_addresses {0.0.0.0:9200}
+[2018-07-29T05:49:19,303][INFO ][o.e.n.Node               ] [L1VMyzt] started
+[2018-07-29T05:49:19,439][WARN ][o.e.x.s.a.s.m.NativeRoleMappingStore] [L1VMyzt] Failed to clear cache for realms [[]]
+[2018-07-29T05:49:19,542][INFO ][o.e.g.GatewayService     ] [L1VMyzt] recovered [0] indices into cluster_state
+</code></pre>
+<p>Now, lets try to see if can send a request to the Elasticsearch container. We use the <code>9200</code> port to send a <code>cURL</code> request to the container.</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:9200
 {
-  &quot;name&quot; : &quot;Ultra-Marine&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;name&quot; : &quot;ijJDAOm&quot;,
+  &quot;cluster_name&quot; : &quot;docker-cluster&quot;,
+  &quot;cluster_uuid&quot; : &quot;a_nSV3XmTCqpzYYzb-LhNw&quot;,
   &quot;version&quot; : {
-    &quot;number&quot; : &quot;2.1.1&quot;,
-    &quot;build_hash&quot; : &quot;40e2c53a6b6c2972b3d13846e450e66f4375bd71&quot;,
-    &quot;build_timestamp&quot; : &quot;2015-12-15T13:05:55Z&quot;,
+    &quot;number&quot; : &quot;6.3.2&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;053779d&quot;,
+    &quot;build_date&quot; : &quot;2018-07-20T05:20:23.451332Z&quot;,
     &quot;build_snapshot&quot; : false,
-    &quot;lucene_version&quot; : &quot;5.3.1&quot;
+    &quot;lucene_version&quot; : &quot;7.3.1&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;
   },
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
 </code></pre>
-<p>Note that if you are using Elasticsearch version 5 or higher you need to do the following to make it work.</p>
-<ol>
-<li>Increase the memory size of your docker-machine instance to at least 2gb.</li>
-<li>Do an SSH in your docker-machine instance by <code>docker-machine ssh</code> and run this command <code>sysctl -w vm.max_map_count=262144</code>. This will fix the max virtual memory areas error.</li>
-</ol>
-<p>While we are at it, let&#39;s get our Flask container running too. But before we get to that, we need a <code>Dockerfile</code>. In the last section, we used <code>python:3-onbuild</code> image as our base image. This time, however, apart from installing Python dependencies via <code>pip</code>, we want our application to also generate our minified Javascript file for production. For this, we&#39;ll require Nodejs. Since we need a custom build step, we&#39;ll start from the <code>ubuntu</code> base image to build our <code>Dockerfile</code> from scratch.</p>
+<p>Sweet! It&#39;s looking good! While we are at it, let&#39;s get our Flask container running too. But before we get to that, we need a <code>Dockerfile</code>. In the last section, we used <code>python:3-onbuild</code> image as our base image. This time, however, apart from installing Python dependencies via <code>pip</code>, we want our application to also generate our minified Javascript file for production. For this, we&#39;ll require Nodejs. Since we need a custom build step, we&#39;ll start from the <code>ubuntu</code> base image to build our <code>Dockerfile</code> from scratch.</p>
 <blockquote>
 <p>Note: if you find that an existing image doesn&#39;t cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding <code>Dockerfile</code> on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.</p>
 </blockquote>
@@ -734,9 +795,9 @@ MAINTAINER Prakhar Srivastav &lt;prakhar@prakhar.me&gt;
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
-RUN apt-get -yqq install python-pip python-dev
-RUN apt-get -yqq install nodejs npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get -yqq install python-pip python-dev curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN apt-get install -yq nodejs
 
 # copy our application code
 ADD flask-app /opt/flask-app
@@ -753,13 +814,14 @@ EXPOSE 5000
 # start app
 CMD [ &quot;python&quot;, &quot;./app.py&quot; ]
 </code></pre>
-<p>Quite a few new things here so let&#39;s quickly go over this file. We start off with the <a href="https://wiki.ubuntu.com/LTS">Ubuntu LTS</a> base image and use the package manager <code>apt-get</code> to install the dependencies namely - Python and Node. The <code>yqq</code> flag is used to suppress output and assumes &quot;Yes&quot; to all prompt. We also create a symbolic link for the node binary to deal with backward compatibility issues.</p>
+<p>Quite a few new things here so let&#39;s quickly go over this file. We start off with the <a href="https://wiki.ubuntu.com/LTS">Ubuntu LTS</a> base image and use the package manager <code>apt-get</code> to install the dependencies namely - Python and Node. The <code>yqq</code> flag is used to suppress output and assumes &quot;Yes&quot; to all prompts.</p>
 <p>We then use the <code>ADD</code> command to copy our application into a new volume in the container - <code>/opt/flask-app</code>. This is where our code will reside. We also set this as our working directory, so that the following commands will be run in the context of this location. Now that our system-wide dependencies are installed, we get around to install app-specific ones. First off we tackle Node by installing the packages from npm and running the build command as defined in our <code>package.json</code> <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/package.json#L7-L9">file</a>. We finish the file off by installing the Python packages, exposing the port and defining the <code>CMD</code> to run as we did in the last section.</p>
 <p>Finally, we can go ahead, build the image and run the container (replace <code>prakhar1989</code> with your username below).</p>
-<pre><code class="lang-bash">$ docker build -t prakhar1989/foodtrucks-web .
+<pre><code class="lang-bash">$ git clone https://github.com/prakhar1989/FoodTrucks &amp;&amp; cd FoodTrucks
+$ docker build -t prakhar1989/foodtrucks-web .
 </code></pre>
 <p>In the first run, this will take some time as the Docker client will download the ubuntu image, run all the commands and prepare your image. Re-running <code>docker build</code> after any subsequent changes you make to the application code will almost be instantaneous. Now let&#39;s try running our app.</p>
-<pre><code class="lang-bash">$ docker run -P prakhar1989/foodtrucks-web
+<pre><code class="lang-bash">$ docker run -P --rm prakhar1989/foodtrucks-web
 Unable to connect to ES. Retying in 5 secs...
 Unable to connect to ES. Retying in 5 secs...
 Unable to connect to ES. Retying in 5 secs...
@@ -769,10 +831,10 @@ Out of retries. Bailing out...
 <p><a id="docker-network"></a></p>
 <h3 id="3-2-docker-network">3.2 Docker Network</h3>
 <p>Before we talk about the features Docker provides especially to deal with such scenarios, let&#39;s see if we can figure out a way to get around the problem. Hopefully this should give you an appreciation for the specific feature that we are going to study.</p>
-<p>Okay, so let&#39;s run <code>docker ps</code> and see what we have.</p>
-<pre><code class="lang-bash">$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
-e931ab24dedc        elasticsearch       &quot;/docker-entrypoint.s&quot;   2 seconds ago       Up 2 seconds        0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   cocky_spence
+<p>Okay, so let&#39;s run <code>docker container ls</code> (which is same as <code>docker ps</code>) and see what we have.</p>
+<pre><code class="lang-bash">$ docker container ls
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+277451c15ec1        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   17 minutes ago      Up 17 minutes       0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es
 </code></pre>
 <p>So we have one ES container running on <code>0.0.0.0:9200</code> port which we can directly access. If we can tell our Flask app to connect to this URL, it should be able to connect and talk to ES, right? Let&#39;s dig into our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/app.py#L7">Python code</a> and see how the connection details are defined.</p>
 <pre><code class="lang-python">es = Elasticsearch(host=&#39;es&#39;)
@@ -780,30 +842,42 @@ e931ab24dedc        elasticsearch       &quot;/docker-entrypoint.s&quot;   2 sec
 <p>To make this work, we need to tell the Flask container that the ES container is running on <code>0.0.0.0</code> host (the port by default is <code>9200</code>) and that should make it work, right? Unfortunately that is not correct since the IP <code>0.0.0.0</code> is the IP to access ES container from the <strong>host machine</strong> i.e. from my Mac. Another container will not be able to access this on the same IP address. Okay if not that IP, then which IP address should the ES container be accessible by? I&#39;m glad you asked this question.</p>
 <p>Now is a good time to start our exploration of networking in Docker. When docker is installed, it creates three networks automatically.</p>
 <pre><code class="lang-bash">$ docker network ls
-NETWORK ID          NAME                DRIVER
-075b9f628ccc        none                null
-be0f7178486c        host                host
-8022115322ec        bridge              bridge
+NETWORK ID          NAME                DRIVER              SCOPE
+c2c695315b3a        bridge              bridge              local
+a875bec5d6fd        host                host                local
+ead0e804a67b        none                null                local
 </code></pre>
 <p>The <strong>bridge</strong> network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let&#39;s inspect the network</p>
 <pre><code class="lang-bash">$ docker network inspect bridge
 [
     {
         &quot;Name&quot;: &quot;bridge&quot;,
-        &quot;Id&quot;: &quot;8022115322ec80613421b0282e7ee158ec41e16f565a3e86fa53496105deb2d7&quot;,
+        &quot;Id&quot;: &quot;c2c695315b3aaf8fc30530bb3c6b8f6692cedd5cc7579663f0550dfdd21c9a26&quot;,
+        &quot;Created&quot;: &quot;2018-07-28T20:32:39.405687265Z&quot;,
         &quot;Scope&quot;: &quot;local&quot;,
         &quot;Driver&quot;: &quot;bridge&quot;,
+        &quot;EnableIPv6&quot;: false,
         &quot;IPAM&quot;: {
             &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: null,
             &quot;Config&quot;: [
                 {
-                    &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;
+                    &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;
                 }
             ]
         },
+        &quot;Internal&quot;: false,
+        &quot;Attachable&quot;: false,
+        &quot;Ingress&quot;: false,
+        &quot;ConfigFrom&quot;: {
+            &quot;Network&quot;: &quot;&quot;
+        },
+        &quot;ConfigOnly&quot;: false,
         &quot;Containers&quot;: {
-            &quot;e931ab24dedc1640cddf6286d08f115a83897c88223058305460d7bd793c1947&quot;: {
-                &quot;EndpointID&quot;: &quot;66965e83bf7171daeb8652b39590b1f8c23d066ded16522daeb0128c9c25c189&quot;,
+            &quot;277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943&quot;: {
+                &quot;Name&quot;: &quot;es&quot;,
+                &quot;EndpointID&quot;: &quot;5c417a2fc6b13d8ec97b76bbd54aaf3ee2d48f328c3f7279ee335174fbb4d6bb&quot;,
                 &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
                 &quot;IPv4Address&quot;: &quot;172.17.0.2/16&quot;,
                 &quot;IPv6Address&quot;: &quot;&quot;
@@ -816,15 +890,13 @@ be0f7178486c        host                host
             &quot;com.docker.network.bridge.host_binding_ipv4&quot;: &quot;0.0.0.0&quot;,
             &quot;com.docker.network.bridge.name&quot;: &quot;docker0&quot;,
             &quot;com.docker.network.driver.mtu&quot;: &quot;1500&quot;
-        }
+        },
+        &quot;Labels&quot;: {}
     }
 ]
 </code></pre>
-<p>You can see that our container <code>e931ab24dedc</code> is listed under the <code>Containers</code> section in the output. What we also see is the IP address this container has been allotted - <code>172.17.0.2</code>. Is this the IP address that we&#39;re looking for? Let&#39;s find out by running our flask container and trying to access this IP.</p>
+<p>You can see that our container <code>277451c15ec1</code> is listed under the <code>Containers</code> section in the output. What we also see is the IP address this container has been allotted - <code>172.17.0.2</code>. Is this the IP address that we&#39;re looking for? Let&#39;s find out by running our flask container and trying to access this IP.</p>
 <pre><code class="lang-bash">$ docker run -it --rm prakhar1989/foodtrucks-web bash
-root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
-bash: curl: command not found
-root@35180ccc206a:/opt/flask-app# apt-get -yqq install curl
 root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
 {
   &quot;name&quot; : &quot;Jane Foster&quot;,
@@ -843,86 +915,88 @@ root@35180ccc206a:/opt/flask-app# exit
 <p>This should be fairly straightforward to you by now. We start the container in the interactive mode with the <code>bash</code> process. The <code>--rm</code> is a convenient flag for running one off commands since the container gets cleaned up when it&#39;s work is done. We try a <code>curl</code> but we need to install it first. Once we do that, we see that we can indeed talk to ES on <code>172.17.0.2:9200</code>. Awesome!</p>
 <p>Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach -</p>
 <ol>
-<li><p>We would need to a add an entry into the <code>/etc/hosts</code> file of the Flask container so that it knows that <code>es</code> hostname stands for <code>172.17.0.2</code>. If the IP keeps changing, manually editing this entry would be quite tedious.</p>
+<li><p>How do we tell the Flask container that <code>es</code> hostname stands for <code>172.17.0.2</code> or some other IP since the IP can change?</p>
 </li>
-<li><p>Since the <em>bridge</em> network is shared by every container by default, this method is <strong>not secure</strong>.</p>
+<li><p>Since the <em>bridge</em> network is shared by every container by default, this method is <strong>not secure</strong>. How do we isolate our network?</p>
 </li>
 </ol>
-<p>The good news that Docker has a great solution to this problem. It allows us to define our own networks while keeping them isolated. It also tackles the <code>/etc/hosts</code> problem and we&#39;ll quickly see how.</p>
+<p>The good news that Docker has a great answer to our questions. It allows us to define our own networks while keeping them isolated using the <code>docker network</code> command.</p>
 <p>Let&#39;s first go ahead and create our own network.</p>
-<pre><code class="lang-bash">$ docker network create foodtrucks
-1a3386375797001999732cb4c4e97b88172d983b08cd0addfcb161eed0c18d89
+<pre><code class="lang-bash">$ docker network create foodtrucks-net
+0815b2a3bb7a6608e850d05553cc0bda98187c4528d94621438f31d97a6fea3c
 
 $ docker network ls
-NETWORK ID          NAME                DRIVER
-1a3386375797        foodtrucks          bridge
-8022115322ec        bridge              bridge
-075b9f628ccc        none                null
-be0f7178486c        host                host
+NETWORK ID          NAME                DRIVER              SCOPE
+c2c695315b3a        bridge              bridge              local
+0815b2a3bb7a        foodtrucks-net      bridge              local
+a875bec5d6fd        host                host                local
+ead0e804a67b        none                null                local
 </code></pre>
-<p>The <code>network create</code> command creates a new <em>bridge</em> network, which is what we need at the moment. There are other kinds of networks that you can create, and you are encouraged to read about them in the official <a href="https://docs.docker.com/engine/userguide/networking/dockernetworks/">docs</a>.</p>
+<p>The <code>network create</code> command creates a new <em>bridge</em> network, which is what we need at the moment. In terms of Docker, a bridge network uses a software bridge which allows containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network. The Docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks cannot communicate directly with each other. There are other kinds of networks that you can create, and you are encouraged to read about them in the official <a href="https://docs.docker.com/engine/userguide/networking/dockernetworks/">docs</a>.</p>
 <p>Now that we have a network, we can launch our containers inside this network using the <code>--net</code> flag. Let&#39;s do that - but first, we will stop our ES container that is running in the bridge (default) network.</p>
-<pre><code class="lang-bash">$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
-e931ab24dedc        elasticsearch       &quot;/docker-entrypoint.s&quot;   4 hours ago         Up 4 hours          0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   cocky_spence
+<pre><code class="lang-bash">$ docker container stop es
+es
 
-$ docker stop e931ab24dedc
-e931ab24dedc
+$ docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+13d6415f73c8d88bddb1f236f584b63dbaf2c3051f09863a3f1ba219edba3673
 
-$ docker run -dp 9200:9200 --net foodtrucks --name es elasticsearch
-2c0b96f9b8030f038e40abea44c2d17b0a8edda1354a08166c33e6d351d0c651
-
-$ docker network inspect foodtrucks
+$ docker network inspect foodtrucks-net
 [
     {
-        &quot;Name&quot;: &quot;foodtrucks&quot;,
-        &quot;Id&quot;: &quot;1a3386375797001999732cb4c4e97b88172d983b08cd0addfcb161eed0c18d89&quot;,
+        &quot;Name&quot;: &quot;foodtrucks-net&quot;,
+        &quot;Id&quot;: &quot;0815b2a3bb7a6608e850d05553cc0bda98187c4528d94621438f31d97a6fea3c&quot;,
+        &quot;Created&quot;: &quot;2018-07-30T00:01:29.1500984Z&quot;,
         &quot;Scope&quot;: &quot;local&quot;,
         &quot;Driver&quot;: &quot;bridge&quot;,
+        &quot;EnableIPv6&quot;: false,
         &quot;IPAM&quot;: {
             &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: {},
             &quot;Config&quot;: [
-                {}
+                {
+                    &quot;Subnet&quot;: &quot;172.18.0.0/16&quot;,
+                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;
+                }
             ]
         },
+        &quot;Internal&quot;: false,
+        &quot;Attachable&quot;: false,
+        &quot;Ingress&quot;: false,
+        &quot;ConfigFrom&quot;: {
+            &quot;Network&quot;: &quot;&quot;
+        },
+        &quot;ConfigOnly&quot;: false,
         &quot;Containers&quot;: {
-            &quot;2c0b96f9b8030f038e40abea44c2d17b0a8edda1354a08166c33e6d351d0c651&quot;: {
-                &quot;EndpointID&quot;: &quot;15eabc7989ef78952fb577d0013243dae5199e8f5c55f1661606077d5b78e72a&quot;,
+            &quot;13d6415f73c8d88bddb1f236f584b63dbaf2c3051f09863a3f1ba219edba3673&quot;: {
+                &quot;Name&quot;: &quot;es&quot;,
+                &quot;EndpointID&quot;: &quot;29ba2d33f9713e57eb6b38db41d656e4ee2c53e4a2f7cf636bdca0ec59cd3aa7&quot;,
                 &quot;MacAddress&quot;: &quot;02:42:ac:12:00:02&quot;,
                 &quot;IPv4Address&quot;: &quot;172.18.0.2/16&quot;,
                 &quot;IPv6Address&quot;: &quot;&quot;
             }
         },
-        &quot;Options&quot;: {}
+        &quot;Options&quot;: {},
+        &quot;Labels&quot;: {}
     }
 ]
 </code></pre>
-<p>We&#39;ve done the same thing as earlier but this time we gave our ES container a name <code>es</code>. Now before we try to run our flask container, let&#39;s inspect what happens when we launch in a network.</p>
-<pre><code class="lang-bash">$ docker run -it --rm --net foodtrucks prakhar1989/foodtrucks-web bash
-root@53af252b771a:/opt/flask-app# cat /etc/hosts
-172.18.0.3    53af252b771a
-127.0.0.1    localhost
-::1    localhost ip6-localhost ip6-loopback
-fe00::0    ip6-localnet
-ff00::0    ip6-mcastprefix
-ff02::1    ip6-allnodes
-ff02::2    ip6-allrouters
-172.18.0.2    es
-172.18.0.2    es.foodtrucks
-
-root@53af252b771a:/opt/flask-app# curl es:9200
-bash: curl: command not found
-root@53af252b771a:/opt/flask-app# apt-get -yqq install curl
-root@53af252b771a:/opt/flask-app# curl es:9200
+<p>As you can see, our <code>es</code> container is now running inside the <code>foodtrucks-net</code> bridge network. Now let&#39;s inspect what happens when we launch in our <code>foodtrucks-net</code> network.</p>
+<pre><code class="lang-bash">$ docker run -it --rm --net foodtrucks-net prakhar1989/foodtrucks-web bash
+root@9d2722cf282c:/opt/flask-app# curl es:9200
 {
-  &quot;name&quot; : &quot;Doctor Leery&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;name&quot; : &quot;wWALl9M&quot;,
+  &quot;cluster_name&quot; : &quot;docker-cluster&quot;,
+  &quot;cluster_uuid&quot; : &quot;BA36XuOiRPaghPNBLBHleQ&quot;,
   &quot;version&quot; : {
-    &quot;number&quot; : &quot;2.1.1&quot;,
-    &quot;build_hash&quot; : &quot;40e2c53a6b6c2972b3d13846e450e66f4375bd71&quot;,
-    &quot;build_timestamp&quot; : &quot;2015-12-15T13:05:55Z&quot;,
+    &quot;number&quot; : &quot;6.3.2&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;053779d&quot;,
+    &quot;build_date&quot; : &quot;2018-07-20T05:20:23.451332Z&quot;,
     &quot;build_snapshot&quot; : false,
-    &quot;lucene_version&quot; : &quot;5.3.1&quot;
+    &quot;lucene_version&quot; : &quot;7.3.1&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;
   },
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
@@ -935,14 +1009,14 @@ Total trucks loaded:  733
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 root@53af252b771a:/opt/flask-app# exit
 </code></pre>
-<p>Wohoo! That works! Magically Docker made the correct host file entry in <code>/etc/hosts</code> which means that <code>es:9200</code> correctly resolves to the IP address of the ES container. Great! Let&#39;s launch our Flask container for real now -</p>
-<pre><code class="lang-bash">$ docker run -d --net foodtrucks -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
-2a1b77e066e646686f669bab4759ec1611db359362a031667cacbe45c3ddb413
+<p>Wohoo! That works! On user-defined networks like foodtrucks-net, containers can not only communicate by IP address, but can also resolve a container name to an IP address. This capability is called <em>automatic service discovery</em>. Great! Let&#39;s launch our Flask container for real now -</p>
+<pre><code class="lang-bash">$ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+852fc74de2954bb72471b858dce64d764181dca0cf7693fed201d76da33df794
 
-$ docker ps
-CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                              NAMES
-2a1b77e066e6        prakhar1989/foodtrucks-web   &quot;python ./app.py&quot;        2 seconds ago       Up 1 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks-web
-2c0b96f9b803        elasticsearch                &quot;/docker-entrypoint.s&quot;   21 minutes ago      Up 21 minutes       0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
+$ docker container ls
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                                            NAMES
+852fc74de295        prakhar1989/foodtrucks-web                            &quot;python ./app.py&quot;        About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp                           foodtrucks-web
+13d6415f73c8        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   17 minutes ago       Up 17 minutes       0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es
 
 $ curl -I 0.0.0.0:5000
 HTTP/1.0 200 OK
@@ -958,13 +1032,13 @@ Date: Sun, 10 Jan 2016 23:58:53 GMT
 docker build -t prakhar1989/foodtrucks-web .
 
 # create the network
-docker network create foodtrucks
+docker network create foodtrucks-net
 
 # start the ES container
-docker run -d --net foodtrucks -p 9200:9200 -p 9300:9300 --name es elasticsearch
+docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; docker.elastic.co/elasticsearch/elasticsearch:6.3.2
 
 # start the flask app container
-docker run -d --net foodtrucks -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
 </code></pre>
 <p>Now imagine you are distributing your app to a friend, or running on a server that has docker installed. You can get a whole app running with just one command!</p>
 <pre><code class="lang-bash">$ git clone https://github.com/prakhar1989/FoodTrucks
@@ -972,9 +1046,6 @@ $ cd FoodTrucks
 $ ./setup-docker.sh
 </code></pre>
 <p>And that&#39;s it! If you ask me, I find this to be an extremely awesome, and a powerful way of sharing and running your applications!</p>
-<p><a id="docker-links"></a></p>
-<h5 id="docker-links">Docker Links</h5>
-<p>Before we leave this section though, I should mention that <code>docker network</code> is a relatively new feature - it was part of Docker 1.9 <a href="https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/">release</a>. Before <code>network</code> came along, links were the accepted way of getting containers to talk to each other. According to the official <a href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/">docs</a>, linking is expected to be deprecated in future releases. In case you stumble across tutorials or blog posts that use <code>link</code> to bridge containers, remember to use <code>network</code> instead.</p>
 <p><a id="docker-compose"></a></p>
 <h3 id="3-3-docker-compose">3.3 Docker Compose</h3>
 <p>Till now we&#39;ve spent all our time exploring the Docker client. In the Docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. A few of them are -</p>
@@ -982,40 +1053,52 @@ $ ./setup-docker.sh
 <li><a href="https://docs.docker.com/machine/">Docker Machine</a> - Create Docker hosts on your computer, on cloud providers, and inside your own data center</li>
 <li><a href="https://docs.docker.com/compose/">Docker Compose</a> - A tool for defining and running multi-container Docker applications.</li>
 <li><a href="https://docs.docker.com/swarm/">Docker Swarm</a> - A native clustering solution for Docker</li>
+<li><a href="https://kubernetes.io">Kubernetes</a> - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</li>
 </ol>
 <p>In this section, we are going to look at one of these tools, Docker Compose, and see how it can make dealing with multi-container apps easier.</p>
 <p>The background story of Docker Compose is quite interesting. Roughly two years ago, a company called OrchardUp launched a tool called Fig. The idea behind Fig was to make isolated development environments work with Docker. The project was very well received on <a href="https://news.ycombinator.com/item?id=7132044">Hacker News</a> - I oddly remember reading about it but didn&#39;t quite get the hang of it.</p>
 <p>The <a href="https://news.ycombinator.com/item?id=7133449">first comment</a> on the forum actually does a good job of explaining what Fig is all about.</p>
 <blockquote>
 <p>So really at this point, that&#39;s what Docker is about: running processes. Now Docker offers a quite rich API to run the processes: shared volumes (directories) between containers (i.e. running images), forward port from the host to the container, display logs, and so on.  But that&#39;s it: Docker as of now, remains at the process level.</p>
+</blockquote>
+<blockquote>
 <p>While it provides options to orchestrate multiple containers to create a single &quot;app&quot;, it doesn&#39;t address the managemement of such group of containers as a single entity.
 And that&#39;s where tools such as Fig come in: talking about a group of containers as a single entity. Think &quot;run an app&quot; (i.e. &quot;run an orchestrated cluster of containers&quot;) instead of &quot;run a container&quot;.</p>
 </blockquote>
 <p>It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.</p>
-<p>So what is <em>Compose</em> used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called <code>docker-compose.yml</code> that can be used to bring up an application and the suite of services it depends on with just one command.</p>
+<p>So what is <em>Compose</em> used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called <code>docker-compose.yml</code> that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.</p>
 <p>Let&#39;s see if we can create a <code>docker-compose.yml</code> file for our SF-Foodtrucks app and evaluate whether Docker Compose lives up to its promise.</p>
 <p>The first step, however, is to install Docker Compose. If you&#39;re running Windows or Mac, Docker Compose is already installed as it comes in the Docker Toolbox. Linux users can easily get their hands on Docker Compose by following the <a href="https://docs.docker.com/compose/install/">instructions</a> on the docs. Since Compose is written in Python, you can also simply do <code>pip install docker-compose</code>. Test your installation with -</p>
-<pre><code class="lang-bash">$ docker-compose version
-docker-compose version 1.7.1, build 0a9ab35
-docker-py version: 1.8.1
-CPython version: 2.7.9
-OpenSSL version: OpenSSL 1.0.1j 15 Oct 2014
+<pre><code class="lang-bash">$ docker-compose --version
+docker-compose version 1.21.2, build a133471
 </code></pre>
-<p>Now that we have it installed, we can jump on the next step i.e. the Docker Compose file <code>docker-compose.yml</code>. The syntax for the <code>yml</code> is quite simple and the repo already contains the docker-compose <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml">file</a> that we&#39;ll be using.</p>
-<pre><code class="lang-yaml">version: &quot;2&quot;
+<p>Now that we have it installed, we can jump on the next step i.e. the Docker Compose file <code>docker-compose.yml</code>. The syntax for YAML is quite simple and the repo already contains the docker-compose <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml">file</a> that we&#39;ll be using.</p>
+<pre><code class="lang-yaml">version: &quot;3&quot;
 services:
   es:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: es
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
   web:
     image: prakhar1989/foodtrucks-web
     command: python app.py
+    depends_on:
+      - es
     ports:
       - &quot;5000:5000&quot;
     volumes:
-      - .:/code
+      - ./flask-app:/opt/flask-app
+volumes:
+    esdata1:
+      driver: local
 </code></pre>
-<p>Let me breakdown what the file above means. At the parent level, we define the names of our services - <code>es</code> and <code>web</code>. For each service, that Docker needs to run, we can add additional parameters out of which <code>image</code> is required. For <code>es</code>, we just refer to the <code>elasticsearch</code> image available on the Docker Hub. For our Flask app, we refer to the image that we built at the beginning of this section.</p>
-<p>Via other parameters such as <code>command</code> and <code>ports</code> we provide more information about the container. The <code>volumes</code> parameter specifies a mount point in our <code>web</code> container where the code will reside. This is purely optional and is useful if you need access to logs etc. Refer to the <a href="https://docs.docker.com/compose/compose-file">online reference</a> to learn more about the parameters this file supports.</p>
+<p>Let me breakdown what the file above means. At the parent level, we define the names of our services - <code>es</code> and <code>web</code>. For each service, that Docker needs to run, we can add additional parameters out of which <code>image</code> is required. For <code>es</code>, we just refer to the <code>elasticsearch</code> image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.</p>
+<p>Via other parameters such as <code>command</code> and <code>ports</code> we provide more information about the container. The <code>volumes</code> parameter specifies a mount point in our <code>web</code> container where the code will reside. This is purely optional and is useful if you need access to logs etc. We&#39;ll later see how this can be useful during development. Refer to the <a href="https://docs.docker.com/compose/compose-file">online reference</a> to learn more about the parameters this file supports. We also add volumes for <code>es</code> container so that the data we load persists between restarts. We also specify <code>depends_on</code>, which tells docker to start the <code>es</code> container before <code>web</code>. You can read more about it <a href="https://docs.docker.com/compose/compose-file/#depends_on">here</a>.</p>
 <blockquote>
 <p>Note: You must be inside the directory with the <code>docker-compose.yml</code> file in order to execute most Compose commands.</p>
 </blockquote>
@@ -1058,34 +1141,39 @@ Killing foodtrucks_web_1 ... done
 Killing foodtrucks_es_1 ... done
 
 $ docker-compose up -d
-Starting foodtrucks_es_1
-Starting foodtrucks_web_1
+Creating es               ... done
+Creating foodtrucks_web_1 ... done
 
 $ docker-compose ps
-      Name                    Command               State           Ports
-----------------------------------------------------------------------------------
-foodtrucks_es_1    /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+      Name                    Command               State                Ports
+--------------------------------------------------------------------------------------------
+es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200-&gt;9200/tcp, 9300/tcp
 foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000-&gt;5000/tcp
 </code></pre>
 <p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does <em>Compose</em> also create the network automatically? Good question! Let&#39;s find out.</p>
-<p>First off, let us stop the services from running. We can always bring them back up in just one command.</p>
-<pre><code class="lang-bash">$ docker-compose stop
+<p>First off, let us stop the services from running. We can always bring them back up in just one command. Data volumes will persist, so it’s possible to start the cluster again with the same data using docker-compose up. To destroy the cluster and the data volumes, just type <code>docker-compose down -v</code>.</p>
+<pre><code class="lang-bash">$ docker-compose down -v
 Stopping foodtrucks_web_1 ... done
-Stopping foodtrucks_es_1 ... done
+Stopping es               ... done
+Removing foodtrucks_web_1 ... done
+Removing es               ... done
+Removing network foodtrucks_default
+Removing volume foodtrucks_esdata1
 </code></pre>
-<p>While we&#39;re are at it, we&#39;ll also remove the <code>foodtrucks</code> network that we created last time. This should not be required since <em>Compose</em> would automatically manage this for us.</p>
-<pre><code class="lang-bash">$ docker network rm foodtrucks
+<p>While we&#39;re are at it, we&#39;ll also remove the <code>foodtrucks</code> network that we created last time.</p>
+<pre><code class="lang-bash">$ docker network rm foodtrucks-net
 $ docker network ls
-NETWORK ID          NAME                DRIVER
-4eec273c054e        bridge              bridge
-9347ae8783bd        none                null
-54df57d7f493        host                host
+NETWORK ID          NAME                 DRIVER              SCOPE
+c2c695315b3a        bridge               bridge              local
+a875bec5d6fd        host                 host                local
+ead0e804a67b        none                 null                local
 </code></pre>
 <p>Great! Now that we have a clean slate, let&#39;s re-run our services and see if <em>Compose</em> does it&#39;s magic.</p>
 <pre><code class="lang-bash">$ docker-compose up -d
 Recreating foodtrucks_es_1
 Recreating foodtrucks_web_1
-$ docker ps
+
+$ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
 f50bb33a3242        prakhar1989/foodtrucks-web   &quot;python app.py&quot;          14 seconds ago      Up 13 seconds       0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1
 e299ceeb4caa        elasticsearch                &quot;/docker-entrypoint.s&quot;   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
@@ -1093,38 +1181,166 @@ e299ceeb4caa        elasticsearch                &quot;/docker-entrypoint.s&quot
 <p>So far, so good. Time to see if any networks were created.</p>
 <pre><code class="lang-bash">$ docker network ls
 NETWORK ID          NAME                 DRIVER
-0c8b474a9241        bridge               bridge
-293a141faac3        foodtrucks_default   bridge
-b44db703cd69        host                 host
-0474c9517805        none                 null
+c2c695315b3a        bridge               bridge              local
+f3b80f381ed3        foodtrucks_default   bridge              local
+a875bec5d6fd        host                 host                local
+ead0e804a67b        none                 null                local
 </code></pre>
-<p>You can see that compose went ahead and created a new network called <code>foodtrucks_default</code> and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name. Let&#39;s see if that information resides in <code>/etc/hosts</code>.</p>
+<p>You can see that compose went ahead and created a new network called <code>foodtrucks_default</code> and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name. </p>
 <pre><code class="lang-bash">$ docker ps
-CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-bb72dcebd379        prakhar1989/foodtrucks-web   &quot;python app.py&quot;          20 hours ago        Up 19 hours         0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1
-3338fc79be4b        elasticsearch                &quot;/docker-entrypoint.s&quot;   20 hours ago        Up 19 hours         9200/tcp, 9300/tcp       foodtrucks_es_1
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
+8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   About a minute ago   Up About a minute   0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
+7640cec7feb7        prakhar1989/foodtrucks-web                            &quot;python app.py&quot;          About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1
 
-$ docker exec -it bb72dcebd379 bash
-root@bb72dcebd379:/opt/flask-app# cat /etc/hosts
-127.0.0.1    localhost
-::1    localhost ip6-localhost ip6-loopback
-fe00::0    ip6-localnet
-ff00::0    ip6-mcastprefix
-ff02::1    ip6-allnodes
-ff02::2    ip6-allrouters
-172.18.0.2    bb72dcebd379
+$ docker network inspect foodtrucks_default
+[
+    {
+        &quot;Name&quot;: &quot;foodtrucks_default&quot;,
+        &quot;Id&quot;: &quot;f3b80f381ed3e03b3d5e605e42c4a576e32d38ba24399e963d7dad848b3b4fe7&quot;,
+        &quot;Created&quot;: &quot;2018-07-30T03:36:06.0384826Z&quot;,
+        &quot;Scope&quot;: &quot;local&quot;,
+        &quot;Driver&quot;: &quot;bridge&quot;,
+        &quot;EnableIPv6&quot;: false,
+        &quot;IPAM&quot;: {
+            &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: null,
+            &quot;Config&quot;: [
+                {
+                    &quot;Subnet&quot;: &quot;172.19.0.0/16&quot;,
+                    &quot;Gateway&quot;: &quot;172.19.0.1&quot;
+                }
+            ]
+        },
+        &quot;Internal&quot;: false,
+        &quot;Attachable&quot;: true,
+        &quot;Ingress&quot;: false,
+        &quot;ConfigFrom&quot;: {
+            &quot;Network&quot;: &quot;&quot;
+        },
+        &quot;ConfigOnly&quot;: false,
+        &quot;Containers&quot;: {
+            &quot;7640cec7feb7f5615eaac376271a93fb8bab2ce54c7257256bf16716e05c65a5&quot;: {
+                &quot;Name&quot;: &quot;foodtrucks_web_1&quot;,
+                &quot;EndpointID&quot;: &quot;b1aa3e735402abafea3edfbba605eb4617f81d94f1b5f8fcc566a874660a0266&quot;,
+                &quot;MacAddress&quot;: &quot;02:42:ac:13:00:02&quot;,
+                &quot;IPv4Address&quot;: &quot;172.19.0.2/16&quot;,
+                &quot;IPv6Address&quot;: &quot;&quot;
+            },
+            &quot;8c6bb7e818ec1f88c37f375c18f00beb030b31f4b10aee5a0952aad753314b57&quot;: {
+                &quot;Name&quot;: &quot;es&quot;,
+                &quot;EndpointID&quot;: &quot;649b3567d38e5e6f03fa6c004a4302508c14a5f2ac086ee6dcf13ddef936de7b&quot;,
+                &quot;MacAddress&quot;: &quot;02:42:ac:13:00:03&quot;,
+                &quot;IPv4Address&quot;: &quot;172.19.0.3/16&quot;,
+                &quot;IPv6Address&quot;: &quot;&quot;
+            }
+        },
+        &quot;Options&quot;: {},
+        &quot;Labels&quot;: {
+            &quot;com.docker.compose.network&quot;: &quot;default&quot;,
+            &quot;com.docker.compose.project&quot;: &quot;foodtrucks&quot;,
+            &quot;com.docker.compose.version&quot;: &quot;1.21.2&quot;
+        }
+    }
+]
 </code></pre>
-<p>Whoops! It turns out that this file has no idea what the <code>es</code> network is. So how is our app working? Let&#39;s see if can ping this hostname -</p>
-<pre><code class="lang-bash">root@bb72dcebd379:/opt/flask-app# ping es
-PING es (172.18.0.3) 56(84) bytes of data.
-64 bytes from foodtrucks_es_1.foodtrucks_default (172.18.0.3): icmp_seq=1 ttl=64 time=0.049 ms
-64 bytes from foodtrucks_es_1.foodtrucks_default (172.18.0.3): icmp_seq=2 ttl=64 time=0.064 ms
-^C
---- es ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 999ms
-rtt min/avg/max/mdev = 0.049/0.056/0.064/0.010 ms
+<h4 id="local-development-with-docker-compose">Local Development with Docker Compose</h4>
+<p>Before we jump to the next section, there&#39;s one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let&#39;s see how we can configure compose to make our lives easier during development.</p>
+<p>Throughout this tutorial, we&#39;ve worked with readymade docker images. While we&#39;ve built images from scratch, we haven&#39;t touched any application code yet and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be wondering is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes works as expected? I&#39;m sure that sounds super tedious. There has to be a better way. In this section, that&#39;s what we&#39;re going to explore.</p>
+<p>Let&#39;s see how we can make a change in the Foodtrucks app we just ran. Make sure you have the app running,</p>
+<pre><code class="lang-bash">$ docker container ls
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
+5450ebedd03c        prakhar1989/foodtrucks-web                            &quot;python app.py&quot;          9 seconds ago       Up 6 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1
+05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   10 hours ago        Up 10 hours         0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
 </code></pre>
-<p>Voila! That works. So somehow, this container is magically able to ping <code>es</code> hostname.  It turns out that in Docker 1.10 a new networking system was added that does service discovery using a DNS server. If you&#39;re interested, you can read more about the <a href="https://github.com/docker/libnetwork/issues/767">proposal</a> and <a href="https://blog.docker.com/2016/02/docker-1-10/">release notes</a>.</p>
+<p>Now let&#39;s see if we can change this app to display a <code>Hello world!</code> message when a request is made to <code>/hello</code> route. Currently, the app responds with a 404.</p>
+<pre><code class="lang-bash">$ curl -I 0.0.0.0:5000/hello
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.2 Python/2.7.15rc1
+Date: Mon, 30 Jul 2018 15:34:38 GMT
+</code></pre>
+<p>Why does this happen? Since ours is a Flask app, we can see <a href=""><code>app.py</code></a> for answers. In Flask, routes are defined with @app.route syntax. In the file, you&#39;ll see that we only have three routes defined - <code>/</code>, <code>/debug</code> and <code>/search</code>. The <code>/</code> route renders the main app, the <code>debug</code> route is used to return some debug information and finally <code>search</code> is used by the app to query elasticsearch.</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:5000/debug
+{
+  &quot;msg&quot;: &quot;yellow open sfdata Ibkx7WYjSt-g8NZXOEtTMg 5 1 618 0 1.3mb 1.3mb\n&quot;,
+  &quot;status&quot;: &quot;success&quot;
+}
+</code></pre>
+<p>Given that context, how would we add a new route for <code>hello</code>? You guessed it! Let&#39;s open <code>flask-app/app.py</code> in our favorite editor and make the following change</p>
+<pre><code class="lang-python">@app.route(&#39;/&#39;)
+def index():
+  return render_template(&quot;index.html&quot;)
+
+# add a new hello route
+@app.route(&#39;/hello&#39;)
+def hello():
+  return &quot;hello world!&quot;
+</code></pre>
+<p>Now let&#39;s try making a request again</p>
+<pre><code class="lang-bash">$ curl -I 0.0.0.0:5000/hello
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.11.2 Python/2.7.15rc1
+Date: Mon, 30 Jul 2018 15:34:38 GMT
+</code></pre>
+<p>Oh no! That didn&#39;t work! What did we do wrong? While we did make the change in <code>app.py</code>, the file resides in our machine (or the host machine), but since Docker is running our containers based off the <code>prakhar1989/foodtrucks-web</code> image, it doesn&#39;t know about this change. To validate this, lets try the following - </p>
+<pre><code>$ docker-compose run web bash
+Starting es ... done
+root@581e351c82b0:/opt/flask-app# ls
+app.py        package-lock.json  requirements.txt  templates
+node_modules  package.json       static            webpack.config.js
+root@581e351c82b0:/opt/flask-app# grep hello app.py
+root@581e351c82b0:/opt/flask-app# exit
+</code></pre><p>What we&#39;re trying to do here is to validate that our changes are not in the <code>app.py</code> that&#39;s running in the container. We do this by running the command <code>docker compose run</code>, which is similar to its cousin <code>docker run</code> but takes additional arguments for the service (which is <code>web</code> in our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12">case</a>). As soon as we run <code>bash</code>, the shell opens in <code>/opt/flask-app</code> as specified in our <a href="https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13">Dockerfile</a>. From the grep command we can see that our changes are not in the file.</p>
+<p>Lets see how we can fix it. First off, we need to tell docker compose to not use the image and instead use the files locally. We&#39;ll also set debug mode to <code>true</code> so that Flask knows to reload the server when <code>app.py</code> changes. Replace the <code>web</code> portion of the <code>docker-compose.yml</code> file like so:</p>
+<pre><code class="lang-yaml">version: &quot;3&quot;
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: es
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+  web:
+    build: . # replaced image with build
+    command: python app.py
+    environment:
+      - DEBUG=True  # set an env var for flask
+    depends_on:
+      - es
+    ports:
+      - &quot;5000:5000&quot;
+    volumes:
+      - ./flask-app:/opt/flask-app
+volumes:
+    esdata1:
+      driver: local
+</code></pre>
+<p>With that change (<a href="https://github.com/prakhar1989/FoodTrucks/commit/31368936de5959efaf4457a94c678d21e3eefbce">diff</a>), let&#39;s stop and start the containers.</p>
+<pre><code class="lang-bash">$ docker-compose down -v
+Stopping foodtrucks_web_1 ... done
+Stopping es               ... done
+Removing foodtrucks_web_1 ... done
+Removing es               ... done
+Removing network foodtrucks_default
+Removing volume foodtrucks_esdata1
+
+$ docker-compose up -d
+Creating network &quot;foodtrucks_default&quot; with the default driver
+Creating volume &quot;foodtrucks_esdata1&quot; with local driver
+Creating es ... done
+Creating foodtrucks_web_1 ... done
+</code></pre>
+<p>As a final step, lets make the change in <code>app.py</code> by adding a new route. Now we try to curl</p>
+<pre><code class="lang-bash">$ curl 0.0.0.0:5000/hello
+hello world
+</code></pre>
+<p>Wohoo! We get a valid response! Try playing around by making more changes in the app. </p>
 <p>That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other <a href="https://docs.docker.com/compose/overview/#common-use-cases">use-cases</a> of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
 <p><a id="aws-ecs"></a></p>
 <h3 id="3-4-aws-elastic-container-service">3.4 AWS Elastic Container Service</h3>
