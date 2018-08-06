@@ -3,15 +3,6 @@ layout: layout.html
 ---
 
 <a id="top"></a>
-
-![Docker Logo](images/logo.png "Docker Logo")
-
-*Learn to build and deploy your distributed applications easily to the cloud with Docker*
-
-Written and developed by [Prakhar Srivastav](http://prakhar.me).
-
-<a href="#top" class="top" id="getting-started">Top</a>
-
 ## Getting Started: FAQs
 
 ### What is Docker?

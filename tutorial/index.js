@@ -22,7 +22,8 @@ Metalsmith(__dirname)
       analytics: 'partials/analytics',
       sw: 'partials/sw',
       meta: 'partials/meta',
-      styles: 'partials/styles'
+      styles: 'partials/styles',
+      masthead: 'partials/masthead',
     }
   }))
   .build(function(err, files) {

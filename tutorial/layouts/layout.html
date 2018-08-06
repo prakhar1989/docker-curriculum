@@ -9,14 +9,18 @@
     <meta name="description" content="{{description}}">
     <meta name="author" content="{{author}}">
     <meta name="keywords" content="docker, docker tutorial, docker guide, containers, getting started, beginners">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Mono&amp;subset=latin,cyrillic">
     <title>{{title}}</title>
     {{>meta}}
     {{>styles}}
 </head>
 <body>
-{{{ contents }}}
-
+    <div class="container">
+        <header class="masthead">
+            {{>masthead}}
+        </header>
+        {{{ contents }}}
+    </div>
 {{>analytics}}
 {{>sw}}
 </body>
