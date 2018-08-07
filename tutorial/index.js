@@ -2,6 +2,7 @@ var Metalsmith  = require('metalsmith');
 var markdown    = require('metalsmith-markdown');
 var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
+var watch       = require('metalsmith-watch');
 
 Metalsmith(__dirname)
   .metadata({
@@ -24,6 +25,7 @@ Metalsmith(__dirname)
       meta: 'partials/meta',
       styles: 'partials/styles',
       masthead: 'partials/masthead',
+      nav: 'partials/nav',
     }
   }))
   .build(function(err, files) {

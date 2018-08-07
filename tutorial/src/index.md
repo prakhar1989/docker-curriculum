@@ -3,7 +3,7 @@ layout: layout.html
 ---
 
 <a id="top"></a>
-## Getting Started: FAQs
+## Introduction
 
 ### What is Docker?
 
@@ -43,35 +43,9 @@ This tutorial aims to be the one-stop shop for getting your hands dirty with Doc
 
 This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the [Github repo](http://github.com/prakhar1989/docker-curriculum).
 
-<a href="#top" class="top" id="table-of-contents">Top</a>
-## Table of Contents
-
--	[Preface](#preface)
-    -	[Prerequisites](#prerequisites)
-    - [Setting up your computer](#setup)
-    - [1.0 Playing with Busybox](#busybox)
-    -	[1.1 Docker Run](#dockerrun)
-    -	[1.2 Terminology](#terminology)
-    - [2.0 Webapps with Docker](#webapps)
-    -	[2.1 Static Sites](#static-site)
-    -	[2.2 Docker Images](#docker-images)
-    -	[2.3 Our First Image](#our-image)
-    -	[2.4 Dockerfile](#dockerfiles)
-    -	[2.5 Docker on AWS](#docker-aws)
-    - [3.0 Multi-container Environments](#multi-container)
-    -	[3.1 SF Food Trucks](#foodtrucks)
-    -	[3.2 Docker Network](#docker-network)
-    -	[3.3 Docker Compose](#docker-compose)
-    -	[3.4 AWS Elastic Container Service](#aws-ecs)
-    - [4.0 Wrap Up](#wrap-up)
-    -	[4.1 What Next?](#next-steps)
-    -	[4.2 Give Feedback](#feedback)
-    - [References](#references)
-
 ___________
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-## Preface
+## Getting Started
 
 > Note: This tutorial uses version **18.05.0-ce** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 

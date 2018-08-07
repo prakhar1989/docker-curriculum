@@ -51,9 +51,11 @@ img {
 
 body {
   margin: 0;
-  padding: 2rem 1.5rem;
   font: 1rem/1.5 "PT Sans", sans-serif;
   color: #5a5a5a;
+  display: flex;
+  min-height: 100vh;
+  flex: 1;
 }
 
 a {
@@ -157,6 +159,31 @@ pre code {
   max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex: 1;
+}
+
+main {
+  flex: 1;
+  padding: 0 20px;
+}
+
+nav {
+  padding: 0 10px;
+  order: -1;
+  background: #f8f9fa;
+  position: fixed;
+  left: 0;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  flex: 0 0 auto;
+  border-right: 1px solid #d2d3d4;
+}
+
+nav>ul {
+  padding: 20px;
+  list-style-type: none;
 }
 
 
