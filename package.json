@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "generate": "node tutorial/index.js",
-    "serve": "firebase serve",
-    "deploy": "npm run generate && firebase deploy --project docker-curriculum",
-    "watch": "nodemon tutorial/index.js"
+    "serve": "browser-sync start -s tutorial/public --no-ui --files tutorial/public",
+    "watch": "nodemon tutorial/index.js",
+    "start": "npm run watch | npm run serve"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "metalsmith-watch": "^1.0.3"
   },
   "devDependencies": {
+    "browser-sync": "^2.24.6",
     "nodemon": "^1.18.3"
   }
 }
