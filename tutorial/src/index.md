@@ -925,7 +925,7 @@ $ ./setup-docker.sh
 And that's it! If you ask me, I find this to be an extremely awesome, and a powerful way of sharing and running your applications!
 
 <a id="docker-compose"></a>
-### 3.3 Docker Compose
+### Docker Compose
 
 Till now we've spent all our time exploring the Docker client. In the Docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. A few of them are -
 
@@ -1158,7 +1158,8 @@ $ docker network inspect foodtrucks_default
 ]
 ```
 
-#### Local Development with Docker Compose
+<a id="development-workflow"></a>
+### Development Workflow
 
 Before we jump to the next section, there's one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let's see how we can configure compose to make our lives easier during development.
 
@@ -1400,16 +1401,15 @@ So there you have it. With just a few commands we were able to deploy our awesom
 
 ___________
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-<a id="wrap-up"></a>
-## 4.0 Wrap Up
+<a id="conclusion"></a>
+## Conclusion
 
 And that's a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learnt how to setup Docker, run your own containers, play with static and dynamic websites and most importantly got hands on experience with deploying your applications to the cloud!
 
 I hope that finishing this tutorial makes you more confident in your abilities to deal with servers. When you have an idea of building your next app, you can be sure that you'll be able to get it in front of people with minimal effort.
 
 <a id="next-steps"></a>
-### 4.1 Next Steps
+### Next Steps
 
 Your journey into the container world has just started! My goal with this tutorial was to whet your appetite and show you the power of Docker. In the sea of new technology, it can be hard to navigate the waters alone and tutorials such as this one can provide a helping hand. This is the Docker tutorial I wish I had when I was starting out. Hopefully it served its purpose of getting you excited about containers so that you no longer have to watch the action from the sides.
 
@@ -1427,7 +1427,7 @@ Below are a few additional resources that will be beneficial. For your next proj
 Off you go, young padawan!
 
 <a id="feedback"></a>
-### 4.2 Give Feedback
+### Give Feedback
 
 Now that the tutorial is over, it's my turn to ask questions. How did you like the tutorial? Did you find the tutorial to be a complete mess or did you have fun and learn something?
 
@@ -1436,12 +1436,3 @@ Send in your thoughts directly to [me](mailto:prakhar@prakhar.me) or just [creat
 I would totally love to hear about your experience with this tutorial. Give suggestions on how to make this better or let me know about my mistakes. I want this tutorial to be one of the best introductory tutorials on the web and I can't do it without your help.
 
 ___________
-
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-<a id="references"></a>
-## References
-
-- [What containers can do for you](http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html)
-- [What is Docker](https://www.docker.com/what-docker)
-- [A beginner's guide to deploying production web apps](https://medium.com/@j_mcnally/a-beginner-s-guide-to-deploying-production-web-apps-to-docker-9458409c6180?_tmc=WrhaI1ejJlMmTpUmHOhTFZsYaUSPUP1yvyq19dsRQ5A#.bl50ga0uz)
-- [Running Web Application in Linked Docker Containers Environment](https://aggarwalarpit.wordpress.com/2015/12/06/running-web-application-in-linked-docker-containers-environment/)
