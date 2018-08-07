@@ -2,6 +2,7 @@ var Metalsmith  = require('metalsmith');
 var markdown    = require('metalsmith-markdown');
 var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
+var metallic    = require('metalsmith-metallic');
 var watch       = require('metalsmith-watch');
 
 Metalsmith(__dirname)
@@ -15,6 +16,7 @@ Metalsmith(__dirname)
   .source('./src')
   .destination('./public')
   .clean(false)
+  .use(metallic())
   .use(markdown())
   .use(permalinks())
   .use(layouts({
