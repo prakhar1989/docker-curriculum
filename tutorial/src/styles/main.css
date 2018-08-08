@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'fontello';
-    src: url('font/fontello.eot');
-    src: url('font/fontello.eot#iefix') format('embedded-opentype'), url('font/fontello.woff') format('woff'), url('font/fontello.ttf') format('truetype'), url('font/fontello.svg') format('svg');
+    src: url('/font/fontello.eot');
+    src: url('/font/fontello.eot#iefix') format('embedded-opentype'), url('/font/fontello.woff') format('woff'), url('/font/fontello.ttf') format('truetype'), url('/font/fontello.svg') format('svg');
     font-weight: normal;
     font-display: 'auto';
     font-style: normal;
@@ -34,12 +34,12 @@
  */
 
 html {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 @media (min-width: 40em) {
     html {
-        font-size: 20px;
+        font-size: 1.2rem;
     }
 }
 
@@ -121,10 +121,6 @@ blockquote p {
     margin-bottom: 0;
 }
 
-ul li {
-    margin-bottom: .25rem;
-}
-
 /* Tighten up margin on last items */
 
 p:last-child,
@@ -159,15 +155,12 @@ code {
     max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex: 1;
+    padding: 0 20px;
 }
 
-main {
-    flex: 1;
-    padding: 0 20px;
-    max-width: 40rem;
-}
+/*
+ * Side-nav
+ */
 
 nav {
     padding: 0 10px;
@@ -181,6 +174,7 @@ nav {
     flex: 0 0 auto;
     border-right: 1px solid #d2d3d4;
     z-index: 100;
+    display: none;
 }
 
 nav>ul {
@@ -217,6 +211,79 @@ nav>ul>li {
 }
 
 /**
+ * Responsive
+ */
+
+@media (min-width: 840px) {
+    nav {
+        display: block !important;
+    }
+}
+
+/**
  *  Styles for code highlighting
  */
-.hljs-comment,.hljs-quote{color:#969896}.hljs-variable,.hljs-template-variable,.hljs-tag,.hljs-name,.hljs-selector-id,.hljs-selector-class,.hljs-regexp,.hljs-deletion{color:#d54e53}.hljs-number,.hljs-built_in,.hljs-builtin-name,.hljs-literal,.hljs-type,.hljs-params,.hljs-meta,.hljs-link{color:#e78c45}.hljs-attribute{color:#e7c547}.hljs-string,.hljs-symbol,.hljs-bullet,.hljs-addition{color:#b9ca4a}.hljs-title,.hljs-section{color:#7aa6da}.hljs-keyword,.hljs-selector-tag{color:#c397d8}.hljs{display:block;overflow-x:auto;background:black;color:#eaeaea;padding:0.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}
+
+.hljs-comment,
+.hljs-quote {
+    color: #969896
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+    color: #d54e53
+}
+
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+    color: #e78c45
+}
+
+.hljs-attribute {
+    color: #e7c547
+}
+
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+    color: #b9ca4a
+}
+
+.hljs-title,
+.hljs-section {
+    color: #7aa6da
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+    color: #c397d8
+}
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    background: black;
+    color: #eaeaea;
+    padding: 0.5em
+}
+
+.hljs-emphasis {
+    font-style: italic
+}
+
+.hljs-strong {
+    font-weight: bold
+}
