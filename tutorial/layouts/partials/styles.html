@@ -68,6 +68,7 @@ a {
   color: #08c;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
@@ -93,9 +94,12 @@ p {
 
 blockquote {
   position: relative;
-  margin: 0 1rem 1rem;
+  padding: 0.5rem 1rem 0.5rem;
   font-style: italic;
   color: #7a7a7a;
+  border-left: 8px solid #eee;
+  margin: 0;
+  margin: 1.5rem 0;
 }
 blockquote p {
   margin-bottom: 0;
@@ -112,17 +116,15 @@ blockquote:last-child{
   margin-bottom: 0;
 }
 
-
-
 /*
  * Code
  */
 
-code,
-pre {
+code, pre {
   font-family: 'Roboto Mono', monospace;
   font-size: 95%;
 }
+
 code {
   padding: 2px 4px;
   font-size: 85%;
@@ -130,35 +132,6 @@ code {
   background-color: #f7f7f9;
   border-radius: .2rem;
 }
-
-pre {
-  display: block;
-  margin: 0 0 1rem;
-  line-height: 1.4;
-  white-space: pre;
-}
-
-pre code {
-  padding: 0;
-  color: inherit;
-  background-color: transparent;
-  border: 0;
-}
-
-.highlight {
-  margin: 0 0 1rem;
-  padding: 1rem;
-  background-color: #f7f7f9;
-}
-
-.highlight pre {
-  margin-bottom: 0;
-}
-
-.highlight + .highlight {
-  margin-top: 1rem;
-}
-
 
 /*
  * The Grid
@@ -222,4 +195,9 @@ nav>ul>li {
 .masthead-links a:hover {
   color: #08c;
 }
+
+/**
+ *  Styles for code highlighting
+ */
+.hljs-comment,.hljs-quote{color:#969896}.hljs-variable,.hljs-template-variable,.hljs-tag,.hljs-name,.hljs-selector-id,.hljs-selector-class,.hljs-regexp,.hljs-deletion{color:#d54e53}.hljs-number,.hljs-built_in,.hljs-builtin-name,.hljs-literal,.hljs-type,.hljs-params,.hljs-meta,.hljs-link{color:#e78c45}.hljs-attribute{color:#e7c547}.hljs-string,.hljs-symbol,.hljs-bullet,.hljs-addition{color:#b9ca4a}.hljs-title,.hljs-section{color:#7aa6da}.hljs-keyword,.hljs-selector-tag{color:#c397d8}.hljs{display:block;overflow-x:auto;background:black;color:#eaeaea;padding:0.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}
 </style>
