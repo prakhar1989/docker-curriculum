@@ -25,7 +25,6 @@ Metalsmith(__dirname)
       analytics: 'partials/analytics',
       sw: 'partials/sw',
       meta: 'partials/meta',
-      styles: 'partials/styles',
       masthead: 'partials/masthead',
       nav: 'partials/nav',
     }
