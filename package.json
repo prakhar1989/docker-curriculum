@@ -4,10 +4,12 @@
   "description": "<a id=\"top\"></a> # Docker for Beginners",
   "main": "index.js",
   "scripts": {
-    "generate": "node tutorial/index.js",
+    "css": "sass tutorial/src/styles/main.scss tutorial/src/styles/dist/styles.css",
+    "generate": "npm run css && node tutorial/index.js",
     "serve": "browser-sync start -s tutorial/public --no-ui --files tutorial/public",
     "watch": "nodemon tutorial/index.js",
-    "start": "npm run watch | npm run serve"
+    "css-watch": "sass --watch tutorial/src/styles/main.scss tutorial/src/styles/dist/styles.css",
+    "start": "npm run watch | npm run css-watch | npm run serve"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,8 @@
     "metalsmith-markdown": "^0.2.2",
     "metalsmith-metallic": "^2.0.2",
     "metalsmith-permalinks": "^0.5.0",
-    "metalsmith-watch": "^1.0.3"
+    "metalsmith-watch": "^1.0.3",
+    "sass": "^1.10.3"
   },
   "devDependencies": {
     "browser-sync": "^2.24.6",
