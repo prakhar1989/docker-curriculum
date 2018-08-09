@@ -49,7 +49,7 @@ img {
 
 body {
     margin: 0;
-    font: 0.8rem/1.5 "Oxygen", sans-serif;
+    font: 1.0rem/1.5 "Oxygen", sans-serif;
     color: #5a5a5a;
     display: flex;
     min-height: 100vh;
