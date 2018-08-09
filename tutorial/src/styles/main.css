@@ -178,13 +178,13 @@ nav#menu {
     max-width: 30%;
 }
 
-nav>ul {
+nav>ol {
     padding: 8px;
     list-style-type: none;
     font-size: 14px;
 }
 
-nav>ul>li {
+nav>ol>li {
     margin: 12px;
 }
 
@@ -251,6 +251,7 @@ nav #close {
     nav#menu {
         left: -100%;
         max-width: 80%;
+        overflow-y: auto;
     }
 
     nav#menu:target {
@@ -270,6 +271,10 @@ nav #close {
         font-size: 2.2em;
         line-height: 60px;
         width: 60px;
+    }
+
+    nav ol>li {
+        padding: 0.8rem 0;
     }
 
     #toc {

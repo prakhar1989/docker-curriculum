@@ -163,7 +163,7 @@ code {
  * Side-nav
  */
 
-nav {
+nav#menu {
     padding: 0 10px;
     order: -1;
     background: #f8f9fa;
@@ -175,18 +175,31 @@ nav {
     flex: 0 0 auto;
     border-right: 1px solid #d2d3d4;
     z-index: 100;
-    display: none;
     max-width: 30%;
 }
 
-nav>ul {
+nav>ol {
     padding: 8px;
     list-style-type: none;
     font-size: 14px;
 }
 
-nav>ul>li {
+nav>ol>li {
     margin: 12px;
+}
+
+nav #close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    line-height: 78px;
+    text-align: center;
+    font-size: 3em;
+    text-decoration: none;
+    color: #fff;
 }
 
 #toc {
@@ -201,21 +214,6 @@ nav>ul>li {
     line-height: 78px;
     text-align: center;
     font-size: 4em;
-}
-
-@media screen and (max-device-width: 767px) {
-    .container {
-        margin-left: auto;
-    }
-
-    #toc {
-        display: block;
-        width: 40px;
-        text-decoration: none;
-        height: 80px;
-        line-height: 65px;
-        font-size: 2.5em;
-    }
 }
 
 /*
@@ -244,12 +242,51 @@ nav>ul>li {
 /**
  * Responsive
  */
+/* below 767px (iPad size) */
+@media screen and (max-device-width : 768px), screen and (max-width : 768px), print {
+    .container {
+        margin-left: auto;
+    }
 
-@media (min-width: 767px) {
-    nav {
-        display: block !important;
+    nav#menu {
+        left: -100%;
+        max-width: 80%;
+        overflow-y: auto;
+    }
+
+    nav#menu:target {
+        background: #08c;
+        color: white;
+        left: 0;
+        transition: left 0.3s;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    nav #close {
+        display: block;
+        font-size: 2.2em;
+        line-height: 60px;
+        width: 60px;
+    }
+
+    nav ol>li {
+        padding: 0.8rem 0;
+    }
+
+    #toc {
+        display: block;
+        width: 40px;
+        text-decoration: none;
+        height: 80px;
+        line-height: 65px;
+        font-size: 2.5em;
     }
 }
+
 
 /**
  *  Styles for code highlighting
