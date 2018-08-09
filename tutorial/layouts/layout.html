@@ -3,21 +3,29 @@
 <head>
     <meta charset="utf-8">
     <link rel='shortcut icon' href='favicon.ico'/>
+    <link rel="canonical" href="https://docker-curriculum.com"/>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{description}}">
     <meta name="author" content="{{author}}">
     <meta name="keywords" content="docker, docker tutorial, docker guide, containers, getting started, beginners">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <link rel="preload" as="font" type="font/woff2" href="/font/fontello.woff2">
+    <link rel="preconnect" href="https://api.github.com">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Roboto+Mono" rel="stylesheet">
     <title>{{title}}</title>
     {{>meta}}
-    {{>styles}}
 </head>
 <body>
-{{{ contents }}}
-
+    <a href="#menu" id="toc">≡</a>
+    <nav id="menu">{{>nav}}</nav>
+    <div class="container">
+        <div class="masthead">{{>masthead}}</div>
+        {{{contents}}}
+    </div>
 {{>analytics}}
 {{>sw}}
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

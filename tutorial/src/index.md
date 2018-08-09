@@ -2,18 +2,10 @@
 layout: layout.html
 ---
 
-<a id="top"></a>
+<a id="introduction"></a>
+## Introduction
 
-![Docker Logo](images/logo.png "Docker Logo")
-
-*Learn to build and deploy your distributed applications easily to the cloud with Docker*
-
-Written and developed by [Prakhar Srivastav](http://prakhar.me).
-
-<a href="#top" class="top" id="getting-started">Top</a>
-
-## Getting Started: FAQs
-
+<a id="what-is-docker"></a>
 ### What is Docker?
 
 Wikipedia defines [Docker](https://www.docker.com/) as
@@ -22,6 +14,7 @@ Wikipedia defines [Docker](https://www.docker.com/) as
 
 Wow! That's a mouthful. In simpler words, Docker is a tool that allows developers, sys-admins etc. to easily deploy their applications in a sandbox (called *containers*) to run on the host operating system i.e. Linux. The key benefit of Docker is that it allows users to **package an application with all of its dependencies into a standardized unit** for software development. Unlike virtual machines, containers do not have the high overhead and hence enable more efficient usage of the underlying system and resources.
 
+<a id="what-are-containers"></a>
 ### What are containers?
 
 The industry standard today is to use Virtual Machines (VMs) to run software applications. VMs run applications inside a guest Operating System, which runs on virtual hardware powered by the server’s host OS.
@@ -34,6 +27,7 @@ The [containers](https://cloud.google.com/containers/) page on Google Cloud does
 
 > Containers offer a logical packaging mechanism in which applications can be abstracted from the environment in which they actually run. This decoupling allows container-based applications to be deployed easily and consistently, regardless of whether the target environment is a private data center, the public cloud, or even a developer’s personal laptop. Containerization provides a clean separation of concerns, as developers focus on their application logic and dependencies, while IT operations teams can focus on deployment and management without bothering with application details such as specific software versions and configurations specific to the app. 
 
+<a id="why-should-i-use-it"></a>
 ### Why should I use it?
 
 Docker's rise has been nothing short of meteoric. Although containers by themselves are not a new technology, it was not until Docker arrived that they started to get mainstream attention. By providing standard APIs that made containers easy to use and creating a way for the community to collaborate around libraries of containers, Docker has radically changed the face of the technology landscape. In an article published by [The Register](http://www.theregister.co.uk/2014/05/23/google_containerization_two_billion/) in mid-2014, it was claimed that Google runs over **two billion containers per week**.
@@ -44,43 +38,18 @@ Docker's rise has been nothing short of meteoric. Although containers by themsel
 
 In addition to Docker's continual growth, Docker, Inc., the developer behind Docker has been valued at over a billion dollars! Due to its benefits of efficiency and portability, Docker has been gaining mind share rapidly, and is now leading the **Containerization** movement. As developers going out into the world, it is important that we understand this trend and see how we can benefit from it.
 
+<a id="tutorial-teach"></a>
 ### What will this tutorial teach me?
 
 This tutorial aims to be the one-stop shop for getting your hands dirty with Docker. Apart from demystifying the Docker landscape, it'll give you hands-on experience with building and deploying your own webapps on the Cloud. We'll be using [Amazon Web Services](http://aws.amazon.com) to deploy a static website, and two dynamic webapps on [EC2](https://aws.amazon.com/ec2/) using [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) and [Elastic Container Service](https://aws.amazon.com/ecs/). Even if you have no prior experience with deployments, this tutorial should be all you need to get started.
 
-## Using this Document
+___________
+
+<a id="getting-started"></a>
+## Getting Started
 
 This document contains a series of several sections, each of which explains a particular aspect of Docker. In each section, we will be typing commands (or writing code). All the code used in the tutorial is available in the [Github repo](http://github.com/prakhar1989/docker-curriculum).
 
-<a href="#top" class="top" id="table-of-contents">Top</a>
-## Table of Contents
-
--	[Preface](#preface)
-    -	[Prerequisites](#prerequisites)
-    - [Setting up your computer](#setup)
-    - [1.0 Playing with Busybox](#busybox)
-    -	[1.1 Docker Run](#dockerrun)
-    -	[1.2 Terminology](#terminology)
-    - [2.0 Webapps with Docker](#webapps)
-    -	[2.1 Static Sites](#static-site)
-    -	[2.2 Docker Images](#docker-images)
-    -	[2.3 Our First Image](#our-image)
-    -	[2.4 Dockerfile](#dockerfiles)
-    -	[2.5 Docker on AWS](#docker-aws)
-    - [3.0 Multi-container Environments](#multi-container)
-    -	[3.1 SF Food Trucks](#foodtrucks)
-    -	[3.2 Docker Network](#docker-network)
-    -	[3.3 Docker Compose](#docker-compose)
-    -	[3.4 AWS Elastic Container Service](#aws-ecs)
-    - [4.0 Wrap Up](#wrap-up)
-    -	[4.1 What Next?](#next-steps)
-    -	[4.2 Give Feedback](#feedback)
-    - [References](#references)
-
-___________
-
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-## Preface
 
 > Note: This tutorial uses version **18.05.0-ce** of Docker. If you find any part of the tutorial incompatible with a future version, please raise an [issue](https://github.com/prakhar1989/docker-curriculum/issues). Thanks!
 
@@ -111,9 +80,11 @@ This message shows that your installation appears to be working correctly.
 
 ___________
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
+<a id="hello-world"></a>
+# Hello World
+
 <a id="busybox"></a>
-## 1.0 Playing with Busybox
+### Playing with Busybox
 
 Now that we have everything setup, it's time to get our hands dirty. In this section, we are going to run a [Busybox](https://en.wikipedia.org/wiki/BusyBox) container on our system and get a taste of the `docker run` command.
 
@@ -134,7 +105,7 @@ busybox                 latest              c51f86c28340        4 weeks ago     
 ```
 
 <a id="dockerrun"></a>
-### 1.1 Docker Run
+### Docker Run
 
 Great! Let's now run a Docker **container** based on this image. To do that we are going to use the almighty `docker run` command.
 
@@ -204,7 +175,7 @@ This command deletes all containers that have a status of `exited`. In case you'
 Lastly, you can also delete images that you no longer need by running `docker rmi`.
 
 <a id="terminology"></a>
-### 1.2 Terminology
+### Terminology
 
 In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.
 
@@ -214,14 +185,16 @@ In the last section, we used a lot of Docker-specific jargon which might be conf
 - *Docker Client* - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as [Kitematic](https://kitematic.com/) which provide a GUI to the users.
 - *Docker Hub* - A [registry](https://hub.docker.com/explore/) of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
+
+-------
+
 <a id="webapps"></a>
-## 2.0 Webapps with Docker
+## Webapps with Docker
 
 Great! So we have now looked at `docker run`, played with a Docker container and also got a hang of some terminology. Armed with all this knowledge, we are now ready to get to the real-stuff, i.e. deploying web applications with Docker!
 
 <a id="static-site"></a>
-### 2.1 Static Sites
+### Static Sites
 
 Let's start by taking baby-steps. The first thing we're going to look at is how we can run a dead-simple static website. We're going to pull a Docker image from Docker Hub, run the container and see how easy it is to run a webserver.
 
@@ -271,7 +244,7 @@ static-site
 I'm sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you've seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we'll be exploring in the next section.
 
 <a id="docker-images"></a>
-### 2.2 Docker Images
+### Docker Images
 
 We've looked at images before, but in this section we'll dive deeper into what Docker images are and build our own image! Lastly, we'll also use that image to run our application locally and finally deploy on [AWS](http://aws.amazon.com) to share it with our friends! Excited? Great! Let's get started.
 
@@ -312,7 +285,7 @@ Then there are official and user images, which can be both base and child images
 - **User images** are images created and shared by users like you and me. They build on base images and add additional functionality. Typically, these are formatted as `user/image-name`.
 
 <a id="our-image"></a>
-### 2.3 Our First Image
+### Our First Image
 
 Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple [Flask](http://flask.pocoo.org) application. For the purposes of this workshop, I've already created a fun little [Flask app](https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app) that displays a random cat `.gif` every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally like so -
 
@@ -332,7 +305,7 @@ What's the `onbuild` version you might ask?
 In other words, the `onbuild` version of the image includes helpers that automate the boring parts of getting an app running. Rather than doing these tasks manually (or scripting these tasks), these images do that work for you. We now have all the ingredients to create our own image - a functioning web app and a base image. How are we going to do that? The answer is - using a **Dockerfile**.
 
 <a id="dockerfiles"></a>
-### 2.4 Dockerfile
+### Dockerfile
 
 A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is a simple text-file that contains a list of commands that the Docker client calls while creating an image. It's a simple way to automate the image creation process. The best part is that the [commands](https://docs.docker.com/engine/reference/builder/#from) you write in a Dockerfile are *almost* identical to their equivalent Linux commands. This means you don't really have to learn new syntax to create your own dockerfiles.
 
@@ -412,11 +385,11 @@ The command we just ran used port 5000 for the server inside the container, and 
 Congratulations! You have successfully created your first docker image.
 
 <a id="docker-aws"></a>
-### 2.5 Docker on AWS
+### Docker on AWS
 
 What good is an application that can't be shared with friends, right? So in this section we are going to see how we can deploy our awesome application to the cloud so that we can share it with our friends! We're going to use AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) to get our application up and running in a few clicks. We'll also see how easy it is to make our application scalable and manageable with Beanstalk!
 
-##### Docker push
+#### Docker push
 
 The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different [Docker registries](https://aws.amazon.com/ecr/) you can use (you can even host [your own](https://docs.docker.com/registry/deploying/)). For now, let's use [Docker Hub](https://hub.docker.com) to publish the image. To publish, just type
 
@@ -447,7 +420,7 @@ $ docker run -p 8888:5000 prakhar1989/catnip
 
 If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!
 
-##### Beanstalk
+#### Beanstalk
 
 AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you've used Heroku, Google App Engine etc. you'll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. In April 2014, EB added support for running single-container Docker deployments which is what we'll use to deploy our app. Although EB has a very intuitive [CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html), it does require some setup, and to keep things simple we'll use the web UI to launch our application.
 
@@ -456,7 +429,7 @@ To follow along, you need a functioning [AWS](http://aws.amazon.com) account. If
 Here are the steps:
 
 - Login to your AWS [console](http://console.aws.amazon.com).
-- Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, just click [here](https://console.aws.amazon.com/elasticbeanstalk) to access the EB console.
+- Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, you can access the [Elastic Beanstalk console](https://console.aws.amazon.com/elasticbeanstalk).
 
 ![EB start](images/eb-start.png "EB start")
 
@@ -501,9 +474,12 @@ Congratulations! You have deployed your first Docker application! That might see
 
 In the next (and final) part of the tutorial, we'll up the ante a bit and deploy an application that mimics the real-world more closely; an app with a persistent back-end storage tier. Let's get straight to it!
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
+
+-------
+
+
 <a id="multi-container"></a>
-## 3.0 Multi-container Environments
+## Multi-container Environments
 
 In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app. Both of which we could run locally and in the cloud with just a few commands. One thing both these apps had in common was that they were running in a **single container**.
 
@@ -514,7 +490,7 @@ In particular, we are going to see how we can run and manage **multi-container**
 Just like it's a good strategy to decouple your application tiers, it is wise to keep containers for each of the **services** separate. Each tier is likely to have different resource needs and those needs might grow at different rates. By separating the tiers into different containers, we can compose each tier using the most appropriate instance type based on different resource needs. This also plays in very well with the whole [microservices](http://martinfowler.com/articles/microservices.html) movement which is one of the main reasons why Docker (or any other container technology) is at the [forefront](https://medium.com/aws-activate-startup-blog/using-containers-to-build-a-microservices-architecture-6e1b8bacb7d1#.xl3wryr5z) of modern microservices architectures.
 
 <a id="foodtrucks"></a>
-### 3.1 SF Food Trucks
+### SF Food Trucks
 
 The app that we're going to Dockerize is called SF Food Trucks. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service, but is not too complex for the purpose of this tutorial. This is what I came up with.
 
@@ -692,7 +668,7 @@ Out of retries. Bailing out...
 Oops! Our flask app was unable to run since it was unable to connect to Elasticsearch. How do we tell one container about the other container and get them to talk to each other? The answer lies in the next section.
 
 <a id="docker-network"></a>
-### 3.2 Docker Network
+###  Docker Network
 
 Before we talk about the features Docker provides especially to deal with such scenarios, let's see if we can figure out a way to get around the problem. Hopefully this should give you an appreciation for the specific feature that we are going to study.
 
@@ -949,7 +925,7 @@ $ ./setup-docker.sh
 And that's it! If you ask me, I find this to be an extremely awesome, and a powerful way of sharing and running your applications!
 
 <a id="docker-compose"></a>
-### 3.3 Docker Compose
+### Docker Compose
 
 Till now we've spent all our time exploring the Docker client. In the Docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. A few of them are -
 
@@ -1012,7 +988,7 @@ volumes:
 
 Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service, that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
 
-Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it [here](https://docs.docker.com/compose/compose-file/#depends_on).
+Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it on [docker compose docs](https://docs.docker.com/compose/compose-file/#depends_on).
 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
@@ -1182,7 +1158,8 @@ $ docker network inspect foodtrucks_default
 ]
 ```
 
-#### Local Development with Docker Compose
+<a id="development-workflow"></a>
+### Development Workflow
 
 Before we jump to the next section, there's one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let's see how we can configure compose to make our lives easier during development.
 
@@ -1316,7 +1293,7 @@ Wohoo! We get a valid response! Try playing around by making more changes in the
 That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other [use-cases](https://docs.docker.com/compose/overview/#common-use-cases) of Docker compose. Hopefully I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!
 
 <a id="aws-ecs"></a>
-### 3.4 AWS Elastic Container Service
+### AWS Elastic Container Service
 
 In the last section we used `docker-compose` to run our app locally with a single command: `docker-compose up`. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Executing the last three are beyond the scope of tutorial, so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.
 
@@ -1424,16 +1401,15 @@ So there you have it. With just a few commands we were able to deploy our awesom
 
 ___________
 
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-<a id="wrap-up"></a>
-## 4.0 Wrap Up
+<a id="conclusion"></a>
+## Conclusion
 
 And that's a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learnt how to setup Docker, run your own containers, play with static and dynamic websites and most importantly got hands on experience with deploying your applications to the cloud!
 
 I hope that finishing this tutorial makes you more confident in your abilities to deal with servers. When you have an idea of building your next app, you can be sure that you'll be able to get it in front of people with minimal effort.
 
 <a id="next-steps"></a>
-### 4.1 Next Steps
+### Next Steps
 
 Your journey into the container world has just started! My goal with this tutorial was to whet your appetite and show you the power of Docker. In the sea of new technology, it can be hard to navigate the waters alone and tutorials such as this one can provide a helping hand. This is the Docker tutorial I wish I had when I was starting out. Hopefully it served its purpose of getting you excited about containers so that you no longer have to watch the action from the sides.
 
@@ -1451,7 +1427,7 @@ Below are a few additional resources that will be beneficial. For your next proj
 Off you go, young padawan!
 
 <a id="feedback"></a>
-### 4.2 Give Feedback
+### Give Feedback
 
 Now that the tutorial is over, it's my turn to ask questions. How did you like the tutorial? Did you find the tutorial to be a complete mess or did you have fun and learn something?
 
@@ -1460,12 +1436,3 @@ Send in your thoughts directly to [me](mailto:prakhar@prakhar.me) or just [creat
 I would totally love to hear about your experience with this tutorial. Give suggestions on how to make this better or let me know about my mistakes. I want this tutorial to be one of the best introductory tutorials on the web and I can't do it without your help.
 
 ___________
-
-<a href="#table-of-contents" class="top" id="preface">Top</a>
-<a id="references"></a>
-## References
-
-- [What containers can do for you](http://radar.oreilly.com/2015/01/what-containers-can-do-for-you.html)
-- [What is Docker](https://www.docker.com/what-docker)
-- [A beginner's guide to deploying production web apps](https://medium.com/@j_mcnally/a-beginner-s-guide-to-deploying-production-web-apps-to-docker-9458409c6180?_tmc=WrhaI1ejJlMmTpUmHOhTFZsYaUSPUP1yvyq19dsRQ5A#.bl50ga0uz)
-- [Running Web Application in Linked Docker Containers Environment](https://aggarwalarpit.wordpress.com/2015/12/06/running-web-application-in-linked-docker-containers-environment/)
