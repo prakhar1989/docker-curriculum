@@ -162,9 +162,8 @@ code {
 /*
  * Side-nav
  */
-
 nav#menu {
-    padding: 0 10px;
+    display: flex;
     order: -1;
     background: #f8f9fa;
     position: fixed;
@@ -176,6 +175,8 @@ nav#menu {
     border-right: 1px solid #d2d3d4;
     z-index: 100;
     max-width: 30%;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 nav>ol {
@@ -214,6 +215,20 @@ nav #close {
     line-height: 78px;
     text-align: center;
     font-size: 4em;
+}
+
+nav footer {
+    text-align: center;
+    padding: 0.3rem 0;
+}
+
+nav footer a {
+    font-size: 0.8rem;
+    color: white;
+}
+
+nav footer a:hover {
+    text-decoration: none;
 }
 
 /*
