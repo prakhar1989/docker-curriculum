@@ -42,7 +42,9 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: #1ab3ff;
+  transition: color 0.15s ease-in;
 }
 
 h1,
@@ -58,13 +60,16 @@ h1 {
 }
 
 h2 {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1.2px;
 }
 
 h3 {
   padding-top: 1rem;
   margin-top: 2rem;
-  font-size: 1.75rem;
+  font-size: 1.35rem;
 }
 
 h4 {
@@ -79,7 +84,7 @@ blockquote {
   position: relative;
   padding: 0.5rem 1rem 0.5rem;
   font-style: italic;
-  color: #7a7a7a;
+  color: #788086;
   border-left: 8px solid #eee;
   margin: 0;
   margin: 1.5rem 0;
@@ -154,13 +159,17 @@ nav#menu #close {
   text-decoration: none;
   color: #fff;
 }
+nav#menu ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
 nav#menu > ol {
   padding: 8px;
   list-style-type: none;
   font-size: 14px;
 }
 nav#menu > ol > li {
-  margin: 12px;
+  margin: 1rem 0.5rem;
 }
 nav#menu footer {
   text-align: center;

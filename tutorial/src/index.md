@@ -75,7 +75,7 @@ This message shows that your installation appears to be working correctly.
 
 ___________
 
-# Hello World
+## Hello World
 
 ### Playing with Busybox
 
