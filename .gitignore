@@ -1,3 +1,5 @@
 node_modules
 *.DS_Store
 tutorial/public/index.html
+tutorial/public/styles/dist/*
+tutorial/src/styles/dist/*
