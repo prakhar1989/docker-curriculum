@@ -47,6 +47,14 @@ a:hover {
   transition: color 0.15s ease-in;
 }
 
+picture {
+  text-align: center;
+}
+picture .caption {
+  font-size: 0.7em;
+  margin-top: 0;
+}
+
 h1,
 h2,
 h3,
