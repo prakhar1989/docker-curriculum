@@ -303,7 +303,7 @@ We start with specifying our base image. Use the `FROM` keyword to do that -
 FROM python:3-onbuild
 ```
 
-The next step usually is to write the commands of copying the files and installing the dependencies. Luckily for us, the `onbuild` version of the image takes care of that. The next thing we need to the specify is the port number that needs to be exposed. Since our flask app is running on port `5000`, that's what we'll indicate.
+The next step usually is to write the commands of copying the files and installing the dependencies. Luckily for us, the `onbuild` version of the image takes care of that. The next thing we need to specify is the port number that needs to be exposed. Since our flask app is running on port `5000`, that's what we'll indicate.
 
 ```dockerfile
 EXPOSE 5000
