@@ -568,7 +568,7 @@ $ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-no
 277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
 ```
 
-As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should logs similar to below if Elasticsearch started successfully.
+As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should see logs similar to below if Elasticsearch started successfully.
 
 > Note: Elasticsearch takes a few seconds to start so you might need to wait before you see `initialized` in the logs.
 
@@ -628,7 +628,7 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:14.04
+FROM ubuntu:latest
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
@@ -1237,7 +1237,7 @@ root@581e351c82b0:/opt/flask-app# grep hello app.py
 root@581e351c82b0:/opt/flask-app# exit
 ```
 
-What we're trying to do here is to validate that our changes are not in the `app.py` that's running in the container. We do this by running the command `docker compose run`, which is similar to its cousin `docker run` but takes additional arguments for the service (which is `web` in our [case](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12)). As soon as we run `bash`, the shell opens in `/opt/flask-app` as specified in our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13). From the grep command we can see that our changes are not in the file.
+What we're trying to do here is to validate that our changes are not in the `app.py` that's running in the container. We do this by running the command `docker-compose run`, which is similar to its cousin `docker run` but takes additional arguments for the service (which is `web` in our [case](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12)). As soon as we run `bash`, the shell opens in `/opt/flask-app` as specified in our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13). From the grep command we can see that our changes are not in the file.
 
 Lets see how we can fix it. First off, we need to tell docker compose to not use the image and instead use the files locally. We'll also set debug mode to `true` so that Flask knows to reload the server when `app.py` changes. Replace the `web` portion of the `docker-compose.yml` file like so:
 
