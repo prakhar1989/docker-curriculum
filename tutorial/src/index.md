@@ -568,7 +568,7 @@ $ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-no
 277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
 ```
 
-As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should logs similar to below if Elasticsearch started successfully.
+As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should see logs similar to below if Elasticsearch started successfully.
 
 > Note: Elasticsearch takes a few seconds to start so you might need to wait before you see `initialized` in the logs.
 
