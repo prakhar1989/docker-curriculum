@@ -660,7 +660,6 @@ We then use the `ADD` command to copy our application into a new volume in the c
 Finally, we can go ahead, build the image and run the container (replace `prakhar1989` with your username below).
 
 ```bash
-$ git clone https://github.com/prakhar1989/FoodTrucks && cd FoodTrucks
 $ docker build -t prakhar1989/foodtrucks-web .
 ```
 
