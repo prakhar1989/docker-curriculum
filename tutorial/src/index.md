@@ -807,6 +807,7 @@ Now that we have a network, we can launch our containers inside this network usi
 ```bash
 $ docker container stop es
 es
+
 $ docker container rm es
 es
 
@@ -1000,12 +1001,16 @@ Via other parameters such as `command` and `ports` we provide more information a
 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
-Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports are free. So if you have the Flask and ES containers running, lets turn them off.
+Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports and names are free. So if you have the Flask and ES containers running, lets turn them off.
 
 ```bash
-$ docker stop $(docker ps -q)
-39a2f5df14ef
-2a1b77e066e6
+$ docker stop es foodtrucks-web
+es
+foodtrucks-web
+
+$ docker rm es foodtrucks-web
+es
+foodtrucks-web
 ```
 
 Now we can run `docker-compose`. Navigate to the food trucks directory and run `docker-compose up`.
