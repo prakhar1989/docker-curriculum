@@ -705,7 +705,7 @@ a875bec5d6fd        host                host                local
 ead0e804a67b        none                null                local
 ```
 
-The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network
+The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network.
 
 ```bash
 $ docker network inspect bridge
