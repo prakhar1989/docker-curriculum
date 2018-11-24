@@ -471,7 +471,7 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 
 The file should be pretty self-explanatory, but you can always [reference](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html#create_deploy_docker_image_dockerrun) the official documentation for more information. We provide the name of the image that EB should use along with a port that the container should open.
 
-Hopefully by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.
+Hopefully by now, our instance should be ready. Head over to the EB page and you should see a green tick indicating that your app is alive and kicking.
 
 <picture>
   <source type="image/webp" srcset="images/eb-deploy.webp">
