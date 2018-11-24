@@ -2,9 +2,10 @@
 
 Static site content for [docker-curriculum.com](https://docker-curriculum.com) generated via [Metalsmith](http://www.metalsmith.io/) hosted on [Netlify](https://www.netlify.com/).
 
-### Developement
+### Development
 
 ```
+$ npm install
 $ npm run start
 ```
 
