@@ -9,7 +9,6 @@ $ npm install
 $ npm run start
 ```
 
-
 ### Contributions
 
 For any contributions, make sure you suggest changes to [src/index.md](https://github.com/prakhar1989/docker-curriculum/blob/master/tutorial/src/index.md) and not the generated file (`index.html`).
