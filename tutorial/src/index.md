@@ -268,7 +268,7 @@ The above gives a list of images that I've pulled from the registry, along with 
 For simplicity, you can think of an image akin to a git repository - images can be [committed](https://docs.docker.com/engine/reference/commandline/commit/) with changes and have multiple versions. If you don't provide a specific version number, the client defaults to `latest`. For example, you can pull a specific version of `ubuntu` image
 
 ```bash
-$ docker pull ubuntu:12.04
+$ docker pull ubuntu:18.04
 ```
 
 To get a new Docker image you can either get it from a registry (such as the Docker Hub) or create your own. There are tens of thousands of images available on [Docker Hub](https://hub.docker.com/explore/). You can also search for images directly from the command line using `docker search`.
@@ -628,13 +628,13 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
 RUN apt-get -yqq install python-pip python-dev curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt-get install -yq nodejs
 
 # copy our application code
