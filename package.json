@@ -6,7 +6,7 @@
   "scripts": {
     "css": "sass tutorial/src/styles/main.scss tutorial/src/styles/dist/styles.css",
     "generate": "npm run css && node tutorial/index.js",
-    "serve": "browser-sync start -s tutorial/public --no-ui --files tutorial/public",
+    "serve": "browser-sync start -s tutorial/public --no-ui --files tutorial/public --index index.html",
     "watch": "nodemon tutorial/index.js",
     "css-watch": "sass --watch tutorial/src/styles/main.scss tutorial/src/styles/dist/styles.css",
     "start": "npm run watch | npm run css-watch | npm run serve"
