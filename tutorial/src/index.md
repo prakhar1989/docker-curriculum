@@ -448,8 +448,8 @@ Here are the steps:
   <img src="images/eb-docker.jpeg" alt="Elastic Beanstalk Environment Type">
 </picture>
 
-- Now we need upload our application code. But since our application is packaged in a Docker container, we just to tell EB about our container. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "upload your own" and choose this file.
-- The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.
+- Now we need to upload our application code. But since our application is packaged in a Docker container, we just need to tell EB about our container. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "Upload your Code", choose this file, and click on "Upload".
+- Now click on "Create environment". The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.
 
 While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.
 
@@ -471,7 +471,7 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 
 The file should be pretty self-explanatory, but you can always [reference](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html#create_deploy_docker_image_dockerrun) the official documentation for more information. We provide the name of the image that EB should use along with a port that the container should open.
 
-Hopefully by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.
+Hopefully by now, our instance should be ready. Head over to the EB page and you should see a green tick indicating that your app is alive and kicking.
 
 <picture>
   <source type="image/webp" srcset="images/eb-deploy.webp">
@@ -660,7 +660,6 @@ We then use the `ADD` command to copy our application into a new volume in the c
 Finally, we can go ahead, build the image and run the container (replace `prakhar1989` with your username below).
 
 ```bash
-$ git clone https://github.com/prakhar1989/FoodTrucks && cd FoodTrucks
 $ docker build -t prakhar1989/foodtrucks-web .
 ```
 
@@ -706,7 +705,7 @@ a875bec5d6fd        host                host                local
 ead0e804a67b        none                null                local
 ```
 
-The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network
+The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network.
 
 ```bash
 $ docker network inspect bridge
@@ -803,13 +802,13 @@ ead0e804a67b        none                null                local
 
 The `network create` command creates a new *bridge* network, which is what we need at the moment. In terms of Docker, a bridge network uses a software bridge which allows containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network. The Docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks cannot communicate directly with each other. There are other kinds of networks that you can create, and you are encouraged to read about them in the official [docs](https://docs.docker.com/engine/userguide/networking/dockernetworks/).
 
-Now that we have a network, we can launch our containers inside this network using the `--net` flag. Let's do that - but first, we will stop and delete our ES container that is running in the bridge (default) network.
+Now that we have a network, we can launch our containers inside this network using the `--net` flag. Let's do that - but first, in order to launch a new container with the same name, we will stop and remove our ES container that is running in the bridge (default) network.
 
 ```bash
 $ docker container stop es
 es
 
-$ docker rm es
+$ docker container rm es
 es
 
 $ docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
@@ -1002,12 +1001,16 @@ Via other parameters such as `command` and `ports` we provide more information a
 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
-Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports are free. So if you have the Flask and ES containers running, lets turn them off.
+Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports and names are free. So if you have the Flask and ES containers running, lets turn them off.
 
 ```bash
-$ docker stop $(docker ps -q)
-39a2f5df14ef
-2a1b77e066e6
+$ docker stop es foodtrucks-web
+es
+foodtrucks-web
+
+$ docker rm es foodtrucks-web
+es
+foodtrucks-web
 ```
 
 Now we can run `docker-compose`. Navigate to the food trucks directory and run `docker-compose up`.
