@@ -290,7 +290,7 @@ Then there are official and user images, which can be both base and child images
 Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple [Flask](http://flask.pocoo.org) application. For the purposes of this workshop, I've already created a fun little [Flask app](https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app) that displays a random cat `.gif` every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally like so -
 
 ```bash
-$ git clone https://github.com/prakhar1989/docker-curriculum
+$ git clone https://github.com/prakhar1989/docker-curriculum.git
 $ cd docker-curriculum/flask-app
 ```
 
