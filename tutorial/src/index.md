@@ -373,7 +373,7 @@ If you don't have the `python:3-onbuild` image, the client will first pull the i
 The last step in this section is to run the image and see if it actually works (replacing my username with yours).
 
 ```bash
-$ docker run -p 8888:5000 prakhar1989/catnip
+$ docker run -p 8888:5000 yourusername/catnip
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
@@ -395,15 +395,15 @@ What good is an application that can't be shared with friends, right? So in this
 The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different [Docker registries](https://aws.amazon.com/ecr/) you can use (you can even host [your own](https://docs.docker.com/registry/deploying/)). For now, let's use [Docker Hub](https://hub.docker.com) to publish the image. To publish, just type
 
 ```bash
-$ docker push prakhar1989/catnip
+$ docker push yourusername/catnip
 ```
 
 If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into Docker Hub.
 
 ```bash
 $ docker login
-Username: prakhar1989
-WARNING: login credentials saved in /Users/prakhar/.docker/config.json
+Username: yourusername
+WARNING: login credentials saved in /Users/yourusername/.docker/config.json
 Login Succeeded
 ```
 
@@ -416,7 +416,7 @@ Once that is done, you can view your image on Docker Hub. For example, here's th
 Now that your image is online, anyone who has docker installed can play with your app by typing just a single command.
 
 ```bash
-$ docker run -p 8888:5000 prakhar1989/catnip
+$ docker run -p 8888:5000 yourusername/catnip
 ```
 
 If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!
@@ -457,7 +457,7 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "prakhar1989/catnip",
+    "Name": "yourusername/catnip",
     "Update": "true"
   },
   "Ports": [
@@ -995,7 +995,7 @@ volumes:
       driver: local
 ```
 
-Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service, that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
+Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
 
 Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it on [docker compose docs](https://docs.docker.com/compose/compose-file/#depends_on).
 
