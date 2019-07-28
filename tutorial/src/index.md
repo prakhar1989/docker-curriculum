@@ -58,7 +58,7 @@ There are no specific skills needed for this tutorial beyond a basic comfort wit
 
 Getting all the tooling setup on your computer can be a daunting task, but thankfully as Docker has become stable, getting Docker up and running on your favorite OS has become very easy.
 
-Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](https://www.docker.com/products/docker#/mac), [Linux](https://www.docker.com/products/docker#/linux) and [Windows](https://www.docker.com/products/docker#/windows).
+Until a few releases ago, running Docker on OSX and Windows was quite a hassle. Lately however, Docker has invested significantly into improving the on-boarding experience for its users on these OSes, thus running Docker now is a cakewalk. The *getting started* guide on Docker has detailed instructions for setting up Docker on [Mac](https://docs.docker.com/docker-for-mac/install), [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu) and [Windows](https://docs.docker.com/docker-for-windows/install).
 
 Once you are done installing Docker, test your Docker installation by running the following:
 
@@ -141,7 +141,7 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 
 Running the `run` command with the `-it` flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands.
 
-> **Danger Zone**: If you're feeling particularly adventurous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop/desktop. Doing this will not make any other commands like `ls`, `echo` work. Once everything stops working, you can exit the container (type `exit` and press Enter) and then start it up again with the `docker run -it busybox sh` command. Since Docker creates a new container every time, everything should start working again.
+> **Danger Zone**: If you're feeling particularly adventurous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop/desktop. Doing this will not make any other commands like `ls`, `uptime` work. Once everything stops working, you can exit the container (type `exit` and press Enter) and then start it up again with the `docker run -it busybox sh` command. Since Docker creates a new container every time, everything should start working again.
 
 That concludes a whirlwind tour of the mighty `docker run` command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
 
@@ -268,7 +268,7 @@ The above gives a list of images that I've pulled from the registry, along with 
 For simplicity, you can think of an image akin to a git repository - images can be [committed](https://docs.docker.com/engine/reference/commandline/commit/) with changes and have multiple versions. If you don't provide a specific version number, the client defaults to `latest`. For example, you can pull a specific version of `ubuntu` image
 
 ```bash
-$ docker pull ubuntu:12.04
+$ docker pull ubuntu:18.04
 ```
 
 To get a new Docker image you can either get it from a registry (such as the Docker Hub) or create your own. There are tens of thousands of images available on [Docker Hub](https://hub.docker.com/explore/). You can also search for images directly from the command line using `docker search`.
@@ -290,7 +290,7 @@ Then there are official and user images, which can be both base and child images
 Now that we have a better understanding of images, it's time to create our own. Our goal in this section will be to create an image that sandboxes a simple [Flask](http://flask.pocoo.org) application. For the purposes of this workshop, I've already created a fun little [Flask app](https://github.com/prakhar1989/docker-curriculum/tree/master/flask-app) that displays a random cat `.gif` every time it is loaded - because you know, who doesn't like cats? If you haven't already, please go ahead and clone the repository locally like so -
 
 ```bash
-$ git clone https://github.com/prakhar1989/docker-curriculum
+$ git clone https://github.com/prakhar1989/docker-curriculum.git
 $ cd docker-curriculum/flask-app
 ```
 
@@ -373,7 +373,7 @@ If you don't have the `python:3-onbuild` image, the client will first pull the i
 The last step in this section is to run the image and see if it actually works (replacing my username with yours).
 
 ```bash
-$ docker run -p 8888:5000 prakhar1989/catnip
+$ docker run -p 8888:5000 yourusername/catnip
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
@@ -395,15 +395,15 @@ What good is an application that can't be shared with friends, right? So in this
 The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different [Docker registries](https://aws.amazon.com/ecr/) you can use (you can even host [your own](https://docs.docker.com/registry/deploying/)). For now, let's use [Docker Hub](https://hub.docker.com) to publish the image. To publish, just type
 
 ```bash
-$ docker push prakhar1989/catnip
+$ docker push yourusername/catnip
 ```
 
 If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into Docker Hub.
 
 ```bash
 $ docker login
-Username: prakhar1989
-WARNING: login credentials saved in /Users/prakhar/.docker/config.json
+Username: yourusername
+WARNING: login credentials saved in /Users/yourusername/.docker/config.json
 Login Succeeded
 ```
 
@@ -416,7 +416,7 @@ Once that is done, you can view your image on Docker Hub. For example, here's th
 Now that your image is online, anyone who has docker installed can play with your app by typing just a single command.
 
 ```bash
-$ docker run -p 8888:5000 prakhar1989/catnip
+$ docker run -p 8888:5000 yourusername/catnip
 ```
 
 If you've pulled your hair in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That's why Docker is so cool!
@@ -448,8 +448,9 @@ Here are the steps:
   <img src="images/eb-docker.jpeg" alt="Elastic Beanstalk Environment Type">
 </picture>
 
-- Now we need to upload our application code. But since our application is packaged in a Docker container, we just to tell EB about our container. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "upload your own" and choose this file.
-- The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.
+- Now we need to upload our application code. But since our application is packaged in a Docker container, we just need to tell EB about our container. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "Upload your Code", choose this file, and click on "Upload".
+- Now click on "Create environment". The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.
+
 
 While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.
 
@@ -457,7 +458,7 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "prakhar1989/catnip",
+    "Name": "yourusername/catnip",
     "Update": "true"
   },
   "Ports": [
@@ -471,7 +472,7 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 
 The file should be pretty self-explanatory, but you can always [reference](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html#create_deploy_docker_image_dockerrun) the official documentation for more information. We provide the name of the image that EB should use along with a port that the container should open.
 
-Hopefully, by now, our instance should be ready. Head over to the EB page and you should a green tick indicating that your app is alive and kicking.
+Hopefully by now, our instance should be ready. Head over to the EB page and you should see a green tick indicating that your app is alive and kicking.
 
 <picture>
   <source type="image/webp" srcset="images/eb-deploy.webp">
@@ -568,7 +569,7 @@ $ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-no
 277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
 ```
 
-As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should logs similar to below if Elasticsearch started successfully.
+As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should see logs similar to below if Elasticsearch started successfully.
 
 > Note: Elasticsearch takes a few seconds to start so you might need to wait before you see `initialized` in the logs.
 
@@ -628,13 +629,13 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
 RUN apt-get -yqq install python-pip python-dev curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt-get install -yq nodejs
 
 # copy our application code
@@ -660,7 +661,6 @@ We then use the `ADD` command to copy our application into a new volume in the c
 Finally, we can go ahead, build the image and run the container (replace `prakhar1989` with your username below).
 
 ```bash
-$ git clone https://github.com/prakhar1989/FoodTrucks && cd FoodTrucks
 $ docker build -t prakhar1989/foodtrucks-web .
 ```
 
@@ -706,7 +706,7 @@ a875bec5d6fd        host                host                local
 ead0e804a67b        none                null                local
 ```
 
-The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network
+The **bridge** network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let's inspect the network.
 
 ```bash
 $ docker network inspect bridge
@@ -803,13 +803,13 @@ ead0e804a67b        none                null                local
 
 The `network create` command creates a new *bridge* network, which is what we need at the moment. In terms of Docker, a bridge network uses a software bridge which allows containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network. The Docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks cannot communicate directly with each other. There are other kinds of networks that you can create, and you are encouraged to read about them in the official [docs](https://docs.docker.com/engine/userguide/networking/dockernetworks/).
 
-Now that we have a network, we can launch our containers inside this network using the `--net` flag. Let's do that - but first, we will stop and delete our ES container that is running in the bridge (default) network.
+Now that we have a network, we can launch our containers inside this network using the `--net` flag. Let's do that - but first, in order to launch a new container with the same name, we will stop and remove our ES container that is running in the bridge (default) network.
 
 ```bash
 $ docker container stop es
 es
 
-$ docker rm es
+$ docker container rm es
 es
 
 $ docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
@@ -996,18 +996,22 @@ volumes:
       driver: local
 ```
 
-Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service, that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
+Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
 
 Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it on [docker compose docs](https://docs.docker.com/compose/compose-file/#depends_on).
 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
-Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports are free. So if you have the Flask and ES containers running, lets turn them off.
+Great! Now the file is ready, let's see `docker-compose` in action. But before we start, we need to make sure the ports and names are free. So if you have the Flask and ES containers running, lets turn them off.
 
 ```bash
-$ docker stop $(docker ps -q)
-39a2f5df14ef
-2a1b77e066e6
+$ docker stop es foodtrucks-web
+es
+foodtrucks-web
+
+$ docker rm es foodtrucks-web
+es
+foodtrucks-web
 ```
 
 Now we can run `docker-compose`. Navigate to the food trucks directory and run `docker-compose up`.
