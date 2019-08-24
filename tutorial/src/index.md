@@ -629,8 +629,7 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:latest
-
+FROM ubuntu:18.04
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
@@ -1245,7 +1244,7 @@ root@581e351c82b0:/opt/flask-app# grep hello app.py
 root@581e351c82b0:/opt/flask-app# exit
 ```
 
-What we're trying to do here is to validate that our changes are not in the `app.py` that's running in the container. We do this by running the command `docker-compose run`, which is similar to its cousin `docker run` but takes additional arguments for the service (which is `web` in our [case](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12)). As soon as we run `bash`, the shell opens in `/opt/flask-app` as specified in our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13). From the grep command we can see that our changes are not in the file.
+What we're trying to do here is to validate that our changes are not in the `app.py` that's running in the container. We do this by running the command `docker compose run`, which is similar to its cousin `docker run` but takes additional arguments for the service (which is `web` in our [case](https://github.com/prakhar1989/FoodTrucks/blob/master/docker-compose.yml#L12)). As soon as we run `bash`, the shell opens in `/opt/flask-app` as specified in our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfile#L13). From the grep command we can see that our changes are not in the file.
 
 Lets see how we can fix it. First off, we need to tell docker compose to not use the image and instead use the files locally. We'll also set debug mode to `true` so that Flask knows to reload the server when `app.py` changes. Replace the `web` portion of the `docker-compose.yml` file like so:
 
