@@ -296,13 +296,7 @@ $ cd docker-curriculum/flask-app
 
 > This should be cloned on the machine where you are running the docker commands and *not* inside a docker container.
 
-The next step now is to create an image with this web app. As mentioned above, all user images are based on a base image. Since our application is written in Python, the base image we're going to use will be [Python 3](https://hub.docker.com/_/python/). More specifically, we are going to use the `python:3-onbuild` version of the python image.
-
-What's the `onbuild` version you might ask?
-
-> These images include multiple ONBUILD triggers, which should be all you need to bootstrap most applications. The build will COPY a `requirements.txt` file, RUN `pip install` on said file, and then copy the current directory into `/usr/src/app`.
-
-In other words, the `onbuild` version of the image includes helpers that automate the boring parts of getting an app running. Rather than doing these tasks manually (or scripting these tasks), these images do that work for you. We now have all the ingredients to create our own image - a functioning web app and a base image. How are we going to do that? The answer is - using a **Dockerfile**.
+The next step now is to create an image with this web app. As mentioned above, all user images are based on a base image. Since our application is written in Python, the base image we're going to use will be [Python 3](https://hub.docker.com/_/python/).
 
 ### Dockerfile
 
@@ -313,10 +307,27 @@ The application directory does contain a Dockerfile but since we're doing this f
 We start with specifying our base image. Use the `FROM` keyword to do that -
 
 ```dockerfile
-FROM python:3-onbuild
+FROM python:3
 ```
 
-The next step usually is to write the commands of copying the files and installing the dependencies. Luckily for us, the `onbuild` version of the image takes care of that. The next thing we need to specify is the port number that needs to be exposed. Since our flask app is running on port `5000`, that's what we'll indicate.
+The next step usually is to write the commands of copying the files and installing the dependencies. First, we set a working directory and then copy all the files for our app.
+
+```dockerfile
+# set a directory for the app
+WORKDIR /usr/src/app
+
+# copy all the files to the container
+COPY . .
+```
+
+Now, that we have the files, we can install the dependencies.
+
+```dockerfile
+# install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+```
+
+The next thing we need to specify is the port number that needs to be exposed. Since our flask app is running on port `5000`, that's what we'll indicate.
 
 ```dockerfile
 EXPOSE 5000
@@ -331,13 +342,21 @@ CMD ["python", "./app.py"]
 The primary purpose of `CMD` is to tell the container which command it should run when it is started. With that, our `Dockerfile` is now ready. This is how it looks like -
 
 ```dockerfile
-# our base image
-FROM python:3-onbuild
+FROM python:3
 
-# specify the port number the container should expose
+# set a directory for the app
+WORKDIR /usr/src/app
+
+# copy all the files to the container
+COPY . .
+
+# install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# tell the port number the container should expose
 EXPOSE 5000
 
-# run the application
+# run the command
 CMD ["python", "./app.py"]
 ```
 
@@ -346,9 +365,9 @@ Now that we have our `Dockerfile`, we can build our image. The `docker build` co
 The section below shows you the output of running the same. Before you run the command yourself (don't forget the period), make sure to replace my username with yours. This username should be the same one you created when you registered on [Docker hub](https://hub.docker.com). If you haven't done that yet, please go ahead and create an account. The `docker build` command is quite simple - it takes an optional tag name with `-t` and a location of the directory containing the `Dockerfile`.
 
 ```bash
-$ docker build -t prakhar1989/catnip .
+$ docker build -t yourusername/catnip .
 Sending build context to Docker daemon 8.704 kB
-Step 1 : FROM python:3-onbuild
+Step 1 : FROM python:3
 # Executing 3 build triggers...
 Step 1 : COPY requirements.txt /usr/src/app/
  ---> Using cache
@@ -368,7 +387,7 @@ Removing intermediate container f01401a5ace9
 Successfully built 13e87ed1fbc2
 ```
 
-If you don't have the `python:3-onbuild` image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. Look carefully and you'll notice that the on-build triggers were executed correctly. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
+If you don't have the `python:3` image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
 
 The last step in this section is to run the image and see if it actually works (replacing my username with yours).
 
@@ -621,7 +640,7 @@ $ curl 0.0.0.0:9200
 }
 ```
 
-Sweet! It's looking good! While we are at it, let's get our Flask container running too. But before we get to that, we need a `Dockerfile`. In the last section, we used `python:3-onbuild` image as our base image. This time, however, apart from installing Python dependencies via `pip`, we want our application to also generate our minified Javascript file for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the `ubuntu` base image to build our `Dockerfile` from scratch.
+Sweet! It's looking good! While we are at it, let's get our Flask container running too. But before we get to that, we need a `Dockerfile`. In the last section, we used `python:3` image as our base image. This time, however, apart from installing Python dependencies via `pip`, we want our application to also generate our minified Javascript file for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the `ubuntu` base image to build our `Dockerfile` from scratch.
 
 > Note: if you find that an existing image doesn't cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding `Dockerfile` on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.
 
