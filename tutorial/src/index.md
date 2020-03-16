@@ -1108,7 +1108,7 @@ a875bec5d6fd        host                 host                local
 ead0e804a67b        none                 null                local
 ```
 
-Great! Now that we have a clean slate, let's re-run our services and see if *Compose* does it's magic.
+Great! Now that we have a clean slate, let's re-run our services and see if *Compose* does its magic.
 
 ```bash
 $ docker-compose up -d
