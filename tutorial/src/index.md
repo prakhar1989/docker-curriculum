@@ -339,7 +339,7 @@ The last step is to write the command for running the application, which is simp
 CMD ["python", "./app.py"]
 ```
 
-The primary purpose of `CMD` is to tell the container which command it should run when it is started. With that, our `Dockerfile` is now ready. This is how it looks like -
+The primary purpose of `CMD` is to tell the container which command it should run when it is started. With that, our `Dockerfile` is now ready. This is how it looks -
 
 ```dockerfile
 FROM python:3
@@ -353,7 +353,7 @@ COPY . .
 # install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# tell the port number the container should expose
+# define the port number the container should expose
 EXPOSE 5000
 
 # run the command
