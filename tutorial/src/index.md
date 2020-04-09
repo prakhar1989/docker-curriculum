@@ -477,12 +477,13 @@ While we wait, let's quickly see what the `Dockerrun.aws.json` file contains. Th
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "yourusername/catnip",
+    "Name": "prakhar1989/catnip",
     "Update": "true"
   },
   "Ports": [
     {
-      "ContainerPort": "5000"
+      "ContainerPort": 5000,
+      "HostPort": 8000
     }
   ],
   "Logging": "/var/log/nginx"
