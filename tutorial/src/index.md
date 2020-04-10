@@ -798,7 +798,7 @@ root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
 root@35180ccc206a:/opt/flask-app# exit
 ```
 
-This should be fairly straightforward to you by now. We start the container in the interactive mode with the `bash` process. The `--rm` is a convenient flag for running one off commands since the container gets cleaned up when it's work is done. We try a `curl` but we need to install it first. Once we do that, we see that we can indeed talk to ES on `172.17.0.2:9200`. Awesome!
+This should be fairly straightforward to you by now. We start the container in the interactive mode with the `bash` process. The `--rm` is a convenient flag for running one off commands since the container gets cleaned up when its work is done. We try a `curl` but we need to install it first. Once we do that, we see that we can indeed talk to ES on `172.17.0.2:9200`. Awesome!
 
 Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach -
 
@@ -1330,7 +1330,7 @@ That concludes our tour of Docker Compose. With Docker Compose, you can also pau
 
 In the last section we used `docker-compose` to run our app locally with a single command: `docker-compose up`. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Executing the last three are beyond the scope of the tutorial, so we'll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.
 
-If you've read this far you are much pretty convinced that Docker is a pretty cool technology. And you are not alone. Seeing the meteoric rise of Docker, almost all Cloud vendors started working on adding support for deploying Docker apps on their platform. As of today, you can deploy containers on [Google Cloud Platform](https://cloud.google.com/containers/), [AWS](https://aws.amazon.com/containers/), [Azure](https://azure.microsoft.com/en-us/overview/containers/) and many others. We already got a primer on deploying single container apps with Elastic Beanstalk and in this section we are going to look at [Elastic Container Service (or ECS)](https://aws.amazon.com/ecs/) by AWS.
+If you've read this far you are pretty much convinced that Docker is a pretty cool technology. And you are not alone. Seeing the meteoric rise of Docker, almost all Cloud vendors started working on adding support for deploying Docker apps on their platform. As of today, you can deploy containers on [Google Cloud Platform](https://cloud.google.com/containers/), [AWS](https://aws.amazon.com/containers/), [Azure](https://azure.microsoft.com/en-us/overview/containers/) and many others. We already got a primer on deploying single container apps with Elastic Beanstalk and in this section we are going to look at [Elastic Container Service (or ECS)](https://aws.amazon.com/ecs/) by AWS.
 
 AWS ECS is a scalable and super flexible container management service that supports Docker containers. It allows you to operate a Docker cluster on top of EC2 instances via an easy-to-use API. Where Beanstalk came with reasonable defaults, ECS allows you to completely tune your environment as per your needs. This makes ECS, in my opinion, quite complex to get started with.
 
