@@ -417,12 +417,12 @@ If this is the first time you are pushing an image, the client will ask you to l
 
 ```bash
 $ docker login
-Login in with your Docker ID to push and pull images from Docker Hub. If you don\'t have a Docker ID, head over to https://hub.docker.com to create one.
+Login in with your Docker ID to push and pull images from Docker Hub. If you do not have a Docker ID, head over to https://hub.docker.com to create one.
 Username: yourusername
 Password:
 WARNING! Your password will be stored unencrypted in /Users/yourusername/.docker/config.json
 Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/\#credential-store
+https://docs.docker.com/engine/reference/commandline/login/credential-store
 
 Login Succeeded
 ```
