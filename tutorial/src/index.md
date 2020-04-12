@@ -27,8 +27,8 @@ Containers offer a logical packaging mechanism in which applications can be abst
 From an operations standpoint, apart from portability containers also give more granular control over resources giving your infrastructure improved efficiency which can result in better utilization of your compute resources.
 
 <picture>
-  <source type="image/webp" srcset="images/interest.webp">
-  <img src="images/interest.png" alt="Docker interest over time">
+  <source class="lazyload" type="image/webp" data-srcset="images/interest.webp">
+  <img class="lazyload" data-src="images/interest.png" alt="Docker interest over time">
   <p class="caption">Google Trends for Docker</p>
 </picture>
 
@@ -232,8 +232,8 @@ Nginx is running...
 ```
 
 <picture>
-  <source type="image/webp" srcset="images/static.webp">
-  <img src="images/static.png" alt="static site">
+  <source class="lazyload" type="image/webp" data-srcset="images/static.webp">
+  <img class="lazyload" data-src="images/static.png" alt="static site">
 </picture>
 
 To stop a detached container, run `docker stop` by giving the container ID. In this case, we can use the name `static-site` we used to start the container.
@@ -399,8 +399,8 @@ $ docker run -p 8888:5000 yourusername/catnip
 The command we just ran used port 5000 for the server inside the container and exposed this externally on port 8888. Head over to the URL with port 8888, where your app should be live.
 
 <picture>
-  <source type="image/webp" srcset="images/catgif.webp">
-  <img src="images/catgif.png" alt="cat gif website">
+  <source class="lazyload" type="image/webp" data-srcset="images/catgif.webp">
+  <img class="lazyload" data-src="images/catgif.png" alt="cat gif website">
 </picture>
 
 Congratulations! You have successfully created your first docker image.
@@ -452,8 +452,8 @@ Here are the steps:
 - Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, you can access the [Elastic Beanstalk console](https://console.aws.amazon.com/elasticbeanstalk).
 
 <picture>
-  <source type="image/webp" srcset="images/eb-start.webp">
-  <img src="images/eb-start.png" alt="Elastic Beanstalk start">
+  <source class="lazyload" type="image/webp" data-srcset="images/eb-start.webp">
+  <img class="lazyload" data-src="images/eb-start.png" alt="Elastic Beanstalk start">
 </picture>
 
 - Click on "Create New Application" in the top right
@@ -463,8 +463,8 @@ Here are the steps:
 - Under base configuration section. Choose *Docker* from the *predefined platform*.
 
 <picture>
-  <source type="image/webp" srcset="images/eb-docker.webp">
-  <img src="images/eb-docker.jpeg" alt="Elastic Beanstalk Environment Type">
+  <source type="image/webp" class="lazyload" data-srcset="images/eb-docker.webp">
+  <img class="lazyload" data-src="images/eb-docker.jpeg" alt="Elastic Beanstalk Environment Type">
 </picture>
 
 - Now we need to upload our application code. But since our application is packaged in a Docker container, we just need to tell EB about our container. Open the `Dockerrun.aws.json` [file](https://github.com/prakhar1989/docker-curriculum/blob/master/flask-app/Dockerrun.aws.json) located in the `flask-app` folder and edit the `Name` of the image to your image's name. Don't worry, I'll explain the contents of the file shortly. When you are done, click on the radio button for "Upload your Code", choose this file, and click on "Upload".
@@ -495,8 +495,8 @@ The file should be pretty self-explanatory, but you can always [reference](http:
 Hopefully by now, our instance should be ready. Head over to the EB page and you should see a green tick indicating that your app is alive and kicking.
 
 <picture>
-  <source type="image/webp" srcset="images/eb-deploy.webp">
-  <img src="images/eb-deploy.png" alt="EB deploy">
+  <source type="image/webp" class="lazyload" data-srcset="images/eb-deploy.webp">
+  <img class="lazyload" data-src="images/eb-deploy.png" alt="EB deploy">
 </picture>
 
 Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs, too.
@@ -522,8 +522,8 @@ Just like it's a good strategy to decouple your application tiers, it is wise to
 The app that we're going to Dockerize is called SF Food Trucks. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service, but is not too complex for the purpose of this tutorial. This is what I came up with.
 
 <picture>
-  <source type="image/webp" srcset="images/foodtrucks.webp">
-  <img src="images/foodtrucks.png" alt="SF Food Trucks">
+  <source class="lazyload" type="image/webp" data-srcset="images/foodtrucks.webp">
+  <img class="lazyload" data-src="images/foodtrucks.png" alt="SF Food Trucks">
 </picture>
 
 The app's backend is written in Python (Flask) and for search it uses [Elasticsearch](https://www.elastic.co/products/elasticsearch). Like everything else in this tutorial, the entire source is available on [Github](http://github.com/prakhar1989/FoodTrucks). We'll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.
@@ -1346,8 +1346,8 @@ ecs-cli version 0.1.0 (*cbdc2d5)
 The first step is to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
 
 <picture>
-  <source type="image/webp" srcset="images/keypair.webp">
-  <img src="images/keypair.png" alt="EC2 Keypair">
+  <source type="image/webp" class="lazyload" data-srcset="images/keypair.webp">
+  <img data-src="images/keypair.png" class="lazyload" alt="EC2 Keypair">
 </picture>
 
 The next step is to configure the CLI.
@@ -1428,13 +1428,13 @@ Go ahead and open [http://54.86.14.14](http://54.86.14.14) in your browser and y
 Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters) console looks.
 
 <picture>
-  <source type="image/webp" srcset="images/cluster.webp">
-  <img src="images/cluster.png" alt="Cluster">
+  <source type="image/webp" class="lazyload" data-srcset="images/cluster.webp">
+  <img data-src="images/cluster.png" class="lazyload" alt="Cluster">
 </picture>
 
 <picture>
-  <source type="image/webp" srcset="images/tasks.webp">
-  <img src="images/tasks.png" alt="Tasks">
+  <source type="image/webp" class="lazyload" data-srcset="images/tasks.webp">
+  <img data-src="images/tasks.png" class="lazyload" alt="Tasks">
 </picture>
 
 We can see above that our ECS cluster called 'foodtrucks' was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of all the options that are here.

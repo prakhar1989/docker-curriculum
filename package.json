@@ -22,14 +22,14 @@
   },
   "homepage": "https://github.com/prakhar1989/docker-curriculum#readme",
   "dependencies": {
-    "handlebars": "^4.5.3",
+    "handlebars": "^4.7.6",
     "metalsmith": "^2.1.0",
     "metalsmith-layouts": "^1.4.1",
     "metalsmith-markdown": "^0.2.2",
     "metalsmith-metallic": "^2.0.2",
     "metalsmith-permalinks": "^0.5.0",
     "metalsmith-watch": "^1.0.3",
-    "sass": "^1.10.3"
+    "sass": "^1.26.3"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
