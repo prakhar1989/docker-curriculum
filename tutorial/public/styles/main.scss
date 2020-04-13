@@ -192,7 +192,9 @@ nav#menu {
     &>ol {
         padding: 8px;
         list-style-type: none;
-        font-size: 14px;
+        font-size: 1em;
+        margin-bottom: 0;
+        margin-top: 0;
 
         &>li {
             margin: 1rem 0.5rem;
@@ -282,6 +284,7 @@ nav#menu {
         color: white;
         left: 0;
         transition: left 0.3s;
+        box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px, rgba(0, 0, 0, 0.28) 0px 4px 8px;
     }
 
     nav a {
@@ -291,7 +294,7 @@ nav#menu {
 
 
     nav ol>li {
-        padding: 0.8rem 0;
+        padding: 0.2rem 0;
     }
 
     #hamburger-btn {
