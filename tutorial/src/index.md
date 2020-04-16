@@ -1461,6 +1461,19 @@ Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon
 
 We can see above that our ECS cluster called 'foodtrucks' was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of all the options that are here.
 
+### Cleanup
+
+Once you've played around with the deployed app, remember to turn down the cluster -
+
+```
+$ ecs-cli down --force
+INFO[0001] Waiting for your cluster resources to be deleted...
+INFO[0001] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
+INFO[0062] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
+INFO[0124] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
+INFO[0155] Deleted cluster                               cluster=foodtrucks
+```
+
 So there you have it. With just a few commands we were able to deploy our awesome app on the AWS cloud!
 
 ---
