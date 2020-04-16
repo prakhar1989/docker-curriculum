@@ -1340,7 +1340,15 @@ $ ecs-cli --version
 ecs-cli version 1.18.1 (7e9df84)
 ```
 
-The first step is to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
+Next, we'll be working on configuring the CLI so that we can talk to ECS. We'll be following the steps as detailed in the [official guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_Configuration.html) on AWS ECS docs. In case of any confusion, please feel free to refer to that guide.
+
+The first step will involve creating a profile that we'll use for the rest of the tutorial. To continue, you'll need your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. To obtain these, follow the steps as detailed under the section titled _Access Key and Secret Access Key_ on [this page](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration).
+
+```
+ecs-cli configure profile --profile-name ecs-foodtrucks --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
+```
+
+Next, we need to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
 
 <picture>
   <source type="image/webp" class="lazyload" data-srcset="images/keypair.webp">
