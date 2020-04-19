@@ -10,7 +10,7 @@ jobs:
     - uses: actions/stale@v1.1.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-label: 'waiting-for-response'
+        only-labels: 'waiting-for-response'
         stale-issue-message: 'This issue is stale because it has been open 14 days with no activity. Remove label or comment or this will be closed in 2 days'
         days-before-stale: 14
         days-before-close: 2
