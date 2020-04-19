@@ -987,7 +987,7 @@ The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum a
 > While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the management of such group of containers as a single entity.
 > And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".
 
-It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
+It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, [acquired the company](https://www.docker.com/blog/welcoming-the-orchard-and-fig-team/) and re-branded Fig as Docker Compose.
 
 So what is _Compose_ used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called `docker-compose.yml` that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.
 
@@ -1230,7 +1230,7 @@ Server: Werkzeug/0.11.2 Python/2.7.15rc1
 Date: Mon, 30 Jul 2018 15:34:38 GMT
 ```
 
-Why does this happen? Since ours is a Flask app, we can see [`app.py`]() for answers. In Flask, routes are defined with @app.route syntax. In the file, you'll see that we only have three routes defined - `/`, `/debug` and `/search`. The `/` route renders the main app, the `debug` route is used to return some debug information and finally `search` is used by the app to query elasticsearch.
+Why does this happen? Since ours is a Flask app, we can see `app.py` ([link](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/app.py#L48-L64)) for answers. In Flask, routes are defined with @app.route syntax. In the file, you'll see that we only have three routes defined - `/`,`/debug`and`/search`. The`/`route renders the main app, the`debug`route is used to return some debug information and finally`search` is used by the app to query elasticsearch.
 
 ```bash
 $ curl 0.0.0.0:5000/debug
