@@ -668,7 +668,7 @@ MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
-RUN apt-get -yqq install python-pip python-dev curl gnupg
+RUN apt-get -yqq install python3-pip python3-dev curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt-get install -yq nodejs
 
@@ -679,13 +679,13 @@ WORKDIR /opt/flask-app
 # fetch app specific deps
 RUN npm install
 RUN npm run build
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # expose port
 EXPOSE 5000
 
 # start app
-CMD [ "python", "./app.py" ]
+CMD [ "python3", "./app.py" ]
 ```
 
 Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompts.
@@ -914,7 +914,7 @@ root@9d2722cf282c:/opt/flask-app# curl es:9200
 }
 root@53af252b771a:/opt/flask-app# ls
 app.py  node_modules  package.json  requirements.txt  static  templates  webpack.config.js
-root@53af252b771a:/opt/flask-app# python app.py
+root@53af252b771a:/opt/flask-app# python3 app.py
 Index not found...
 Loading data in elasticsearch ...
 Total trucks loaded:  733
@@ -930,7 +930,7 @@ $ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1
 
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                                            NAMES
-852fc74de295        prakhar1989/foodtrucks-web                            "python ./app.py"        About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
+852fc74de295        prakhar1989/foodtrucks-web                            "python3 ./app.py"       About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
 13d6415f73c8        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   17 minutes ago       Up 17 minutes       0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   es
 
 $ curl -I 0.0.0.0:5000
@@ -1018,7 +1018,7 @@ services:
       - esdata1:/usr/share/elasticsearch/data
   web:
     image: prakhar1989/foodtrucks-web
-    command: python app.py
+    command: python3 app.py
     depends_on:
       - es
     ports:
@@ -1094,7 +1094,7 @@ $ docker-compose ps
       Name                    Command               State                Ports
 --------------------------------------------------------------------------------------------
 es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
-foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000->5000/tcp
+foodtrucks_web_1   python3 app.py                   Up      0.0.0.0:5000->5000/tcp
 ```
 
 Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does _Compose_ also create the network automatically? Good question! Let's find out.
@@ -1131,7 +1131,7 @@ Recreating foodtrucks_web_1
 
 $ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-f50bb33a3242        prakhar1989/foodtrucks-web   "python app.py"          14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
+f50bb33a3242        prakhar1989/foodtrucks-web   "python3 app.py"         14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
 e299ceeb4caa        elasticsearch                "/docker-entrypoint.s"   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
 ```
 
@@ -1152,7 +1152,7 @@ You can see that compose went ahead and created a new network called `foodtrucks
 $ docker ps
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
 8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, 9300/tcp   es
-7640cec7feb7        prakhar1989/foodtrucks-web                            "python app.py"          About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+7640cec7feb7        prakhar1989/foodtrucks-web                            "python3 app.py"         About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 
 $ docker network inspect foodtrucks_default
 [
@@ -1217,7 +1217,7 @@ Let's see how we can make a change in the Foodtrucks app we just ran. Make sure 
 ```bash
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
-5450ebedd03c        prakhar1989/foodtrucks-web                            "python app.py"          9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+5450ebedd03c        prakhar1989/foodtrucks-web                            "python3 app.py"         9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   10 hours ago        Up 10 hours         0.0.0.0:9200->9200/tcp, 9300/tcp   es
 ```
 
@@ -1296,7 +1296,7 @@ services:
       - esdata1:/usr/share/elasticsearch/data
   web:
     build: . # replaced image with build
-    command: python app.py
+    command: python3 app.py
     environment:
       - DEBUG=True # set an env var for flask
     depends_on:
