@@ -662,7 +662,7 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
@@ -688,7 +688,7 @@ EXPOSE 5000
 CMD [ "python3", "./app.py" ]
 ```
 
-Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS 20.04](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompts.
+Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompts.
 
 We then use the `ADD` command to copy our application into a new volume in the container - `/opt/flask-app`. This is where our code will reside. We also set this as our working directory, so that the following commands will be run in the context of this location. Now that our system-wide dependencies are installed, we get around to installing app-specific ones. First off we tackle Node by installing the packages from npm and running the build command as defined in our `package.json` [file](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/package.json#L7-L9). We finish the file off by installing the Python packages, exposing the port and defining the `CMD` to run as we did in the last section.
 
