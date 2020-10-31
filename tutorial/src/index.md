@@ -1517,7 +1517,6 @@ Below are a few additional resources that will be beneficial. For your next proj
 **Additional Resources**
 
 - [Awesome Docker](https://github.com/veggiemonk/awesome-docker)
-- [Hello Docker Workshop](http://docker.atbaker.me/)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
 - [Codeship Blog](https://blog.codeship.com/)
