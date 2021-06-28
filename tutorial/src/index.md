@@ -522,7 +522,7 @@ In the next (and final) part of the tutorial, we'll up the ante a bit and deploy
 
 In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app. Both of which we could run locally and in the cloud with just a few commands. One thing both these apps had in common was that they were running in a **single container**.
 
-Those of you who have experience running services in production know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become _de riguer_ of most web application architectures. Hence, in this section we are going to spend some time learning how to Dockerize applications which rely on different services to run.
+Those of you who have experience running services in production know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become _de rigueur_ of most web application architectures. Hence, in this section we are going to spend some time learning how to Dockerize applications which rely on different services to run.
 
 In particular, we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key points of Docker is the way it provides isolation. The idea of bundling a process with its dependencies in a sandbox (called containers) is what makes this so powerful.
 
