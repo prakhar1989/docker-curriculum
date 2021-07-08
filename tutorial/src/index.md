@@ -198,7 +198,7 @@ Let's start by taking baby-steps. The first thing we're going to look at is how 
 Let's begin. The image that we are going to use is a single-page [website](http://github.com/prakhar1989/docker-curriculum) that I've already created for the purpose of this demo and hosted on the [registry](https://hub.docker.com/r/prakhar1989/static-site/) - `prakhar1989/static-site`. We can download and run the image directly in one go using `docker run`. As noted above, the `--rm` flag automatically removes the container when it exits.
 
 ```bash
-$ docker run --rm prakhar1989/static-site
+$ docker run --rm -it prakhar1989/static-site
 ```
 
 Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a `Nginx is running...` message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.
@@ -409,27 +409,22 @@ What good is an application that can't be shared with friends, right? So in this
 
 #### Docker push
 
-The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different [Docker registries](https://aws.amazon.com/ecr/) you can use (you can even host [your own](https://docs.docker.com/registry/deploying/)). For now, let's use [Docker Hub](https://hub.docker.com) to publish the image.
+The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different [Docker registries](https://aws.amazon.com/ecr/) you can use (you can even host [your own](https://docs.docker.com/registry/deploying/)). For now, let's use [Docker Hub](https://hub.docker.com) to publish the image. To publish, just type
+
+```bash
+$ docker push yourusername/catnip
+```
 
 If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into Docker Hub.
 
 ```bash
 $ docker login
-Login in with your Docker ID to push and pull images from Docker Hub. If you do not have a Docker ID, head over to https://hub.docker.com to create one.
 Username: yourusername
-Password:
-WARNING! Your password will be stored unencrypted in /Users/yourusername/.docker/config.json
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/credential-store
-
+WARNING: login credentials saved in /Users/yourusername/.docker/config.json
 Login Succeeded
 ```
 
-To publish, just type the below command remembering to replace the name of the image tag above with yours. It is important to have the format of `yourusername/image_name` so that the client knows where to publish.
-
-```bash
-$ docker push yourusername/catnip
-```
+Remember to replace the name of the image tag above with yours. It is important to have the format of `username/image_name` so that the client knows where to publish.
 
 Once that is done, you can view your image on Docker Hub. For example, here's the [web page](https://hub.docker.com/r/prakhar1989/catnip/) for my image.
 
@@ -522,7 +517,7 @@ In the next (and final) part of the tutorial, we'll up the ante a bit and deploy
 
 In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app. Both of which we could run locally and in the cloud with just a few commands. One thing both these apps had in common was that they were running in a **single container**.
 
-Those of you who have experience running services in production know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become _de rigueur_ of most web application architectures. Hence, in this section we are going to spend some time learning how to Dockerize applications which rely on different services to run.
+Those of you who have experience running services in production know that usually apps nowadays are not that simple. There's almost always a database (or any other kind of persistent storage) involved. Systems such as [Redis](http://redis.io/) and [Memcached](http://memcached.org/) have become _de riguer_ of most web application architectures. Hence, in this section we are going to spend some time learning how to Dockerize applications which rely on different services to run.
 
 In particular, we are going to see how we can run and manage **multi-container** docker environments. Why multi-container you might ask? Well, one of the key points of Docker is the way it provides isolation. The idea of bundling a process with its dependencies in a sandbox (called containers) is what makes this so powerful.
 
@@ -600,8 +595,6 @@ $ docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-no
 277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
 ```
 
-> Note: If your container runs into memory issues, you might need to [tweak some JVM flags](https://github.com/elastic/elasticsearch-docker/issues/43#issuecomment-289377878) to limit its memory consumption.
-
 As seen above, we use `--name es` to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running `docker container logs` with the container name (or ID) to inspect the logs. You should see logs similar to below if Elasticsearch started successfully.
 
 > Note: Elasticsearch takes a few seconds to start so you might need to wait before you see `initialized` in the logs.
@@ -662,13 +655,13 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 
 ```dockerfile
 # start from base
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
 MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
-RUN apt-get -yqq install python3-pip python3-dev curl gnupg
+RUN apt-get -yqq install python-pip python-dev curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt-get install -yq nodejs
 
@@ -679,13 +672,13 @@ WORKDIR /opt/flask-app
 # fetch app specific deps
 RUN npm install
 RUN npm run build
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # expose port
 EXPOSE 5000
 
 # start app
-CMD [ "python3", "./app.py" ]
+CMD [ "python", "./app.py" ]
 ```
 
 Quite a few new things here so let's quickly go over this file. We start off with the [Ubuntu LTS](https://wiki.ubuntu.com/LTS) base image and use the package manager `apt-get` to install the dependencies namely - Python and Node. The `yqq` flag is used to suppress output and assumes "Yes" to all prompts.
@@ -914,7 +907,7 @@ root@9d2722cf282c:/opt/flask-app# curl es:9200
 }
 root@53af252b771a:/opt/flask-app# ls
 app.py  node_modules  package.json  requirements.txt  static  templates  webpack.config.js
-root@53af252b771a:/opt/flask-app# python3 app.py
+root@53af252b771a:/opt/flask-app# python app.py
 Index not found...
 Loading data in elasticsearch ...
 Total trucks loaded:  733
@@ -930,7 +923,7 @@ $ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1
 
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                                            NAMES
-852fc74de295        prakhar1989/foodtrucks-web                            "python3 ./app.py"       About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
+852fc74de295        prakhar1989/foodtrucks-web                            "python ./app.py"        About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
 13d6415f73c8        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   17 minutes ago       Up 17 minutes       0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   es
 
 $ curl -I 0.0.0.0:5000
@@ -980,7 +973,7 @@ Till now we've spent all our time exploring the Docker client. In the Docker eco
 
 In this section, we are going to look at one of these tools, Docker Compose, and see how it can make dealing with multi-container apps easier.
 
-The background story of Docker Compose is quite interesting. Roughly around January 2014, a company called OrchardUp launched a tool called Fig. The idea behind Fig was to make isolated development environments work with Docker. The project was very well received on [Hacker News](https://news.ycombinator.com/item?id=7132044) - I oddly remember reading about it but didn't quite get the hang of it.
+The background story of Docker Compose is quite interesting. Roughly two years ago, a company called OrchardUp launched a tool called Fig. The idea behind Fig was to make isolated development environments work with Docker. The project was very well received on [Hacker News](https://news.ycombinator.com/item?id=7132044) - I oddly remember reading about it but didn't quite get the hang of it.
 
 The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum actually does a good job of explaining what Fig is all about.
 
@@ -989,7 +982,7 @@ The [first comment](https://news.ycombinator.com/item?id=7133449) on the forum a
 > While it provides options to orchestrate multiple containers to create a single "app", it doesn't address the management of such group of containers as a single entity.
 > And that's where tools such as Fig come in: talking about a group of containers as a single entity. Think "run an app" (i.e. "run an orchestrated cluster of containers") instead of "run a container".
 
-It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, [acquired the company](https://www.docker.com/blog/welcoming-the-orchard-and-fig-team/) and re-branded Fig as Docker Compose.
+It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.
 
 So what is _Compose_ used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called `docker-compose.yml` that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.
 
@@ -1018,7 +1011,7 @@ services:
       - esdata1:/usr/share/elasticsearch/data
   web:
     image: prakhar1989/foodtrucks-web
-    command: python3 app.py
+    command: python app.py
     depends_on:
       - es
     ports:
@@ -1030,9 +1023,9 @@ volumes:
     driver: local
 ```
 
-Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. The `image` parameter is always required, and for each service that we want Docker to run, we can add additional parameters. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
+Let me breakdown what the file above means. At the parent level, we define the names of our services - `es` and `web`. For each service that Docker needs to run, we can add additional parameters out of which `image` is required. For `es`, we just refer to the `elasticsearch` image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.
 
-Other parameters such as `command` and `ports` provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs, etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for the `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it on [docker compose docs](https://docs.docker.com/compose/compose-file/#depends_on).
+Via other parameters such as `command` and `ports` we provide more information about the container. The `volumes` parameter specifies a mount point in our `web` container where the code will reside. This is purely optional and is useful if you need access to logs etc. We'll later see how this can be useful during development. Refer to the [online reference](https://docs.docker.com/compose/compose-file) to learn more about the parameters this file supports. We also add volumes for the `es` container so that the data we load persists between restarts. We also specify `depends_on`, which tells docker to start the `es` container before `web`. You can read more about it on [docker compose docs](https://docs.docker.com/compose/compose-file/#depends_on).
 
 > Note: You must be inside the directory with the `docker-compose.yml` file in order to execute most Compose commands.
 
@@ -1094,7 +1087,7 @@ $ docker-compose ps
       Name                    Command               State                Ports
 --------------------------------------------------------------------------------------------
 es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
-foodtrucks_web_1   python3 app.py                   Up      0.0.0.0:5000->5000/tcp
+foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000->5000/tcp
 ```
 
 Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does _Compose_ also create the network automatically? Good question! Let's find out.
@@ -1131,7 +1124,7 @@ Recreating foodtrucks_web_1
 
 $ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-f50bb33a3242        prakhar1989/foodtrucks-web   "python3 app.py"         14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
+f50bb33a3242        prakhar1989/foodtrucks-web   "python app.py"          14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
 e299ceeb4caa        elasticsearch                "/docker-entrypoint.s"   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
 ```
 
@@ -1152,7 +1145,7 @@ You can see that compose went ahead and created a new network called `foodtrucks
 $ docker ps
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
 8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, 9300/tcp   es
-7640cec7feb7        prakhar1989/foodtrucks-web                            "python3 app.py"         About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+7640cec7feb7        prakhar1989/foodtrucks-web                            "python app.py"          About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 
 $ docker network inspect foodtrucks_default
 [
@@ -1217,7 +1210,7 @@ Let's see how we can make a change in the Foodtrucks app we just ran. Make sure 
 ```bash
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
-5450ebedd03c        prakhar1989/foodtrucks-web                            "python3 app.py"         9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+5450ebedd03c        prakhar1989/foodtrucks-web                            "python app.py"          9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   10 hours ago        Up 10 hours         0.0.0.0:9200->9200/tcp, 9300/tcp   es
 ```
 
@@ -1232,7 +1225,7 @@ Server: Werkzeug/0.11.2 Python/2.7.15rc1
 Date: Mon, 30 Jul 2018 15:34:38 GMT
 ```
 
-Why does this happen? Since ours is a Flask app, we can see `app.py` ([link](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/app.py#L48-L64)) for answers. In Flask, routes are defined with @app.route syntax. In the file, you'll see that we only have three routes defined - `/`,`/debug`and`/search`. The`/`route renders the main app, the`debug`route is used to return some debug information and finally`search` is used by the app to query elasticsearch.
+Why does this happen? Since ours is a Flask app, we can see [`app.py`]() for answers. In Flask, routes are defined with @app.route syntax. In the file, you'll see that we only have three routes defined - `/`, `/debug` and `/search`. The `/` route renders the main app, the `debug` route is used to return some debug information and finally `search` is used by the app to query elasticsearch.
 
 ```bash
 $ curl 0.0.0.0:5000/debug
@@ -1296,7 +1289,7 @@ services:
       - esdata1:/usr/share/elasticsearch/data
   web:
     build: . # replaced image with build
-    command: python3 app.py
+    command: python app.py
     environment:
       - DEBUG=True # set an env var for flask
     depends_on:
@@ -1364,7 +1357,7 @@ The first step will involve creating a profile that we'll use for the rest of th
 $ ecs-cli configure profile --profile-name ecs-foodtrucks --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
 ```
 
-Next, we need to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
+Next, we need to get a keypair which we'll be using to log into the instances. Head over to your [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName) and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - `ecs` and set my region as `us-east-1`. This is what I'll assume for the rest of this walkthrough.
 
 <picture>
   <source type="image/webp" class="lazyload" data-srcset="images/keypair.webp">
@@ -1436,7 +1429,7 @@ services:
         awslogs-stream-prefix: web
 ```
 
-The only changes we made from the original `docker-compose.yml` are of providing the `mem_limit` (in bytes) and `cpu_shares` values for each container and adding some logging configuration. This allows us to view logs generated by our containers in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/). Head over to CloudWatch to [create a log group](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups/create-log-group) called `foodtrucks`.  Note that since ElasticSearch typically ends up taking more memory, we've given around 3.4 GB of memory limit. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub.
+The only changes we made from the original `docker-compose.yml` are of providing the `mem_limit` (in bytes) and `cpu_shares` values for each container and adding some logging configuration. This allows us to view logs generated by our containers in [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/). Note that since ElasticSearch typically ends up taking more memory, we've given around 3.4 GB of memory limit. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub.
 
 ```bash
 $ docker push prakhar1989/foodtrucks-web
@@ -1471,7 +1464,7 @@ Name                                      State    Ports                     Tas
 ```
 
 Go ahead and open [http://54.86.14.14](http://54.86.14.14) in your browser and you should see the Food Trucks in all its black-yellow glory!
-Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon.com/ecs/home#/clusters) console looks.
+Since we're on the topic, let's see how our [AWS ECS](https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters) console looks.
 
 <picture>
   <source type="image/webp" class="lazyload" data-srcset="images/cluster.webp">
@@ -1517,6 +1510,7 @@ Below are a few additional resources that will be beneficial. For your next proj
 **Additional Resources**
 
 - [Awesome Docker](https://github.com/veggiemonk/awesome-docker)
+- [Hello Docker Workshop](http://docker.atbaker.me/)
 - [Why Docker](https://blog.codeship.com/why-docker/)
 - [Docker Weekly](https://www.docker.com/newsletter-subscription) and [archives](https://blog.docker.com/docker-weekly-archives/)
 - [Codeship Blog](https://blog.codeship.com/)
