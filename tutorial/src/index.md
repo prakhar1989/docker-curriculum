@@ -305,7 +305,7 @@ The application directory does contain a Dockerfile but since we're doing this f
 We start with specifying our base image. Use the `FROM` keyword to do that -
 
 ```dockerfile
-FROM python:3
+FROM python:3.8
 ```
 
 The next step usually is to write the commands of copying the files and installing the dependencies. First, we set a working directory and then copy all the files for our app.
@@ -340,7 +340,7 @@ CMD ["python", "./app.py"]
 The primary purpose of `CMD` is to tell the container which command it should run when it is started. With that, our `Dockerfile` is now ready. This is how it looks -
 
 ```dockerfile
-FROM python:3
+FROM python:3.8
 
 # set a directory for the app
 WORKDIR /usr/src/app
@@ -365,7 +365,7 @@ The section below shows you the output of running the same. Before you run the c
 ```bash
 $ docker build -t yourusername/catnip .
 Sending build context to Docker daemon 8.704 kB
-Step 1 : FROM python:3
+Step 1 : FROM python:3.8
 # Executing 3 build triggers...
 Step 1 : COPY requirements.txt /usr/src/app/
  ---> Using cache
@@ -385,7 +385,7 @@ Removing intermediate container f01401a5ace9
 Successfully built 13e87ed1fbc2
 ```
 
-If you don't have the `python:3` image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
+If you don't have the `python:3.8` image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. If everything went well, your image should be ready! Run `docker images` and see if your image shows.
 
 The last step in this section is to run the image and see if it actually works (replacing my username with yours).
 
@@ -654,7 +654,7 @@ $ curl 0.0.0.0:9200
 }
 ```
 
-Sweet! It's looking good! While we are at it, let's get our Flask container running too. But before we get to that, we need a `Dockerfile`. In the last section, we used `python:3` image as our base image. This time, however, apart from installing Python dependencies via `pip`, we want our application to also generate our minified Javascript file for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the `ubuntu` base image to build our `Dockerfile` from scratch.
+Sweet! It's looking good! While we are at it, let's get our Flask container running too. But before we get to that, we need a `Dockerfile`. In the last section, we used `python:3.8` image as our base image. This time, however, apart from installing Python dependencies via `pip`, we want our application to also generate our minified Javascript file for production. For this, we'll require Nodejs. Since we need a custom build step, we'll start from the `ubuntu` base image to build our `Dockerfile` from scratch.
 
 > Note: if you find that an existing image doesn't cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding `Dockerfile` on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.
 
