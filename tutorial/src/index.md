@@ -692,16 +692,16 @@ Quite a few new things here so let's quickly go over this file. We start off wit
 
 We then use the `ADD` command to copy our application into a new volume in the container - `/opt/flask-app`. This is where our code will reside. We also set this as our working directory, so that the following commands will be run in the context of this location. Now that our system-wide dependencies are installed, we get around to installing app-specific ones. First off we tackle Node by installing the packages from npm and running the build command as defined in our `package.json` [file](https://github.com/prakhar1989/FoodTrucks/blob/master/flask-app/package.json#L7-L9). We finish the file off by installing the Python packages, exposing the port and defining the `CMD` to run as we did in the last section.
 
-Finally, we can go ahead, build the image and run the container (replace `prakhar1989` with your username below).
+Finally, we can go ahead, build the image and run the container (replace `yourusername` with your username below).
 
 ```bash
-$ docker build -t prakhar1989/foodtrucks-web .
+$ docker build -t yourusername/foodtrucks-web .
 ```
 
 In the first run, this will take some time as the Docker client will download the ubuntu image, run all the commands and prepare your image. Re-running `docker build` after any subsequent changes you make to the application code will almost be instantaneous. Now let's try running our app.
 
 ```bash
-$ docker run -P --rm prakhar1989/foodtrucks-web
+$ docker run -P --rm yourusername/foodtrucks-web
 Unable to connect to ES. Retying in 5 secs...
 Unable to connect to ES. Retying in 5 secs...
 Unable to connect to ES. Retying in 5 secs...
@@ -794,7 +794,7 @@ $ docker network inspect bridge
 You can see that our container `277451c15ec1` is listed under the `Containers` section in the output. What we also see is the IP address this container has been allotted - `172.17.0.2`. Is this the IP address that we're looking for? Let's find out by running our flask container and trying to access this IP.
 
 ```bash
-$ docker run -it --rm prakhar1989/foodtrucks-web bash
+$ docker run -it --rm yourusername/foodtrucks-web bash
 root@35180ccc206a:/opt/flask-app# curl 172.17.0.2:9200
 {
   "name" : "Jane Foster",
@@ -893,7 +893,7 @@ $ docker network inspect foodtrucks-net
 As you can see, our `es` container is now running inside the `foodtrucks-net` bridge network. Now let's inspect what happens when we launch in our `foodtrucks-net` network.
 
 ```bash
-$ docker run -it --rm --net foodtrucks-net prakhar1989/foodtrucks-web bash
+$ docker run -it --rm --net foodtrucks-net yourusername/foodtrucks-web bash
 root@9d2722cf282c:/opt/flask-app# curl es:9200
 {
   "name" : "wWALl9M",
@@ -925,12 +925,12 @@ root@53af252b771a:/opt/flask-app# exit
 Wohoo! That works! On user-defined networks like foodtrucks-net, containers can not only communicate by IP address, but can also resolve a container name to an IP address. This capability is called _automatic service discovery_. Great! Let's launch our Flask container for real now -
 
 ```bash
-$ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+$ docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web yourusername/foodtrucks-web
 852fc74de2954bb72471b858dce64d764181dca0cf7693fed201d76da33df794
 
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                                            NAMES
-852fc74de295        prakhar1989/foodtrucks-web                            "python3 ./app.py"       About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
+852fc74de295        yourusername/foodtrucks-web                           "python3 ./app.py"       About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp                           foodtrucks-web
 13d6415f73c8        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   17 minutes ago       Up 17 minutes       0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   es
 
 $ curl -I 0.0.0.0:5000
@@ -947,7 +947,7 @@ Head over to [http://0.0.0.0:5000](http://0.0.0.0:5000) and see your glorious ap
 #!/bin/bash
 
 # build the flask container
-docker build -t prakhar1989/foodtrucks-web .
+docker build -t yourusername/foodtrucks-web .
 
 # create the network
 docker network create foodtrucks-net
@@ -956,7 +956,7 @@ docker network create foodtrucks-net
 docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
 
 # start the flask app container
-docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web yourusername/foodtrucks-web
 ```
 
 Now imagine you are distributing your app to a friend, or running on a server that has docker installed. You can get a whole app running with just one command!
@@ -1017,7 +1017,7 @@ services:
     volumes:
       - esdata1:/usr/share/elasticsearch/data
   web:
-    image: prakhar1989/foodtrucks-web
+    image: yourusername/foodtrucks-web
     command: python3 app.py
     depends_on:
       - es
@@ -1131,7 +1131,7 @@ Recreating foodtrucks_web_1
 
 $ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-f50bb33a3242        prakhar1989/foodtrucks-web   "python3 app.py"         14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
+f50bb33a3242        yourusername/foodtrucks-web  "python3 app.py"         14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
 e299ceeb4caa        elasticsearch                "/docker-entrypoint.s"   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
 ```
 
@@ -1152,7 +1152,7 @@ You can see that compose went ahead and created a new network called `foodtrucks
 $ docker ps
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
 8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, 9300/tcp   es
-7640cec7feb7        prakhar1989/foodtrucks-web                            "python3 app.py"         About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+7640cec7feb7        yourusername/foodtrucks-web                           "python3 app.py"         About a minute ago   Up About a minute   0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 
 $ docker network inspect foodtrucks_default
 [
@@ -1217,7 +1217,7 @@ Let's see how we can make a change in the Foodtrucks app we just ran. Make sure 
 ```bash
 $ docker container ls
 CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
-5450ebedd03c        prakhar1989/foodtrucks-web                            "python3 app.py"         9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+5450ebedd03c        yourusername/foodtrucks-web                           "python3 app.py"         9 seconds ago       Up 6 seconds        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
 05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   10 hours ago        Up 10 hours         0.0.0.0:9200->9200/tcp, 9300/tcp   es
 ```
 
@@ -1266,7 +1266,7 @@ Server: Werkzeug/0.11.2 Python/2.7.15rc1
 Date: Mon, 30 Jul 2018 15:34:38 GMT
 ```
 
-Oh no! That didn't work! What did we do wrong? While we did make the change in `app.py`, the file resides in our machine (or the host machine), but since Docker is running our containers based off the `prakhar1989/foodtrucks-web` image, it doesn't know about this change. To validate this, lets try the following -
+Oh no! That didn't work! What did we do wrong? While we did make the change in `app.py`, the file resides in our machine (or the host machine), but since Docker is running our containers based off the `yourusername/foodtrucks-web` image, it doesn't know about this change. To validate this, lets try the following -
 
 ```
 $ docker-compose run web bash
@@ -1421,7 +1421,7 @@ services:
         awslogs-region: us-east-1
         awslogs-stream-prefix: es
   web:
-    image: prakhar1989/foodtrucks-web
+    image: yourusername/foodtrucks-web
     cpu_shares: 100
     mem_limit: 262144000
     ports:
@@ -1439,7 +1439,7 @@ services:
 The only changes we made from the original `docker-compose.yml` are of providing the `mem_limit` (in bytes) and `cpu_shares` values for each container and adding some logging configuration. This allows us to view logs generated by our containers in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/). Head over to CloudWatch to [create a log group](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups/create-log-group) called `foodtrucks`.  Note that since ElasticSearch typically ends up taking more memory, we've given around 3.4 GB of memory limit. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub.
 
 ```bash
-$ docker push prakhar1989/foodtrucks-web
+$ docker push yourusername/foodtrucks-web
 ```
 
 Great! Now let's run the final command that will deploy our app on ECS!
