@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: static-files
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: task-fluxcd
+      sourceRef:
+        kind: HelmRepository
+        name: kedark0kil
+        namespace: default
+      interval: 1m
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: artifactory-oss
+  namespace: default
+spec:
+  interval: 1m0s
+  url: https://hub.docker.com/
