@@ -664,7 +664,7 @@ Our [Dockerfile](https://github.com/prakhar1989/FoodTrucks/blob/master/Dockerfil
 # start from base
 FROM ubuntu:18.04
 
-MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
+LABEL maintainer="Prakhar Srivastav <prakhar@prakhar.me>"
 
 # install system-wide deps for python and node
 RUN apt-get -yqq update
