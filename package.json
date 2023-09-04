@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "write-good": "^1.0.8"
   }
 }
