@@ -12,16 +12,6 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/prakhar/docker-curriculum/edit/main/starlight/',
 			},
-			head: [
-				{
-					tag: 'meta',
-					attrs: { property: 'og:image', content: site + 'og.jpg?v=1' },
-				},
-				{
-					tag: 'meta',
-					attrs: { property: 'twitter:image', content: site + 'og.jpg?v=1' },
-				},
-			],
 			sidebar: [
 				{
 					label: 'Introduction',
