@@ -1111,7 +1111,7 @@ Removing network foodtrucks_default
 Removing volume foodtrucks_esdata1
 ```
 
-While we're are at it, we'll also remove the `foodtrucks` network that we created last time.
+While we're at it, we'll also remove the `foodtrucks` network that we created last time.
 
 ```bash
 $ docker network rm foodtrucks-net
