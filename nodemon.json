@@ -10,7 +10,7 @@
     "tutorial/layouts/**/*.*"
   ],
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
     "NODE_VERSION": "18"
   }
 }
