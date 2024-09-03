@@ -14,6 +14,14 @@ Let's begin. The image that we are going to use is a single-page [website](http:
 $ docker run --rm -it prakhar1989/static-site
 ```
 
+##### Note about ARM-based machines:
+
+If you're using something like an M1 Mac, you'll need to add the following tag to each `docker run` command:  `--platform linux/amd64`. So the previous command would look something like:
+
+```bash
+$ docker run --rm -it --platform linux/amd64 prakhar1989/static-site
+```
+
 Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a `Nginx is running...` message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.
 
 Well, in this case, the client is not exposing any ports so we need to re-run the `docker run` command to publish ports. While we're at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called **detached** mode.
