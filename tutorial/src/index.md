@@ -1128,7 +1128,9 @@ Great! Now that we have a clean slate, let's re-run our services and see if _Com
 $ docker-compose up -d
 Recreating foodtrucks_es_1
 Recreating foodtrucks_web_1
+```
 
+```bsh
 $ docker container ls
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
 f50bb33a3242        yourusername/foodtrucks-web  "python3 app.py"         14 seconds ago      Up 13 seconds       0.0.0.0:5000->5000/tcp   foodtrucks_web_1
