@@ -669,7 +669,7 @@ LABEL maintainer="Prakhar Srivastav <prakhar@prakhar.me>"
 # install system-wide deps for python and node
 RUN apt-get -yqq update
 RUN apt-get -yqq install python3-pip python3-dev curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt-get install -yq nodejs
 
 # copy our application code
