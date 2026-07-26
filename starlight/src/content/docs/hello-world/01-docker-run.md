@@ -47,7 +47,17 @@ bin   dev   etc   home  proc  root  sys   tmp   usr   var
 
 Running the `run` command with the `-it` flags attaches us to an interactive tty in the container. Now we can run as many commands in the container as we want. Take some time to run your favorite commands.
 
-> **Danger Zone**: If you're feeling particularly adventurous you can try `rm -rf bin` in the container. Make sure you run this command in the container and **not** in your laptop/desktop. Doing this will make any other commands like `ls`, `uptime` not work. Once everything stops working, you can exit the container (type `exit` and press Enter) and then start it up again with the `docker run -it busybox sh` command. Since Docker creates a new container every time, everything should start working again.
+> **Container Isolation & Ephemeral State**: Try creating a file inside the container shell:
+> ```bash
+> / # touch my_test_file.txt
+> / # ls
+> ```
+> Now exit the container by typing `exit` and start a new container with `docker run -it busybox sh`:
+> ```bash
+> $ docker run -it busybox sh
+> / # ls
+> ```
+> Notice that `my_test_file.txt` is nowhere to be found! That's because Docker creates a fresh, isolated container instance every time. Any changes made inside a container instance do not affect your host machine or subsequent container runs.
 
 That concludes a whirlwind tour of the mighty `docker run` command, which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about `run`, use `docker run --help` to see a list of all flags it supports. As we proceed further, we'll see a few more variants of `docker run`.
 
