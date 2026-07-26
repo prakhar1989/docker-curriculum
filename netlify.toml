@@ -1,5 +1,5 @@
 [build]
-  command = "npm --prefix starlight run build"
+  command = "cd starlight && npm install && npm run build"
   publish = "starlight/dist"
 
 [build.environment]
