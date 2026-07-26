@@ -7,6 +7,15 @@ export default defineConfig({
 		starlight({
 			title: 'Docker Curriculum',
 			customCss: ['./src/styles/custom.css'],
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						src: '/copy-code.js',
+						defer: true,
+					},
+				},
+			],
 			social: {
 				github: 'https://github.com/prakhar1989/docker-curriculum',
 			},
@@ -33,6 +42,10 @@ export default defineConfig({
 				{
 					label: 'Multi-Container Environments',
 					autogenerate: { directory: 'multi-container-environments' },
+				},
+				{
+					label: 'Modern Docker & Best Practices',
+					autogenerate: { directory: 'modern-docker' },
 				},
 				{
 					label: 'Conclusion',

@@ -153,11 +153,62 @@ h2 {
 	font-size: 0.88em !important;
 }
 
-/* Code Blocks */
+/* Code Blocks & Copy Button */
+pre,
 .expressive-code pre {
+	position: relative !important;
 	border-radius: 12px !important;
 	border: 1px solid rgba(148, 163, 184, 0.15) !important;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+	padding-top: 2.5rem !important;
+}
+
+.copy-code-button {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.6rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.3rem 0.6rem;
+	font-family: var(--sl-font);
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: var(--sl-color-gray-3);
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(148, 163, 184, 0.25);
+	border-radius: 6px;
+	cursor: pointer;
+	backdrop-filter: blur(8px);
+	transition: all 0.2s ease;
+	user-select: none;
+	z-index: 10;
+}
+
+:root[data-theme='light'] .copy-code-button {
+	background: rgba(255, 255, 255, 0.85);
+	color: var(--sl-color-gray-2);
+	border-color: rgba(148, 163, 184, 0.35);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.copy-code-button:hover {
+	color: var(--sl-color-accent) !important;
+	border-color: var(--sl-color-accent) !important;
+	background: rgba(56, 189, 248, 0.12) !important;
+}
+
+.copy-code-button.copied {
+	color: #10b981 !important;
+	border-color: #10b981 !important;
+	background: rgba(16, 185, 129, 0.12) !important;
+}
+
+.copy-code-button svg {
+	width: 13px;
+	height: 13px;
+	fill: currentColor;
+	flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -192,23 +243,34 @@ h2 {
    ========================================================================== */
 
 .pagination-links a {
-	border-radius: 12px !important;
+	border-radius: 8px !important;
 	border: 1px solid rgba(148, 163, 184, 0.18) !important;
 	background-color: var(--sl-color-bg-sidebar) !important;
-	transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-	padding: 1.25rem !important;
+	transition: all 0.2s ease !important;
+	padding: 0.75rem 1rem !important;
+	gap: 0.5rem !important;
+	font-size: 0.75rem !important;
 }
 
 .pagination-links a:hover {
 	border-color: var(--sl-color-accent) !important;
-	transform: translateY(-3px);
+	transform: translateY(-2px);
 	box-shadow: var(--docker-glow) !important;
+}
+
+.pagination-links a svg {
+	font-size: 1.1rem !important;
+	width: 1.1rem !important;
+	height: 1.1rem !important;
 }
 
 .pagination-links .link-title {
 	font-family: 'Plus Jakarta Sans', var(--sl-font);
-	font-weight: 700;
+	font-size: 0.925rem !important;
+	font-weight: 600 !important;
+	line-height: 1.35 !important;
 	color: var(--sl-color-white);
+	margin-top: 0.15rem;
 }
 
 /* Smooth Scrollbar */
