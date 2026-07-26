@@ -6,6 +6,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Docker Curriculum',
+			customCss: ['./src/styles/custom.css'],
 			social: {
 				github: 'https://github.com/prakhar1989/docker-curriculum',
 			},

@@ -1,0 +1,6 @@
+[build]
+  command = "npm --prefix starlight run build"
+  publish = "starlight/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
