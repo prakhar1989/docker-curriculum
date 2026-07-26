@@ -1,0 +1,22 @@
+{
+  "name": "Docker Curriculum Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode",
+        "ms-python.python"
+      ]
+    }
+  },
+  "postCreateCommand": "npm --prefix starlight install && pip install -r flask-app/requirements.txt",
+  "forwardPorts": [4321, 5000]
+}
