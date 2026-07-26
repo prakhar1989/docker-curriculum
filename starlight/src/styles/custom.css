@@ -251,13 +251,27 @@ body:has(.hero-container) h1#_top,
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 1.5rem;
+	transition: all 0.3s ease;
 }
 
 .hero-logo {
 	max-width: 480px !important;
 	width: 100% !important;
 	height: auto !important;
-	transition: transform 0.3s ease;
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+:root[data-theme='dark'] .hero-logo-wrapper {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 16px;
+	padding: 1.25rem 2rem;
+	backdrop-filter: blur(12px);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme='dark'] .hero-logo {
+	filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.25)) brightness(1.05);
 }
 
 .hero-logo:hover {
