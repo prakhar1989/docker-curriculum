@@ -94,6 +94,8 @@ $ docker run -p 8888:5000 yourusername/catnip
 
 The command we just ran used port 5000 for the server inside the container and exposed this externally on host port 8888. Head over to `http://localhost:8888` in your browser, where your app should be live.
 
+> **macOS Note (Port 5000 Conflict):** On macOS Monterey (12.0) and later, Apple's AirPlay Receiver feature listens on host port `5000` by default. If you ever try binding port 5000 directly to the host (`-p 5000:5000`) and get an error `port is already allocated`, you can either map to a different host port (like `-p 8888:5000` as shown above) or disable AirPlay Receiver in **System Settings > General > AirDrop & Handoff**.
+
 ![cat gif website](../../../assets/catgif.webp)
 
 Congratulations! You have successfully created and built your first Docker image.

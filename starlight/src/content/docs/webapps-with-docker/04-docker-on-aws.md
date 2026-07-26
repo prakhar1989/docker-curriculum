@@ -17,7 +17,7 @@ Username: yourusername
 Password:
 WARNING! Your password will be stored unencrypted in /Users/yourusername/.docker/config.json
 Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/credential-store
+https://docs.docker.com/engine/reference/commandline/login/#credential-helpers
 
 Login Succeeded
 ```

@@ -59,15 +59,13 @@ $ docker rm 305297d7a235 ff0a5c3750b9
 ff0a5c3750b9
 ```
 
-On deletion, you should see the IDs echoed back to you. If you have a bunch of containers to delete in one go, copy-pasting IDs can be tedious. In that case, you can simply run -
+On deletion, you should see the IDs echoed back to you. If you have a bunch of containers to delete in one go, copy-pasting IDs can be tedious. On Linux or macOS, you can filter and remove exited containers:
 
 ```bash
 $ docker rm $(docker ps -a -q -f status=exited)
 ```
 
-This command deletes all containers that have a status of `exited`. In case you're wondering, the `-q` flag, only returns the numeric IDs and `-f` filters output based on conditions provided. One last thing that'll be useful is the `--rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited from. For one off docker runs, `--rm` flag is very useful.
-
-In later versions of Docker, the `docker container prune` command can be used to achieve the same effect.
+However, command substitution like `$(...)` differs across operating systems (such as Windows PowerShell). On modern versions of Docker across all platforms, the recommended command to clean up stopped containers is `docker container prune`:
 
 ```bash
 $ docker container prune
@@ -79,5 +77,7 @@ f98f9c2aa1eaf727e4ec9c0283bcaa4762fbdba7f26191f26c97f64090360
 
 Total reclaimed space: 212 B
 ```
+
+One last thing that'll be useful is the `--rm` flag that can be passed to `docker run` which automatically deletes the container once it's exited. For one-off container runs, the `--rm` flag is very handy.
 
 Lastly, you can also delete images that you no longer need by running `docker rmi`.

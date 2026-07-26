@@ -14,6 +14,11 @@ Let's begin. The image that we are going to use is a single-page [website](http:
 $ docker run --rm -it prakhar1989/static-site
 ```
 
+> **Apple Silicon (M1/M2/M3/M4) & ARM Note:** If you see a warning such as `WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64)`, Docker Desktop automatically emulates x86_64 images via Rosetta 2 / QEMU. If needed, you can explicitly pass `--platform linux/amd64` to `docker run`:
+> ```bash
+> $ docker run --platform linux/amd64 --rm -it prakhar1989/static-site
+> ```
+
 Since the image doesn't exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a `Nginx is running...` message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.
 
 Well, in this case, the client is not exposing any ports so we need to re-run the `docker run` command to publish ports. While we're at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called **detached** mode.
