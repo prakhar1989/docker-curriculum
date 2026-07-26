@@ -1,43 +1,34 @@
 # Project Overview
 
-This repository contains the source code for the Docker Curriculum, an interactive tutorial for learning Docker. The project consists of three main parts:
+This repository contains the source code for the Docker Curriculum, an interactive tutorial for learning Docker. The project consists of two main parts:
 
-1.  **Tutorial Content:** The core curriculum is written in Markdown and generated into a static website using Metalsmith. The source files are located in the `tutorial/src` directory.
-2.  **Flask Application:** A simple Python Flask application is included as a practical example for demonstrating how to containerize a web application. The source code for this application is in the `flask-app` directory.
-3.  **Documentation Website:** A documentation website built with Astro and Starlight provides a structured way to navigate the curriculum. The source for this site is in the `starlight` directory.
+1. **Documentation Website:** An interactive, responsive tutorial site built with **Astro and Starlight**. The source content is located in the `starlight` directory.
+2. **Flask Application:** A simple Python Flask application included as a practical example for demonstrating how to containerize a web application. The source code is in the `flask-app` directory.
 
 The main technologies used in this project are:
 
-*   **Node.js:** For building the static tutorial website.
-*   **Metalsmith:** A static site generator used for the tutorial.
-*   **Python/Flask:** For the example web application.
-*   **Astro/Starlight:** For the documentation website.
-*   **Docker:** The subject of the curriculum.
+* **Node.js:** For building the static tutorial website.
+* **Astro / Starlight:** Modern static site generator and documentation framework used for the curriculum.
+* **Python / Flask:** For the example web application.
+* **Docker:** The subject of the curriculum.
 
 # Building and Running
 
-To build and run the tutorial website locally, you can use the following commands:
+To build and run the tutorial website locally:
 
 ```bash
-# Install dependencies
-npm install
+# Install dependencies in the starlight app
+npm --prefix starlight install
 
-# Build the static site and watch for changes
-npm run generate
+# Run the local development server (http://localhost:4321)
+npm run dev
 
-# Serve the website
-npm run serve
-
-# Run all of the above in parallel
-npm start
+# Build the production static site
+npm run build
 ```
 
-To run the Flask application, you will need to have Python and Flask installed. You can then run the following command from the `flask-app` directory:
+To run the Flask application locally:
 
 ```bash
-python app.py
+python flask-app/app.py
 ```
-
-# Development Conventions
-
-The project uses `nodemon` for automatically restarting the server during development and `browser-sync` for live-reloading the website. The `package.json` file contains a `css-watch` script for compiling SASS to CSS.
