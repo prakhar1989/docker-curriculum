@@ -1,0 +1,58 @@
+---
+title: Quiz
+description: Test your knowledge on Docker Compose, multi-container networking, volumes, and orchestration commands.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Multi-Container Environments** chapter.
+
+<Quiz 
+  title="Chapter 5: Multi-Container Environments Knowledge Check"
+  questions={[
+    {
+      question: "Why is creating a user-defined bridge network (`docker network create`) preferred over relying on the default bridge network when connecting multiple containers?",
+      options: [
+        "User-defined networks provide automatic service discovery (DNS resolution by container/service name) and network isolation between stacks",
+        "The default bridge network does not support TCP connections",
+        "User-defined networks run without using host CPU resources",
+        "The default bridge network limits containers to 1 MB of memory"
+      ],
+      correctIndex: 0,
+      explanation: "Containers on user-defined bridge networks can automatically resolve each other's container or service names to IP addresses via Docker DNS, providing secure network isolation."
+    },
+    {
+      question: "Which Docker Compose file attribute ensures that dependent containers (such as a database service `es`) start before an application service `web`?",
+      options: [
+        "depends_on",
+        "require_first",
+        "links_to",
+        "after_service"
+      ],
+      correctIndex: 0,
+      explanation: "The `depends_on` directive in `docker-compose.yml` specifies dependency ordering, instructing Compose to create and start prerequisite services first."
+    },
+    {
+      question: "Which command starts all services defined in a `docker-compose.yml` file in background (detached) mode?",
+      options: [
+        "docker compose start",
+        "docker compose up -d",
+        "docker compose run --bg",
+        "docker compose launch"
+      ],
+      correctIndex: 1,
+      explanation: "Running `docker compose up -d` creates the network, volumes, and containers defined in your stack and runs them in detached mode."
+    },
+    {
+      question: "What command stops containers and networks created by Docker Compose AND removes named persistent volumes?",
+      options: [
+        "docker compose stop",
+        "docker compose down -v",
+        "docker compose delete --all",
+        "docker compose prune"
+      ],
+      correctIndex: 1,
+      explanation: "`docker compose down` stops containers and networks, while adding `-v` also removes named volumes declared under the `volumes:` block."
+    }
+  ]}
+/>

@@ -1,0 +1,58 @@
+---
+title: Quiz
+description: Test your knowledge on Docker containers, virtualization, and core architecture concepts covered in the Introduction chapter.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Introduction** chapter.
+
+<Quiz 
+  title="Chapter 1: Introduction Knowledge Check"
+  questions={[
+    {
+      question: "What is the fundamental architectural difference between a Docker container and a traditional Virtual Machine (VM)?",
+      options: [
+        "Virtual machines share the host OS kernel, while containers require a full guest operating system and virtual hardware",
+        "Containers share the host operating system kernel and isolate user-space processes, whereas VMs virtualize hardware to run a full guest OS",
+        "Containers can only run on Linux, whereas Virtual Machines can only run on Windows",
+        "Virtual machines do not require a hypervisor or host OS"
+      ],
+      correctIndex: 1,
+      explanation: "Containers leverage the host OS kernel to isolate application processes, eliminating the heavy CPU, memory, and startup overhead of guest operating systems required by VMs."
+    },
+    {
+      question: "What primary problem does Docker solve for software developers and operations teams?",
+      options: [
+        "It decouples applications from the host environment by packaging code and dependencies together, ensuring consistent execution across dev, test, and cloud environments",
+        "It automatically writes application code and fixes bugs in Python",
+        "It eliminates the need for cloud servers by running applications without compute hardware",
+        "It replaces version control systems like Git"
+      ],
+      correctIndex: 0,
+      explanation: "Docker packages your application together with its runtime, system tools, and libraries into a standardized container, resolving 'it works on my machine' inconsistencies."
+    },
+    {
+      question: "From an operations and infrastructure perspective, why are containers more efficient than Virtual Machines?",
+      options: [
+        "Containers allow more granular resource control and higher density on host machines without virtualizing hardware",
+        "Containers automatically double the host CPU clock speed",
+        "Containers do not consume any RAM or disk space",
+        "Containers run exclusively inside web browsers"
+      ],
+      correctIndex: 0,
+      explanation: "Because containers share the host kernel instead of running separate OS kernels for every app, you can pack significantly higher workloads onto the same compute hardware."
+    },
+    {
+      question: "According to the introduction, which of the following best describes Docker's definition?",
+      options: [
+        "An open-source tool that automates application deployment inside containers using OS-level virtualization on Linux",
+        "A proprietary cloud hosting provider for static HTML pages",
+        "A programming language designed to replace Python and JavaScript",
+        "A database engine for storing unstructured JSON data"
+      ],
+      correctIndex: 0,
+      explanation: "Docker provides an additional layer of abstraction and automation for OS-level virtualization on Linux, enabling rapid, isolated application deployment."
+    }
+  ]}
+/>

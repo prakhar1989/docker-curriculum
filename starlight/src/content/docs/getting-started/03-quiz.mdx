@@ -1,0 +1,58 @@
+---
+title: Quiz
+description: Test your knowledge on Docker installation, WSL 2, prerequisites, and system verification.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Getting Started** chapter.
+
+<Quiz 
+  title="Chapter 2: Getting Started Knowledge Check"
+  questions={[
+    {
+      question: "Which official application provides the graphical dashboard, Docker Engine, CLI, and Docker Compose out of the box for Mac, Windows, and Linux?",
+      options: [
+        "Docker Desktop",
+        "Docker Server Manager",
+        "Linux Kernel Manager",
+        "VirtualBox Hypervisor"
+      ],
+      correctIndex: 0,
+      explanation: "Docker Desktop is the official application for Mac, Windows, and Linux that includes Docker Engine, CLI tools, Compose, and Kubernetes."
+    },
+    {
+      question: "On Windows, what technology does Docker Desktop use by default as its backend for full Linux kernel compatibility and near-native speed?",
+      options: [
+        "WSL 2 (Windows Subsystem for Linux 2)",
+        "Hyper-V Legacy Mode",
+        "MS-DOS Emulation",
+        "Wine Emulation Layer"
+      ],
+      correctIndex: 0,
+      explanation: "Docker Desktop on Windows leverages WSL 2 to run a lightweight Linux utility VM, providing full Linux kernel compatibility and high performance."
+    },
+    {
+      question: "Which command is recommended in the tutorial to test your new Docker installation and verify that everything is working correctly?",
+      options: [
+        "docker run hello-world",
+        "docker test system",
+        "docker verify install",
+        "docker start engine"
+      ],
+      correctIndex: 0,
+      explanation: "Running `docker run hello-world` pulls a tiny test image, launches a container, prints an informational welcome message, and verifies your installation."
+    },
+    {
+      question: "Which two external cloud accounts are recommended as prerequisites for following the hands-on deployment sections of this curriculum?",
+      options: [
+        "Docker Hub and Amazon Web Services (AWS)",
+        "GitHub and Google Cloud Platform (GCP)",
+        "Microsoft Azure and DigitalOcean",
+        "Heroku and Netlify"
+      ],
+      correctIndex: 0,
+      explanation: "The tutorial utilizes Docker Hub to publish container images and Amazon Web Services (AWS Elastic Beanstalk / ECS) for cloud deployment."
+    }
+  ]}
+/>

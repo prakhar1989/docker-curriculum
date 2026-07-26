@@ -1,0 +1,64 @@
+---
+title: Quiz
+description: Test your knowledge on Dockerfiles, layer caching, building custom images, and running web applications.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Webapps with Docker** chapter.
+
+<Quiz 
+  title="Chapter 4: Webapps with Docker Knowledge Check"
+  questions={[
+    {
+      question: "In `docker run -p 8888:5000 myapp`, what does the port mapping `-p 8888:5000` specify?",
+      options: [
+        "It maps host port 8888 to container port 5000",
+        "It maps container port 8888 to host port 5000",
+        "It restricts memory usage to 8888 MB and CPU to 5000 MHz",
+        "It assigns random IP addresses between 8888 and 5000"
+      ],
+      correctIndex: 0,
+      explanation: "Syntax `-p [HOST_PORT]:[CONTAINER_PORT]` maps traffic arriving at port 8888 on your host machine to port 5000 inside the container."
+    },
+    {
+      question: "Which Dockerfile instruction sets the base image for subsequent build instructions?",
+      options: ["FROM", "BASE", "INIT", "IMAGE"],
+      correctIndex: 0,
+      explanation: "The `FROM` instruction initializes a new build stage and specifies the base image (e.g. `python:3.12-slim`) upon which your image is constructed."
+    },
+    {
+      question: "Why is it a best practice to copy `requirements.txt` and run `pip install` BEFORE copying the rest of your application code (`COPY . .`)?",
+      options: [
+        "Because Python will fail if requirements.txt is copied at the same time as application code",
+        "To leverage Docker's layer caching so unchanged dependency installation layers are reused during code edits",
+        "Because `COPY . .` deletes any previously existing files in the container",
+        "To reduce container disk footprint on AWS"
+      ],
+      correctIndex: 1,
+      explanation: "Docker caches each build step layer. By installing dependencies first, Docker reuses the cached `pip install` layer when only application source code changes."
+    },
+    {
+      question: "What is the primary difference between `RUN` and `CMD` in a Dockerfile?",
+      options: [
+        "`RUN` executes commands during image build to produce new layers, while `CMD` specifies default execution when launching a container",
+        "`RUN` executes when starting a container, while `CMD` executes at build time",
+        "`RUN` is for setting environment variables, while `CMD` is for copying files",
+        "There is no difference; `RUN` and `CMD` are identical aliases"
+      ],
+      correctIndex: 0,
+      explanation: "`RUN` executes shell commands during `docker build` to construct image layers. `CMD` specifies the default command executed when running `docker run`."
+    },
+    {
+      question: "When deploying a single-container application to AWS Elastic Beanstalk, what file is uploaded to configure image name and port mapping?",
+      options: [
+        "Dockerrun.aws.json",
+        "aws-compose.yml",
+        "Dockerfile.aws",
+        "beanstalk.config"
+      ],
+      correctIndex: 0,
+      explanation: "`Dockerrun.aws.json` is the AWS-specific configuration file that tells Elastic Beanstalk which Docker image to pull and which ports to expose."
+    }
+  ]}
+/>

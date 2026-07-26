@@ -119,4 +119,3 @@ $ docker compose down -v
 ```
 
 Congratulations! You have successfully configured and managed a multi-container environment using Docker Compose.
-```

@@ -1,0 +1,69 @@
+---
+title: Quiz
+description: Test your knowledge on Multi-Stage Builds, BuildKit, Compose Watch, and container security best practices.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Modern Docker & Best Practices** chapter.
+
+<Quiz 
+  title="Chapter 6: Modern Docker Knowledge Check"
+  questions={[
+    {
+      question: "What is the primary technical benefit of multi-stage builds in a Dockerfile?",
+      options: [
+        "They allow compiling code in early stages with full SDKs and copying only built artifacts into a minimal runtime image, reducing image size and attack surface",
+        "They automatically run unit tests inside web browsers",
+        "They allow running multiple web servers on the same port",
+        "They replace Docker Compose files"
+      ],
+      correctIndex: 0,
+      explanation: "Multi-stage builds separate build-time dependencies (compilers, devDependencies) from runtime requirements, yielding significantly smaller, more secure images."
+    },
+    {
+      question: "Why can building a Docker image on an Apple Silicon Mac (M1/M2/M3/M4) without specifying a platform cause an `exec format error` when deployed to a standard AWS EC2 server?",
+      options: [
+        "Because Macs build ARM64 architecture binaries, whereas standard cloud EC2 servers run on AMD64/x86_64 CPU architecture",
+        "Because macOS uses Windows executable files by default",
+        "Because AWS EC2 does not support Linux containers",
+        "Because Docker Hub only allows images smaller than 1 MB"
+      ],
+      correctIndex: 0,
+      explanation: "Apple Silicon Macs use ARM64 CPUs, whereas standard cloud servers use AMD64/x86_64. Using `docker buildx build --platform linux/amd64` ensures cross-building for cloud x86 hosts."
+    },
+    {
+      question: "What feature introduced in Docker Compose V2 automatically monitors source code edits and intelligently syncs files or rebuilds services in real time?",
+      options: [
+        "Compose Watch (`docker compose up --watch`)",
+        "Compose Sync (`docker compose sync`)",
+        "Docker Live Reload",
+        "Container Hot Swap"
+      ],
+      correctIndex: 0,
+      explanation: "`docker compose watch` monitors project files and automatically syncs code changes into running containers or rebuilds services when dependency manifests change."
+    },
+    {
+      question: "Why is running containers under a non-root user account (`USER appuser` in Dockerfile) a critical security best practice?",
+      options: [
+        "It prevents attackers from gaining root access to the host operating system if an application vulnerability is exploited inside the container",
+        "Non-root containers run 50% faster than root containers",
+        "Docker Hub rejects all images that execute as root",
+        "Root users cannot read environment variables"
+      ],
+      correctIndex: 0,
+      explanation: "Running as non-root limits the blast radius of potential container escape exploits, ensuring an attacker cannot obtain root privileges on the underlying host."
+    },
+    {
+      question: "Which built-in Docker CLI tool allows developers to scan Docker images for security vulnerabilities (CVEs) and base image update recommendations?",
+      options: [
+        "docker scout",
+        "docker audit",
+        "docker scan-all",
+        "docker guard"
+      ],
+      correctIndex: 0,
+      explanation: "`docker scout` (e.g. `docker scout quickview` or `docker scout cves`) analyzes image layers and reports known vulnerabilities and patch recommendations."
+    }
+  ]}
+/>

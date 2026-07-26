@@ -1,0 +1,58 @@
+---
+title: Quiz
+description: Test your knowledge on running containers, interactive shells, container isolation, and cleanup commands.
+---
+
+import Quiz from '../../../components/Quiz.astro';
+
+Test your understanding of the concepts covered in the **Hello World** chapter.
+
+<Quiz 
+  title="Chapter 3: Hello World Knowledge Check"
+  questions={[
+    {
+      question: "In Docker terminology, what is the precise relationship between a Docker Image and a Docker Container?",
+      options: [
+        "An Image is a executable running process, whereas a Container is a stored zip file on disk",
+        "An Image is an immutable blueprint containing code and libraries, while a Container is a runnable instance created from an image",
+        "There is no difference; Image and Container are interchangeable terms for the same concept",
+        "Containers exist only in cloud registries, while Images exist only on your local machine"
+      ],
+      correctIndex: 1,
+      explanation: "Images serve as read-only blueprints (templates) of your application, whereas Containers are the isolated, runnable instances instantiated from those images."
+    },
+    {
+      question: "Which command downloads a Docker image (such as `busybox`) from Docker Hub to your local machine without executing it?",
+      options: [
+        "docker pull busybox",
+        "docker fetch busybox",
+        "docker download busybox",
+        "docker get busybox"
+      ],
+      correctIndex: 0,
+      explanation: "The `docker pull` command fetches the specified image from a remote registry (like Docker Hub) and saves it to your local Docker image cache."
+    },
+    {
+      question: "If you create a text file inside an interactive container shell (`docker run -it busybox sh`) and then exit, what happens when you start a new container from the same image?",
+      options: [
+        "The text file will automatically appear in the new container",
+        "The text file will be saved to your host machine's desktop",
+        "The text file will not be present because containers are isolated, fresh instances",
+        "Docker will throw a file conflict error and refuse to start"
+      ],
+      correctIndex: 2,
+      explanation: "Docker containers feature isolated, ephemeral file systems. Changes made inside one container instance do not persist into new container instances unless mounted to volumes."
+    },
+    {
+      question: "Which flag passed to `docker run` automatically cleans up and deletes the container instance once its process completes?",
+      options: [
+        "--rm",
+        "--clean",
+        "-d",
+        "--auto-delete"
+      ],
+      correctIndex: 0,
+      explanation: "The `--rm` flag instructs Docker to remove the container and its temporary file system automatically as soon as it exits, preventing disk clutter."
+    }
+  ]}
+/>

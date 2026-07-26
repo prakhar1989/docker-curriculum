@@ -1,0 +1,188 @@
+---
+export interface Question {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface Props {
+  title?: string;
+  questions: Question[];
+}
+
+const { title = "Knowledge Check", questions = [] } = Astro.props;
+---
+
+<div
+  class="quiz-container not-content"
+  data-questions={JSON.stringify(questions)}
+>
+  <div class="quiz-questions">
+    {
+      questions.map((q, qIdx) => (
+        <div class="quiz-question-card" data-qindex={qIdx}>
+          <div class="quiz-question-text">
+            <span class="q-number">Q{qIdx + 1}.</span> {q.question}
+          </div>
+          <div class="quiz-options">
+            {q.options.map((opt, oIdx) => (
+              <button
+                type="button"
+                class="quiz-option-btn"
+                data-qindex={qIdx}
+                data-oindex={oIdx}
+              >
+                <span class="option-letter">
+                  {String.fromCharCode(65 + oIdx)}
+                </span>
+                <span class="option-label">{opt}</span>
+              </button>
+            ))}
+          </div>
+          <div class="quiz-explanation" style="display: none;">
+            <div class="explanation-title">Explanation</div>
+            <p class="explanation-text">{q.explanation}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="quiz-footer">
+    <div class="quiz-score-summary" style="display: none;">
+      <span class="score-text"
+        >Score: <strong class="score-val">0</strong> / {questions.length}</span
+      >
+      <span class="score-message"></span>
+    </div>
+    <button type="button" class="quiz-reset-btn" style="display: none;">
+      Reset Quiz
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupQuizzes() {
+    document.querySelectorAll(".quiz-container").forEach((container) => {
+      if (container.hasAttribute("data-initialized")) return;
+      container.setAttribute("data-initialized", "true");
+
+      const questionsData = JSON.parse(
+        container.getAttribute("data-questions") || "[]",
+      );
+      const totalQuestions = questionsData.length;
+      let answeredCount = 0;
+      let score = 0;
+
+      const questionCards = container.querySelectorAll(".quiz-question-card");
+      const scoreSummary = container.querySelector(
+        ".quiz-score-summary",
+      ) as HTMLElement;
+      const scoreVal = container.querySelector(".score-val") as HTMLElement;
+      const scoreMsg = container.querySelector(".score-message") as HTMLElement;
+      const resetBtn = container.querySelector(
+        ".quiz-reset-btn",
+      ) as HTMLElement;
+
+      questionCards.forEach((card, qIdx) => {
+        const qData = questionsData[qIdx];
+        const optionBtns = card.querySelectorAll(".quiz-option-btn");
+        const explanationEl = card.querySelector(
+          ".quiz-explanation",
+        ) as HTMLElement;
+
+        optionBtns.forEach((btn, oIdx) => {
+          btn.addEventListener("click", () => {
+            if (card.classList.contains("answered")) return;
+
+            card.classList.add("answered");
+            answeredCount++;
+
+            const isCorrect = oIdx === qData.correctIndex;
+            if (isCorrect) {
+              btn.classList.add("correct");
+              score++;
+            } else {
+              btn.classList.add("incorrect");
+              // Highlight the correct one as well
+              if (optionBtns[qData.correctIndex]) {
+                optionBtns[qData.correctIndex].classList.add("correct");
+              }
+            }
+
+            // Disable all buttons in this question
+            optionBtns.forEach(
+              (b) => ((b as HTMLButtonElement).disabled = true),
+            );
+
+            // Show explanation
+            if (explanationEl) {
+              explanationEl.style.display = "block";
+              if (isCorrect) {
+                explanationEl.classList.add("exp-correct");
+              } else {
+                explanationEl.classList.add("exp-incorrect");
+              }
+            }
+
+            // Check if all questions are answered
+            if (answeredCount === totalQuestions) {
+              showFinalScore();
+            }
+          });
+        });
+      });
+
+      function showFinalScore() {
+        if (scoreSummary && scoreVal && resetBtn) {
+          scoreVal.textContent = score.toString();
+          scoreSummary.style.display = "flex";
+          resetBtn.style.display = "inline-flex";
+
+          const pct = score / totalQuestions;
+          if (pct === 1) {
+            scoreMsg.textContent = "🎉 Perfect score! Excellent work!";
+          } else if (pct >= 0.6) {
+            scoreMsg.textContent =
+              "👍 Good job! Review the explanations above for details.";
+          } else {
+            scoreMsg.textContent =
+              "💪 Keep learning! Review the chapter and try again.";
+          }
+        }
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          answeredCount = 0;
+          score = 0;
+          if (scoreSummary) scoreSummary.style.display = "none";
+          resetBtn.style.display = "none";
+
+          questionCards.forEach((card) => {
+            card.classList.remove("answered");
+            const optionBtns = card.querySelectorAll(".quiz-option-btn");
+            const explanationEl = card.querySelector(
+              ".quiz-explanation",
+            ) as HTMLElement;
+
+            optionBtns.forEach((btn) => {
+              btn.classList.remove("correct", "incorrect");
+              (btn as HTMLButtonElement).disabled = false;
+            });
+
+            if (explanationEl) {
+              explanationEl.style.display = "none";
+              explanationEl.classList.remove("exp-correct", "exp-incorrect");
+            }
+          });
+        });
+      }
+    });
+  }
+
+  // Run on initial page load & Starlight view transitions
+  setupQuizzes();
+  document.addEventListener("astro:page-load", setupQuizzes);
+</script>
