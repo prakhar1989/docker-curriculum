@@ -8,7 +8,11 @@ The _getting started_ guide on Docker has detailed instructions for setting up D
 
 > **Windows Note:** Docker Desktop on Windows uses **WSL 2** (Windows Subsystem for Linux 2) as its default backend, providing full Linux kernel compatibility and near-native speed. Ensure WSL 2 is enabled during installation.
 >
-> **Mac Note:** If you are running an Apple Silicon Mac (M1/M2/M3/M4), Docker Desktop natively supports the `arm64` architecture, while also allowing you to emulate `amd64` images via Rosetta 2 / QEMU.
+> **Mac Note:** In addition to [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/), macOS users can also use **[OrbStack](https://orbstack.dev/)** — a fast, lightweight alternative to Docker Desktop that starts in seconds and uses minimal CPU and battery. You can install it via Homebrew:
+> ```bash
+> brew install --cask orbstack
+> ```
+> Both Docker Desktop and OrbStack provide the standard `docker` CLI and `docker compose` out of the box.
 
 Once you are done installing Docker, test your Docker installation by running the following in your terminal:
 
