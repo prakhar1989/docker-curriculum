@@ -23,3 +23,19 @@ Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ...
 ```
+
+---
+
+## Instant Setup with Devcontainers & GitHub Codespaces
+
+If you prefer not to configure your local development tools manually, you can launch an instant cloud development environment via **GitHub Codespaces**, powered by the repository's `.devcontainer` configuration.
+
+> **Zero Local Setup:** Does **not** require Docker, Node.js, Python, or any developer tools installed on your computer.
+
+1. Open the [docker-curriculum repository on GitHub](https://github.com/prakhar1989/docker-curriculum).
+2. Click the green **Code** button, select the **Codespaces** tab, and click **Create codespace on main**.
+3. A full browser-based IDE will launch directly in your browser with Docker and Node pre-configured.
+
+> **Note:** On initial creation, GitHub Codespaces may take a few minutes to build the container environment, start the Docker daemon, and finish installing dependencies.
+
+![GitHub Codespaces setup](/codespaces.png)
