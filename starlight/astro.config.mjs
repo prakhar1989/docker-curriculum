@@ -16,6 +16,14 @@ export default defineConfig({
 						defer: true,
 					},
 				},
+				{
+					tag: 'script',
+					attrs: {
+						src: 'https://static.cloudflareinsights.com/beacon.min.js',
+						defer: true,
+						'data-cf-beacon': '{"token": "458cd0b4cea74ace9f017c2380cb1b50"}',
+					},
+				},
 			],
 			social: {
 				github: 'https://github.com/prakhar1989/docker-curriculum',
