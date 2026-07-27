@@ -39,3 +39,16 @@ If you prefer not to configure your local development tools manually, you can la
 > **Note:** On initial creation, GitHub Codespaces may take a few minutes to build the container environment, start the Docker daemon, and finish installing dependencies.
 
 ![GitHub Codespaces setup](/codespaces.png)
+
+Once your Codespace launches, test Docker directly inside the browser terminal:
+
+```bash
+$ docker run hello-world
+```
+
+![Running Docker inside GitHub Codespaces](/codespaces-docker.png)
+
+> **Troubleshooting Tip:** If `docker ps` or `docker run` reports `Cannot connect to the Docker daemon`, start the Docker service manually in your Codespace terminal:
+> ```bash
+> sudo service docker start
+> ```

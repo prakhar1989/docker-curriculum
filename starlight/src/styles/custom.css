@@ -79,7 +79,7 @@ nav.sidebar {
 	background-color: var(--sl-color-bg-sidebar) !important;
 }
 
-.sidebar-content summary, 
+.sidebar-content summary,
 .sidebar-content a {
 	font-family: var(--sl-font);
 	font-weight: 500;
@@ -119,7 +119,12 @@ nav.sidebar {
 	max-width: 52rem !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: 'Plus Jakarta Sans', var(--sl-font) !important;
 	letter-spacing: -0.025em;
 }
@@ -143,7 +148,7 @@ h2 {
 }
 
 /* Inline Code Elements */
-:not(pre) > code {
+:not(pre)>code {
 	font-family: var(--sl-font-mono) !important;
 	background-color: rgba(56, 189, 248, 0.1) !important;
 	color: var(--sl-color-accent-high) !important;
@@ -160,23 +165,22 @@ pre,
 	border-radius: 12px !important;
 	border: 1px solid rgba(148, 163, 184, 0.15) !important;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
-	padding-top: 2.5rem !important;
 }
 
 .copy-code-button {
 	position: absolute;
-	top: 0.5rem;
+	top: -0.6rem;
 	right: 0.6rem;
 	display: inline-flex;
 	align-items: center;
 	gap: 0.35rem;
-	padding: 0.3rem 0.6rem;
+	padding: 0.1rem 0.6rem;
 	font-family: var(--sl-font);
 	font-size: 0.75rem;
 	font-weight: 500;
 	color: var(--sl-color-gray-3);
 	background: rgba(255, 255, 255, 0.08);
-	border: 1px solid rgba(148, 163, 184, 0.25);
+	border: none;
 	border-radius: 6px;
 	cursor: pointer;
 	backdrop-filter: blur(8px);
@@ -233,7 +237,8 @@ pre,
 	border-color: #10b981 !important;
 }
 
-.starlight-aside--caution, .starlight-aside--danger {
+.starlight-aside--caution,
+.starlight-aside--danger {
 	background-color: rgba(239, 68, 68, 0.08) !important;
 	border-color: #ef4444 !important;
 }
@@ -699,5 +704,3 @@ body:has(.hero-container) h1#_top,
 	border-color: transparent;
 	box-shadow: var(--docker-glow);
 }
-
-
