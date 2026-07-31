@@ -3,4 +3,4 @@
   publish = "starlight/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22.12.0"
