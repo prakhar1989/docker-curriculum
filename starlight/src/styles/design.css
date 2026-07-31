@@ -159,7 +159,7 @@ body:has(.dc-home) .sl-container { max-width: none !important; margin-inline: 0 
 .dc-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(24rem, .95fr); align-items: start; gap: clamp(2rem, 6vw, 7rem); padding: clamp(1rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 5rem); }
 .dc-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1rem; font: 600 .78rem var(--sl-font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dc-accent, var(--sl-color-accent)); }
 .dc-eyebrow::before { content: ''; width: 1.75rem; height: 1px; background: currentColor; }
-.dc-hero-title { max-width: 35rem; margin: 0 !important; font-size: clamp(2.35rem, 5vw, 4.6rem) !important; line-height: 1.03 !important; letter-spacing: -.065em !important; }
+.dc-hero-title { max-width: 35rem; margin: 0 !important; font-size: clamp(2.35rem, 5vw, 4.6rem) !important; line-height: 1.03 !important; }
 .dc-hero-copy > p:not(.dc-eyebrow) { max-width: 36rem; margin: 1.35rem 0 0 !important; color: var(--dc-text-soft, var(--sl-color-gray-2)); font-size: clamp(1rem, 1.8vw, 1.18rem); line-height: 1.65; }
 .dc-hero-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.65rem; }
 .dc-button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--dc-border-strong, var(--sl-color-gray-5)); border-radius: 6px; font: 600 .82rem var(--sl-font-mono); text-decoration: none !important; transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease; }

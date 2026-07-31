@@ -1,6 +1,6 @@
 ---
 title: Docker Curriculum
-description: Learn Docker by building real applications, from your first container to production deployment.
+description: A hands-on Docker tutorial covering containers, Dockerfiles, Compose, multi-container apps, and deployment to AWS.
 template: splash
 tableOfContents: false
 ---
@@ -12,13 +12,13 @@ import dockerLogo from '../../assets/logo.png';
 <div class="dc-home not-content">
   <section class="dc-hero" aria-labelledby="dc-home-title">
     <div class="dc-hero-copy">
-      <p class="dc-eyebrow">Docker, from first principles</p>
-      <h1 id="dc-home-title" class="dc-hero-title">Build with containers. Learn by shipping.</h1>
+      <p class="dc-eyebrow">A hands-on Docker tutorial</p>
+      <h1 id="dc-home-title" class="dc-hero-title">Learn Docker by building real apps.</h1>
       <p>
-        A practical, project-led curriculum for learning Docker, Compose, and cloud deployment without getting lost in the jargon.
+        Start with <code>docker run</code>, package a Flask app, connect it to Elasticsearch with Compose, and deploy it to AWS. No Docker experience required.
       </p>
       <div class="dc-hero-actions">
-        <a class="dc-button dc-button-primary" href="/introduction/00-docker/">Start learning</a>
+        <a class="dc-button dc-button-primary" href="/introduction/00-docker/">Start the tutorial</a>
         <a class="dc-button dc-button-secondary" href="https://github.com/prakhar1989/docker-curriculum" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
@@ -28,38 +28,38 @@ import dockerLogo from '../../assets/logo.png';
       <div class="dc-terminal-card" aria-label="Curriculum preview">
         <div class="dc-terminal-bar"><span class="dc-terminal-dot"></span><span>docker-curriculum ~ ready</span></div>
         <pre class="dc-terminal-command"><strong>$</strong> docker run hello-world
-<strong>→</strong> understand the container
-<strong>→</strong> build a real web app
-<strong>→</strong> ship it to the cloud</pre>
+<strong>→</strong> write your first Dockerfile
+<strong>→</strong> run Flask + Elasticsearch with Compose
+<strong>→</strong> deploy the app to AWS</pre>
       </div>
     </div>
   </section>
 
   <section aria-labelledby="dc-path-title">
     <div class="dc-section-heading">
-      <h2 id="dc-path-title">Pick your path</h2>
+      <h2 id="dc-path-title">Choose where to start</h2>
     </div>
 
     <div class="dc-paths">
       <a class="dc-path-card" href="/introduction/00-docker/">
-        <span class="dc-path-number">01 / START HERE</span>
-        <h3>New to containers?</h3>
-        <p>Learn what Docker is, why containers matter, and the mental model you need.</p>
+        <span class="dc-path-number">01 / FOUNDATIONS</span>
+        <h3>Start with the basics</h3>
+        <p>Learn how images and containers work, and how Docker differs from a virtual machine.</p>
       </a>
       <a class="dc-path-card" href="/webapps-with-docker/00-static-sites/">
-        <span class="dc-path-number">02 / BUILD</span>
-        <h3>Build a web app</h3>
-        <p>Containerize a static site and a Flask application from scratch.</p>
+        <span class="dc-path-number">02 / DOCKERFILES</span>
+        <h3>Containerize a web app</h3>
+        <p>Serve a static site with Nginx, then package a Flask app in your own image.</p>
       </a>
       <a class="dc-path-card" href="/multi-container-environments/00-introduction/">
         <span class="dc-path-number">03 / COMPOSE</span>
-        <h3>Run a full stack app</h3>
-        <p>Connect services, networks, and workflows with modern Compose.</p>
+        <h3>Connect two services</h3>
+        <p>Run the Food Trucks app with Flask and Elasticsearch using Docker networking and Compose.</p>
       </a>
       <a class="dc-path-card" href="/modern-docker/00-introduction/">
-        <span class="dc-path-number">04 / SHIP</span>
-        <h3>Go beyond hello world</h3>
-        <p>Apply BuildKit, multi-platform builds, Compose Watch, and security habits.</p>
+        <span class="dc-path-number">04 / MODERN DOCKER</span>
+        <h3>Make builds faster and safer</h3>
+        <p>Use multi-stage builds, target ARM and x86, sync code with Compose Watch, and harden your containers.</p>
       </a>
     </div>
   </section>
