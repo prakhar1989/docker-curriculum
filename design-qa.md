@@ -63,6 +63,7 @@ The theme-picker region was reviewed at full readable scale. Both versions use a
 - [x] Header title uses the same solid, palette-aware hero treatment.
 - [x] Footer exposes GitHub and LinkedIn links with accessible labels and icons.
 - [x] Tutorial pages no longer render the right-hand “On this page” table of contents.
+- [x] Mobile header exposes a compact, icon-only theme trigger with an accessible label.
 - [x] Named theme picker supports system preference, preview, apply, cancel, and persistence.
 - [x] Homepage, chapter navigation, code blocks, cards, and quizzes share the visual system.
 - [x] Desktop, chapter, and responsive states were browser-checked.

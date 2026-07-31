@@ -194,6 +194,12 @@ body:has(.dc-home) .sl-container { max-width: none !important; margin-inline: 0 
 }
 
 @media (max-width: 50rem) {
+	header.header .right-group { display: flex !important; gap: .35rem; }
+	header.header .right-group > .social-icons,
+	header.header .right-group > starlight-language-select { display: none !important; }
+	header.header .right-group [data-theme-current],
+	header.header .right-group .theme-picker-caret { display: none; }
+	header.header .right-group .theme-picker-trigger { min-height: 2.25rem; padding: .45rem; }
 	.theme-dialog { margin: auto; }
 	.theme-dialog-footer { align-items: stretch; flex-direction: column; }
 	.theme-dialog-actions { justify-content: stretch; }
