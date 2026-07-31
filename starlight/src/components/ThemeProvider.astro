@@ -1,0 +1,57 @@
+---
+import { defaultLightPalette, defaultPalette, palettes } from '../data/themes';
+---
+
+<script
+	is:inline
+	define:vars={{
+		palettes,
+		defaultPaletteId: defaultPalette.id,
+		defaultLightPaletteId: defaultLightPalette.id,
+	}}
+>
+	window.DockerThemeProvider = (() => {
+		const storageKey = 'docker-curriculum-palette';
+		const paletteById = Object.fromEntries(palettes.map((palette) => [palette.id, palette]));
+		const systemPreference = () =>
+			window.matchMedia('(prefers-color-scheme: light)').matches
+				? defaultLightPaletteId
+				: defaultPaletteId;
+		const parsePreference = (value) =>
+			value === 'system' || Object.prototype.hasOwnProperty.call(paletteById, value)
+				? value
+				: 'system';
+		const effectivePalette = (preference) =>
+			preference === 'system' ? paletteById[systemPreference()] : paletteById[preference];
+
+		const apply = (preference) => {
+			const parsed = parsePreference(preference);
+			const palette = effectivePalette(parsed);
+			document.documentElement.dataset.theme = palette.mode;
+			document.documentElement.dataset.palette = palette.id;
+			return { preference: parsed, palette };
+		};
+
+		const currentPreference = () =>
+			parsePreference(window.localStorage?.getItem(storageKey) || 'system');
+
+		const commit = (preference) => {
+			const next = parsePreference(preference);
+			window.localStorage?.setItem(storageKey, next);
+			return apply(next);
+		};
+
+		const restore = () => apply(currentPreference());
+		const getState = () => {
+			const preference = currentPreference();
+			return { preference, palette: effectivePalette(preference) };
+		};
+
+		apply(currentPreference());
+		window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+			if (currentPreference() === 'system') apply('system');
+		});
+
+		return { apply, commit, currentPreference, getState, restore };
+	})();
+</script>

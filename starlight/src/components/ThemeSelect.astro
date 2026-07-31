@@ -1,0 +1,169 @@
+---
+import Icon from '../../node_modules/@astrojs/starlight/user-components/Icon.astro';
+import { palettes } from '../data/themes';
+---
+
+<starlight-theme-select data-theme-picker>
+	<button
+		class="theme-picker-trigger"
+		type="button"
+		aria-haspopup="dialog"
+		aria-expanded="false"
+	>
+		<Icon name="setting" class="theme-picker-icon" />
+		<span data-theme-current>System</span>
+		<Icon name="down-caret" class="theme-picker-caret" />
+	</button>
+
+	<dialog class="theme-dialog" aria-label="Choose a theme">
+		<div class="theme-dialog-header">
+			<div>
+				<p class="theme-dialog-kicker">appearance</p>
+				<h2>Choose a theme</h2>
+				<p class="theme-dialog-description">Tune the docs for your next build session.</p>
+			</div>
+			<button type="button" class="theme-dialog-close" data-theme-cancel aria-label="Close theme picker">
+				<Icon name="close" />
+			</button>
+		</div>
+
+		<div class="theme-dialog-body">
+			<button type="button" class="theme-option theme-option-system" data-theme-choice="system">
+				<span class="theme-option-icon"><Icon name="laptop" /></span>
+				<span class="theme-option-copy">
+					<strong>System</strong>
+					<small>Follow your device appearance</small>
+				</span>
+				<span class="theme-option-check" aria-hidden="true"><Icon name="approve-check" /></span>
+			</button>
+
+			<div class="theme-section">
+				<div class="theme-section-label"><span>Dark</span><span aria-hidden="true"></span></div>
+				<div class="theme-option-list">
+					{
+						palettes.filter(({ mode }) => mode === 'dark').map((palette) => (
+							<button
+								type="button"
+								class="theme-option"
+								data-theme-choice={palette.id}
+								aria-pressed="false"
+							>
+								<span class="theme-swatch" style={`--theme-accent: ${palette.accent}`}></span>
+								<span class="theme-option-copy">
+									<strong>{palette.name}</strong>
+									<small>{palette.description}</small>
+								</span>
+								<span class="theme-option-check" aria-hidden="true"><Icon name="approve-check" /></span>
+							</button>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="theme-section">
+				<div class="theme-section-label"><span>Light</span><span aria-hidden="true"></span></div>
+				<div class="theme-option-list">
+					{
+						palettes.filter(({ mode }) => mode === 'light').map((palette) => (
+							<button
+								type="button"
+								class="theme-option"
+								data-theme-choice={palette.id}
+								aria-pressed="false"
+							>
+								<span class="theme-swatch" style={`--theme-accent: ${palette.accent}`}></span>
+								<span class="theme-option-copy">
+									<strong>{palette.name}</strong>
+									<small>{palette.description}</small>
+								</span>
+								<span class="theme-option-check" aria-hidden="true"><Icon name="approve-check" /></span>
+							</button>
+						))
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="theme-dialog-footer">
+			<span class="theme-dialog-hint"><kbd>↑</kbd><kbd>↓</kbd> select <kbd>esc</kbd> close</span>
+			<div class="theme-dialog-actions">
+				<button type="button" class="theme-button theme-button-secondary" data-theme-cancel>Cancel</button>
+				<button type="button" class="theme-button theme-button-primary" data-theme-apply>Apply theme</button>
+			</div>
+		</div>
+	</dialog>
+</starlight-theme-select>
+
+<script>
+	const setupThemePicker = () => {
+		document.querySelectorAll('[data-theme-picker]').forEach((picker) => {
+			if (picker.hasAttribute('data-initialized')) return;
+			picker.setAttribute('data-initialized', 'true');
+
+			const trigger = picker.querySelector('.theme-picker-trigger');
+			const dialog = picker.querySelector('dialog');
+			const current = picker.querySelector('[data-theme-current]');
+			const choices = [...picker.querySelectorAll('[data-theme-choice]')];
+			const applyButton = picker.querySelector('[data-theme-apply]');
+			const cancelButtons = picker.querySelectorAll('[data-theme-cancel]');
+			if (!trigger || !(dialog instanceof HTMLDialogElement) || !current || !applyButton) return;
+
+			let pendingPreference = 'system';
+			let savedPreference = 'system';
+
+			const updateSelection = (preference) => {
+				choices.forEach((choice) => {
+					const selected = choice.dataset.themeChoice === preference;
+					choice.classList.toggle('is-selected', selected);
+					choice.setAttribute('aria-pressed', String(selected));
+				});
+				const state = window.DockerThemeProvider?.getState();
+				if (state && current) current.textContent = preference === 'system' ? 'System' : state.palette.name;
+			};
+
+			const openPicker = () => {
+				savedPreference = window.DockerThemeProvider?.currentPreference() || 'system';
+				pendingPreference = savedPreference;
+				updateSelection(pendingPreference);
+				dialog.showModal();
+				trigger.setAttribute('aria-expanded', 'true');
+				choices.find((choice) => choice.dataset.themeChoice === pendingPreference)?.focus();
+			};
+
+			const closePicker = (restore = true) => {
+				if (restore) window.DockerThemeProvider?.apply(savedPreference);
+				dialog.close();
+				trigger.setAttribute('aria-expanded', 'false');
+				trigger.focus();
+				updateSelection(restore ? savedPreference : pendingPreference);
+			};
+
+			trigger.addEventListener('click', openPicker);
+			choices.forEach((choice) => {
+				choice.addEventListener('click', () => {
+					pendingPreference = choice.dataset.themeChoice || 'system';
+					window.DockerThemeProvider?.apply(pendingPreference);
+					updateSelection(pendingPreference);
+				});
+			});
+			applyButton.addEventListener('click', () => {
+				window.DockerThemeProvider?.commit(pendingPreference);
+				closePicker(false);
+			});
+			cancelButtons.forEach((button) => button.addEventListener('click', () => closePicker(true)));
+			dialog.addEventListener('cancel', (event) => {
+				event.preventDefault();
+				closePicker(true);
+			});
+			dialog.addEventListener('click', (event) => {
+				if (event.target === dialog) closePicker(true);
+			});
+
+			const state = window.DockerThemeProvider?.getState();
+			updateSelection(state?.preference || 'system');
+		});
+	};
+
+	setupThemePicker();
+	document.addEventListener('astro:page-load', setupThemePicker);
+</script>

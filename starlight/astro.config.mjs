@@ -3,11 +3,16 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://docker-curriculum.com',
 	integrations: [
 		starlight({
 			title: 'Docker Curriculum',
 			tableOfContents: false,
-			customCss: ['./src/styles/custom.css'],
+			customCss: ['./src/styles/custom.css', './src/styles/design.css'],
+			components: {
+				ThemeProvider: './src/components/ThemeProvider.astro',
+				ThemeSelect: './src/components/ThemeSelect.astro',
+			},
 			head: [
 				{
 					tag: 'script',
@@ -25,40 +30,44 @@ export default defineConfig({
 					},
 				},
 			],
-			social: {
-				github: 'https://github.com/prakhar1989/docker-curriculum',
-			},
+			social: [
+				{
+					icon: 'github',
+					label: 'GitHub',
+					href: 'https://github.com/prakhar1989/docker-curriculum',
+				},
+			],
 			editLink: {
 				baseUrl: 'https://github.com/prakhar/docker-curriculum/edit/main/starlight/',
 			},
 			sidebar: [
 				{
 					label: 'Introduction',
-					autogenerate: { directory: 'introduction' },
+					items: [{ autogenerate: { directory: 'introduction' } }],
 				},
 				{
 					label: 'Getting Started',
-					autogenerate: { directory: 'getting-started' },
+					items: [{ autogenerate: { directory: 'getting-started' } }],
 				},
 				{
 					label: 'Hello World',
-					autogenerate: { directory: 'hello-world' },
+					items: [{ autogenerate: { directory: 'hello-world' } }],
 				},
 				{
 					label: 'Webapps with Docker',
-					autogenerate: { directory: 'webapps-with-docker' },
+					items: [{ autogenerate: { directory: 'webapps-with-docker' } }],
 				},
 				{
 					label: 'Multi-Container Environments',
-					autogenerate: { directory: 'multi-container-environments' },
+					items: [{ autogenerate: { directory: 'multi-container-environments' } }],
 				},
 				{
 					label: 'Modern Docker & Best Practices',
-					autogenerate: { directory: 'modern-docker' },
+					items: [{ autogenerate: { directory: 'modern-docker' } }],
 				},
 				{
 					label: 'Conclusion',
-					autogenerate: { directory: 'conclusion' },
+					items: [{ autogenerate: { directory: 'conclusion' } }],
 				},
 			],
 		}),

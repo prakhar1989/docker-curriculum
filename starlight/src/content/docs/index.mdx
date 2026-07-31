@@ -1,57 +1,80 @@
 ---
 title: Docker Curriculum
-description: Learn to build and deploy your distributed applications easily to the cloud with Docker
+description: Learn Docker by building real applications, from your first container to production deployment.
+template: splash
+tableOfContents: false
 ---
 
 import { Image } from 'astro:assets';
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Icon from '../../../node_modules/@astrojs/starlight/user-components/Icon.astro';
 import dockerLogo from '../../assets/logo.png';
 
-<div class="hero-container not-content">
-  <div class="hero-logo-wrapper">
-    <Image src={dockerLogo} alt="Docker for Beginners" class="hero-logo" />
-  </div>
+<div class="dc-home not-content">
+  <section class="dc-hero" aria-labelledby="dc-home-title">
+    <div class="dc-hero-copy">
+      <p class="dc-eyebrow">Docker, from first principles</p>
+      <h1 id="dc-home-title" class="dc-hero-title">Build with containers. Learn by shipping.</h1>
+      <p>
+        A practical, project-led curriculum for learning Docker, Compose, and cloud deployment without getting lost in the jargon.
+      </p>
+      <div class="dc-hero-actions">
+        <a class="dc-button dc-button-primary" href="/introduction/00-docker/">Start learning</a>
+        <a class="dc-button dc-button-secondary" href="https://github.com/prakhar1989/docker-curriculum" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
 
-  <p class="hero-tagline">
-    Learn to build and deploy your distributed applications easily to the cloud with Docker
-  </p>
+    <div class="dc-hero-visual">
+      <Image src={dockerLogo} alt="Docker for Beginners" class="dc-hero-logo" />
+      <div class="dc-terminal-card" aria-label="Curriculum preview">
+        <div class="dc-terminal-bar"><span class="dc-terminal-dot"></span><span>docker-curriculum ~ ready</span></div>
+        <pre class="dc-terminal-command"><strong>$</strong> docker run hello-world
+<strong>→</strong> understand the container
+<strong>→</strong> build a real web app
+<strong>→</strong> ship it to the cloud</pre>
+      </div>
+    </div>
+  </section>
 
-  <div class="author-credits">
-    <span>Written and developed by <a href="https://github.com/prakhar1989" target="_blank" rel="noopener">Prakhar Srivastav</a></span>
-    <div class="social-badges">
-      <a href="https://github.com/prakhar1989/docker-curriculum" target="_blank" rel="noopener" class="badge-link">
-        <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        <span>GitHub Repo</span>
+  <section aria-labelledby="dc-path-title">
+    <div class="dc-section-heading">
+      <h2 id="dc-path-title">Pick your path</h2>
+    </div>
+
+    <div class="dc-paths">
+      <a class="dc-path-card" href="/introduction/00-docker/">
+        <span class="dc-path-number">01 / START HERE</span>
+        <h3>New to containers?</h3>
+        <p>Learn what Docker is, why containers matter, and the mental model you need.</p>
       </a>
-      <a href="https://www.linkedin.com/in/prakharsrivastav/" target="_blank" rel="noopener" class="badge-link">
-        <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.49 1.49 0 1 0 0 2.98 1.49 1.49 0 0 0 0-2.98z"/></svg>
-        <span>LinkedIn</span>
+      <a class="dc-path-card" href="/webapps-with-docker/00-static-sites/">
+        <span class="dc-path-number">02 / BUILD</span>
+        <h3>Build a web app</h3>
+        <p>Containerize a static site and a Flask application from scratch.</p>
+      </a>
+      <a class="dc-path-card" href="/multi-container-environments/00-introduction/">
+        <span class="dc-path-number">03 / COMPOSE</span>
+        <h3>Run a full stack app</h3>
+        <p>Connect services, networks, and workflows with modern Compose.</p>
+      </a>
+      <a class="dc-path-card" href="/modern-docker/00-introduction/">
+        <span class="dc-path-number">04 / SHIP</span>
+        <h3>Go beyond hello world</h3>
+        <p>Apply BuildKit, multi-platform builds, Compose Watch, and security habits.</p>
       </a>
     </div>
-  </div>
+  </section>
+
+  <footer class="dc-home-footer">
+    <span>Written and developed by <a href="https://github.com/prakhar1989" target="_blank" rel="noopener">Prakhar Srivastav</a>.</span>
+    <nav class="dc-social-links" aria-label="Social links">
+      <a class="dc-social-link" href="https://github.com/prakhar1989" target="_blank" rel="noopener" aria-label="GitHub">
+        <Icon name="github" />
+        <span>GitHub</span>
+      </a>
+      <a class="dc-social-link" href="https://www.linkedin.com/in/prakharsrivastav/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <Icon name="linkedin" />
+        <span>LinkedIn</span>
+      </a>
+    </nav>
+  </footer>
 </div>
-
----
-
-## What is Docker?
-
-Wikipedia defines [Docker](https://www.docker.com/) as:
-
-> an open-source project that automates the deployment of software applications inside **containers** by providing an additional layer of abstraction and automation of **OS-level virtualization** on Linux.
-
-Wow! That's a mouthful. In simpler words, Docker is a tool that allows developers, sys-admins etc. to easily deploy their applications in a sandbox (called *containers*) to run on the host operating system i.e. Linux. The key benefit of Docker is that it allows users to **package an application with all of its dependencies into a standardized unit** for software development. Unlike virtual machines, containers do not have high overhead and hence enable more efficient usage of the underlying system and resources.
-
-<CardGrid>
-  <Card title="Container Basics" icon="setting">
-    Learn images, containers, ports, environment variables, and Dockerfiles from scratch.
-  </Card>
-  <Card title="Web Applications" icon="laptop">
-    Build and run Python Flask microservices and static websites inside isolated containers.
-  </Card>
-  <Card title="Multi-Container Stack" icon="random">
-    Orchestrate Flask and Elasticsearch multi-container environments with Docker Compose V2.
-  </Card>
-  <Card title="Production Cloud" icon="rocket">
-    Deploy production-ready containerized workloads to AWS Elastic Container Service (ECS).
-  </Card>
-</CardGrid>
